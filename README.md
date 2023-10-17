@@ -5,8 +5,8 @@
 PureBlazor Components built for [PureBlazor CMS](https://pureblazor.com)
 
 # Goals
-- Performance
-- Simplicity
+- [x] Performance
+- [x] Simplicity
 
 ## Status
 
