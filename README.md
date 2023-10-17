@@ -3,3 +3,33 @@
 
 # PureBlazor Components
 PureBlazor Components built for [PureBlazor CMS](https://pureblazor.com)
+
+# Goals
+- Performance
+- Simplicity
+
+## Status
+
+**General**
+- [ ] Alert
+- [ ] Button
+- [ ] Card
+- [ ] Charts
+- [ ] Dialog
+- [ ] Dropdown
+- [ ] Flyout
+- [ ] Tab
+- [ ] Toggle
+- [ ] Table
+- [ ] Navigation
+
+**Inputs**
+- [ ] Field
+- [ ] Upload
+- [ ] Checkbox
+- [ ] Radio
+- [ ] Rating
+- [ ] Select
+- [ ] Toggle
+- [ ] DatePicker
+- [ ] TimePicker 
