@@ -1,0 +1,62 @@
+﻿@namespace PureBlazor.Components
+@using Microsoft.Extensions.Logging
+@inherits MkComponent
+
+<CascadingValue Value="this">
+    <section class="text-gray-900 dark:text-gray-400 dark:bg-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap flex-col">
+            <div class="flex mx-auto flex-wrap w-full">
+                @foreach (var tab in Tabs)
+                {
+                    <MkTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" OnClick="() => ChangeTab(tab)" Variant="Variant" />
+                }
+
+            </div>
+            @ChildContent
+        </div>
+    </section>
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+    
+    [Parameter]
+    public TabVariant Variant { get; set; }
+
+    public MkTabContent? CurrentTab { get; set; }
+    private string InternalCss { get; set; }
+
+
+    internal List<MkTabContent> Tabs { get; set; } = new List<MkTabContent>();
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        InternalCss = BuildCss();
+    }
+
+    internal void ChangeTab(MkTabContent tab)
+    {
+        CurrentTab = tab;
+    }
+
+    public string BuildCss()
+    {
+        var builder = TailwindBuilder.New();
+
+        return builder.Build();
+    }
+
+    internal void AddTab(MkTabContent tab)
+    {
+        Tabs.Add(tab);
+
+        if (CurrentTab == null)
+        {
+            CurrentTab = tab;
+        }
+
+        StateHasChanged();
+    }
+}
