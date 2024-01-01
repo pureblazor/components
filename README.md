@@ -12,10 +12,10 @@ PureBlazor Components built for [PureBlazor CMS](https://pureblazor.com)
 
 **General**
 - [ ] Alert
-- [ ] Button
+- [x] Button
 - [ ] Card
 - [ ] Charts
-- [ ] Dialog
+- [x] Dialog
 - [ ] Dropdown
 - [ ] Flyout
 - [ ] Tab
