@@ -13,13 +13,13 @@ public interface IElementUtils
 
 public class ElementUtils : IElementUtils
 {
-    private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
+    //private readonly Lazy<Task<IJSObjectReference>> _moduleTask;
     private readonly IJSRuntime JS;
     public ElementUtils(IJSRuntime jsRuntime)
     {
         JS = jsRuntime;
-        _moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-            "import", "./_content/Makani/makani.js").AsTask());
+        //_moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
+        //    "import", "./_content/Makani/makani.js").AsTask());
     }
 
     /// <summary>

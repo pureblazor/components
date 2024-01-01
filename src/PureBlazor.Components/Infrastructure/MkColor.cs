@@ -69,6 +69,7 @@ public class ColorWithShade
 
 public class MakaniColor
 {
+    public static ColorWithShade Brand => new("brand");
     public static ColorWithShade Slate => new("slate");
     public static ColorWithShade Zinc => new("zinc");
     public static ColorWithShade Gray => new("gray");

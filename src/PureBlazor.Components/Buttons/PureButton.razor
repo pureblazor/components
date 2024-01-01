@@ -1,0 +1,6 @@
+﻿<button
+    @attributes="InputAttributes"
+    class="@InternalCss @(Pressed ? "translate-y-[0.075rem]" : "")"
+    @onmousedown="() => Pressed = true"
+    @onmouseup="() => Pressed = false"
+    @onclick="OnClick">@ChildContent</button>
