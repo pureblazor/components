@@ -26,7 +26,7 @@ internal class TailwindBuilder
     private double? VerticalPadding { get; set; }
     private double? HorizontalPadding { get; set; }
     private TextTransform TextTransform { get; set; }
-    private MkSize FontSize { get; set; }
+    private PureSize FontSize { get; set; }
     private ColorWithShade? FontColor { get; set; }
 
     public static TailwindBuilder New()
@@ -164,6 +164,13 @@ internal class TailwindBuilder
 
     public TailwindBuilder SetFontSize(MkSize s)
     {
+        FontSize = (PureSize)s;
+
+        return this;
+    }
+
+    public TailwindBuilder SetFontSize(PureSize s)
+    {
         FontSize = s;
 
         return this;
@@ -197,15 +204,15 @@ internal class TailwindBuilder
         };
     }
 
-    private string ToTextSize(MkSize s)
+    private string ToTextSize(PureSize s)
     {
         return s switch
         {
-            MkSize.ExtraSmall => "text-xs",
-            MkSize.Small => "text-sm",
-            MkSize.Medium => "text-base",
-            MkSize.Large => "text-lg",
-            MkSize.ExtraLarge => "text-xl",
+            PureSize.ExtraSmall => "text-xs",
+            PureSize.Small => "text-sm",
+            PureSize.Medium => "text-base",
+            PureSize.Large => "text-lg",
+            PureSize.ExtraLarge => "text-xl",
             _ => "text-base"
         };
     }

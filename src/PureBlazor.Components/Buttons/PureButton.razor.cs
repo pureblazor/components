@@ -10,13 +10,14 @@ public partial class PureButton
     public Dictionary<string, object>? InputAttributes { get; set; } =
     new()
     {
+        {"type", "button" }
     };
 
     private bool Pressed { get; set; }
-    private string InternalCss { get; set; }
+    private string? InternalCss { get; set; }
 
     [Parameter]
-    public MkSize Size { get; set; } = MkSize.Medium;
+    public PureSize Size { get; set; } = PureSize.Medium;
 
     [Parameter]
     public ColorWithShade Color { get; set; } = MakaniColor.Neutral;
@@ -31,7 +32,7 @@ public partial class PureButton
     public RenderFragment? RightIcon { get; set; }
 
     [Parameter]
-    public MkSize Radius { get; set; } = MkSize.ExtraSmall;
+    public PureSize Radius { get; set; } = PureSize.ExtraSmall;
 
     [Parameter]
     public bool Uppercase { get; set; }
@@ -94,10 +95,10 @@ public partial class PureButton
     {
         return Size switch
         {
-            MkSize.ExtraSmall => builder.AddPadding(2.5, 1.5),
-            MkSize.Small => builder.AddPadding(3, 2),
-            MkSize.Medium => builder.AddPadding(3.5, 2.5),
-            MkSize.Large => builder.AddPadding(4, 3),
+            PureSize.ExtraSmall => builder.AddPadding(2.5, 1.5),
+            PureSize.Small => builder.AddPadding(3, 2),
+            PureSize.Medium => builder.AddPadding(3.5, 2.5),
+            PureSize.Large => builder.AddPadding(4, 3),
             _ => builder.AddPadding(3, 2),
         };
     }
