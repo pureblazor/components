@@ -3,7 +3,7 @@
 @using System.Text.RegularExpressions
 @using PureBlazor.Components.Components.Forms
 @implements IFormComponent
-@inject ILogger<MkTextField> Log
+@inject ILogger<PureInput> Log
 
 <div class="flex flex-col relative">
     @if (!string.IsNullOrWhiteSpace(Label))
@@ -91,7 +91,7 @@
     public bool HasError { get; set; }
 
     [CascadingParameter]
-    public MkFormControl? FormControl { get; set; }
+    public PureForm? FormControl { get; set; }
 
     /// <summary>
     /// Defaults to immediate mode
