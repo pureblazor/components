@@ -49,11 +49,24 @@ public partial class PureButton
     [Parameter]
     public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+    [Parameter]
+    public bool Disabled { get; set; }
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
         InternalCss = BuildCss();
+    }
+
+    public void OnClicked(MouseEventArgs e)
+    {
+        if (Disabled)
+        {
+            return;
+        }
+
+        OnClick.InvokeAsync();
     }
 
     public string BuildCss()
@@ -87,6 +100,11 @@ public partial class PureButton
         }
 
         builder.AddClasses("rounded-sm font-semibold");
+
+        if (Disabled)
+        {
+            //builder.AddClasses("");
+        }
 
         return builder.Build();
     }
