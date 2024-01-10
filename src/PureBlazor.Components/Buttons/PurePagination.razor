@@ -1,0 +1,8 @@
+﻿<ul class="inline-flex -space-x-px text-sm">
+    @for (var page = 1; page <= Total; page++)
+    {
+        <li>
+            <a href="#" class="@PageItemCss(page)" @onclick="async e => { await OnElementClick(e, page); }" @onclick:preventDefault>{page}</a>
+        </li>
+    }
+</ul>
