@@ -54,5 +54,9 @@ public class DropdownMenuItem
     /// The text to display on the menu item.
     /// </summary>
     public string? Text { get; set; }
+    /// <summary>
+    /// The value to send to the server.
+    /// </summary>
+    public string? Value { get; set; }
 }
 
