@@ -14,16 +14,16 @@ public partial class PurePagination
     public RenderFragment? ChildContent { get; set; }
 
 
-    [Parameter]
     ///<summary>
     /// Total number of pages.
     ///</summary>
+    [Parameter]
     public int Total { get; set; } = 0;
 
-    [Parameter]
     ///<summary>
     /// Current page number.
     ///</summary>
+    [Parameter]
     public int Current { get; set; } = 0;
 
 
@@ -45,10 +45,10 @@ public partial class PurePagination
     ///</summary>
     internal int LastPage => Total;
 
-    [Parameter]
     ///<summary>
     /// Number of items to display to the left and right of the current page.
     ///</summary>
+    [Parameter]
     public int Siblings { get; set; } = 3;
 
     ///<summary>
@@ -61,15 +61,15 @@ public partial class PurePagination
     ///</summary>
     internal int LastSibling => Math.Min(Current + Siblings, LastPage);
 
-    [Parameter]
     ///<summary>
     /// When True, Enables the controls for jumping to the First/Last Pages
     ///</summary>
+    [Parameter]
     public bool EdgeControls { get; set; } = false;
 
-    [Parameter]
     ///<summary>
     /// Callback with the page number clicked on.
     ///</summary>
+    [Parameter]
     public EventCallback<int> OnChange { get; set; }
 }
