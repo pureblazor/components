@@ -2,7 +2,12 @@
 [![Discord](https://img.shields.io/discord/984241021225414787?style=flat-square)](https://discord.gg/PeBbYy6WKq)
 
 # PureBlazor Components
-PureBlazor Components built for [PureBlazor CMS](https://pureblazor.com)
+PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
+
+# Getting started
+These components are being built alongside (and for) the PureBlazor CMS. Our focus is supporting the CMS first and foremost.
+
+In order to use these components, the current recommendation is to add this repository as a submodule (or fork this repo). We will eventually add these components to Nuget when time permits.
 
 # Goals
 - [x] Performance
@@ -11,20 +16,20 @@ PureBlazor Components built for [PureBlazor CMS](https://pureblazor.com)
 ## Status
 
 **General**
-- [ ] Alert
+- [x] Banner
 - [x] Button
 - [ ] Card
 - [ ] Charts
 - [x] Dialog
-- [ ] Dropdown
-- [ ] Flyout
-- [ ] Tab
+- [x] Dropdown
+- [ ] Flyout (_in progress_)
+- [ ] Tab (_in progress_)
 - [ ] Toggle
 - [ ] Table
 - [ ] Navigation
 
 **Inputs**
-- [ ] Field
+- [x] Field
 - [ ] Upload
 - [ ] Checkbox
 - [ ] Radio
