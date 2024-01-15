@@ -1,0 +1,12 @@
+﻿@using PureBlazor.Components.Icons
+
+@inherits PureButtonBase
+
+<button @attributes="InputAttributes"
+        class="@InternalCss @(Pressed ? "translate-y-[0.075rem]" : "")"
+        disabled="@Disabled"
+        @onmousedown="() => Pressed = true"
+        @onmouseup="() => Pressed = false"
+        @onclick="OnClicked">
+    <PureIcon Type="Icon" />
+</button>

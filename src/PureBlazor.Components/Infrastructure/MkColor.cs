@@ -67,6 +67,34 @@ public class ColorWithShade
     public ColorWithShade Ten => new(BaseColor, 10);
 }
 
+public class PureColor
+{
+    public static ColorWithShade Brand => new("brand");
+    public static ColorWithShade Slate => new("slate");
+    public static ColorWithShade Zinc => new("zinc");
+    public static ColorWithShade Gray => new("gray");
+    public static ColorWithShade Neutral => new("neutral");
+    public static ColorWithShade Stone => new("stone");
+    public static ColorWithShade Red => new("red");
+    public static ColorWithShade Orange => new("orange");
+    public static ColorWithShade Amber => new("amber");
+    public static ColorWithShade Yellow => new("yellow");
+    public static ColorWithShade Lime => new("lime");
+    public static ColorWithShade Green => new("green");
+    public static ColorWithShade Emerald => new("emerald");
+    public static ColorWithShade Teal => new("teal");
+    public static ColorWithShade Cyan => new("cyan");
+    public static ColorWithShade Sky => new("sky");
+    public static ColorWithShade Blue => new("blue");
+    public static ColorWithShade Indigo => new("indigo");
+    public static ColorWithShade Violet => new("violet");
+    public static ColorWithShade Purple => new("purple");
+    public static ColorWithShade Fuchsia => new("fuchsia");
+    public static ColorWithShade Pink => new("pink");
+    public static ColorWithShade Rose => new("rose");
+}
+
+[Obsolete("Use PureColor instead")]
 public class MakaniColor
 {
     public static ColorWithShade Brand => new("brand");
