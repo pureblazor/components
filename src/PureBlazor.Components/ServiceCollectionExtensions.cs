@@ -9,7 +9,7 @@ namespace PureBlazor.Components;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddMakani(this IServiceCollection services)
+    public static IServiceCollection AddPureBlazor(this IServiceCollection services)
     {
         // javascript
         services.AddTransient<IElementUtils, ElementUtils>();
