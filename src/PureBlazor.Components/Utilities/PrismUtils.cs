@@ -9,7 +9,7 @@ public class PrismUtils
     public PrismUtils(IJSRuntime jsRuntime)
     {
         moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-            "import", "./_content/Makani/makani.js").AsTask());
+            "import", "./_content/PureBlazor.Components/makani.js").AsTask());
     }
 
     public async ValueTask HighlightAll()
