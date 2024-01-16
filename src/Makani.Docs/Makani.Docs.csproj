@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Makani\Makani.csproj" />
+    <ProjectReference Include="..\PureBlazor.Components\PureBlazor.Components.csproj" />
   </ItemGroup>
 
   <ItemGroup>
