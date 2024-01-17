@@ -23,11 +23,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Components\Alerts\MkToast.razor" />
-    <Content Remove="Infrastructure\MkComponent.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>

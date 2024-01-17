@@ -3,7 +3,7 @@
 @inject ILogger<PureToastProvider> Log
 
 <div class="fixed bottom-0 left-0 p-4 z-20">
-@foreach (var msg in Service.Messages)
+    @foreach (var msg in Service.Messages)
     {
         <PureToast State="msg.State" Css="@(msg.IsRemoving ? "opacity-0 transition-opacity ease-in duration-700" : "transition-opacity opacity-100 ease-in duration-700")">@msg.Message</PureToast>
     }
