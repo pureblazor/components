@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -19,8 +19,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Company>CodeFrog</Company>
     <Authors>codymullins</Authors>
-    <Copyright>Copyright 2023 CodeFrog</Copyright>
-    <PackageOutputPath>..\packages</PackageOutputPath>
+    <Copyright>Copyright 2023 CodeFrog</Copyright>    
   </PropertyGroup>
 
   <ItemGroup>

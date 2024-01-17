@@ -1,18 +1,18 @@
 ﻿@page "/components/buttons"
 <div class="grid grid-cols-4 pt-10">
     <div class="hidden sm:block sm:col-span-1">
-        <MkVertNav />
+        <MkVertNav />        
     </div>
     <div class="col-span-4 sm:col-span-3">
         <MkText Type="Typo.H4">Components</MkText>
         <MkText Type="Typo.H1" Id="buttons">Buttons</MkText>
         <div class="mb-10">
-            <DocumentationCard Component="typeof(MkButton)">
+            <DocumentationCard Component="typeof(PureButton)">
                 <Documentation>
                     <EditForm Model="Model">
                         <div class="flex justify-between divide-x">
                             <div class="flex items-center justify-center w-2/3">
-                                <MkButton Color="@Model.CurrentColor" Size="@Model.CurrentSize" Variant="@Model.CurrentVariant">Settings</MkButton>
+                                @* <PureButton Color="@Model.CurrentColor" Size="@Model.CurrentSize" Variant="@Model.CurrentVariant">Settings</PureButton> *@
                             </div>
                             <div class="flex flex-col w-1/3 p-2">
                                 <div class="px-1.5"><strong>Color</strong></div>
@@ -20,7 +20,7 @@
                                     @foreach (var color in Colors)
                                     {
                                         <div class="pr-0.5">
-                                            <MkButton Color="color" OnClick="() => ChangeColor(color)"></MkButton>
+                                            <PureButton Color="color" OnClick="() => ChangeColor(color)"></PureButton>
                                         </div>
                                     }
                                 </div>
@@ -66,7 +66,7 @@
                 <ComponentParams>
                     
                 </ComponentParams>
-            </DocumentationCard>
+            </DocumentationCard> 
         </div>
     </div>
 </div>
