@@ -14,7 +14,7 @@ public class DialogService
     private class DialogDefaults
     {
         public const string AckButton = "Continue";
-        public static ColorWithShade AckColor = MakaniColor.Brand.Seven;
+        public static ColorWithShade AckColor = PureColor.Brand.Seven;
     }
 
     public event Action OnOpen;

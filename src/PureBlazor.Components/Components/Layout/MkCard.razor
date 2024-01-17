@@ -1,7 +1,7 @@
 ﻿@namespace PureBlazor.Components
 @inherits PureComponent
 
-@if (Alignment == MkCardAlignment.Top)
+@if (Alignment == PureCardAlignment.Top)
 {
     <div class="rounded overflow-hidden shadow-lg border border-solid border-neutral-200 bg-white dark:bg-gray-800 dark:border-transparent @Styles">
         @if (!string.IsNullOrWhiteSpace(ImageUrl))
@@ -48,7 +48,7 @@ else
     public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
-    public MkCardAlignment Alignment { get; set; }
+    public PureCardAlignment Alignment { get; set; }
 
     [Parameter]
     public string ImageUrl { get; set; }
