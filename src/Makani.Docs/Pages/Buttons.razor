@@ -36,10 +36,10 @@
                                 <div class="px-1.5"><strong>Size</strong></div>
                                 <div class="px-1 mb-2">
                                     <InputSelect class="px-4 py-1.5 border rounded-sm w-full" @bind-Value="Model.CurrentSize">
-                                        <option value="@MkSize.ExtraSmall">Extra Small</option>
-                                        <option value="@MkSize.Small">Small</option>
-                                        <option value="@MkSize.Medium">Medium</option>
-                                        <option value="@MkSize.Large">Large</option>
+                                        <option value="@PureSize.ExtraSmall">Extra Small</option>
+                                        <option value="@PureSize.Small">Small</option>
+                                        <option value="@PureSize.Medium">Medium</option>
+                                        <option value="@PureSize.Large">Large</option>
                                     </InputSelect>
                                 </div>
                                 <div class="px-1.5"><strong>Shade</strong></div>
@@ -76,7 +76,7 @@
     {
         public ColorWithShade CurrentColor { get; set; } = MakaniColor.Blue;
 
-        public MkSize CurrentSize { get; set; } = MkSize.Small;
+        public PureSize CurrentSize { get; set; } = PureSize.Small;
         public ButtonVariant CurrentVariant { get; set; } = ButtonVariant.Filled;
         public string CurrentShade { get; set; } = "5";
     }
@@ -118,8 +118,8 @@
 
     public int Count { get; set; } = 0;
 
-    private string buttons = @"<MkButton Color=""MakaniColor.Blue"" Size=""MkSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
-<MkButton Color=""MakaniColor.Blue.One"" Size=""MkSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
+    private string buttons = @"<MkButton Color=""MakaniColor.Blue"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
+<MkButton Color=""MakaniColor.Blue.One"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
 ";
 
 
