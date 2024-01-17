@@ -74,7 +74,7 @@
 @code {
     public class ButtonModel
     {
-        public ColorWithShade CurrentColor { get; set; } = MakaniColor.Blue;
+        public ColorWithShade CurrentColor { get; set; } = PureColor.Blue;
 
         public PureSize CurrentSize { get; set; } = PureSize.Small;
         public ButtonVariant CurrentVariant { get; set; } = ButtonVariant.Filled;
@@ -104,7 +104,7 @@
 
     private void LoadColors()
     {
-        Colors = typeof(MakaniColor)
+        Colors = typeof(PureColor)
     .GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
     .Select(p => p.GetValue(null))
     .Cast<ColorWithShade>().ToList();
@@ -118,8 +118,8 @@
 
     public int Count { get; set; } = 0;
 
-    private string buttons = @"<MkButton Color=""MakaniColor.Blue"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
-<MkButton Color=""MakaniColor.Blue.One"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
+    private string buttons = @"<MkButton Color=""PureColor.Blue"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
+<MkButton Color=""PureColor.Blue.One"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
 ";
 
 

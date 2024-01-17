@@ -47,13 +47,13 @@
     public Typo Type { get; set; }
 
     [Parameter]
-    public MkMargin Margin { get; set; } = MkMargin.Default;
+    public PureMargin Margin { get; set; } = PureMargin.Default;
 
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
     private string GetMargin(string margin)
     {
-        return Margin == MkMargin.Default ? margin : "";
+        return Margin == PureMargin.Default ? margin : "";
     }
 }

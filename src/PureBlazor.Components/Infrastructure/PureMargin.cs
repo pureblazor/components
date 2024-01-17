@@ -1,8 +1,7 @@
 ﻿namespace PureBlazor.Components;
 
-public enum MkVariant
+public enum PureMargin
 {
     Default,
-    Solid,
-    Link
+    None
 }

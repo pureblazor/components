@@ -1,29 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PureBlazor.Components;
-
-public class Test
-{
-
-    public void Foo()
-    {
-        var foo = MakaniColor.Slate;
-
-        var zinc = MakaniColor.Zinc;
-        var zincWithShade = MakaniColor.Zinc.One;
-        var foo2 = MakaniColor.Zinc.Two;
-
-        var two = MakaniColor.Slate;
-        var three = MakaniColor.Slate;
-        var one = MakaniColor.Slate.Zero;
-        var shade1 = MakaniColor.Slate.One;
-        var shade2 = MakaniColor.Slate.Three;
-    }
-}
+﻿namespace PureBlazor.Components;
 
 public enum TextTransform
 {
@@ -94,36 +69,8 @@ public class PureColor
     public static ColorWithShade Rose => new("rose");
 }
 
-[Obsolete("Use PureColor instead")]
-public class MakaniColor
-{
-    public static ColorWithShade Brand => new("brand");
-    public static ColorWithShade Slate => new("slate");
-    public static ColorWithShade Zinc => new("zinc");
-    public static ColorWithShade Gray => new("gray");
-    public static ColorWithShade Neutral => new("neutral");
-    public static ColorWithShade Stone => new("stone");
-    public static ColorWithShade Red => new("red");
-    public static ColorWithShade Orange => new("orange");
-    public static ColorWithShade Amber => new("amber");
-    public static ColorWithShade Yellow => new("yellow");
-    public static ColorWithShade Lime => new("lime");
-    public static ColorWithShade Green => new("green");
-    public static ColorWithShade Emerald => new("emerald");
-    public static ColorWithShade Teal => new("teal");
-    public static ColorWithShade Cyan => new("cyan");
-    public static ColorWithShade Sky => new("sky");
-    public static ColorWithShade Blue => new("blue");
-    public static ColorWithShade Indigo => new("indigo");
-    public static ColorWithShade Violet => new("violet");
-    public static ColorWithShade Purple => new("purple");
-    public static ColorWithShade Fuchsia => new("fuchsia");
-    public static ColorWithShade Pink => new("pink");
-    public static ColorWithShade Rose => new("rose");
-}
-
-// todo: experiment with our own colors with lightening/darkening  
-//public class MakaniColor
+// todo: experiment with our own colors with lightening/darkening
+//public class PureColor
 //{
 //    public static ColorWithShade Slate => new("#020617");
 //    public static ColorWithShade Zinc => new("#09090b");
@@ -149,7 +96,7 @@ public class MakaniColor
 //    public static ColorWithShade Rose => new("#4c0519");
 //}
 
-public enum MkCardAlignment
+public enum PureCardAlignment
 {
     Top,
     Left
