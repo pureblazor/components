@@ -1,6 +1,6 @@
 ﻿namespace PureBlazor.Components;
 
-public enum MkMargin
+public enum PureMargin
 {
     Default,
     None
