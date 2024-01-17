@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 namespace PureBlazor.Components;
+
 public class ToastService
 {
     private readonly ILogger<ToastService> _log;
@@ -19,7 +15,7 @@ public class ToastService
 
     internal List<Toast> Messages { get; set; } = new();
 
-    public async Task AddToast(string message, MkState state = MkState.Default)
+    public async Task AddToast(string message, PureState state = PureState.Default)
     {
         await AddToast(new Toast(message, state));
     }
@@ -51,7 +47,7 @@ public class ToastService
 
     private async Task BeginRemove(Toast toast)
     {
-        // mark the toast as removing so the UI has a chance 
+        // mark the toast as removing so the UI has a chance
         // to make it disappear nicely
         toast.IsRemoving = true;
         OnChange?.Invoke(toast);
@@ -70,7 +66,7 @@ public class ToastService
 
 public class Toast
 {
-    public Toast(string message, MkState state = MkState.Default, int duration = 5 * 1000)
+    public Toast(string message, PureState state = PureState.Default, int duration = 5 * 1000)
     {
         Message = message;
         State = state;
@@ -90,7 +86,7 @@ public class Toast
     /// <summary>
     /// The state of the toast, e.g. success, info, danger.
     /// </summary>
-    public MkState State { get; }
+    public PureState State { get; }
 
     /// <summary>
     /// Flag indicating the toast is being removed. Used for the UI to know to begin transitioning
