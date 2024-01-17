@@ -1,0 +1,15 @@
+﻿@namespace PureBlazor.Components
+
+@code {
+    /// <summary>
+    /// Add additional Tailwind styles to this component. Does not override existing styles.
+    /// </summary>
+    [Parameter]
+    public string? Css { get; set; }
+
+    /// <summary>
+    /// Override the built-in CSS for this component.
+    /// </summary>
+    [Parameter]
+    public string? Tailwind { get; set; }
+}
