@@ -3,10 +3,10 @@
 <MkText Type="Typo.H1" Id="alerts">Alerts</MkText>
 <div class="mb-10">
     <MkText Type="Typo.H3">Basic toasts</MkText>
-    <MkToast State="MkState.Success">This is a success toast.</MkToast>
-    <MkToast State="MkState.Info">This is an informational toast.</MkToast>
-    <MkToast State="MkState.Warning">This is a warning toast.</MkToast>
-    <MkToast State="MkState.Error">This is an error toast.</MkToast>
+    <PureToast State="PureState.Success">This is a success toast.</PureToast>
+    <PureToast State="PureState.Info">This is an informational toast.</PureToast>
+    <PureToast State="PureState.Warning">This is a warning toast.</PureToast>
+    <PureToast State="PureState.Error">This is an error toast.</PureToast>
 </div>
 <div class="mb-10">
     <MkText Type="Typo.H3">Demo toasts</MkText>
@@ -18,7 +18,7 @@
 
 @code {
 
-    public async Task AddToast(MkState state)
+    public async Task AddToast(PureState state)
     {
         await Service.AddToast("Adding random toast", state);
     }

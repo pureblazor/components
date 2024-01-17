@@ -23,10 +23,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Infrastructure\MkComponent.razor.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Content Remove="Components\Alerts\MkToast.razor" />
     <Content Remove="Infrastructure\MkComponent.razor" />
   </ItemGroup>
 

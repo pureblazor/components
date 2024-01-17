@@ -1,6 +1,6 @@
 ﻿namespace PureBlazor.Components;
 
-public enum MkState
+public enum PureState
 {
     Default,
     Success,
