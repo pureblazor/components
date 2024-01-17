@@ -1,12 +1,12 @@
 ﻿@using Microsoft.Extensions.Logging
 
-@inject ILogger<MkDropdown> Log
+@inject ILogger<PureDropdown> Log
 
 <MkText Type="Typo.H1" Id="dropdowns">Dropdowns</MkText>
 <div class="mb-10">
     <MkText Type="Typo.H3">Button dropdown</MkText>
     <div class="flex items-baseline">
-        <MkDropdown Items="Items" OnItemSelected="ItemSelected">Settings</MkDropdown>
+        <PureDropdown Items="Items" OnItemSelected="ItemSelected">Settings</PureDropdown>
         <p class="dark:text-gray-200 ml-4 mb-4">
             <strong>Selected: </strong> @MenuItemClicked
         </p>
@@ -18,28 +18,28 @@
 @code {
     public string MenuItemClicked { get; set; } = "Select a menu item";
 
-    public List<MkDropdown.MkMenuItem> Items { get; set; } = new List<MkDropdown.MkMenuItem>();
+    public List<PureDropdown.PureMenuItem> Items { get; set; } = new List<PureDropdown.PureMenuItem>();
 
     protected override void OnInitialized()
     {
-        Items.Add(new MkDropdown.MkMenuItem { Text = "Menu item 1" });
-        Items.Add(new MkDropdown.MkMenuItem { Text = "Menu item 2" });
-        Items.Add(new MkDropdown.MkMenuItem { Text = "Menu item 3" });
-        Items.Add(new MkDropdown.MkMenuItem { Text = "Menu item 4" });
+        Items.Add(new PureDropdown.PureMenuItem { Text = "Menu item 1" });
+        Items.Add(new PureDropdown.PureMenuItem { Text = "Menu item 2" });
+        Items.Add(new PureDropdown.PureMenuItem { Text = "Menu item 3" });
+        Items.Add(new PureDropdown.PureMenuItem { Text = "Menu item 4" });
     }
 
-    protected void ItemSelected(MkDropdown.MkMenuItem item)
+    protected void ItemSelected(PureDropdown.PureMenuItem item)
     {
         MenuItemClicked = item.Text;
     }
 
-    private string Markup = @"<MkDropdown Items=""Items"">Settings</MkDropdown>
+    private string Markup = @"<PureDropdown Items=""Items"">Settings</PureDropdown>
 
 @code {
-    private List<MkDropdown.MkMenuItem> Items = new List<MkDropdown.MkMenuItem>
+    private List<PureDropdown.PureMenuItem> Items = new List<PureDropdown.PureMenuItem>
     {
-        new MkDropdown.MkMenuItem { Text = ""Menu item 1"" }},
-        new MkDropdown.MkMenuItem { Text = ""Menu item 2"" }}
+        new PureDropdown.PureMenuItem { Text = ""Menu item 1"" }},
+        new PureDropdown.PureMenuItem { Text = ""Menu item 2"" }}
     };
 }
 ";
