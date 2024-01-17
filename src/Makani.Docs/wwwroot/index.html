@@ -29,23 +29,13 @@
             }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-                    },
-                },
-            },
-        }
-    </script>
+
     <!-- todo: remove dist folder and just have it at the parent level -->
-    <link href="_content/Makani/dist/makani.css" rel="stylesheet" />
+    <link href="_content/PureBlazor.Components/dist/makani.css" rel="stylesheet" />
     <link href="dist/docs.css" rel="stylesheet" />
 
     <!-- needed for syntax highlighter, todo: figure out best way for consumers to use this with less friction -->
-    <link href="_content/Makani/css/vscode-dark-plus.css" rel="stylesheet" />
+    <link href="_content/PureBlazor.Components/css/vscode-dark-plus.css" rel="stylesheet" />
 
     <!--<link href="_content/Makani/css/atom-dark.css" rel="stylesheet" />
     <link href="_content/Makani/css/coy.css" rel="stylesheet" />
@@ -53,7 +43,7 @@
     <link href="_content/Makani/css/tomorrow-night.css" rel="stylesheet" />-->
     <!-- todo: see if there's a way for .NET Core or MAUI to inject this w/o having the user have to add it. -->
     <script type="module">
-        import { addDarkModeSupport } from './_content/Makani/makani.js';
+        import { addDarkModeSupport } from './_content/PureBlazor.Components/makani.js';
         addDarkModeSupport();
     </script>
 </head>
@@ -67,7 +57,7 @@
         <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/Makani/prism.js"></script>
+    <script src="_content/PureBlazor.Components/prism.js"></script>
 </body>
 
 </html>

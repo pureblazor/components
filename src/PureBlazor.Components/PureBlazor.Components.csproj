@@ -24,6 +24,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Infrastructure\MkComponent.razor.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Infrastructure\MkComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
