@@ -1,6 +1,6 @@
 ﻿namespace PureBlazor.Components;
 
-public enum MkVariant
+public enum PureVariant
 {
     Default,
     Solid,
