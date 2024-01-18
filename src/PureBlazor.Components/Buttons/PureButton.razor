@@ -1,5 +1,4 @@
-﻿@namespace PureBlazor.Components
-@inherits PureButtonBase
+﻿@inherits PureButtonBase
 
 <button
     @attributes="InputAttributes"
@@ -7,4 +6,13 @@
     disabled="@Disabled"
     @onmousedown="() => Pressed = true"
     @onmouseup="() => Pressed = false"
-    @onclick="OnClicked">@ChildContent</button>
+    @onclick="OnClicked">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @Text
+    }
+</button>

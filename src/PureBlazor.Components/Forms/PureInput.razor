@@ -13,12 +13,25 @@
             <label for="@Id" class="text-gray-700 dark:text-gray-300 mb-2">@Label</label>
         }
     }
-    <input id="@Id"
-           type="text"
-           value="@Value"
-           @onchange="OnChange" @oninput="OnInput"
-           placeholder="@Placeholder"
-           class="@baseCss @(HasError ? errorBorder : defaultBorder)" />
+    @if (!string.IsNullOrWhiteSpace(Css))
+    {
+        <input id="@Id"
+               type="text"
+               value="@Value"
+               @onchange="OnChange" @oninput="OnInput"
+               placeholder="@Placeholder"
+               class="@Css"/>
+    }
+    else
+    {
+        <input id="@Id"
+               type="text"
+               value="@Value"
+               @onchange="OnChange" @oninput="OnInput"
+               placeholder="@Placeholder"
+               class="@baseCss @(HasError ? errorBorder : defaultBorder)"/>
+    }
+
     @if (Suffix != null)
     {
         <div @onclick="() => { OnSuffixClick.InvokeAsync(); }" class="absolute inset-y-0 right-0 flex items-center px-4 cursor-pointer group @suffixCss">
@@ -90,8 +103,7 @@
 
     public bool HasError { get; set; }
 
-    [CascadingParameter]
-    public PureForm? FormControl { get; set; }
+    [CascadingParameter] public PureForm? FormControl { get; set; }
 
     /// <summary>
     /// Defaults to immediate mode
@@ -117,11 +129,9 @@
     [Parameter]
     public string? HelperText { get; set; }
 
-    [Parameter]
-    public string? Value { get; set; }
+    [Parameter] public string? Value { get; set; }
 
-    [Parameter]
-    public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
 
     /// <summary>
     /// Makes the input required.
@@ -159,8 +169,7 @@
     [Parameter]
     public string? Regex { get; set; }
 
-    [Parameter]
-    public string? Placeholder { get; set; } = " "; // default placeholder to an empty string. required for floating labels.
+    [Parameter] public string? Placeholder { get; set; } = " "; // default placeholder to an empty string. required for floating labels.
 
     /// <summary>
     /// Invoked when a validator indicates a validation error.
@@ -168,11 +177,11 @@
     [Parameter]
     public EventCallback<IList<ValidationResult>> OnError { get; set; }
 
-    [Parameter]
-    public RenderFragment? Suffix { get; set; }
+    [Parameter] public RenderFragment? Suffix { get; set; }
 
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
+
+    [Parameter] public string? Css { get; set; }
 
     public async Task OnChange(ChangeEventArgs args)
     {
@@ -229,4 +238,5 @@
 
         return string.Empty;
     }
+
 }

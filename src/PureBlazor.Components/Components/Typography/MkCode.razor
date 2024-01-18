@@ -4,8 +4,8 @@
 
 <figure class="@Css">
     <figcaption class="dark:text-gray-200 font-semibold text-sm tracking-wide">@Caption</figcaption>
-    <pre class="rounded-lg">            
-        <code class="@LanguageClass">
+    <pre class="rounded-lg">
+        <code style="white-space: normal; overflow: auto; word-break: break-word;" class="@LanguageClass">
                 @Text
         </code>
     </pre>
@@ -25,6 +25,7 @@
     public static string Stylesheet = "css";
     public static string Javascript = "js";
     public static string Razor = "razor";
+
     public static string Csharp = "csharp";
     // protobuf
     // powershell
@@ -39,17 +40,13 @@
     // default to html unless language is specifically supplied
     private string language => !string.IsNullOrWhiteSpace(Language) ? Language : Html;
 
-    [Parameter]
-    public string? Caption { get; set; }
+    [Parameter] public string? Caption { get; set; }
 
-    [Parameter]
-    public string? Language { get; set; }
+    [Parameter] public string? Language { get; set; }
 
-    [Parameter]
-    public string? Css { get; set; }
+    [Parameter] public string? Css { get; set; }
 
-    [Parameter]
-    public string? Text { get; set; }
+    [Parameter] public string? Text { get; set; }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -60,4 +57,5 @@
 
         await base.OnAfterRenderAsync(firstRender);
     }
+
 }

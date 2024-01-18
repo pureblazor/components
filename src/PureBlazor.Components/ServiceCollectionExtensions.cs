@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using PureBlazor.Components.Utilities;
 using Microsoft.Extensions.DependencyInjection;
+using PureBlazor.Components.Dialogs;
 using PureBlazor.Components.Styling;
 
 [assembly: InternalsVisibleTo("Makani.Tests")]
@@ -19,6 +20,7 @@ public static class ServiceCollectionExtensions
 
         // services
         services.AddSingleton<ToastService>();
+        services.AddScoped<DialogService>();
 
         return services;
     }

@@ -13,6 +13,12 @@ public enum TextTransform
 /// </summary>
 public class ColorWithShade
 {
+    public ColorWithShade(ColorWithShade baseColor, int shade)
+    {
+        BaseColor = baseColor.BaseColor;
+        Shade = shade;
+    }
+
     public ColorWithShade(string baseColor, int shade = 5)
     {
         BaseColor = baseColor;
