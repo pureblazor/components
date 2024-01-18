@@ -1,14 +1,15 @@
 ﻿@namespace PureBlazor.Components
-@using PureBlazor.Components.Components.Forms.Validators
+@* @using PureBlazor.Components.Components.Forms.Validators *@
+@using PureBlazor.Components.Forms.Validators
 @using System.Text.RegularExpressions
-@using PureBlazor.Components.Components.Forms
+@* @using PureBlazor.Components.Components.Forms *@
 @implements IFormComponent
 @inject ILogger<PureInput> Log
 
 <div class="flex flex-col relative">
     @if (!string.IsNullOrWhiteSpace(Label))
     {
-        if (LabelType == MkLabelType.Default)
+        if (LabelType == PureLabelType.Default)
         {
             <label for="@Id" class="text-gray-700 dark:text-gray-300 mb-2">@Label</label>
         }
@@ -38,7 +39,7 @@
             @Suffix
         </div>
     }
-    @if (!string.IsNullOrWhiteSpace(Label) && LabelType == MkLabelType.Floating)
+    @if (!string.IsNullOrWhiteSpace(Label) && LabelType == PureLabelType.Floating)
     {
         <!-- todo: integrate bg color with customization / user selected bg color -->
         <label for="@Id" class="cursor-text dark:bg-gray-900 bg-slate-100 absolute left-2 peer-placeholder-shown:left-2 -top-3 text-gray-700 dark:text-gray-300 text-sm transition-all peer-placeholder-shown:bg-transparent dark:peer-focus:bg-gray-900 peer-focus:bg-slate-100 peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-sm">@Label</label>
@@ -121,7 +122,7 @@
     /// Optional label type
     /// </summary>
     [Parameter]
-    public MkLabelType LabelType { get; set; }
+    public PureLabelType LabelType { get; set; }
 
     /// <summary>
     /// Optional helper text
@@ -226,17 +227,16 @@
 
     private string GetSuffixCss()
     {
-        if (!string.IsNullOrWhiteSpace(Label) && LabelType != MkLabelType.Floating && string.IsNullOrWhiteSpace(HelperText))
+        if (!string.IsNullOrWhiteSpace(Label) && LabelType != PureLabelType.Floating && string.IsNullOrWhiteSpace(HelperText))
         {
             return "mt-9";
         }
 
-        if (LabelType == MkLabelType.Floating && (!string.IsNullOrWhiteSpace(HelperText) || !string.IsNullOrWhiteSpace(errorMessage)))
+        if (LabelType == PureLabelType.Floating && (!string.IsNullOrWhiteSpace(HelperText) || !string.IsNullOrWhiteSpace(errorMessage)))
         {
             return "-mt-8";
         }
 
         return string.Empty;
     }
-
 }
