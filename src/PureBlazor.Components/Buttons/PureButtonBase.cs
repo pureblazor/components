@@ -9,6 +9,16 @@ using PureBlazor.Components.Styling;
 
 namespace PureBlazor.Components.Buttons;
 
+/// <summary>
+/// This is a hack for tailwind to find the classes
+/// until we develop a better solution (source generators?)
+/// </summary>
+public static class ButtonColors
+{
+    public const string Primary = "bg-brand-800";
+    public const string PrimaryHover = "hover:bg-brand-800";
+}
+
 public class PureButtonBase : ComponentBase
 {
     [Parameter(CaptureUnmatchedValues = true)]
