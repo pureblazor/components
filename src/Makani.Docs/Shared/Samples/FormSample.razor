@@ -1,11 +1,11 @@
 ﻿@inject ILogger<FormSample> Log
 
-<MkText Type="Typo.H1" Id="textfield">TextField (preview)</MkText>
+<PureText Type="Typo.H1" Id="textfield">TextField (preview)</PureText>
 <div class="mb-10">
-    <MkText Type="Typo.H3">Sizing</MkText>
-    <MkText Type="Typo.Body" Css="mb-4">
+    <PureText Type="Typo.H3">Sizing</PureText>
+    <PureText Type="Typo.Body" Css="mb-4">
         Control the size of <MkInlineCode>MkTextField</MkInlineCode> by using <MkLink Url="https://tailwindcss.com/docs/grid-template-columns" Target="LinkTarget.NewTab">Tailwind Grid Template Columns</MkLink>.
-    </MkText>
+    </PureText>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-4">
             @* <MkTextField Label="Full width"/> *@
@@ -21,7 +21,7 @@
 </div>
 
 <div class="mb-10">
-    <MkText Type="Typo.H3">Labels</MkText>
+    <PureText Type="Typo.H3">Labels</PureText>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-start-1 col-span-2">
             @* <MkTextField Label="Default label"></MkTextField> *@
@@ -34,7 +34,7 @@
 </div>
 
 <div class="mb-10">
-    <MkText Type="Typo.H3">Adornments</MkText>
+    <PureText Type="Typo.H3">Adornments</PureText>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-start-1 col-span-2">
           @*   <MkTextField Label="Search">
@@ -68,16 +68,16 @@
 </div>
 
 <div class="mb-10">
-    <MkText Type="Typo.H3">Data binding</MkText>
-    <MkText Type="Typo.Body" Css="mb-4">
+    <PureText Type="Typo.H3">Data binding</PureText>
+    <PureText Type="Typo.Body" Css="mb-4">
         The <MkInlineCode>MkTextField</MkInlineCode> component supports an immediate mode or blur mode. The default is <MkInlineCode>EntryMode.Immediate</MkInlineCode>.
-    </MkText>
+    </PureText>
     <div class="grid grid-cols-4 gap-4 mb-4">
         <div class="col-span-2">
             @* <MkTextField Label="Immediate mode" @bind-Value="Username"></MkTextField> *@
         </div>
         <div class="col-span-2 flex items-end">
-            <MkText Type="Typo.Body">Value: @Username</MkText>
+            <PureText Type="Typo.Body">Value: @Username</PureText>
         </div>
     </div>
     <div class="grid grid-cols-4 gap-4 mb-4">
@@ -85,12 +85,12 @@
             @* <MkTextField Label="Delayed mode" Mode="EntryMode.Blur" HelperText="Hint: hit tab or click outside the input" @bind-Value="Delayed"></MkTextField> *@
         </div>
         <div class="col-span-2 flex items-center">
-            <MkText Type="Typo.Body">Value: @Delayed</MkText>
+            <PureText Type="Typo.Body">Value: @Delayed</PureText>
         </div>
     </div>
 
-    <MkText Type="Typo.H3">Validation</MkText>
-    <MkText Type="Typo.Body" Css="mb-4">
+    <PureText Type="Typo.H3">Validation</PureText>
+    <PureText Type="Typo.Body" Css="mb-4">
         <strong>Built-in validation:</strong>
 
         <ul>
@@ -98,13 +98,13 @@
             <li>Min length</li>
             <li>Max length</li>
         </ul>
-    </MkText>
+    </PureText>
     <div class="grid grid-cols-4 gap-4 mb-4">
         <div class="col-span-2">
             @* <MkTextField Label="Required username" Required="true" OnError="OnRequiredError" @bind-Value="Username"></MkTextField> *@
         </div>
         <div class="col-span-2 flex items-end">
-            <MkText Type="Typo.Body">Value: @Username, Error: @RequiredError</MkText>
+            <PureText Type="Typo.Body">Value: @Username, Error: @RequiredError</PureText>
         </div>
     </div>
 
@@ -113,7 +113,7 @@
             @* <MkTextField Label="Min length username" MinLength="3" OnError="OnMinLenError" @bind-Value="Username"></MkTextField> *@
         </div>
         <div class="col-span-2 flex items-end">
-            <MkText Type="Typo.Body">Value: @Username, Error: @MinLenError</MkText>
+            <PureText Type="Typo.Body">Value: @Username, Error: @MinLenError</PureText>
         </div>
     </div>
 
@@ -122,7 +122,7 @@
             @* <MkTextField Label="Max length username" MaxLength="10" OnError="OnMaxLenError" @bind-Value="Username"></MkTextField> *@
         </div>
         <div class="col-span-2 flex items-end">
-            <MkText Type="Typo.Body">Value: @Username, Error: @MaxLenError</MkText>
+            <PureText Type="Typo.Body">Value: @Username, Error: @MaxLenError</PureText>
         </div>
     </div>
 </div>
@@ -172,5 +172,4 @@
     {
         MaxLenError = string.Join(',', validation.Select(p => p.Message));
     }
-
 }
