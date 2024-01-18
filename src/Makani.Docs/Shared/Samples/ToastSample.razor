@@ -10,10 +10,10 @@
 </div>
 <div class="mb-10">
     <PureText Type="Typo.H3">Demo toasts</PureText>
-    <MkButton OnClick="() => AddToast(MkState.Success)">Success toast</MkButton>
-    <MkButton OnClick="() => AddToast(MkState.Error)">Error toast</MkButton>
-    <MkButton OnClick="() => AddToast(MkState.Info)">Info toast</MkButton>
-    <MkButton OnClick="() => AddToast(MkState.Warning)">Warning toast</MkButton>
+    <PureButton OnClick="() => AddToast(PureState.Success)">Success toast</PureButton>
+    <PureButton OnClick="() => AddToast(PureState.Error)">Error toast</PureButton>
+    <PureButton OnClick="() => AddToast(PureState.Info)">Info toast</PureButton>
+    <PureButton OnClick="() => AddToast(PureState.Warning)">Warning toast</PureButton>
 </div>
 
 @code {
@@ -22,5 +22,4 @@
     {
         await Service.AddToast("Adding random toast", state);
     }
-
 }

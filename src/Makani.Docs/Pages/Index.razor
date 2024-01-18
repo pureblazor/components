@@ -10,14 +10,14 @@
         <PureText Type="Typo.H4">Getting Started</PureText>
         <div class="mb-10">
             <PureText Type="Typo.H1">Quick Start</PureText>
-            <PureText Type="Typo.H3">Install via NuGet</PureText>
-            <PureText Text="dotnet add package Makani"></PureText>
+            <PureText Type="Typo.H3">Install via NuGet</PureText>            
+            <PureCode Text="dotnet add package Makani"></PureCode>
 
             <PureText Type="Typo.H3" Css="mt-4">Update your <code class="bg-gray-200 dark:text-gray-800 font-mono font-sm rounded-sm">_Imports.razor</code></PureText>
-            <MkCode Text="@("@using Makani")"></MkCode>
+            <PureCode Text="@("@using Makani")"></PureCode>
 
             <PureText Type="Typo.H3" Css="mt-4">Add Makani in your <code class="bg-gray-200 dark:text-gray-800 font-mono font-sm rounded-sm">Program.cs</code></PureText>
-            <MkCode Text="builder.Services.AddMakani();"></MkCode>
+            <PureCode Text="builder.Services.AddMakani();"></PureCode>
         </div>
         <a href="components"><PureButton Size="PureSize.Large" Color="PureColor.Blue" Uppercase>Explore Components</PureButton></a>
     </div>

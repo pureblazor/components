@@ -1,74 +1,66 @@
 ﻿<PureText Type="Typo.H1" Id="cards">Cards</PureText>
 <div>
     <PureText Type="Typo.H3">Default Card with optional image</PureText>
-    <MkCard Title="Card Title" Css="mb-8">
-        <PureText Type="Typo.Body">
-    <MkText Type="Typo.H3">Default Card with optional image</MkText>
     <PureCard Title="Card Title" Css="mb-8">
-        <MkText Type="Typo.Body">
+        <PureText Type="Typo.Body">
             The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
         </PureText>
-        <MkCardFooter>
-        </MkText>
         <PureCardFooter>
-            <MkButton Color="PureColor.Blue">Default</MkButton>
+            <PureButton Color="PureColor.Blue">Default</PureButton>
         </PureCardFooter>
     </PureCard>
 
     <PureText Type="Typo.H3">Top Aligned Card</PureText>
-    <MkCard Title="Card Title" Alignment="PureCardAlignment.Top" ImageUrl="https://picsum.photos/400/300" Css="mb-8">
-        <PureText Type="Typo.Body">
-    <MkText Type="Typo.H3">Top Aligned Card</MkText>
     <PureCard Title="Card Title" Alignment="PureCardAlignment.Top" ImageUrl="https://picsum.photos/400/300" Css="mb-8">
-        <MkText Type="Typo.Body">
+        <PureText Type="Typo.Body">
             The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-        </MkText>
+        </PureText>
         <PureCardFooter>
-            <MkButton Color="PureColor.Blue">Default</MkButton>
+            <PureButton Color="PureColor.Blue">Default</PureButton>
         </PureCardFooter>
     </PureCard>
 
-
-    <MkText Type="Typo.H3">Left Aligned Card</MkText>
+    <PureText Type="Typo.H3">Left Aligned Card</PureText>
     <PureCard Title="Card Title" Alignment="PureCardAlignment.Left" ImageUrl="https://picsum.photos/400/300" Css="mb-8">
-        <MkText Type="Typo.Body">
+        <PureText Type="Typo.Body">
             The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-        </MkText>
+        </PureText>
         <PureCardFooter>
-            <MkButton Color="PureColor.Blue">Default</MkButton>
+            <PureButton Color="PureColor.Blue">Default</PureButton>
         </PureCardFooter>
     </PureCard>
-    <MkCode Text="@docs" Language="@MkCode.Razor" Caption="Example" Css="my-4"></MkCode>
+    <PureCode Text="@docs" Language="@PureCode.Razor" Caption="Example" Css="my-4">
+
+    </PureCode>
 </div>
 
 
 @code {
 
     private string docs = @"<PureCard Title=""Card Title"">
-    <MkText Type=""Typo.Body"">
+    <PureText Type=""Typo.Body"">
         The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-    </MkText>
+    </PureText>
     <PureCardFooter>
-        <MkButton Color=""PureColor.Primary"">Default</MkButton>
+        <PureButton Color=""PureColor.Primary"">Default</PureButton>
     </PureCardFooter>
 </PureCard>
 
 <PureCard Title=""Card Title"" Alignment=""PureCardAlignment.Top"" ImageUrl=""https://picsum.photos/400/300"">
-    <MkText Type=""Typo.Body"">
+    <PureText Type=""Typo.Body"">
         The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-    </MkText>
+    </PureText>
     <PureCardFooter>
-        <MkButton Color=""PureColor.Primary"">Default</MkButton>
+        <PureButton Color=""PureColor.Primary"">Default</PureButton>
     </PureCardFooter>
 </PureCard>
 
 <PureCard Title=""Card Title"" Alignment=""PureCardAlignment.Left"" ImageUrl=""https://picsum.photos/400/300"">
-    <MkText Type=""Typo.Body"">
+    <PureText Type=""Typo.Body"">
         The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-    </MkText>
+    </PureText>
     <PureCardFooter>
-        <MkButton Color=""PureColor.Primary"">Default</MkButton>
+        <PureButton Color=""PureColor.Primary"">Default</PureButton>
     </PureCardFooter>
 </PureCard>";
-
 }

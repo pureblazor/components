@@ -119,10 +119,10 @@
 
     public int Count { get; set; } = 0;
 
-    private string buttons = @"<MkButton Color=""PureColor.Blue"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
-<MkButton Color=""PureColor.Blue.One"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></MkButton>
+    private string buttons = @"<PureButton Color=""PureColor.Blue"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></PureButton>
+<PureButton Color=""PureColor.Blue.One"" Size=""PureSize.Medium"" Variant=""ButtonVariant.Filled""></PureButton>
 ";
 
 
-    private string buttonsWithActions = @"<MkButton OnClick=""() => { Count++; }"">Click me!</MkButton>";
+    private string buttonsWithActions = @"<PureButton OnClick=""() => { Count++; }"">Click me!</PureButton>";
 }

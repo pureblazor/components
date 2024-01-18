@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using PureBlazor.Components.Utilities;
 
-namespace PureBlazor.Components.Buttons;
+namespace PureBlazor.Components;
 
 public partial class PureDropdown
 {
@@ -54,9 +54,9 @@ public class DropdownMenuItem
     /// The text to display on the menu item.
     /// </summary>
     public string? Text { get; set; }
+
     /// <summary>
     /// The value to send to the server.
     /// </summary>
     public string? Value { get; set; }
 }
-

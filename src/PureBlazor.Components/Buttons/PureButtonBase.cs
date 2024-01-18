@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
 using PureBlazor.Components.Styling;
 
-namespace PureBlazor.Components.Buttons;
+namespace PureBlazor.Components;
 
 public class PureButtonBase : ComponentBase
 {
@@ -87,15 +82,19 @@ public class PureButtonBase : ComponentBase
                 builder.AddBackground(Color).AddClasses("text-white");
                 builder.AddBackgroundHover(Color.Eight);
                 break;
+
             case ButtonVariant.Outline:
                 builder.AddBorder(Color).SetFontColor(Color);
                 break;
+
             case ButtonVariant.Default:
                 builder.AddBorder(PureColor.Neutral).SetFontColor(PureColor.Neutral.Six);
                 break;
+
             case ButtonVariant.Subtle:
                 builder.AddBackgroundHover(Color.Two).SetFontColor(Color);
                 break;
+
             default:
                 break;
         }

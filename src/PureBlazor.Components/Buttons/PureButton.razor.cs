@@ -1,12 +1,9 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
-using PureBlazor.Components.Styling;
+﻿using Microsoft.AspNetCore.Components;
 
-namespace PureBlazor.Components.Buttons;
+namespace PureBlazor.Components;
 
 public partial class PureButton
 {
-
     [Parameter]
     public RenderFragment? LeftIcon { get; set; }
 
