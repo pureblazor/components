@@ -1,4 +1,4 @@
-@namespace PureBlazor.Components
+﻿@namespace PureBlazor.Components
 
 <li class="px-2 py-2">
     <NavLink href="@Url"
@@ -10,12 +10,12 @@
     @if (Nested)
     {
         <ul class="pl-4 pt-2">
-            @RenderNestedItem(("components/alerts","Alert"))
-            @RenderNestedItem(("components/buttons","Button"))
-            @RenderNestedItem(("components/cards","Card"))
-            @RenderNestedItem(("components/dropdowns","Dropdown"))
-            @RenderNestedItem(("components/forms","Forms"))
-            @RenderNestedItem(("components/tabs","Tabs"))
+            @RenderNestedItem(("components/alerts", "Alert"))
+            @RenderNestedItem(("components/buttons", "Button"))
+            @RenderNestedItem(("components/cards", "Card"))
+            @RenderNestedItem(("components/dropdowns", "Dropdown"))
+            @RenderNestedItem(("components/forms", "Forms"))
+            @RenderNestedItem(("components/tabs", "Tabs"))
         </ul>
     }
 </li>
@@ -31,10 +31,10 @@
 
     [Parameter]
     public string? Url { get; set; }
-    
+
     [Parameter]
     public bool Nested { get; set; }
-    
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 }
