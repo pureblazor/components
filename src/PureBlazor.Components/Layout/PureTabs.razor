@@ -8,7 +8,7 @@
             <div class="flex mx-auto flex-wrap w-full">
                 @foreach (var tab in Tabs)
                 {
-                    <MkTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" OnClick="() => ChangeTab(tab)" Variant="Variant" />
+                    <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" OnClick="() => ChangeTab(tab)" Variant="Variant" />
                 }
 
             </div>
@@ -20,15 +20,15 @@
 @code {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-    
+
     [Parameter]
     public TabVariant Variant { get; set; }
 
-    public MkTabContent? CurrentTab { get; set; }
+    public PureTabContent? CurrentTab { get; set; }
     private string InternalCss { get; set; }
 
 
-    internal List<MkTabContent> Tabs { get; set; } = new List<MkTabContent>();
+    internal List<PureTabContent> Tabs { get; set; } = new List<PureTabContent>();
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
@@ -36,7 +36,7 @@
         InternalCss = BuildCss();
     }
 
-    internal void ChangeTab(MkTabContent tab)
+    internal void ChangeTab(PureTabContent tab)
     {
         CurrentTab = tab;
     }
@@ -48,7 +48,7 @@
         return builder.Build();
     }
 
-    internal void AddTab(MkTabContent tab)
+    internal void AddTab(PureTabContent tab)
     {
         Tabs.Add(tab);
 
