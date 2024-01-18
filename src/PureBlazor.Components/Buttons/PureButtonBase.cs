@@ -42,6 +42,15 @@ public class PureButtonBase : ComponentBase
     [Parameter]
     public string? Styles { get; set; }
 
+    /// <summary>
+    /// Displays simple text on the button.
+    /// </summary>
+    [Parameter]
+    public string? Text { get; set; }
+
+    /// <summary>
+    /// Displays a complex component on the button. This takes precedence over <see cref="Text"/>
+    /// </summary>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 
 namespace PureBlazor.Components.Dialogs;
@@ -20,6 +21,7 @@ public class DialogService
     public event Action OnOpen;
 
     public string Title { get; private set; }
+    public RenderFragment? Body { get; private set; }
     public string AckButton { get; private set; } = DialogDefaults.AckButton;
     public static ColorWithShade AckColor { get; private set; } = DialogDefaults.AckColor;
 
@@ -46,7 +48,7 @@ public class DialogService
         return Task.CompletedTask;
     }
 
-    public async Task ShowDialogAsync(string title, Action onConfirm, Action? onCancel = null)
+    public async Task ShowConfirmDialog(string title, Action onConfirm, Action? onCancel = null)
     {
         Title = title;
         AckButton = DialogDefaults.AckButton;
@@ -54,11 +56,13 @@ public class DialogService
 
         _instance.OnConfirm = onConfirm;
         _instance.OnCancel = onCancel;
+        _instance.DialogId = "confirm";
         OnOpen?.Invoke();
-        await JS.InvokeVoidAsync("showDialog", _objRef, "confirm");
+
+        await JS.InvokeVoidAsync("showDialog", _objRef, _instance.DialogId);
     }
 
-    public async Task ShowDialogAsync(string title, ShowDialogOptions? options = null)
+    public async Task ShowConfirmDialog(string title, ShowDialogOptions? options = null)
     {
         Title = title;
         AckButton = options?.AckButton ?? DialogDefaults.AckButton;
@@ -67,26 +71,56 @@ public class DialogService
         _instance.OnClose = options?.OnClose;
         _instance.OnConfirm = options?.OnConfirm;
         _instance.OnCancel = options?.OnCancel;
+        _instance.DialogId = "confirm";
         OnOpen?.Invoke();
 
-        await JS.InvokeVoidAsync("showDialog", _objRef, "confirm");
+        await JS.InvokeVoidAsync("showDialog", _objRef, _instance.DialogId);
+    }
+
+    public async Task ShowDialog(string title, RenderFragment body, ShowDialogOptions? options = null)
+    {
+        Title = title;
+        Body = body;
+        AckButton = options?.AckButton ?? DialogDefaults.AckButton;
+        AckColor = options?.AckColor ?? DialogDefaults.AckColor;
+
+        _instance.DialogId = "component";
+        _instance.OnClose = options?.OnClose;
+        _instance.OnConfirm = options?.OnConfirm;
+        _instance.OnCancel = options?.OnCancel;
+        OnOpen?.Invoke();
+
+        await JS.InvokeVoidAsync("showDialog", _objRef, _instance.DialogId);
     }
 
     public async Task CloseDialogAsync()
     {
-        await JS.InvokeVoidAsync("closeDialog", _objRef, "confirm");
+        await JS.InvokeVoidAsync("closeDialog", _objRef, _instance.DialogId);
     }
 
     public async Task ConfirmDialogAsync()
     {
         _instance.OnConfirm?.Invoke();
-        await JS.InvokeVoidAsync("closeDialog", _objRef, "confirm");
+        await JS.InvokeVoidAsync("closeDialog", _objRef, _instance.DialogId);
+
+        _instance.DialogId = "";
+        Body = null;
+        _instance.OnClose = null;
+        _instance.OnConfirm = null;
+        _instance.OnCancel = null;
     }
 
     public async Task CancelDialogAsync()
     {
         _instance.OnCancel?.Invoke();
-        await JS.InvokeVoidAsync("closeDialog", _objRef, "confirm");
+        await JS.InvokeVoidAsync("closeDialog", _objRef, _instance.DialogId);
+
+        // TODO: may make sense to move body/title and such to _instance
+        Body = null;
+        _instance.DialogId = "";
+        _instance.OnClose = null;
+        _instance.OnConfirm = null;
+        _instance.OnCancel = null;
     }
 }
 
@@ -132,4 +166,9 @@ public class DialogInstance
     /// Fires when the affirmative button is clicked.
     /// </summary>
     public Action? OnConfirm { get; set; }
+
+    /// <summary>
+    /// Used to track which dialog to show/close
+    /// </summary>
+    internal string DialogId { get; set; }
 }
