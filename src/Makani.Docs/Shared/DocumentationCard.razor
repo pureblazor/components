@@ -1,12 +1,12 @@
 ﻿@using System.Reflection;
-<MkTabs Variant="TabVariant.Outline">
-    <MkTabContent Title="Documentation">
-        <MkCard>
+<PureTabs Variant="TabVariant.Outline">
+    <PureTabContent Title="Documentation">
+        <PureCard>
             @Documentation
-        </MkCard>
-    </MkTabContent>
-    <MkTabContent Title="Component params">
-        <MkCard>
+        </PureCard>
+    </PureTabContent>
+    <PureTabContent Title="Component params">
+        <PureCard>
             <table class="text-sm leading-normal w-full">
                 <thead>
                     <tr>
@@ -33,9 +33,9 @@
                 </tbody>
             </table>
             @ComponentParams
-        </MkCard>
-    </MkTabContent>
-</MkTabs>
+        </PureCard>
+    </PureTabContent>
+</PureTabs>
 
 @code {
     [Parameter]
