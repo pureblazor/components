@@ -1,19 +1,19 @@
 ﻿@inject ToastService Service
 
-<MkText Type="Typo.H1" Id="alerts">Alerts</MkText>
+<PureText Type="Typo.H1" Id="alerts">Alerts</PureText>
 <div class="mb-10">
-    <MkText Type="Typo.H3">Basic toasts</MkText>
+    <PureText Type="Typo.H3">Basic toasts</PureText>
     <PureToast State="PureState.Success">This is a success toast.</PureToast>
     <PureToast State="PureState.Info">This is an informational toast.</PureToast>
     <PureToast State="PureState.Warning">This is a warning toast.</PureToast>
     <PureToast State="PureState.Error">This is an error toast.</PureToast>
 </div>
 <div class="mb-10">
-    <MkText Type="Typo.H3">Demo toasts</MkText>
-    <MkButton OnClick="() => AddToast(MkState.Success)">Success toast</MkButton>
-    <MkButton OnClick="() => AddToast(MkState.Error)">Error toast</MkButton>
-    <MkButton OnClick="() => AddToast(MkState.Info)">Info toast</MkButton>
-    <MkButton OnClick="() => AddToast(MkState.Warning)">Warning toast</MkButton>
+    <PureText Type="Typo.H3">Demo toasts</PureText>
+    <PureButton OnClick="() => AddToast(PureState.Success)">Success toast</PureButton>
+    <PureButton OnClick="() => AddToast(PureState.Error)">Error toast</PureButton>
+    <PureButton OnClick="() => AddToast(PureState.Info)">Info toast</PureButton>
+    <PureButton OnClick="() => AddToast(PureState.Warning)">Warning toast</PureButton>
 </div>
 
 @code {
@@ -22,5 +22,4 @@
     {
         await Service.AddToast("Adding random toast", state);
     }
-
 }

@@ -5,17 +5,17 @@
         <PureVertNav/>
     </div>
     <div class="col-span-4 sm:col-span-3">
-        <MkText Type="Typo.H4">Advanced Components</MkText>
+        <PureText Type="Typo.H4">Advanced Components</PureText>
         <div class="mb-8">
-            <MkText Type="Typo.H1">Syntax Highligher</MkText>
+            <PureText Type="Typo.H1">Syntax Highligher</PureText>
             <div class="mb-10">
                 <p class="dark:text-gray-200">The below code snippet is your example and your documentation!</p>
-                <MkCode Text="@syntax" Language="@MkCode.Html" Caption="Example" Css="my-4"/>
+                <PureCode Text="@syntax" Language="@PureCode.Html" Caption="Example" Css="my-4"/>
             </div>
 
             <div class="mb-10">
-                <p class="dark:text-gray-200 mt-4">Several languages have support built in, discoverable via intellisense in the <code>MkCode</code> component.</p>
-                <MkCode Text="@markup" Language="@MkCode.Csharp" Caption="Example" Css="my-4"></MkCode>
+                <p class="dark:text-gray-200 mt-4">Several languages have support built in, discoverable via intellisense in the <code>PureCode</code> component.</p>
+                <PureCode Text="@markup" Language="@PureCode.Csharp" Caption="Example" Css="my-4"></PureCode>
             </div>
         </div>
     </div>
@@ -23,14 +23,14 @@
 
 @code {
 
-    private string syntax = @"<MkCode Text=""@markup"" Language=""@MkCode.Html"" />
+    private string syntax = @"<PureCode Text=""@markup"" Language=""@PureCode.Html"" />
 
 <!-- optional caption -->
- <MkCode Text=""@markup"" Language=""@MkCode.Html"" Caption=""Example""/>
+ <PureCode Text=""@markup"" Language=""@PureCode.Html"" Caption=""Example""/>
 
 @code
 {
-    private string markup = @""<MkButton Color=""PureColor.Primary"" Size=""PureSize.Small"">Small</MkButton>"";
+    private string markup = @""<PureButton Color=""PureColor.Primary"" Size=""PureSize.Small"">Small</PureButton>"";
 }
 ";
 

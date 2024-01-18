@@ -5,36 +5,36 @@
         <PureVertNav/>
     </div>
     <div class="col-span-4 sm:col-span-3">
-        <MkText Type="Typo.H4">Components</MkText>
+        <PureText Type="Typo.H4">Components</PureText>
 
 @*         <div class="mb-10">
-            <MkText Type="Typo.H1">Typography</MkText>
+        <PureText Type="Typo.H1">Typography</PureText>
 
-            <MkText Type="Typo.H1">h1. The quick brown fox jumps over the lazy dog.</MkText>
+        <PureText Type="Typo.H1">h1. The quick brown fox jumps over the lazy dog.</PureText>
 
-            <MkText Type="Typo.H2">h2. The quick brown fox jumps over the lazy dog.</MkText>
+        <PureText Type="Typo.H2">h2. The quick brown fox jumps over the lazy dog.</PureText>
 
-            <MkText Type="Typo.H3">h3. The quick brown fox jumps over the lazy dog.</MkText>
+        <PureText Type="Typo.H3">h3. The quick brown fox jumps over the lazy dog.</PureText>
 
-            <MkText Type="Typo.H4">h4. The quick brown fox jumps over the lazy dog.</MkText>
+        <PureText Type="Typo.H4">h4. The quick brown fox jumps over the lazy dog.</PureText>
 
-            <MkText Type="Typo.Body">body. The quick brown fox jumps over the lazy dog.</MkText>
+        <PureText Type="Typo.Body">body. The quick brown fox jumps over the lazy dog.</PureText>
 
-            <MkText Type="Typo.Caption">caption. The quick brown fox jumps over the lazy dog.</MkText>
+        <PureText Type="Typo.Caption">caption. The quick brown fox jumps over the lazy dog.</PureText>
 
-            <MkCode Text="@h1" Language="@MkCode.Html" Caption="Example" Css="my-4"/>
+        <PureText Text="@h1" Language="@PureCode.Html" Caption="Example" Css="my-4"/>
         </div> *@
     </div>
 </div>
 
 @code {
 
-    private List<PureDropdown.PureMenuItem> Items = new List<PureDropdown.PureMenuItem>
+    private List<DropdownMenuItem> Items = new List<DropdownMenuItem>
     {
-        new PureDropdown.PureMenuItem { Text = "Menu item 1" },
-        new PureDropdown.PureMenuItem { Text = "Menu item 2" },
-        new PureDropdown.PureMenuItem { Text = "Menu item 3" },
-        new PureDropdown.PureMenuItem { Text = "Menu item 4" },
+        new DropdownMenuItem { Text = "Menu item 1" },
+        new DropdownMenuItem { Text = "Menu item 2" },
+        new DropdownMenuItem { Text = "Menu item 3" },
+        new DropdownMenuItem { Text = "Menu item 4" },
     };
 
 
@@ -50,16 +50,16 @@ public static string Razor = ""razor"";
 public static string Csharp = ""csharp"";
 ";
 
-    private string syntax = @"<MkCode Text=""@markup"" Language=""@MkCode.Html"" />
+    private string syntax = @"<PureCode Text=""@markup"" Language=""@PureCode.Html"" />
 
 <!-- optional caption -->
- <MkCode Text=""@markup"" Language=""@MkCode.Html"" Caption=""Example""/>
+ <PureCode Text=""@markup"" Language=""@PureCode.Html"" Caption=""Example""/>
 
 @code
 {
-    private string markup = @""<MkButton Color=""PureColor.Primary"" Size=""PureSize.Small"">Small</MkButton>"";
+    private string markup = @""<PureButton Color=""PureColor.Primary"" Size=""PureSize.Small"">Small</PureButton>"";
 }
 ";
 
-    private string h1 = @"<MkText Type=""Typo.H1"">The quick brown fox jumps over the lazy dog.</MkText>";
+    private string h1 = @"<PureText Type=""Typo.H1"">The quick brown fox jumps over the lazy dog.</PureText>";
 }

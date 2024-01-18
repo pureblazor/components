@@ -11,7 +11,7 @@
         <div class="px-6 py-4">
             @if (!string.IsNullOrWhiteSpace(Title))
             {
-                <MkText Type="Typo.H2">@Title</MkText>
+                <PureText Type="Typo.H2">@Title</PureText>
             }
             <p class="text-gray-700 text-base">
                 @ChildContent
@@ -31,7 +31,7 @@ else
             <div>
                 @if (!string.IsNullOrWhiteSpace(Title))
                 {
-                    <MkText Type="Typo.H2">@Title</MkText>
+                    <PureText Type="Typo.H2">@Title</PureText>
                 }
                 <p class="text-gray-700 text-base">@ChildContent</p>
             </div>

@@ -28,21 +28,20 @@
     case Typo.Subtitle:
         <p class="@GetMargin("mt-2") text-lg text-slate-700 dark:text-slate-400 @Css">@ChildContent</p>
         break;
-        case Typo.Section:
+    case Typo.Section:
         <p class="@GetMargin("mb-2") text-sm leading-6 font-semibold text-sky-500 dark:text-sky-400 @Css">@ChildContent</p>
-            break;
+        break;
     case Typo.Body:
     default:
         <p class="text-base text-gray-800 dark:text-gray-50 @GetMargin("my-2") @Css">@ChildContent</p>
         break;
 }
 
-
 @code {
 
     [Parameter]
     public string Id { get; set; } = string.Empty;
-    
+
     [Parameter]
     public Typo Type { get; set; }
 
