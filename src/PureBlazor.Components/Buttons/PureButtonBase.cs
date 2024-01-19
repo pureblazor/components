@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components.Web;
 using PureBlazor.Components.Styling;
 
-namespace PureBlazor.Components.Buttons;
+namespace PureBlazor.Components;
 
 /// <summary>
 /// This is a hack for tailwind to find the classes

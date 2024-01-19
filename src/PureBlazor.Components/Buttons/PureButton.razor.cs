@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace PureBlazor.Components.Buttons;
+namespace PureBlazor.Components;
 
 public partial class PureButton
 {
