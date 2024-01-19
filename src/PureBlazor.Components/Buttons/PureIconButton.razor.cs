@@ -2,7 +2,7 @@
 using PureBlazor.Components.Icons;
 using PureBlazor.Components.Styling;
 
-namespace PureBlazor.Components;
+namespace PureBlazor.Components.Buttons;
 
 public partial class PureIconButton
 {

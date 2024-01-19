@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using PureBlazor.Components.Utilities;
 
-namespace PureBlazor.Components;
+namespace PureBlazor.Components.Buttons;
 
 public partial class PureDropdown
 {
