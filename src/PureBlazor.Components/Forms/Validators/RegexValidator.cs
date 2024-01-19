@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace PureBlazor.Components.Components.Forms.Validators;
+namespace PureBlazor.Components.Forms.Validators;
 
 internal class RegexValidator : EntryValidator
 {

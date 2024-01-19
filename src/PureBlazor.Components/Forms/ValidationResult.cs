@@ -12,7 +12,7 @@ public class ValidationResult
     public string? Message { get; }
 }
 
-public enum MkLabelType
+public enum PureLabelType
 {
     Default,
     Floating
