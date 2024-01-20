@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 
@@ -18,20 +19,23 @@ public class DialogService
         public static ColorWithShade AckColor = PureColor.Brand.Seven;
     }
 
-    public event Action OnOpen;
+    public event Action? OnOpen;
 
     public string Title { get; private set; }
     public RenderFragment? Body { get; private set; }
     public string AckButton { get; private set; } = DialogDefaults.AckButton;
     public static ColorWithShade AckColor { get; private set; } = DialogDefaults.AckColor;
 
+    private readonly ILogger<DialogService> _log;
     private readonly IJSRuntime JS;
     private readonly DotNetObjectReference<DialogService> _objRef;
     private readonly DialogInstance _instance = new();
 
-    public DialogService(IJSRuntime js)
+    public DialogService(IJSRuntime js, ILogger<DialogService> log)
     {
         JS = js;
+        _log = log;
+
         _objRef = DotNetObjectReference.Create(this);
     }
 
@@ -79,6 +83,7 @@ public class DialogService
 
     public async Task ShowDialog(string title, RenderFragment body, ShowDialogOptions? options = null)
     {
+        _log.LogInformation("ShowDialog requested");
         Title = title;
         Body = body;
         AckButton = options?.AckButton ?? DialogDefaults.AckButton;
