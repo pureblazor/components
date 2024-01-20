@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 
 namespace PureBlazor.Components.Dialogs;
@@ -146,6 +145,7 @@ public class ShowDialogOptions
     /// The text displayed on the affirmative button.
     /// </summary>
     public string? AckButton { get; set; }
+
     public ColorWithShade? AckColor { get; set; }
 }
 

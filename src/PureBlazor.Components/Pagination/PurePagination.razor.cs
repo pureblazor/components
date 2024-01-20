@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
-using PureBlazor.Components.Styling;
-using System.Drawing;
+﻿using Microsoft.AspNetCore.Components;
 
 namespace PureBlazor.Components.Pagination;
 
@@ -12,7 +9,6 @@ public partial class PurePagination
     /// </summary>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
-
 
     ///<summary>
     /// Total number of pages.
@@ -26,7 +22,6 @@ public partial class PurePagination
     [Parameter]
     public int Current { get; set; } = 0;
 
-
     ///<summary>
     /// Helper Field to get the First Page
     ///</summary>
@@ -36,10 +31,12 @@ public partial class PurePagination
     /// Helper Field to get the Previous Page
     ///</summary>
     internal int PreviousPage => Current - 1;
+
     ///<summary>
     /// Helper Field to get the Next Page
     ///</summary>
     internal int NextPage => Current + 1;
+
     ///<summary>
     /// Helper Field to get the Last Page
     ///</summary>

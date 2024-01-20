@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 
-namespace PureBlazor.Components;
+namespace PureBlazor.Components.Infrastructure;
 
 public partial class PureComponent
 {
