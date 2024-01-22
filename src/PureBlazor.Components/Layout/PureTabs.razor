@@ -1,9 +1,8 @@
-﻿@namespace PureBlazor.Components
-@using Microsoft.Extensions.Logging
+﻿@using Microsoft.Extensions.Logging
 @inherits PureComponent
 
 <CascadingValue Value="this">
-    <section class="text-gray-900 dark:text-gray-400 dark:bg-gray-900 body-font">
+    <section class="text-gray-900 body-font">
         <div class="container mx-auto flex flex-wrap flex-col">
             <div class="flex mx-auto flex-wrap w-full">
                 @foreach (var tab in Tabs)
@@ -12,7 +11,9 @@
                 }
 
             </div>
-            @ChildContent
+            <div class="py-4">
+                @ChildContent
+            </div>
         </div>
     </section>
 </CascadingValue>
@@ -20,6 +21,9 @@
 @code {
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanging { get; set; }
 
     [Parameter]
     public TabVariant Variant { get; set; }
@@ -38,6 +42,9 @@
 
     internal void ChangeTab(PureTabContent tab)
     {
+        OnChanging.InvokeAsync();
+        tab.OnChanging.InvokeAsync();
+
         CurrentTab = tab;
     }
 

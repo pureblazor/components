@@ -21,7 +21,7 @@ public class DialogService
 
     public event Action? OnOpen;
 
-    public string Title { get; private set; }
+    public string? Title { get; private set; }
     public RenderFragment? Body { get; private set; }
     public string AckButton { get; private set; } = DialogDefaults.AckButton;
     public static ColorWithShade AckColor { get; private set; } = DialogDefaults.AckColor;
