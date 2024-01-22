@@ -4,7 +4,7 @@
 <CascadingValue Value="this">
     <section class="text-gray-900 body-font">
         <div class="container mx-auto flex flex-wrap flex-col">
-            <div class="flex mx-auto flex-wrap w-full">
+            <div class="flex mx-auto flex-wrap w-full border-b border-neutral-200">
                 @foreach (var tab in Tabs)
                 {
                     <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" OnClick="() => ChangeTab(tab)" Variant="Variant" />

@@ -1,4 +1,4 @@
-﻿<a @onclick="OnClick" class="@(InternalCss) sm:px-6 py-3 w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center cursor-pointer">
+﻿<a @onclick="OnClick" class="@(InternalCss) sm:px-6 py-1 text-sm w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center">
     <!-- todo: icon -->
     @Title
 </a>
@@ -31,17 +31,17 @@
         switch (Variant)
         {
             case TabVariant.Default when IsActive:
-                builder.AddClasses("border-b-2 border-primary-500");
+                builder.AddClasses("border-b-2 border-primary-500 cursor-pointer");
                 break;
             case TabVariant.Default when !IsActive:
-                builder.AddClasses("border-b-2 border-secondary-300");
+                builder.AddClasses("border-b-2 border-secondary-300 cursor-pointer");
                 break;
             case TabVariant.Outline when IsActive:
-                builder.AddClasses("border rounded-t-sm border-neutral-200 border-b-white bg-white relative top-px");
+                builder.AddClasses("border rounded-t-sm border-neutral-200 border-b-white bg-white cursor-default hover:bg-gray-50 relative top-px");
 
                 break;
             case TabVariant.Outline when !IsActive:
-                builder.AddClasses("border rounded-t-sm border-transparent");
+                builder.AddClasses("border rounded-t-sm border-transparent cursor-default hover:bg-gray-50 relative top-px");
                 break;
         }
         return builder.Build();
