@@ -1,0 +1,38 @@
+﻿<PureText Type="Typo.H1" Id="tabs">Tabs</PureText>
+<div class="mb-10">
+    <PureText Type="Typo.H3">Basic tabs</PureText>
+    <PureTabs>
+        <PureTabContent Title="Tab 1">
+            <PureCard>
+                tab one content
+            </PureCard>
+        </PureTabContent>
+        <PureTabContent Title="Tab 2">
+            <PureCard>
+                tab two content
+            </PureCard>
+        </PureTabContent>
+        <PureTabContent Title="Tab 3">
+            <PureCard>
+                tab three content
+            </PureCard>
+        </PureTabContent>
+        <PureTabContent Title="Tab 4">
+            <PureCard>
+                tab four content
+            </PureCard>
+        </PureTabContent>
+    </PureTabs>
+    <PureCode Text="@docs" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
+</div>
+
+@code {
+
+    private string docs = @"<PureTabs>
+    <PureTabContent Title=""Tab 1"">tab one content</PureTabContent>
+    <PureTabContent Title=""Tab 2"">tab two content</PureTabContent>
+    <PureTabContent Title=""Tab 3"">tab three content</PureTabContent>
+    <PureTabContent Title=""Tab 4"">tab four content</PureTabContent>
+</PureTabs>";
+
+}
