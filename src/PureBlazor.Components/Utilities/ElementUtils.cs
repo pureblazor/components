@@ -20,7 +20,7 @@ public class ElementUtils : IElementUtils
     {
         JS = jsRuntime;
         //_moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-        //    "import", "./_content/Makani/makani.js").AsTask());
+        //    "import", "./_content/PureBlazor.Components/makani.js").AsTask());
     }
 
     /// <summary>
