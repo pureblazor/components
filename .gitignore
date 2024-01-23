@@ -349,3 +349,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 src/Makani/wwwroot/dist/output.css
+/src/Makani.Docs/tailwindcss.exe
+/src/Makani.Docs/wwwroot/css/site.css

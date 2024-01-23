@@ -162,13 +162,6 @@ internal class TailwindBuilder
         return this;
     }
 
-    public TailwindBuilder SetFontSize(MkSize s)
-    {
-        FontSize = (PureSize)s;
-
-        return this;
-    }
-
     public TailwindBuilder SetFontSize(PureSize s)
     {
         FontSize = s;

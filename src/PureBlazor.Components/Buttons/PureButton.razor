@@ -1,9 +1,19 @@
-﻿@inherits PureButtonBase
+﻿@namespace PureBlazor.Components.Buttons
+@inherits PureButtonBase
 
 <button
     @attributes="InputAttributes"
-    class="@InternalCss @(Pressed ? "translate-y-[0.075rem]" : "")"
+    class="inline-flex justify-center rounded-sm text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 @InternalCss @(Pressed ? "translate-y-[0.075rem]" : "")"
     disabled="@Disabled"
     @onmousedown="() => Pressed = true"
     @onmouseup="() => Pressed = false"
-    @onclick="OnClicked">@ChildContent</button>
+    @onclick="OnClicked">
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
+    else
+    {
+        @Text
+    }
+</button>

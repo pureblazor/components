@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
 using PureBlazor.Components.Styling;
 
 namespace PureBlazor.Components.Buttons;
+
+/// <summary>
+/// This is a hack for tailwind to find the classes
+/// until we develop a better solution (source generators?)
+/// </summary>
+public static class ButtonColors
+{
+    public const string Primary = "bg-brand-800";
+    public const string PrimaryHover = "hover:bg-brand-800";
+}
 
 public class PureButtonBase : ComponentBase
 {
@@ -42,6 +47,15 @@ public class PureButtonBase : ComponentBase
     [Parameter]
     public string? Styles { get; set; }
 
+    /// <summary>
+    /// Displays simple text on the button.
+    /// </summary>
+    [Parameter]
+    public string? Text { get; set; }
+
+    /// <summary>
+    /// Displays a complex component on the button. This takes precedence over <see cref="Text"/>
+    /// </summary>
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 
@@ -78,15 +92,19 @@ public class PureButtonBase : ComponentBase
                 builder.AddBackground(Color).AddClasses("text-white");
                 builder.AddBackgroundHover(Color.Eight);
                 break;
+
             case ButtonVariant.Outline:
                 builder.AddBorder(Color).SetFontColor(Color);
                 break;
+
             case ButtonVariant.Default:
                 builder.AddBorder(PureColor.Neutral).SetFontColor(PureColor.Neutral.Six);
                 break;
+
             case ButtonVariant.Subtle:
                 builder.AddBackgroundHover(Color.Two).SetFontColor(Color);
                 break;
+
             default:
                 break;
         }

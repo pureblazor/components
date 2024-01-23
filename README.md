@@ -18,13 +18,12 @@ In order to use these components, the current recommendation is to add this repo
 **General**
 - [x] Banner
 - [x] Button
-- [ ] Card
+- [x] Card
 - [ ] Charts
 - [x] Dialog
 - [x] Dropdown
 - [ ] Flyout (_in progress_)
 - [ ] Tab (_in progress_)
-- [ ] Toggle
 - [ ] Table
 - [ ] Navigation
 
@@ -32,9 +31,9 @@ In order to use these components, the current recommendation is to add this repo
 - [x] Field
 - [ ] Upload
 - [ ] Checkbox
-- [ ] Radio
+- [ ] Radio (_in progress_)
 - [ ] Rating
-- [ ] Select
-- [ ] Toggle
+- [ ] Select (_in progress_)
+- [x] Toggle
 - [ ] DatePicker
 - [ ] TimePicker 

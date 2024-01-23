@@ -1,0 +1,31 @@
+﻿@using PureBlazor.Components.Buttons
+<dialog class="p-6 border rounded-sm" id="component">
+    <div class="py-4">
+        @if (DialogService.Title != null)
+        {
+            <p class="font-bold leading-6">@DialogService.Title</p>
+        }
+        @if (DialogService.Body != null)
+        {
+            @DialogService.Body
+        }
+    </div>
+    <div class="mt-4 flex justify-end gap-4">
+        <PureButton
+            id="dialog_component--cancel"
+            Variant="ButtonVariant.Subtle"
+            OnClick="CancelAsync">
+            Cancel
+        </PureButton>
+
+        @if (!string.IsNullOrWhiteSpace(DialogService.AckButton))
+        {
+            <PureButton id="dialog_component--ack"
+                        Variant="ButtonVariant.Filled"
+                        Color="@DialogService.AckColor"
+                        OnClick="ConfirmAsync">
+                @DialogService.AckButton
+            </PureButton>
+        }
+    </div>
+</dialog>

@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System.Drawing;
 
-namespace PureBlazor.Components;
+namespace PureBlazor.Components.Buttons;
 
 public interface IButtonProps
 {
     /// <summary>
     /// Size of the button
     /// </summary>
-    public MkSize Size { get; set; }
+    public PureSize Size { get; set; }
 
     /// <summary>
     /// Color of the button
@@ -28,7 +27,7 @@ public interface IButtonProps
     /// <summary>
     /// Controls the border radius of the button
     /// </summary>
-    public MkSize Radius { get; set; }
+    public PureSize Radius { get; set; }
 
     /// <summary>
     /// Sets the button text to uppercase

@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using PureBlazor.Components.Utilities;
 
 namespace PureBlazor.Components.Buttons;
@@ -54,9 +54,9 @@ public class DropdownMenuItem
     /// The text to display on the menu item.
     /// </summary>
     public string? Text { get; set; }
+
     /// <summary>
     /// The value to send to the server.
     /// </summary>
     public string? Value { get; set; }
 }
-
