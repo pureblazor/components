@@ -1,0 +1,49 @@
+﻿<fieldset>
+    @foreach (var option in @options)
+    {
+        <div class="mt-2 space-y-4">
+            <div class="relative flex items-start">
+                <div class="absolute flex h-6 items-center">
+                    <input id="@option.Name" name="opt" value="@option.Name"
+                           @onchange="RadioSelection"
+                           type="radio" class="h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-600" checked="@option.IsChecked" />
+                </div>
+                <div class="pl-7 text-sm leading-6">
+                    <p>
+                        <label for="@option.Name" class="text-base text-gray-800 dark:text-gray-50">@option.Title</label>
+                    </p>
+                    @if (@option.Description != @String.Empty)
+                    {
+                        <span class="font-medium text-sm text-gray-500 font-mono dark:text-gray-400">@option.Description</span>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</fieldset>
+
+@code {
+    // int optionsCounter = 0;
+
+    List<PureRadioButtonDefinition> options = new List<PureRadioButtonDefinition>()
+    {
+        new PureRadioButtonDefinition
+        {            
+            Title = "Basic",
+            Description ="After a period of inactivity, your site will respond to the next request with a brief delay."
+        },
+        new PureRadioButtonDefinition
+        {         
+            Title = "Always on",
+            Description ="Your site will always be immediately available for incoming traffic."
+        },
+        new PureRadioButtonDefinition
+        {
+            Title = "No description"
+        }
+    };
+    void RadioSelection(ChangeEventArgs args)
+    {
+        string RadioValue = args.Value!.ToString()!;
+    }
+}
