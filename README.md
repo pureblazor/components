@@ -4,6 +4,8 @@
 # PureBlazor Components
 PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
 
+Demo: https://components.wasmhost.dev
+
 # Getting started
 These components are being built alongside (and for) the PureBlazor CMS. Our focus is supporting the CMS first and foremost.
 
