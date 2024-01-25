@@ -3,8 +3,8 @@
 {
     <fieldset>
         @if (!String.IsNullOrEmpty(Legend))
-        {
-            <legend class="text-lg text-gray-800 dark:text-gray-50">@Legend</legend>
+        {            
+            <legend class="text-sm font-medium leading-6 text-gray-900">@Legend</legend>
         }
         @foreach (var option in @Items)
         {
@@ -15,15 +15,14 @@
                         <div class="absolute flex h-6 items-center">
                             <input id="@option.Id" name="@Name" value="@option.Id"
                                    @onchange="@(() => OnClick.InvokeAsync(@option.Id))"
+                                   aria-describedby="privacy-public-description"
                                    type="radio" class="h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-600" checked="@option.IsChecked" />
                         </div>
                         <div class="pl-7 text-sm leading-6">
-                            <p>
-                                <label for="@option.Id" class="text-base text-gray-800 dark:text-gray-50">@option.Title</label>
-                            </p>
+                            <label for="@option.Id" class="font-medium text-gray-900">@option.Title</label>
                             @if (!String.IsNullOrEmpty(@option.Description))
                             {
-                                <span class="font-medium text-sm text-gray-500 font-mono dark:text-gray-400">@option.Description</span>
+                                <p class="text-gray-500">@option.Description</p>
                             }
                         </div>
                     </div>
