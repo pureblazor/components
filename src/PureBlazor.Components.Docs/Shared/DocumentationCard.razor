@@ -58,6 +58,13 @@
             return;
         }
 
-        Properties = Component.GetProperties().ToList();
+        try
+        {
+            Properties = Component.GetProperties().ToList();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 }
