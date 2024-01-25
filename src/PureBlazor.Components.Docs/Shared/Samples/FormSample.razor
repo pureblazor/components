@@ -1,6 +1,7 @@
 ﻿@inject ILogger<FormSample> Log
+@inject ToastService Service
 
-<PureText Type="Typo.H1" Id="textfield">TextField (preview)</PureText>
+<PureText Type="Typo.H2" Id="textfield">TextField (preview)</PureText>
 <div class="mb-10">
     <PureText Type="Typo.H3">Sizing</PureText>
     <PureText Type="Typo.Body" Css="mb-4">
@@ -8,13 +9,13 @@
     </PureText>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-span-4">
-            @* <MkTextField Label="Full width"/> *@
+            <PureInput Label="Full width" />
         </div>
         <div class="col-span-2">
-            @* <MkTextField Label="Medium width"></MkTextField> *@
+            <PureInput Label="Medium width"></PureInput>
         </div>
         <div class="col-start-1 col-span-1">
-            @* <MkTextField Label="Small width"></MkTextField> *@
+            <PureInput Label="Small width"></PureInput>
         </div>
     </div>
     <PureCode Text="@markup" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
@@ -24,10 +25,10 @@
     <PureText Type="Typo.H3">Labels</PureText>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-start-1 col-span-2">
-            @* <MkTextField Label="Default label"></MkTextField> *@
+            <PureInput Label="Default label"></PureInput>
         </div>
         <div class="col-start-1 col-span-2">
-            @* <MkTextField Label="Floating label" LabelType="MkLabelType.Floating"></MkTextField> *@
+            <PureInput Label="Floating label" LabelType="PureLabelType.Floating"></PureInput>
         </div>
     </div>
     <PureCode Text="@labelTypeMarkup" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
@@ -37,31 +38,31 @@
     <PureText Type="Typo.H3">Adornments</PureText>
     <div class="grid grid-cols-4 gap-4">
         <div class="col-start-1 col-span-2">
-          @*   <MkTextField Label="Search">
+            <PureInput Label="Search">
                 <Suffix>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
                 </Suffix>
-            </MkTextField> *@
+            </PureInput>
         </div>
         <div class="col-start-1 col-span-2">
-           @*  <MkTextField Label="Search with clickable suffix" HelperText="@($"Clicked {Clicked} times")" OnSuffixClick="(_) => { Clicked++; }">
+            <PureInput Label="Search with clickable suffix" HelperText="@($"Clicked {Clicked} times")" OnSuffixClick="(_) => { Clicked++; }">
                 <Suffix>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
                 </Suffix>
-            </MkTextField> *@
+            </PureInput>
         </div>
         <div class="col-start-1 col-span-2">
-            @* <MkTextField Label="Works with floating labels" LabelType="MkLabelType.Floating" HelperText="@($"Clicked {Clicked} times")" OnSuffixClick="(_) => { Clicked++; }">
+            <PureInput Label="Works with floating labels" LabelType="PureLabelType.Floating" HelperText="@($"Clicked {Clicked} times")" OnSuffixClick="(_) => { Clicked++; }">
                 <Suffix>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 group-hover:text-gray-800 dark:group-hover:text-gray-300" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                     </svg>
                 </Suffix>
-            </MkTextField> *@
+            </PureInput>
         </div>
     </div>
     <PureCode Text="@suffixMarkup" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
@@ -74,59 +75,86 @@
     </PureText>
     <div class="grid grid-cols-4 gap-4 mb-4">
         <div class="col-span-2">
-            @* <MkTextField Label="Immediate mode" @bind-Value="Username"></MkTextField> *@
+            <PureInput Label="Immediate mode" @bind-Value="Username"></PureInput>
         </div>
         <div class="col-span-2 flex items-end">
             <PureText Type="Typo.Body">Value: @Username</PureText>
+            </div>
         </div>
-    </div>
-    <div class="grid grid-cols-4 gap-4 mb-4">
-        <div class="col-span-2">
-            @* <MkTextField Label="Delayed mode" Mode="EntryMode.Blur" HelperText="Hint: hit tab or click outside the input" @bind-Value="Delayed"></MkTextField> *@
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="col-span-2">
+                <PureInput Label="Delayed mode" Mode="EntryMode.Blur" HelperText="Hint: hit tab or click outside the input" @bind-Value="Delayed"></PureInput>
+            </div>
+            <div class="col-span-2 flex items-center">
+                <PureText Type="Typo.Body">Value: @Delayed</PureText>
+            </div>
         </div>
-        <div class="col-span-2 flex items-center">
-            <PureText Type="Typo.Body">Value: @Delayed</PureText>
+
+        <PureText Type="Typo.H3">Validation</PureText>
+        <PureText Type="Typo.Body" Css="mb-4">
+            <strong>Built-in validation:</strong>
+            <ul>
+                <li>Required</li>
+                <li>Min length</li>
+                <li>Max length</li>
+            </ul>
+        </PureText>
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="col-span-2">
+                <PureInput Label="Required username" Required="true" OnError="OnRequiredError" @bind-Value="Username"></PureInput>
+            </div>
+            <div class="col-span-2 flex items-end">
+                <PureText Type="Typo.Body">Value: @Username, Error: @RequiredError</PureText>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="col-span-2">
+                <PureInput Label="Min length username" MinLength="3" OnError="OnMinLenError" @bind-Value="Username"></PureInput>
+            </div>
+            <div class="col-span-2 flex items-end">
+                <PureText Type="Typo.Body">Value: @Username, Error: @MinLenError</PureText>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-4 gap-4 mb-4">
+            <div class="col-span-2">
+                <PureInput Label="Max length username" MaxLength="10" OnError="OnMaxLenError" @bind-Value="Username"></PureInput>
+            </div>
+            <div class="col-span-2 flex items-end">
+                <PureText Type="Typo.Body">Value: @Username, Error: @MaxLenError</PureText>
+            </div>
         </div>
     </div>
 
-    <PureText Type="Typo.H3">Validation</PureText>
-    <PureText Type="Typo.Body" Css="mb-4">
-        <strong>Built-in validation:</strong>
-        <ul>
-            <li>Required</li>
-            <li>Min length</li>
-            <li>Max length</li>
-        </ul>
-    </PureText>
-    <div class="grid grid-cols-4 gap-4 mb-4">
-        <div class="col-span-2">
-            @* <MkTextField Label="Required username" Required="true" OnError="OnRequiredError" @bind-Value="Username"></MkTextField> *@
-        </div>
-        <div class="col-span-2 flex items-end">
-            <PureText Type="Typo.Body">Value: @Username, Error: @RequiredError</PureText>
-        </div>
+    <PureText Type="Typo.H2" Id="radioGroup">Radio (preview)</PureText>
+    <div class="mb-5">
+        <PureRadioButton RadioButtonGroupDefinition="@options" OnClick="@HandleRadioButtonOnLCick" />
     </div>
-
-    <div class="grid grid-cols-4 gap-4 mb-4">
-        <div class="col-span-2">
-            @* <MkTextField Label="Min length username" MinLength="3" OnError="OnMinLenError" @bind-Value="Username"></MkTextField> *@
-        </div>
-        <div class="col-span-2 flex items-end">
-            <PureText Type="Typo.Body">Value: @Username, Error: @MinLenError</PureText>
-        </div>
+    <div class="mb-5">
+        <PureText Type="Typo.H3">Data source</PureText>
+        <PureText Type="Typo.Body" Css="mb-4">
+            Initialize <PureInlineCode>RadioButtonGroupDefinition</PureInlineCode> property from the control to set the content source of the radio group with information for each radio.
+        </PureText>
     </div>
-
-    <div class="grid grid-cols-4 gap-4 mb-4">
-        <div class="col-span-2">
-            @* <MkTextField Label="Max length username" MaxLength="10" OnError="OnMaxLenError" @bind-Value="Username"></MkTextField> *@
-        </div>
-        <div class="col-span-2 flex items-end">
-            <PureText Type="Typo.Body">Value: @Username, Error: @MaxLenError</PureText>
-        </div>
+    <div class="mb-5">
+        <PureText Type="Typo.H3">Selected radio event</PureText>
+        <PureText Type="Typo.Body" Css="mb-4">
+            You can register for the <PureInlineCode>OnClick</PureInlineCode> event of the component to obtain the selected radio. By default, the value for each radio is configured to match the radio title.
+        </PureText>
     </div>
-</div>
+    <div class="mb-5">
+        <PureText Type="Typo.H3">Check radio by default</PureText>
+        <PureText Type="Typo.Body" Css="mb-4">
+            To set a radio as checked by default, you can configure the <PureInlineCode>IsChecked</PureInlineCode> property for the intended radio during data loading.
+        </PureText>
+    </div>
+    <PureCode Text="@pureRadioButtonMarkup" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
 
-@code {
+
+
+
+    @code {
     public int Clicked { get; set; }
 
     public string? Username { get; set; }
@@ -155,7 +183,37 @@
     </Suffix>
 </MkTextField>";
 
-    // todo: integrate form mapping, this ideally should be more dynamic. 
+    private string pureRadioButtonMarkup = @"<PureRadioButton RadioButtonGroupDefinition=""@options"" OnClick=""@HandleRadioButtonOnLCick"" />";
+
+    List<PureRadioButtonDefinition> options = new();
+
+    protected override void OnInitialized()
+    {
+        options.Add(new PureRadioButtonDefinition
+            {
+                Title = "Basic",
+                Description = "After a period of inactivity, your site will respond to the next request with a brief delay.",
+                IsChecked = true
+            });
+
+        options.Add(new PureRadioButtonDefinition
+            {
+                Title = "Always on",
+                Description = "Your site will always be immediately available for incoming traffic."
+            });
+
+        options.Add(new PureRadioButtonDefinition
+            {
+                Title = "No description"
+            });
+    }
+
+    async Task HandleRadioButtonOnLCick(string selectedValue)
+    {
+        await Service.AddToast($"Selected radio: {selectedValue}", PureState.Success);
+    }
+
+    // todo: integrate form mapping, this ideally should be more dynamic.
     // this is far too verbose and manual for a pleasant dev experience
     public void OnRequiredError(IList<ValidationResult> validation)
     {
