@@ -1,7 +1,7 @@
-﻿@if (RadioButtonGroupDefinition != null)
+﻿@if (PureRadioGroupDefinition != null)
 {
     <fieldset>
-        @foreach (var option in RadioButtonGroupDefinition)
+        @foreach (var option in PureRadioGroupDefinition)
         {
             <div class="mt-2 space-y-4">
                 <div class="relative flex items-start">
@@ -27,7 +27,7 @@
 
 @code {
     [Parameter]
-    public List<PureRadioButtonDefinition> RadioButtonGroupDefinition { get; set; }
+    public List<PureRadioGroupDefinition> PureRadioGroupDefinition { get; set; }
 
     [Parameter]
     public EventCallback<string> OnClick { get; set; }

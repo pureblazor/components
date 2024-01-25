@@ -1,6 +1,6 @@
 ﻿namespace PureBlazor.Components.Forms
 {
-    public class PureRadioButtonDefinition
+    public class PureRadioGroupDefinition
     {
         public string Name
         {
