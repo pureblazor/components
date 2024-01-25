@@ -129,18 +129,18 @@
 
     <PureText Type="Typo.H2" Id="radioGroup">Radio (preview)</PureText>
     <div class="mb-5">
-        <PureRadioGroup PureRadioGroupItems="@options" OnClick="@HandleRadioButtonOnLCick" />
+        <PureRadioGroup Name="Options" Legend="Availability" Items="@options" OnClick="@HandleRadioGroupOnClick" />
     </div>
     <div class="mb-5">
         <PureText Type="Typo.H3">Data source</PureText>
         <PureText Type="Typo.Body" Css="mb-4">
-            Initialize <PureInlineCode>PureRadioGroupItems</PureInlineCode> property from the control to set the content source of the radio group with information for each radio.
+            Initialize <PureInlineCode>Items</PureInlineCode> property from the component to set the content source of the radio group with information for each radio.
         </PureText>
     </div>
     <div class="mb-5">
         <PureText Type="Typo.H3">Selected radio event</PureText>
         <PureText Type="Typo.Body" Css="mb-4">
-            You can register for the <PureInlineCode>OnClick</PureInlineCode> event of the component to obtain the selected radio. By default, the value for each radio is configured to match the radio title.
+            You can subscribe to the <PureInlineCode>OnClick</PureInlineCode> event of the component to retrieve the selected radio <PureInlineCode>Id</PureInlineCode>. By default, the <PureInlineCode>Id</PureInlineCode> for each radio is assigned based on the <PureInlineCode>Title</PureInlineCode> property (without spaces). If the <PureInlineCode>Title</PureInlineCode> property is not set, the radio option will not be rendered.
         </PureText>
     </div>
     <div class="mb-5">
@@ -150,9 +150,6 @@
         </PureText>
     </div>
     <PureCode Text="@pureRadioButtonMarkup" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
-
-
-
 
     @code {
     public int Clicked { get; set; }
@@ -183,7 +180,7 @@
     </Suffix>
 </MkTextField>";
 
-    private string pureRadioButtonMarkup = @"<PureRadioButton PureRadioGroupDefinition=""@options"" OnClick=""@HandleRadioButtonOnLCick"" />";
+    private string pureRadioButtonMarkup = @"<PureRadioGroup Name=""Options"" Legend=""Availability"" Items=""@options"" OnClick=""@HandleRadioGroupOnClick"" />";
 
     List<PureRadioDefinition> options = new();
 
@@ -191,6 +188,7 @@
     {
         options.Add(new PureRadioDefinition
             {
+                Id = "Basic",
                 Title = "Basic",
                 Description = "After a period of inactivity, your site will respond to the next request with a brief delay.",
                 IsChecked = true
@@ -198,17 +196,20 @@
 
         options.Add(new PureRadioDefinition
             {
+                Id = "Always on",
                 Title = "Always on",
                 Description = "Your site will always be immediately available for incoming traffic."
             });
 
         options.Add(new PureRadioDefinition
             {
-                Title = "No description"
+                Title = "No description - No Id"
             });
+
+        options.Add(new PureRadioDefinition());
     }
 
-    async Task HandleRadioButtonOnLCick(string selectedValue)
+    async Task HandleRadioGroupOnClick(string selectedValue)
     {
         await Service.AddToast($"Selected radio: {selectedValue}", PureState.Success);
     }

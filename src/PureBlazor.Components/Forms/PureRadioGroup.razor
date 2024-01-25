@@ -1,39 +1,57 @@
-﻿@if (PureRadioGroupItems != null)
+﻿@using System.Text.RegularExpressions
+@if (Items != null)
 {
     <fieldset>
-        @foreach (var option in PureRadioGroupItems)
+        @if (!String.IsNullOrEmpty(Legend))
         {
-            <div class="mt-2 space-y-4">
-                <div class="relative flex items-start">
-                    <div class="absolute flex h-6 items-center">
-                        <input id="@option.Name" name="opt" value="@option.Name"
-                               @onchange="OnSelected"
-                               type="radio" class="h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-600" checked="@option.IsChecked" />
-                    </div>
-                    <div class="pl-7 text-sm leading-6">
-                        <p>
-                            <label for="@option.Name" class="text-base text-gray-800 dark:text-gray-50">@option.Title</label>
-                        </p>
-                        @if (@option.Description != @String.Empty)
-                        {
-                            <span class="font-medium text-sm text-gray-500 font-mono dark:text-gray-400">@option.Description</span>
-                        }
+            <legend class="text-lg text-gray-800 dark:text-gray-50">@Legend</legend>
+        }
+        @foreach (var option in @Items)
+        {
+            @if (!String.IsNullOrEmpty(@option.Id))
+            {
+                <div class="mt-2 space-y-4">
+                    <div class="relative flex items-start">
+                        <div class="absolute flex h-6 items-center">
+                            <input id="@option.Id" name="@Name" value="@option.Id"
+                                   @onchange="@(() => OnClick.InvokeAsync(@option.Id))"
+                                   type="radio" class="h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-600" checked="@option.IsChecked" />
+                        </div>
+                        <div class="pl-7 text-sm leading-6">
+                            <p>
+                                <label for="@option.Id" class="text-base text-gray-800 dark:text-gray-50">@option.Title</label>
+                            </p>
+                            @if (!String.IsNullOrEmpty(@option.Description))
+                            {
+                                <span class="font-medium text-sm text-gray-500 font-mono dark:text-gray-400">@option.Description</span>
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     </fieldset>
 }
 
 @code {
     [Parameter]
-    public List<PureRadioDefinition> PureRadioGroupItems { get; set; }
+    public List<PureRadioDefinition> Items { get; set; }
+
+    [Parameter]
+    public string Legend { get; set; }
+
+    [Parameter, EditorRequired]
+    public required string Name { get; set; }
 
     [Parameter]
     public EventCallback<string> OnClick { get; set; }
 
-    void OnSelected(ChangeEventArgs args)
+    protected override void OnParametersSet()
     {
-        OnClick.InvokeAsync(args.Value!.ToString()!);
+        Items.ForEach(item =>
+            {
+                if (string.IsNullOrEmpty(item.Id))
+                    item.Id = Regex.Replace(item.Title, @"\s", "");
+            });
     }
 }
