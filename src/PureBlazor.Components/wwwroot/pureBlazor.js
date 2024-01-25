@@ -11,7 +11,8 @@ export function blur(element) {
 }
 
 export function isDarkMode() {
-    return localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    return false;
+    //return localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
 }
 
 export function scrollToFragment(elementId) {
@@ -63,9 +64,9 @@ export function useOSPreference() {
 }
 
 function addDarkCss() {
-    document.documentElement.classList.add('dark');
+    //document.documentElement.classList.add('dark');
 }
 
 function removeDarkCss() {
-    document.documentElement.classList.remove('dark');
+    //document.documentElement.classList.remove('dark');
 }

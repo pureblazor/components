@@ -63,6 +63,11 @@
             }
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class'
+        }
+    </script>
 
     <!-- todo: remove dist folder and just have it at the parent level -->    
     <link href="_content/PureBlazor.Components/dist/pureBlazor.css" rel="stylesheet" />
@@ -78,7 +83,7 @@
     </script>
 </head>
 
-<body class="dark:bg-gray-900 bg-slate-100">    
+<body class="bg-slate-100">    
     <div id="app">
         <svg class="loading-progress">
             <circle r="40%" cx="50%" cy="50%" />

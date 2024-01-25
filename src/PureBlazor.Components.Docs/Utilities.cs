@@ -51,34 +51,41 @@ public static class AssemblyExtensions
 
     public static string GetDocumentation(this MemberInfo memberInfo)
     {
-        if (memberInfo.MemberType.HasFlag(MemberTypes.Field))
+        try
         {
-            return ((FieldInfo)memberInfo).GetDocumentation();
+            //if (memberInfo.MemberType.HasFlag(MemberTypes.Field))
+            //{
+            //    return ((FieldInfo) memberInfo).GetDocumentation();
+            //}
+            //if (memberInfo.MemberType.HasFlag(MemberTypes.Property))
+            //{
+            //    return ((PropertyInfo) memberInfo).GetDocumentation();
+            //}
+            if (memberInfo.MemberType.HasFlag(MemberTypes.Event))
+            {
+                return ((EventInfo) memberInfo).GetDocumentation();
+            }
+            else if (memberInfo.MemberType.HasFlag(MemberTypes.Constructor))
+            {
+                return ((ConstructorInfo) memberInfo).GetDocumentation();
+            }
+            else if (memberInfo.MemberType.HasFlag(MemberTypes.Method))
+            {
+                return ((MethodInfo) memberInfo).GetDocumentation();
+            }
+            else if (memberInfo.MemberType.HasFlag(MemberTypes.TypeInfo) ||
+                     memberInfo.MemberType.HasFlag(MemberTypes.NestedType))
+            {
+                return ((TypeInfo) memberInfo).GetDocumentation();
+            }
+            else
+            {
+                return null;
+            }
         }
-        else if (memberInfo.MemberType.HasFlag(MemberTypes.Property))
+        catch (Exception ex)
         {
-            return ((PropertyInfo)memberInfo).GetDocumentation();
-        }
-        else if (memberInfo.MemberType.HasFlag(MemberTypes.Event))
-        {
-            return ((EventInfo)memberInfo).GetDocumentation();
-        }
-        else if (memberInfo.MemberType.HasFlag(MemberTypes.Constructor))
-        {
-            return ((ConstructorInfo)memberInfo).GetDocumentation();
-        }
-        else if (memberInfo.MemberType.HasFlag(MemberTypes.Method))
-        {
-            return ((MethodInfo)memberInfo).GetDocumentation();
-        }
-        else if (memberInfo.MemberType.HasFlag(MemberTypes.TypeInfo) ||
-        memberInfo.MemberType.HasFlag(MemberTypes.NestedType))
-        {
-            return ((TypeInfo)memberInfo).GetDocumentation();
-        }
-        else
-        {
-            return null;
+            return "";
         }
     }
 
