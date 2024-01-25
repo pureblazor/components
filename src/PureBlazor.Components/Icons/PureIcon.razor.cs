@@ -97,7 +97,7 @@ public enum PureIcons
     IconBeaker,
     IconSignOut,
     IconEllipsis,
-    IconLanguage
+    IconLanguage,
     IconSquareStack,
     IconCloud
 }
