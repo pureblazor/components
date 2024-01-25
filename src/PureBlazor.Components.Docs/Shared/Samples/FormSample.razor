@@ -129,12 +129,12 @@
 
     <PureText Type="Typo.H2" Id="radioGroup">Radio (preview)</PureText>
     <div class="mb-5">
-        <PureRadioGroup PureRadioGroupDefinition="@options" OnClick="@HandleRadioButtonOnLCick" />
+        <PureRadioGroup PureRadioGroupItems="@options" OnClick="@HandleRadioButtonOnLCick" />
     </div>
     <div class="mb-5">
         <PureText Type="Typo.H3">Data source</PureText>
         <PureText Type="Typo.Body" Css="mb-4">
-            Initialize <PureInlineCode>PureRadioGroupDefinition</PureInlineCode> property from the control to set the content source of the radio group with information for each radio.
+            Initialize <PureInlineCode>PureRadioGroupItems</PureInlineCode> property from the control to set the content source of the radio group with information for each radio.
         </PureText>
     </div>
     <div class="mb-5">
@@ -185,24 +185,24 @@
 
     private string pureRadioButtonMarkup = @"<PureRadioButton PureRadioGroupDefinition=""@options"" OnClick=""@HandleRadioButtonOnLCick"" />";
 
-    List<PureRadioGroupDefinition> options = new();
+    List<PureRadioDefinition> options = new();
 
     protected override void OnInitialized()
     {
-        options.Add(new PureRadioGroupDefinition
+        options.Add(new PureRadioDefinition
             {
                 Title = "Basic",
                 Description = "After a period of inactivity, your site will respond to the next request with a brief delay.",
                 IsChecked = true
             });
 
-        options.Add(new PureRadioGroupDefinition
+        options.Add(new PureRadioDefinition
             {
                 Title = "Always on",
                 Description = "Your site will always be immediately available for incoming traffic."
             });
 
-        options.Add(new PureRadioGroupDefinition
+        options.Add(new PureRadioDefinition
             {
                 Title = "No description"
             });
