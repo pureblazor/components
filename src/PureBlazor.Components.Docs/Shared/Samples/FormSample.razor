@@ -130,6 +130,7 @@
     <PureText Type="Typo.H2" Id="radioGroup">Radio (preview)</PureText>
     <div class="mb-5">
         <PureRadioGroup Name="Options" Legend="Availability" Items="@options" OnClick="@HandleRadioGroupOnClick" />
+        <PureText Css="ml-5" Type="Typo.Section">@("  <--- ") Radio item not displayed because the <PureInlineCode>Title</PureInlineCode> property has not been set.</PureText>
     </div>
     <div class="mb-5">
         <PureText Type="Typo.H3">Data source</PureText>
@@ -197,7 +198,7 @@
         options.Add(new PureRadioDefinition
             {
                 Id = "Always on",
-                Title = "Always on",
+                Title = "Always on.",
                 Description = "Your site will always be immediately available for incoming traffic."
             });
 
@@ -206,7 +207,11 @@
                 Title = "No description - No Id"
             });
 
-        options.Add(new PureRadioDefinition());
+        options.Add(new PureRadioDefinition
+            {
+                Id = "Off",
+                Description = "Component turned off."
+            });
     }
 
     async Task HandleRadioGroupOnClick(string selectedValue)
