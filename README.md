@@ -33,7 +33,7 @@ In order to use these components, the current recommendation is to add this repo
 - [x] Field
 - [ ] Upload
 - [ ] Checkbox
-- [ ] Radio (_in progress_)
+- [x] Radio
 - [ ] Rating
 - [ ] Select (_in progress_)
 - [x] Toggle
