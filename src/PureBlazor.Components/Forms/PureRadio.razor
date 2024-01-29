@@ -1,0 +1,73 @@
+﻿<div class="mt-2 space-y-4">
+    <div class="relative flex items-start">
+        <div class="absolute flex h-6 items-center">
+            <input id="@id" value="@Value" name="@ParentRadioGroup.Name"
+                   @onclick="HandleOnClick"
+                   aria-describedby="@($"availability-radio-{@id}-Description")"
+                   type="radio" class="h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-600"
+                   checked="@Checked" />
+        </div>
+        <div class="pl-7 text-sm leading-6">
+            <label for="TheId" class="font-medium text-gray-900">@Value</label>
+            @if (!String.IsNullOrEmpty(@Description))
+            {
+                <p id="@($"availability-radio-{id}-Description")" class="text-gray-500">@Description</p>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    //make sure is used inside a RadioGroup and no alone
+    [CascadingParameter]
+    private PureRadioGroup2 ParentRadioGroup { get; set; }
+
+    // [Parameter]
+    // public EventCallback<string> OnClick { get; set; }
+
+    private string id;
+
+    [Parameter, EditorRequired]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string Description { get; set; } = String.Empty;
+
+    [Parameter]
+    public bool Checked { get; set; }
+
+    protected override void OnInitialized()
+    {
+        //Should the radio only be used inside a Radio group?
+        if (ParentRadioGroup == null)
+            throw new ArgumentNullException(nameof(ParentRadioGroup), "PureRadio must exist within a PureRadioGroup2");
+
+        if (!String.IsNullOrEmpty(ParentRadioGroup.CheckedValue))
+        {
+            if (ParentRadioGroup.CheckedValue == Value)
+            {
+                Checked = true;
+            }
+            else
+            {
+                Checked = false;
+            }
+        }
+        else if (Checked)
+        {
+            ParentRadioGroup.CheckedValue = Value;
+        }
+
+        base.OnInitialized();
+    }
+
+    protected override void OnParametersSet()
+    {
+        //Better way to set unique id?
+        id = ParentRadioGroup.Name;
+    }
+    private async Task HandleOnClick()
+    {
+        await ParentRadioGroup.OnValueChange(Value);
+    }
+}

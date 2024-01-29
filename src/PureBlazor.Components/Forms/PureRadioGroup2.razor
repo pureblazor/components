@@ -1,0 +1,50 @@
+﻿@using System.Text.RegularExpressions
+
+<CascadingValue Value="this">
+    CheckedValue = @CheckedValue
+    <fieldset>
+        @if (!String.IsNullOrEmpty(Title))
+        {
+            <legend class="text-sm font-medium leading-6 text-gray-900">@Title</legend>
+        }
+        @ChildContent
+    </fieldset>
+</CascadingValue>
+
+@code {
+
+    [Parameter]
+    public string Title { get; set; }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter, EditorRequired]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string CheckedValue { get; set; }
+
+    [Parameter]
+    public EventCallback<string> OnRadioChanged { get; set; }
+
+    internal async Task OnValueChange(string value)
+    {
+        CheckedValue = value;        
+        await OnRadioChanged.InvokeAsync(value);
+
+        //remove next line and test if s needed
+        StateHasChanged();
+    }
+
+    protected override void OnParametersSet()
+    {
+        //Better way to set unique radioGroup name?
+        Name = Name + new Random().Next(0, 1000).ToString();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+    }
+}
