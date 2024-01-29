@@ -129,28 +129,16 @@
 
     <PureText Type="Typo.H2" Id="radioGroup">Radio (preview)</PureText>
     <div class="mb-5">
-        <PureRadioGroup Name="Options" Legend="Availability" Items="@options" OnClick="@HandleRadioGroupOnClick" />
-        <PureText Css="ml-5" Type="Typo.Section">@("  <--- ") Radio item not displayed because the <PureInlineCode>Title</PureInlineCode> property has not been set.</PureText>
-    </div>
-    <div class="mb-5">
-        <PureText Type="Typo.H3">Data source</PureText>
-        <PureText Type="Typo.Body" Css="mb-4">
-            Initialize <PureInlineCode>Items</PureInlineCode> property from the component to set the content source of the radio group with information for each radio.
-        </PureText>
-    </div>
-    <div class="mb-5">
-        <PureText Type="Typo.H3">Selected radio event</PureText>
-        <PureText Type="Typo.Body" Css="mb-4">
-            You can subscribe to the <PureInlineCode>OnClick</PureInlineCode> event of the component to retrieve the selected radio <PureInlineCode>Id</PureInlineCode>. By default, the <PureInlineCode>Id</PureInlineCode> for each radio is assigned based on the <PureInlineCode>Title</PureInlineCode> property (without spaces). If the <PureInlineCode>Title</PureInlineCode> property is not set, the radio option will not be rendered.
-        </PureText>
-    </div>
-    <div class="mb-5">
-        <PureText Type="Typo.H3">Check radio by default</PureText>
-        <PureText Type="Typo.Body" Css="mb-4">
-            To set a radio as checked by default, you can configure the <PureInlineCode>IsChecked</PureInlineCode> property for the intended radio during data loading.
-        </PureText>
-    </div>
-    <PureCode Text="@pureRadioButtonMarkup" Language="@PureCode.Razor" Caption="Example" Css="my-4"></PureCode>
+        <PureRadioGroup Title="Availability" Name="Gender" CheckedValue="Basic" OnRadioChanged="@OnHandleRadioGroupChange">
+            <PureRadio Value="Basic" Description="After a period of inactivity, your site will respond to the next request with a brief delay." />
+            <PureRadio Value="Always on" Description="Your site will always be immediately available for incoming traffic." />
+        </PureRadioGroup>
+
+        <PureRadioGroup Title="Animals" Name="DomesticAnimals" Items="radios" OnRadioChanged="@OnHandleRadioGroupChange" />
+    </div>   
+    <PureCode Text="@pureRadioGroupMarkup" Language="@PureCode.Razor" Caption="Example 1" Css="my-4"></PureCode>
+
+    <PureCode Text="@pureRadioGroupMarkup2" Language="@PureCode.Razor" Caption="Example 2" Css="my-4"></PureCode>
 
     @code {
     public int Clicked { get; set; }
@@ -181,40 +169,36 @@
     </Suffix>
 </MkTextField>";
 
-    private string pureRadioButtonMarkup = @"<PureRadioGroup Name=""Options"" Legend=""Availability"" Items=""@options"" OnClick=""@HandleRadioGroupOnClick"" />";
+    private string pureRadioGroupMarkup = @"<PureRadioGroup Title=""Availability"" Name=""Gender"" CheckedValue=""Basic"" OnRadioChanged=""@OnHandleRadioGroupChange"">
+            <PureRadio Value=""Basic"" Description=""After a period of inactivity, your site will respond to the next request with a brief delay."" />
+            <PureRadio Value=""Always on"" Description=""Your site will always be immediately available for incoming traffic."" />
+        </PureRadioGroup>";
 
-    List<PureRadioDefinition> options = new();
+    private string pureRadioGroupMarkup2 = @"<PureRadioGroup Title=""Animals"" Name=""DomesticAnimals"" Items=""radios"" OnRadioChanged=""@OnHandleRadioGroupChange"" />";
+
+    List<PureRadio> radios = new();
 
     protected override void OnInitialized()
     {
-        options.Add(new PureRadioDefinition
-            {
-                Id = "Basic",
-                Title = "Basic",
-                Description = "After a period of inactivity, your site will respond to the next request with a brief delay.",
-                IsChecked = true
-            });
+        radios = new()
+        {
+            new PureRadio
+                {
+                    Value = "Cat",
+                    Description = "Very independent animal."
+                },
+            new PureRadio
+                {
+                    Value = "Dog",
+                    Description = "Love giver animal.",
+                    Checked = true
+                }
+        };
 
-        options.Add(new PureRadioDefinition
-            {
-                Id = "Always on",
-                Title = "Always on.",
-                Description = "Your site will always be immediately available for incoming traffic."
-            });
-
-        options.Add(new PureRadioDefinition
-            {
-                Title = "No description - No Id"
-            });
-
-        options.Add(new PureRadioDefinition
-            {
-                Id = "Off",
-                Description = "Component turned off."
-            });
+        base.OnInitialized();
     }
 
-    async Task HandleRadioGroupOnClick(string selectedValue)
+    async Task OnHandleRadioGroupChange(string selectedValue)
     {
         await Service.AddToast($"Selected radio: {selectedValue}", PureState.Success);
     }
