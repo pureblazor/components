@@ -53,6 +53,8 @@
     [Parameter]
     public EventCallback<string> OnRadioChanged { get; set; }
 
+    public Action ValuesChanged;
+
     protected override void OnInitialized()
     {
         // Check a better way to set unique radioGroup name
@@ -69,7 +71,13 @@
 
     public async Task OnValueChange(string value)
     {
+        bool valueChanged = value != CheckedValue;
+
         CheckedValue = value;
         await OnRadioChanged.InvokeAsync(value);
+        if (valueChanged)
+        {
+            ValuesChanged.Invoke();
+        }
     }
 }

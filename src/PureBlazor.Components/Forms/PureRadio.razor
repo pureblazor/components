@@ -15,9 +15,15 @@
             }
         </div>
     </div>
+    @if (ParentRadioGroup.CheckedValue == Value)
+    {
+        <div class="relative flex items-start">
+            @ChildContent
+        </div>
+    }
 </div>
 
-@code {    
+@code {
     [CascadingParameter]
     private PureRadioGroup ParentRadioGroup { get; set; } 
 
@@ -30,6 +36,9 @@
     [Parameter]
     public bool Checked { get; set; }
 
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
     public string Id { get; set; }
 
     protected override void OnInitialized()
@@ -55,6 +64,7 @@
         {
             ParentRadioGroup.CheckedValue = Value;
         }
+        ParentRadioGroup.ValuesChanged += () => StateHasChanged();
 
         base.OnInitialized();
     }
