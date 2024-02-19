@@ -1,0 +1,71 @@
+﻿
+<div class="mt-1 flex items-center gap-x-1.5">
+    <p class="text-sm leading-6 text-gray-900">@Title</p>
+    <div class="flex-none rounded-full p-1 @(backgroundStatusColor)">
+        <div class="h-1.5 w-1.5 rounded-full @(foregroundStatusColor)"></div>
+    </div>
+    <p class="text-xs leading-5 text-gray-500">@Status</p>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set;}
+
+    [Parameter]
+    public string Status { get; set; }
+
+    [Parameter]
+    public string Value { get; set; }
+
+    [Parameter]
+    public string Error { get; set; }
+
+    [Parameter]
+    public string Success { get; set; }
+
+    [Parameter]
+    public string Warning { get; set; }
+
+    [Parameter]
+    public Dictionary<string, ColorWithShade> CustomColorMap { get; set; }
+
+    private string foregroundStatusColor = "";
+    private string backgroundStatusColor = "";
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        BuildCss();
+    }
+
+    public virtual void BuildCss()
+    {
+        string color = null;
+
+        if (Value == Success)
+        {
+            color = "emerald";
+        } else if (Value == Error)
+        {
+            color = "red";
+        } else if (Value == Warning)
+        {
+            color = "orange";
+        }
+
+        if(color is null)
+        {
+            if (CustomColorMap is not null && CustomColorMap.ContainsKey(Value))
+            {
+                var mappedStyle = CustomColorMap[Value];
+                foregroundStatusColor = $"bg-{mappedStyle.BaseColor}-{mappedStyle.Shade}";
+                backgroundStatusColor = $"{foregroundStatusColor}/20";
+
+            }
+        }else
+        {
+            foregroundStatusColor = $"bg-{color}-500";
+            backgroundStatusColor = $"{foregroundStatusColor}/20";
+        }               }
+
+}
