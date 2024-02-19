@@ -4,6 +4,8 @@
 # PureBlazor Components
 PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
 
+Demo: https://components.wasmhost.dev
+
 # Getting started
 These components are being built alongside (and for) the PureBlazor CMS. Our focus is supporting the CMS first and foremost.
 
@@ -31,7 +33,7 @@ In order to use these components, the current recommendation is to add this repo
 - [x] Field
 - [ ] Upload
 - [ ] Checkbox
-- [ ] Radio (_in progress_)
+- [x] Radio
 - [ ] Rating
 - [ ] Select (_in progress_)
 - [x] Toggle

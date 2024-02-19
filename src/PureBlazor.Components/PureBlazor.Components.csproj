@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Components</Title>
-    <Version>0.0.8</Version>
+    <Version>0.0.9</Version>
     <Description>Blazor UI components, built with Tailwind CSS for the PureBlazor CMS</Description>
     <PackageProjectUrl>https://github.com/pureblazor/components</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pureblazor/components</RepositoryUrl>
@@ -19,7 +19,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Company>CodeFrog</Company>
     <Authors>codymullins</Authors>
-    <Copyright>Copyright 2023 CodeFrog</Copyright>    
+    <Copyright>Copyright 2023 CodeFrog</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -32,8 +32,8 @@
     </DownloadFile>
   </Target>
   <Target Name="Tailwind:Permission" AfterTargets="AfterBuild" Condition="$([MSBuild]::IsOSPlatform('Linux'))">
-    <Message Importance="high" Text="Building CSS with Tailwind" />
-    <Exec Command="$(TailwindExecutable) -i .\tailwind.css -o .\wwwroot\css\site.css" />
+    <Message Importance="high" Text="Making Tailwind CLI executable" />
+    <Exec Command="chmod +x $(TailwindExecutable)" />
   </Target>
   <Target Name="Tailwind:Run" AfterTargets="AfterBuild" DependsOnTargets="Tailwind:Permission">
     <Message Importance="high" Text="Building CSS with Tailwind" />
