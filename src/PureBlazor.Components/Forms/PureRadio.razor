@@ -8,7 +8,7 @@
                    checked="@Checked" />
         </div>
         <div class="pl-7 text-sm leading-6">
-            <label for="@Id" class="font-medium text-gray-900">@Value</label>
+            <label for="@Id" class="font-medium text-gray-900">@(Title ?? Value)</label>
             @if (!String.IsNullOrEmpty(@Description))
             {
                 <p id="@($"{@Value}-radio-Description")" class="text-gray-500">@Description</p>
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-@code {    
+@code {
     [CascadingParameter]
     private PureRadioGroup ParentRadioGroup { get; set; } 
 
@@ -25,11 +25,17 @@
     public string Value { get; set; }
 
     [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
     public string Description { get; set; } = String.Empty;
 
     [Parameter]
     public bool Checked { get; set; }
 
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
     public string Id { get; set; }
 
     protected override void OnInitialized()
@@ -55,6 +61,9 @@
         {
             ParentRadioGroup.CheckedValue = Value;
         }
+        ParentRadioGroup.ValuesChanged += () => StateHasChanged();
+        ParentRadioGroup.AddButton(this);
+
 
         base.OnInitialized();
     }
@@ -62,5 +71,6 @@
     private async Task HandleOnClick()
     {
         await ParentRadioGroup.OnValueChange(Value);
+        StateHasChanged();
     }
 }

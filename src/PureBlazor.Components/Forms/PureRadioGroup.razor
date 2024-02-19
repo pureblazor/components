@@ -11,23 +11,18 @@
         {
             @foreach (var option in @Items)
             {
-                <div class="mt-2 space-y-4">
-                    <div class="relative flex items-start">
-                        <div class="absolute flex h-6 items-center">
-                            <input id="@option.Id" value="@option.Value" name="@Name"
-                                   @onclick="@(() => OnRadioChanged.InvokeAsync(@option.Value))"
-                                   aria-describedby="@($"{@option.Value}-radio-Description")"
-                                   type="radio" class="h-4 w-4 border-gray-300 text-brand-600 focus:ring-brand-600" checked="@option.Checked" />
-                        </div>
-                        <div class="pl-7 text-sm leading-6">
-                            <label for="@option.Id" class="font-medium text-gray-900">@option.Value</label>
-                            @if (!String.IsNullOrEmpty(@option.Description))
-                            {
-                                <p id="@($"{@option.Value}-radio-Description")" class="text-gray-500">@option.Description</p>
-                            }
-                        </div>
-                    </div>
-                </div>
+                <PureRadio Checked="@(option.Checked)" Description="@(option.Description)" Title="@(option.Title)" Value="@(option.Value)" Id="@(option.Id)" />
+            }
+
+        }
+        else
+        {
+            @foreach(var option in @Items)
+            {
+                if(option.Value == CheckedValue)
+                {
+                    @option.ChildContent
+                }
             }
         }
     </fieldset>
@@ -39,7 +34,7 @@
     public string Title { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public RenderFragment? ChildContent { get; set; }
 
     [Parameter]
     public List<PureRadio> Items { get; set; } = new();
@@ -53,23 +48,41 @@
     [Parameter]
     public EventCallback<string> OnRadioChanged { get; set; }
 
+    public Action ValuesChanged;
+
     protected override void OnInitialized()
     {
         // Check a better way to set unique radioGroup name
-        Name = Name + new Random().Next(0, 1000).ToString();
+        Name = Name + Utilities.NamingUtils.CreateRandomizedId();
 
         Items.ForEach(item =>
         {
             if (string.IsNullOrEmpty(item.Id))
-                item.Id = Name + new Random().Next(0, 1000).ToString();
+                item.Id = Name + Utilities.NamingUtils.CreateRandomizedId();
         });
 
         base.OnInitialized();
     }
 
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+    }
+
     public async Task OnValueChange(string value)
     {
+        bool valueChanged = value != CheckedValue;
+
         CheckedValue = value;
         await OnRadioChanged.InvokeAsync(value);
+        if (valueChanged)
+        {
+            ValuesChanged.Invoke();
+        }
+    }
+    public void AddButton(PureRadio radio)
+    {
+        Items.Add(radio);
+        StateHasChanged();
     }
 }
