@@ -1,4 +1,5 @@
 ﻿@using Microsoft.Extensions.Logging
+@using Pure.Tailwind
 
 <CascadingValue Value="this">
     <section class="text-gray-900 body-font">
@@ -18,6 +19,16 @@
 </CascadingValue>
 
 @code {
+    // [Text(TextColor.Gray100)]
+    // [Border(BorderColor.Brand400)]
+    // [Background(BackgroundColor.Brand300)]
+    // public string? defaultButtonCss;
+
+    // [Text(TextColor.Gray, 900)] // or [Text(TextColor.Gray, Shade = 900)]
+    // [Border(BorderColor.Brand)]
+    // [Background(BackgroundColor.Gray, 100)]
+    // public string? secondaryButtonCss;
+
     [Parameter]
     public RenderFragment? ChildContent { get; set; }
 

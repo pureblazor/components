@@ -31,16 +31,22 @@
 
 
   <ItemGroup>
-    <SupportedPlatform Include="browser" />
+    <SupportedPlatform Include="browser"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1"/>
   </ItemGroup>
 
   <ItemGroup>
     <Content Update="wwwroot\app.css">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Pure.Tailwind.Generator\Pure.Tailwind.Generator.csproj" OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false"/>
+    <ProjectReference Include="..\..\..\Pure.Tailwind\Pure.Tailwind.csproj"/>
   </ItemGroup>
 </Project>

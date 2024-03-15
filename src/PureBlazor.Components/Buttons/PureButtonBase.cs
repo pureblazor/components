@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Pure.Tailwind;
 using PureBlazor.Components.Styling;
 
 namespace PureBlazor.Components.Buttons;
@@ -10,11 +12,18 @@ namespace PureBlazor.Components.Buttons;
 /// </summary>
 public static class ButtonColors
 {
-    public const string Primary = "bg-brand-800";
-    public const string PrimaryHover = "hover:bg-brand-800";
+    public const string Primary = "bg-brand-900";
+    public const string PrimaryHover = "hover:bg-brand-950";
 }
 
-public class PureButtonBase : ComponentBase
+public enum Accent
+{
+    Default,
+    Success,
+    Danger,
+}
+
+public partial class PureButtonBase : ComponentBase
 {
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? InputAttributes { get; set; } =
@@ -34,6 +43,9 @@ public class PureButtonBase : ComponentBase
 
     [Parameter]
     public ButtonVariant Variant { get; set; } = ButtonVariant.Filled;
+
+    [Parameter]
+    public Accent Accent { get; set; }
 
     [Parameter]
     public PureSize Radius { get; set; } = PureSize.ExtraSmall;
@@ -65,6 +77,12 @@ public class PureButtonBase : ComponentBase
     [Parameter]
     public bool Disabled { get; set; }
 
+
+    //[Text]
+    //[Border(Shade = 4)]
+    //[Background]
+    //public string? defaultButtonCss;
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
@@ -89,8 +107,16 @@ public class PureButtonBase : ComponentBase
         switch (Variant)
         {
             case ButtonVariant.Filled:
-                builder.AddBackground(Color).AddClasses("text-white");
-                builder.AddBackgroundHover(Color.Eight);
+                var accentClass = Accent switch
+                {
+                    Accent.Default => "is-primary",
+                    Accent.Danger => "is-danger",
+                    Accent.Success => "is-success",
+                    _ => "is-primary"
+                };
+
+                builder.AddClasses($"button {accentClass}");
+
                 break;
 
             case ButtonVariant.Outline:
@@ -109,19 +135,24 @@ public class PureButtonBase : ComponentBase
                 break;
         }
 
-        builder = AddPadding(builder).SetFontSize(Size);
-
-        if (Uppercase)
+        if (Accent == Accent.Danger)
         {
-            builder = builder.AddTextTransform(TextTransform.Uppercase);
+            builder.AddClasses("is-danger");
         }
 
-        builder.AddClasses("rounded-sm font-semibold");
-
-        if (Disabled)
+        if (Size == PureSize.Small)
         {
-            //builder.AddClasses("");
+            builder.AddClasses("is-small");
         }
+        //builder = AddPadding(builder).SetFontSize(Size);
+
+        //if (Uppercase)
+        //{
+        //    builder = builder.AddTextTransform(TextTransform.Uppercase);
+        //}
+
+        //builder.AddClasses("rounded-sm font-semibold");
+
 
         return builder.Build();
     }

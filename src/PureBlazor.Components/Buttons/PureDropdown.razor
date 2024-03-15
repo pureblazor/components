@@ -1,6 +1,6 @@
 ﻿<div class="relative inline-block text-left group/dropdown">
     <div>
-        <button type="button" class="inline-flex justify-center rounded-md px-2 py-2 text-sm font-semibold text-gray-700 border border-transparent hover:border-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-300">
+        <button type="button" class="btn-dropdown">
 
             @ChildContent
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
@@ -17,7 +17,7 @@
         <div class="py-1 flex flex-col" role="none">
             @foreach (var item in Items)
             {
-                <button @onclick="async e => { await OnItemClick(e, item); }" class="text-gray-700 hover:bg-gray-200 block px-4 py-2 text-sm grow text-left" role="menuitem" tabindex="-1" id="menu-item-0">@item.Text</button>
+                <button @onclick="async e => { await OnItemClick(e, item); }" class="dropdown-item" role="menuitem" tabindex="-1">@item.Text</button>
             }
         </div>
     </div>

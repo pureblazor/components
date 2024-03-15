@@ -94,7 +94,7 @@ internal class TailwindBuilder
             css = Append(Classes);
         }
 
-        css = Append(ToTextSize(FontSize));
+        //css = Append(ToTextSize(FontSize));
 
         return css.Trim();
     }
@@ -184,6 +184,11 @@ internal class TailwindBuilder
     private string Translate(ColorWithShade color)
     {
         return $"{color.BaseColor}-{_map[color.Shade]}";
+    }
+
+    private void Translate(BackgroundColor color)
+    {
+       // var test = color.Value == PureBlazor.Components.BackgroundColor.Brand200;
     }
 
     private string TransformText(TextTransform t)

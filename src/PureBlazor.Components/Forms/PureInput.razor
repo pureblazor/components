@@ -11,7 +11,7 @@
     {
         if (LabelType == PureLabelType.Default)
         {
-            <label for="@Id" class="text-gray-700 dark:text-gray-300 mb-2">@Label</label>
+            <label for="@Id" class="text-gray-800 dark:text-gray-300 mb-2">@Label</label>
         }
     }
     @if (!string.IsNullOrWhiteSpace(Css))
@@ -42,15 +42,15 @@
     @if (!string.IsNullOrWhiteSpace(Label) && LabelType == PureLabelType.Floating)
     {
         <!-- todo: integrate bg color with customization / user selected bg color -->
-        <label for="@Id" class="cursor-text dark:bg-gray-900 bg-slate-100 absolute left-2 peer-placeholder-shown:left-2 -top-3 text-gray-700 dark:text-gray-300 text-sm transition-all peer-placeholder-shown:bg-transparent dark:peer-focus:bg-gray-900 peer-focus:bg-slate-100 peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-sm">@Label</label>
+        <label for="@Id" class="cursor-text dark:bg-gray-900 bg-slate-100 absolute left-2 peer-placeholder-shown:left-2 -top-3 text-gray-800 dark:text-gray-300 text-sm transition-all peer-placeholder-shown:bg-transparent dark:peer-focus:bg-gray-900 peer-focus:bg-slate-100 peer-placeholder-shown:top-3 peer-focus:-top-3 peer-focus:text-sm">@Label</label>
     }
     @if (!string.IsNullOrWhiteSpace(HelperText) && string.IsNullOrWhiteSpace(errorMessage))
     {
-        <span class="text-xs font-sans dark:text-gray-400 text-gray-600 py-2">@HelperText</span>
+        <span class="text-xs font-sans dark:text-gray-400 text-gray-800 py-2">@HelperText</span>
     }
     else if (!string.IsNullOrWhiteSpace(errorMessage))
     {
-        <span class="text-xs font-sans dark:text-error-600 text-error-800 py-2">@errorMessage</span>
+        <span class="text-xs font-sans text-error py-2">@errorMessage</span>
     }
 
 </div>
@@ -58,9 +58,9 @@
 @code {
     private readonly List<IEntryValidator> _validators = new();
     private readonly Guid _guid = Guid.NewGuid();
-    private string baseCss = "peer block px-4 py-2 border focus:outline focus:outline-2 focus:outline-offset-2 outline-primary-500 dark:outline-gray-300 text-gray-700 dark:text-gray-300 dark:bg-transparent rounded-md";
-    private string defaultBorder = "border-gray-200 dark:border-gray-600";
-    private string errorBorder = "border-error-800 dark:border-error-600";
+    private string baseCss = "peer block px-4 py-2 border focus:outline focus:outline-2 focus:outline-offset-2 outline-primary-500 dark:outline-gray-300 text-gray-800 dark:text-gray-300 dark:bg-transparent rounded-md";
+    private string defaultBorder = "border-gray-200";
+    private string errorBorder = "border-error";
     private string? errorMessage;
     private string value = string.Empty;
 

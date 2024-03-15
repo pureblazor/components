@@ -2,7 +2,7 @@
 @inherits PureButtonBase
 
 <button @attributes="InputAttributes"
-        class="@InternalCss @(Pressed ? "translate-y-[0.075rem]" : "")"
+        class="cursor-default @InternalCss @(Pressed ? "translate-y-[0.075rem]" : "")"
         disabled="@Disabled"
         @onmousedown="() => Pressed = true"
         @onmouseup="() => Pressed = false"
