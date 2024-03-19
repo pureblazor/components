@@ -186,11 +186,6 @@ internal class TailwindBuilder
         return $"{color.BaseColor}-{_map[color.Shade]}";
     }
 
-    private void Translate(BackgroundColor color)
-    {
-       // var test = color.Value == PureBlazor.Components.BackgroundColor.Brand200;
-    }
-
     private string TransformText(TextTransform t)
     {
         return t switch

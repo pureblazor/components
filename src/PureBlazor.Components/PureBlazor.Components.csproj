@@ -43,10 +43,4 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Pure.Tailwind.Generator\Pure.Tailwind.Generator.csproj" OutputItemType="Analyzer"
-                      ReferenceOutputAssembly="false"/>
-    <ProjectReference Include="..\..\..\Pure.Tailwind\Pure.Tailwind.csproj"/>
-  </ItemGroup>
 </Project>

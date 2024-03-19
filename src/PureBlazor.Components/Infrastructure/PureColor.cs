@@ -1,6 +1,4 @@
-﻿using Pure.Tailwind;
-
-namespace PureBlazor.Components;
+﻿namespace PureBlazor.Components;
 
 public enum TextTransform
 {
@@ -8,27 +6,6 @@ public enum TextTransform
     Uppercase,
     Lowercase,
     Capitalize
-}
-
-
-[Tailwind("bg", "brand")]
-[Tailwind("bg", "gray")]
-[Tailwind("bg", "red")]
-public partial class BackgroundColor
-{
-}
-
-[Tailwind("border", "brand")]
-[Tailwind("border", "gray")]
-[Tailwind("border", "neutral")]
-public partial class BorderColor
-{
-}
-
-[Tailwind("text", "gray")]
-[Tailwind("text", "white")]
-public partial class TextColor
-{
 }
 
 /// <summary>

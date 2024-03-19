@@ -1,7 +1,5 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Pure.Tailwind;
 using PureBlazor.Components.Styling;
 
 namespace PureBlazor.Components.Buttons;
