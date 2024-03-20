@@ -1,0 +1,66 @@
+﻿<Header1 Id="cards">Cards</Header1>
+<div>
+    <Header2>Default Card with optional image</Header2>
+    <PureCard Title="Card Title" Styles="mb-8">
+        <Paragraph>
+            The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+        </Paragraph>
+        <PureCardFooter>
+            <PureButton Color="PureColor.Brand">Default</PureButton>
+        </PureCardFooter>
+    </PureCard>
+
+    <Header2>Top Aligned Card</Header2>
+    <PureCard Title="Card Title" Alignment="PureCardAlignment.Top" ImageUrl="https://picsum.photos/400/300" Styles="mb-8">
+        <Paragraph>
+            The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+        </Paragraph>
+        <PureCardFooter>
+            <PureButton Color="PureColor.Brand">Default</PureButton>
+        </PureCardFooter>
+    </PureCard>
+
+    <Header2>Left Aligned Card</Header2>
+    <PureCard Title="Card Title" Alignment="PureCardAlignment.Left" ImageUrl="https://picsum.photos/400/300" Styles="mb-8">
+        <Paragraph>
+            The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+        </Paragraph>
+        <PureCardFooter>
+            <PureButton Color="PureColor.Brand">Default</PureButton>
+        </PureCardFooter>
+    </PureCard>
+    <PureCode Text="@docs" Language="@PureCode.Razor" Caption="Example" Styles="my-4">
+
+    </PureCode>
+</div>
+
+
+@code {
+
+    private string docs = @"<PureCard Title=""Card Title"">
+    <Paragraph>
+        The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+    </Paragraph>
+    <PureCardFooter>
+        <PureButton Color=""PureColor.Primary"">Default</PureButton>
+    </PureCardFooter>
+</PureCard>
+
+<PureCard Title=""Card Title"" Alignment=""PureCardAlignment.Top"" ImageUrl=""https://picsum.photos/400/300"">
+    <Paragraph>
+        The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+    </Paragraph>
+    <PureCardFooter>
+        <PureButton Color=""PureColor.Primary"">Default</PureButton>
+    </PureCardFooter>
+</PureCard>
+
+<PureCard Title=""Card Title"" Alignment=""PureCardAlignment.Left"" ImageUrl=""https://picsum.photos/400/300"">
+    <Paragraph>
+        The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+    </Paragraph>
+    <PureCardFooter>
+        <PureButton Color=""PureColor.Primary"">Default</PureButton>
+    </PureCardFooter>
+</PureCard>";
+}

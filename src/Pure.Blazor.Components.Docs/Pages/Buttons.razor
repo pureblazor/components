@@ -1,0 +1,28 @@
+﻿@page "/components/buttons"
+@using Pure.Blazor.Components.Common
+
+<CascadingValue Value="styles">
+    <div class="grid grid-cols-4 pt-10">
+        <div class="hidden sm:block sm:col-span-1">
+            <PureVertNav />
+        </div>
+        <div class="col-span-4 sm:col-span-3">
+            <Header1>Components</Header1>
+            <Header2 Id="buttons">Buttons</Header2>
+            <PureButton>Default theme</PureButton>
+            <CascadingValue Value="theme2">
+                <PureButton>Custom theme</PureButton>
+            </CascadingValue>
+            <CascadingValue Value="Theme.Off">
+                <PureButton>No theme</PureButton>
+            </CascadingValue>
+            <CascadingValue Value="Theme.Off">
+                <PureButton Styles="bg-red-800 text-gray-50 p-8">No theme, custom classes</PureButton>
+            </CascadingValue>
+        </div>
+    </div>
+</CascadingValue>
+@code {
+    PureStyles styles = new ();
+    PureStyles theme2 = new CustomStyles();
+}

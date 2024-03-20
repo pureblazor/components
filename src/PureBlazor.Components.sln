@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PureBlazor.Components", "PureBlazor.Components\PureBlazor.Components.csproj", "{4E61B1A7-F513-4AC6-B03F-A97B3B7D2C8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pure.Blazor.Components", "Pure.Blazor.Components\Pure.Blazor.Components.csproj", "{4E61B1A7-F513-4AC6-B03F-A97B3B7D2C8C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PureBlazor.Components.Docs", "PureBlazor.Components.Docs\PureBlazor.Components.Docs.csproj", "{5AC5B7DE-04C8-4B79-910B-2A04F5A4DF9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pure.Blazor.Components.Docs", "Pure.Blazor.Components.Docs\Pure.Blazor.Components.Docs.csproj", "{5AC5B7DE-04C8-4B79-910B-2A04F5A4DF9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Tailwind.Generator", "Pure.Tailwind.Generator\Pure.Tailwind.Generator.csproj", "{70C85769-7929-4E88-B662-5B4E982A025F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{5AC5B7DE-04C8-4B79-910B-2A04F5A4DF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC5B7DE-04C8-4B79-910B-2A04F5A4DF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC5B7DE-04C8-4B79-910B-2A04F5A4DF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70C85769-7929-4E88-B662-5B4E982A025F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70C85769-7929-4E88-B662-5B4E982A025F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70C85769-7929-4E88-B662-5B4E982A025F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70C85769-7929-4E88-B662-5B4E982A025F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

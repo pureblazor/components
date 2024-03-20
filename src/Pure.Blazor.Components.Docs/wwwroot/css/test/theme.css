@@ -1,0 +1,34 @@
+﻿:root {
+    --gray-50: #ffffff;
+    --gray-100: #fdfdfd;
+    --gray-200: #f8f8f8;
+    --gray-300: #e6e6e6;
+    --gray-400: #d5d5d5;
+    --gray-500: #b1b1b1;
+    --gray-600: #909090;
+    --gray-700: #6d6d6d;
+    --gray-800: #464646;
+    --gray-900: #222222;
+    --gray-950: #000000;
+    --brand-50: #eff9ff;
+    --brand-100: #dff1ff;
+    --brand-200: #b7e5ff;
+    --brand-300: #77d1ff;
+    --brand-400: #2fbbff;
+    --brand-500: #04a3f3;
+    --brand-600: #0081d0;
+    --brand-700: #0067a8;
+    --brand-800: #015486;
+    --brand-900: #074873;
+    --brand-950: #052e4c;
+    --color-danger: #a70000;
+    --color-danger-hover: #910000;
+    --color-success: #00670f;
+    --color-info: #0054b6;
+    --color-warn: #892900;
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --font-xs: 0.75rem;
+    --font-sm: 0.875rem;
+    --font-normal: 400;
+}

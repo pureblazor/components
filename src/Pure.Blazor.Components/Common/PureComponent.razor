@@ -1,0 +1,37 @@
+﻿@code {
+
+    protected override void OnParametersSet()
+    {
+        BuildCss();
+    }
+
+    /// <summary>
+    ///     Add additional css classes to this component
+    /// </summary>
+    [Parameter]
+    public string? Styles { get; set; }
+
+    /// <summary>
+    ///     Disables or enables the theme. Default is Auto, which means the theme is inherited from the parent component.
+    /// </summary>
+    [CascadingParameter]
+    public Theme Theme { get; set; } = Theme.Auto;
+
+    /// <summary>
+    ///     The current theme styles
+    /// </summary>
+    [CascadingParameter]
+    public PureStyles PureStyles { get; set; } = new();
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    protected virtual void BuildCss()
+    {
+    }
+
+    protected virtual string ApplyStyle(string style)
+    {
+        return Theme == Theme.Off ? "" : style;
+    }
+
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="description" content="PureBlazor ComponentsDocs is a UI Component Library built for .NET MAUI Blazor and .NET Core Blazor apps. Components are customizable, performant, and extensible. Build Blazor apps fast using Tailwind CSS." />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <title>PureBlazor Components Docs</title>
+    <base href="/" />
+    <style>
+        #blazor-error-ui {
+            background: lightyellow;
+            bottom: 0;
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+            display: none;
+            left: 0;
+            padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+            #blazor-error-ui .dismiss {
+                cursor: pointer;
+                position: absolute;
+                right: 0.75rem;
+                top: 0.5rem;
+            }
+
+        .loading-progress {
+            position: relative;
+            display: block;
+            width: 8rem;
+            height: 8rem;
+            margin: 20vh auto 1rem auto;
+        }
+
+            .loading-progress circle {
+                fill: none;
+                stroke: #e0e0e0;
+                stroke-width: 0.6rem;
+                transform-origin: 50% 50%;
+                transform: rotate(-90deg);
+            }
+
+                .loading-progress circle:last-child {
+                    stroke: #1b6ec2;
+                    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+                    transition: stroke-dasharray 0.05s ease-in-out;
+                }
+
+        .loading-progress-text {
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+            color: black;
+            inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+        }
+
+            .loading-progress-text:after {
+                content: var(--blazor-load-percentage-text, "Loading");
+            }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['InterVariable'],
+                    },
+                    borderRadius: {
+                        'xs': '0.0625rem',
+                    },
+                    colors: {
+                        brand: {
+                            '50': '#eff9ff',
+                            '100': '#dff1ff',
+                            '200': '#b7e5ff',
+                            '300': '#77d1ff',
+                            '400': '#2fbbff',
+                            '500': '#04a3f3',
+                            '600': '#0081d0',
+                            '700': '#0067a8',
+                            '800': '#015486',
+                            '900': '#074873',
+                            '950': '#052e4c',
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link href="dist/docs.css" rel="stylesheet" />
+    <!-- needed for syntax highlighter, todo: figure out best way for consumers to use this with less friction -->
+    <link href="_content/Pure.Blazor.Components/css/vscode-dark-plus.css" rel="stylesheet" />
+</head>
+
+<body class="bg-slate-100">
+    <div id="app">
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
+    </div>
+
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_content/Pure.Blazor.Components/prism.js"></script>
+</body>
+
+</html>

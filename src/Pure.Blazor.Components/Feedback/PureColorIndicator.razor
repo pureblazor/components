@@ -1,0 +1,40 @@
+﻿@inherits PureComponent
+
+<div class="mt-1 flex items-center gap-x-1.5 @Styles">
+    <p class="text-sm leading-6 text-gray-900">@Title</p>
+    <div class="flex-none rounded-full p-1 @ApplyStyle(backgroundStatusColor)">
+        <div class="h-1.5 w-1.5 rounded-full @ApplyStyle(foregroundStatusColor)"></div>
+    </div>
+    <p class="text-xs leading-5 text-gray-800">@Status</p>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set;}
+
+    [Parameter]
+    public string Status { get; set; }
+
+    [Parameter]
+    public Accent Accent { get; set; }
+
+    [Parameter]
+    public string Value { get; set; }
+
+    private string foregroundStatusColor = "";
+    private string backgroundStatusColor = "";
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        BuildCss();
+    }
+
+    protected override void BuildCss()
+    {
+        foregroundStatusColor = PureStyles.Indicator.Foreground[Accent];
+        backgroundStatusColor = PureStyles.Indicator.Background[Accent];
+    }
+
+}

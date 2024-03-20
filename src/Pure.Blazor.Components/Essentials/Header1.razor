@@ -1,0 +1,8 @@
+@inherits PureComponent
+<h1 id="@Id" class="text-2xl sm:text-3xl font-extrabold leading-6 subpixel-antialiased text-gray-900 tracking-wide dark:text-slate-200 mb-4 @Styles">@ChildContent</h1>
+
+@code {
+
+    [Parameter]
+    public string Id { get; set; } = string.Empty;
+}

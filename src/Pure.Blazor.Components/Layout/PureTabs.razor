@@ -1,0 +1,74 @@
+﻿<CascadingValue Value="this">
+    <section class="text-gray-900 body-font">
+        <div class="container mx-auto flex flex-wrap flex-col">
+            <div class="flex mx-auto flex-wrap w-full border-b border-neutral-200">
+                @foreach (var tab in Tabs)
+                {
+                    <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" OnClick="() => ChangeTab(tab)" Variant="Variant" />
+                }
+
+            </div>
+            <div class="py-4">
+                @ChildContent
+            </div>
+        </div>
+    </section>
+</CascadingValue>
+
+@code {
+    // [Text(TextColor.Gray100)]
+    // [Border(BorderColor.Brand400)]
+    // [Background(BackgroundColor.Brand300)]
+    // public string? defaultButtonCss;
+
+    // [Text(TextColor.Gray, 900)] // or [Text(TextColor.Gray, Shade = 900)]
+    // [Border(BorderColor.Brand)]
+    // [Background(BackgroundColor.Gray, 100)]
+    // public string? secondaryButtonCss;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback OnChanging { get; set; }
+
+    [Parameter]
+    public TabVariant Variant { get; set; }
+
+    public PureTabContent? CurrentTab { get; set; }
+    private string InternalCss { get; set; }
+
+
+    internal List<PureTabContent> Tabs { get; set; } = new List<PureTabContent>();
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        InternalCss = BuildCss();
+    }
+
+    internal void ChangeTab(PureTabContent tab)
+    {
+        OnChanging.InvokeAsync();
+        tab.OnChanging.InvokeAsync();
+
+        CurrentTab = tab;
+    }
+
+    public string BuildCss()
+    {
+        return "";
+    }
+
+    internal void AddTab(PureTabContent tab)
+    {
+        Tabs.Add(tab);
+
+        if (CurrentTab == null)
+        {
+            CurrentTab = tab;
+        }
+
+        StateHasChanged();
+    }
+}

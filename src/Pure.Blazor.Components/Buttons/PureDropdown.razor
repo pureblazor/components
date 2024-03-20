@@ -1,0 +1,24 @@
+﻿<div class="relative inline-block text-left group/dropdown">
+    <div>
+        <button type="button" class="btn-dropdown">
+
+            @ChildContent
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z"/>
+            </svg>
+        </button>
+    </div>
+
+    <div class="origin-top-right absolute @(Position == DropdownPosition.Right ? "right-0" : "left-0") mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none invisible group-focus-within/dropdown:visible group-active/dropdown:visible z-10"
+         role="menu"
+         aria-orientation="vertical"
+         aria-labelledby="menu-button"
+         tabindex="-1">
+        <div class="py-1 flex flex-col" role="none">
+            @foreach (var item in Items)
+            {
+                <button @onclick="async e => { await OnItemClick(e, item); }" class="dropdown-item" role="menuitem" tabindex="-1">@item.Text</button>
+            }
+        </div>
+    </div>
+</div>

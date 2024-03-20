@@ -1,0 +1,20 @@
+﻿<dialog class="p-6 border rounded-sm" id="confirm">
+    <div class="py-4">
+        @if (DialogService.Title != null)
+        {
+            <p class="font-bold leading-6">@DialogService.Title</p>
+        }
+    </div>
+    <div class="mt-4 flex justify-end gap-4">
+        <PureButton
+            id="dialog_confirm--cancel"
+            Variant="ButtonVariant.Subtle"
+            OnClick="CancelAsync">Cancel</PureButton>
+
+        <PureButton id="dialog_confirm--ack"
+            Variant="ButtonVariant.Default"
+            Accent="Accent.Danger"
+            Color="@DialogService.AckColor"
+                    OnClick="ConfirmAsync">@DialogService.AckButton</PureButton>
+    </div>
+</dialog>
