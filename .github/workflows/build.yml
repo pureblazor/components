@@ -3,9 +3,10 @@ name: .NET
 on:
   push:
     branches: [ "main" ]
+      
   pull_request:
     branches: [ "main" ]
-    
+      
 jobs:
   build:
   
@@ -28,4 +29,4 @@ jobs:
     
     - name: Publish to NuGet
       if: ${{ github.ref == 'refs/heads/main' }}
-      run: dotnet nuget push --skip-duplicate --api-key ${{secrets.PB_COMPONENTS_NUGET_KEY}} --source 'https://api.nuget.org/v3/index.json' ${{github.workspace}}/src/**/Pure.Blazor.Components.*.nupkg
+      run: dotnet nuget push --skip-duplicate --api-key ${{secrets.PB_COMPONENTS_NUGET_KEY}} --source 'https://api.nuget.org/v3/index.json' ${{github.workspace}}/src/**/PureBlazor.Components.*.nupkg
