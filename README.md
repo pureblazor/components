@@ -1,6 +1,7 @@
 ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pureblazor/components/build.yml)
 ![GitHub last commit](https://img.shields.io/github/last-commit/pureblazor/components)
 [![Discord](https://img.shields.io/discord/984241021225414787)](https://discord.gg/PeBbYy6WKq)
+[![PureBlazor](https://img.shields.io/badge/pureblazor-rgb(7%2C%2072%2C%20115))](https://pureblazor.com)
 
 # PureBlazor Components
 PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
