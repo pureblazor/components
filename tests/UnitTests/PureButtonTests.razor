@@ -1,0 +1,40 @@
+@using FluentAssertions
+@inherits BunitContext
+
+@code {
+    [Test]
+    public void PureButtonRenders()
+    {
+        var sut = Render(@<PureButton>Click me</PureButton>);
+        var button = sut.Find("button");
+        button.Text().Should().Be("Click me");
+    }
+
+    [Test]
+    public void PureButtonFiresClickHandler()
+    {
+        var count = 0;
+        var sut = Render(@<PureButton OnClick="() => { count++; }">Click me</PureButton>);
+        var button = sut.Find("button");
+        button.Click();
+        count.Should().Be(1);
+    }
+
+    [Test]
+    public void PureButtonDoesNotFireClickHandlerWhenDisabled()
+    {
+        var count = 0;
+        var sut = Render(@<PureButton Disabled="true" OnClick="() => { count++; }">Click me</PureButton>);
+        var button = sut.Find("button");
+        button.Click();
+        count.Should().Be(0);
+    }
+
+    [Test]
+    public void PureButtonDoesNotIncludeThemeWhenThemeOff()
+    {
+        var sut = Render(@<CascadingValue Value="Theme.Off"><PureButton Styles="test-class">Click me</PureButton></CascadingValue>);
+        var button = sut.Find("button");
+        button.ClassList.Should().Equal("test-class");
+    }
+}

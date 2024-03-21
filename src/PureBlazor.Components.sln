@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pure.Blazor.Components.Docs
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Tailwind.Generator", "Pure.Tailwind.Generator\Pure.Tailwind.Generator.csproj", "{70C85769-7929-4E88-B662-5B4E982A025F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\tests\UnitTests\UnitTests.csproj", "{53F63402-633D-4F36-A9E2-1EE96865FA93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{70C85769-7929-4E88-B662-5B4E982A025F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70C85769-7929-4E88-B662-5B4E982A025F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70C85769-7929-4E88-B662-5B4E982A025F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53F63402-633D-4F36-A9E2-1EE96865FA93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53F63402-633D-4F36-A9E2-1EE96865FA93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53F63402-633D-4F36-A9E2-1EE96865FA93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53F63402-633D-4F36-A9E2-1EE96865FA93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
