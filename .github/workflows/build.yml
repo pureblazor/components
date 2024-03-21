@@ -19,7 +19,13 @@ jobs:
         dotnet-version: 8.0.x
     - name: Restore dependencies
       run: dotnet restore ./src/Pure.Blazor.Components
+      
     - name: Build
       run: dotnet build ./src/Pure.Blazor.Components --no-restore
+      
     - name: Test
       run: dotnet test ./src/Pure.Blazor.Components --no-build --verbosity normal
+    
+    - name: Publish to NuGet
+      if: ${{ github.ref == 'refs/heads/main' }}
+      run: dotnet nuget push --skip-duplicate --api-key ${{secrets.PB_COMPONENTS_NUGET_KEY}} --source 'https://api.nuget.org/v3/index.json' ${{github.workspace}}/src/**/Pure.Blazor.Components.*.nupkg
