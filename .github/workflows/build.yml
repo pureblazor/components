@@ -26,11 +26,6 @@ jobs:
       
     - name: Test
       run: dotnet test ./src/Pure.Blazor.Components --no-build --verbosity normal
-
-    - name: Debug secrets
-      env:
-        TEST_SECRET: ${{secrets.PB_COMPONENT_TEST_SECRET}}
-      run: echo ${#TEST_SECRET}
     
     - name: Publish to NuGet
       if: ${{ github.ref == 'refs/heads/main' }}
