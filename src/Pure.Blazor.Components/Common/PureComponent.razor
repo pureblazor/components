@@ -31,7 +31,12 @@
 
     protected virtual string ApplyStyle(string style)
     {
-        return Theme == Theme.Off ? "" : style;
+        if (Theme == Theme.Off)
+        {
+            return Styles ?? "";
+        }
+
+        return $"{style} {Styles}";
     }
 
 }

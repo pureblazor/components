@@ -1,8 +1,6 @@
 ﻿@namespace Pure.Blazor.Components
-@* @using PureBlazor.Components.Components.Forms.Validators *@
-@using Pure.Blazor.Components.Forms.Validators
 @using System.Text.RegularExpressions
-@* @using PureBlazor.Components.Components.Forms *@
+@using Pure.Blazor.Components.Forms.Validators
 @implements IFormComponent
 @inject ILogger<PureInput> Log
 
@@ -107,25 +105,25 @@
     [CascadingParameter] public PureForm? FormControl { get; set; }
 
     /// <summary>
-    /// Defaults to immediate mode
+    ///     Defaults to immediate mode
     /// </summary>
     [Parameter]
     public EntryMode Mode { get; set; } = EntryMode.Immediate;
 
     /// <summary>
-    /// Optional label (recommended)
+    ///     Optional label (recommended)
     /// </summary>
     [Parameter]
     public string? Label { get; set; }
 
     /// <summary>
-    /// Optional label type
+    ///     Optional label type
     /// </summary>
     [Parameter]
     public PureLabelType LabelType { get; set; }
 
     /// <summary>
-    /// Optional helper text
+    ///     Optional helper text
     /// </summary>
     [Parameter]
     public string? HelperText { get; set; }
@@ -135,37 +133,37 @@
     [Parameter] public EventCallback<string> ValueChanged { get; set; }
 
     /// <summary>
-    /// Makes the input required.
+    ///     Makes the input required.
     /// </summary>
     [Parameter]
     public bool? Required { get; set; }
 
     /// <summary>
-    /// Enforces a minimum string length.
+    ///     Enforces a minimum string length.
     /// </summary>
     [Parameter]
     public int? MinLength { get; set; }
 
     /// <summary>
-    /// Enforces a maximum string length.
+    ///     Enforces a maximum string length.
     /// </summary>
     [Parameter]
     public int? MaxLength { get; set; }
 
     /// <summary>
-    /// Enforces a minimum for integers.
+    ///     Enforces a minimum for integers.
     /// </summary>
     [Parameter]
     public int? Min { get; set; }
 
     /// <summary>
-    /// Enforces a maximum for integers.
+    ///     Enforces a maximum for integers.
     /// </summary>
     [Parameter]
     public int? Max { get; set; }
 
     /// <summary>
-    /// Validates using the Regular Expression.
+    ///     Validates using the Regular Expression.
     /// </summary>
     [Parameter]
     public string? Regex { get; set; }
@@ -173,7 +171,7 @@
     [Parameter] public string? Placeholder { get; set; } = " "; // default placeholder to an empty string. required for floating labels.
 
     /// <summary>
-    /// Invoked when a validator indicates a validation error.
+    ///     Invoked when a validator indicates a validation error.
     /// </summary>
     [Parameter]
     public EventCallback<IList<ValidationResult>> OnError { get; set; }
@@ -239,4 +237,5 @@
 
         return string.Empty;
     }
+
 }
