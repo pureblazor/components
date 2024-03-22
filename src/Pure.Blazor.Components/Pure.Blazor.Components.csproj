@@ -7,19 +7,20 @@
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Components</Title>
-    <Version>0.0.9</Version>
-    <Description>Blazor UI components, built with Tailwind CSS for the PureBlazor CMS</Description>
-    <PackageProjectUrl>https://github.com/pureblazor/components</PackageProjectUrl>
+    <Version>0.1.0</Version>
+    <PackageId>PureBlazor.Components</PackageId>
+    <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
+    <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pureblazor/components</RepositoryUrl>
-    <PackageTags>blazor, maui, tailwind, tailwindcss, components, pureblazor</PackageTags>
+    <PackageTags>blazor, maui, ssr, wasm, headless, tailwind, tailwindcss, components, pureblazor</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReleaseNotes>initial early release</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <Company>CodeFrog</Company>
+    <Company>PureBlazor</Company>
     <Authors>codymullins</Authors>
-    <Copyright>Copyright 2023 CodeFrog</Copyright>
+    <Copyright>Copyright 2024 PureBlazor</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

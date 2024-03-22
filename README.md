@@ -1,5 +1,7 @@
-[![last commit](https://img.shields.io/github/last-commit/pureblazor/components?style=flat-square)](https://github.com/pureblazor/components/commits/main)
-[![Discord](https://img.shields.io/discord/984241021225414787?style=flat-square)](https://discord.gg/PeBbYy6WKq)
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/pureblazor/components/build.yml)
+![GitHub last commit](https://img.shields.io/github/last-commit/pureblazor/components)
+[![Discord](https://img.shields.io/discord/984241021225414787)](https://discord.gg/PeBbYy6WKq)
+[![PureBlazor](https://img.shields.io/badge/pureblazor-rgb(7%2C%2072%2C%20115))](https://pureblazor.com)
 
 # PureBlazor Components
 PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)

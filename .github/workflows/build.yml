@@ -1,33 +1,32 @@
-  name: Build
+name: .NET
 
-  on: 
-    push:
-      branches: [ main ]
-    pull_request:
-      branches: [ main ]
+on:
+  push:
+    branches: [ "main" ]
+      
+  pull_request:
+    branches: [ "main" ]
+      
+jobs:
+  build:
+  
+    runs-on: ubuntu-latest
 
-  jobs:      
-    build-ci:
-      runs-on: macos-latest
-      name: Mac Build
-      steps:
-        - name: Checkout
-          uses: actions/checkout@v2
-
-        - name: Install .NET 6.0.300-preview.22204.3
-          run: |
-              curl -sSL https://dot.net/v1/dotnet-install.sh | bash /dev/stdin --quality preview
-              dotnet --version
-              
-        - uses: actions/setup-node@v3
-          with:
-            node-version: 16
-              
-        - name: Restore Dependencies
-          run: dotnet restore src/Makani/Makani.csproj
-
-        - name: Build Makani
-          run: dotnet build src/Makani/Makani.csproj -c Release
-        
-        - name: Run unit tests
-          run: dotnet test ./src/Makani.Tests --collect:"XPlat Code Coverage" --settings coverlet.runsettings
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/Pure.Blazor.Components
+      
+    - name: Build
+      run: dotnet build ./src/Pure.Blazor.Components --no-restore
+      
+    - name: Test
+      run: dotnet test ./src/Pure.Blazor.Components --no-build --verbosity normal
+    
+    - name: Publish to NuGet
+      if: ${{ github.ref == 'refs/heads/main' }}
+      run: dotnet nuget push --skip-duplicate --api-key ${{secrets.PB_COMPONENTS_NUGET_KEY}} --source 'https://api.nuget.org/v3/index.json' ${{github.workspace}}/src/**/PureBlazor.Components.*.nupkg
