@@ -31,7 +31,50 @@
 
     protected virtual string ApplyStyle(string style)
     {
-        return Theme == Theme.Off ? "" : style;
+        if (Theme == Theme.Off)
+        {
+            return Styles ?? "";
+        }
+
+        return $"{style} {Styles}";
     }
 
+    protected string PrioritizeStyles()
+    {
+        var defaultStyles = "border-gray-100 bg-white text-gray-900";
+        var userStyles = "border-gray-200 hover:border-gray-300";
+        var result = "border-gray-200 bg-white text-gray-900 hover:border-gray-300";
+
+        // detect if the user sets a style that overrides a style inside the default styles
+        // where the style syntax is "[modifier:]{element}-{color}-{shade}"
+        return "";
+    }
+
+    public static string PrioritizeStyles(string defaultStyles, string userStyles)
+    {
+        var stylesDict = new Dictionary<string, string>();
+
+        // Split the styles into arrays
+        var defaultStylesArr = defaultStyles.Split(' ');
+        var userStylesArr = userStyles.Split(' ');
+
+        // Add default styles to the dictionary
+        foreach (var style in defaultStylesArr)
+        {
+            var element = style.Split('-')[0]; // Get the element (and optional modifier)
+            stylesDict[element] = style;
+        }
+
+        // Replace or add user styles in the dictionary
+        foreach (var style in userStylesArr)
+        {
+            var element = style.Split('-')[0]; // Get the element (and optional modifier)
+            stylesDict[element] = style;
+        }
+
+        // Join the values of the dictionary into a string
+        var result = string.Join(" ", stylesDict.Values);
+
+        return result;
+    }
 }

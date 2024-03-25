@@ -8,7 +8,7 @@ public class PrismUtils
 
     public PrismUtils(IJSRuntime jsRuntime) =>
         moduleTask = new Lazy<Task<IJSObjectReference>>(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-            "import", "./_content/Pure.Blazor.Components/pureBlazor.js").AsTask());
+            "import", "./_content/PureBlazor.Components/pureBlazor.js").AsTask());
 
     public async ValueTask HighlightAll()
     {
