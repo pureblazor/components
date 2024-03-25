@@ -10,8 +10,6 @@ public class ElementUtils : IElementUtils
 
     public ElementUtils(IJSRuntime jsRuntime) => JS = jsRuntime;
 
-    //_moduleTask = new(() => jsRuntime.InvokeAsync<IJSObjectReference>(
-    //    "import", "./_content/PureBlazor.Components/makani.js").AsTask());
     /// <summary>
     ///     Blurs the active element.
     /// </summary>

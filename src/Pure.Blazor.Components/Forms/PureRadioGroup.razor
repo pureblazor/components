@@ -1,26 +1,22 @@
-﻿@using System.Text.RegularExpressions
-@using Pure.Blazor.Components.Common
-
-<CascadingValue Value="this">
+﻿<CascadingValue Value="this">
     <fieldset>
-        @if (!String.IsNullOrEmpty(Title))
+        @if (!string.IsNullOrEmpty(Title))
         {
             <legend class="text-sm font-medium leading-6 text-gray-900">@Title</legend>
         }
         @ChildContent
-        @if (@ChildContent is null)
+        @if (ChildContent is null)
         {
-            @foreach (var option in @Items)
+            @foreach (var option in Items)
             {
-                <PureRadio Checked="@(option.Checked)" Description="@(option.Description)" Title="@(option.Title)" Value="@(option.Value)" Id="@(option.Id)" />
+                <PureRadio Checked="@(option.Checked)" Description="@(option.Description)" Title="@(option.Title)" Value="@(option.Value)" Id="@(option.Id)"/>
             }
-
         }
         else
         {
-            @foreach(var option in @Items)
+            @foreach (var option in Items)
             {
-                if(option.Value == CheckedValue)
+                if (option.Value == CheckedValue)
                 {
                     @option.ChildContent
                 }
@@ -31,23 +27,17 @@
 
 @code {
 
-    [Parameter]
-    public string Title { get; set; }
+    [Parameter] public string Title { get; set; }
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
-    [Parameter]
-    public List<PureRadio> Items { get; set; } = new();
+    [Parameter] public List<PureRadio> Items { get; set; } = new();
 
-    [Parameter, EditorRequired]
-    public string Name { get; set; }
+    [Parameter] [EditorRequired] public string Name { get; set; }
 
-    [Parameter]
-    public string CheckedValue { get; set; }
+    [Parameter] public string CheckedValue { get; set; }
 
-    [Parameter]
-    public EventCallback<string> OnRadioChanged { get; set; }
+    [Parameter] public EventCallback<string> OnRadioChanged { get; set; }
 
     public Action ValuesChanged;
 
@@ -65,14 +55,9 @@
         base.OnInitialized();
     }
 
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-    }
-
     public async Task OnValueChange(string value)
     {
-        bool valueChanged = value != CheckedValue;
+        var valueChanged = value != CheckedValue;
 
         CheckedValue = value;
         await OnRadioChanged.InvokeAsync(value);
@@ -81,9 +66,11 @@
             ValuesChanged.Invoke();
         }
     }
+
     public void AddButton(PureRadio radio)
     {
         Items.Add(radio);
         StateHasChanged();
     }
+
 }

@@ -1,5 +1,10 @@
 export function highlight() {
-    window.Prism.highlightAll();
+    console.log('highlighting...');
+    try {
+        window.Prism.highlightAll();
+    } catch (err) {
+        console.error('Error highlighting code:', err);
+    }
 }
 
 export function blurActive() {
@@ -19,7 +24,7 @@ export function scrollToFragment(elementId) {
     if (!elementId) {
         return;
     }
-    
+
     const element = document.getElementById(elementId);
 
     if (element) {

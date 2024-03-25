@@ -13,8 +13,6 @@ public static class ServiceCollectionExtensions
     {
         // javascript
         services.AddTransient<IElementUtils, ElementUtils>();
-        services.AddTransient<PrismUtils>();
-
 
         // services
         services.AddSingleton<ToastService>();

@@ -1,0 +1,22 @@
+@inherits PureComponent
+
+<nav class="@ApplyStyle(OuterCss)" aria-label="Breadcrumb">
+    <ol class="@ApplyStyle(InnerCss)">
+        <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </ol>
+</nav>
+
+@code {
+    private List<PureBreadcrumbItem> Breadcrumbs { get; } = [];
+    private string OuterCss => "flex -mx-6 md:-mx-4 -mt-4 mb-3 px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700";
+    private string InnerCss => "inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse";
+
+    internal void AddBreadcrumb(PureBreadcrumbItem breadcrumb)
+    {
+        Breadcrumbs.Add(breadcrumb);
+        StateHasChanged();
+    }
+
+}

@@ -8,5 +8,6 @@ public partial class PureIconButton
     [Parameter] public PureIcons Icon { get; set; }
 
     protected override string BuildCss() =>
-        $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant][Accent]} {PureStyles.Button.Sizes[Size]}";
+        ApplyStyle(
+            $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant][Accent]} {PureStyles.Button.Sizes[Size]}");
 }
