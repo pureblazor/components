@@ -27,7 +27,7 @@ In order to use these components, the current recommendation is to add this repo
 - [x] Dialog
 - [x] Dropdown
 - [ ] Flyout (_in progress_)
-- [ ] Tab (_in progress_)
+- [x] Tab ()
 - [ ] Table
 - [ ] Navigation
 
