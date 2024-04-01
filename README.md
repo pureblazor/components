@@ -4,22 +4,34 @@
 [![PureBlazor](https://img.shields.io/badge/pureblazor-rgb(7%2C%2072%2C%20115))](https://pureblazor.com)
 
 # PureBlazor Components
+
 PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
 
 Demo: https://components.wasmhost.dev
 
 # Getting started
-These components are being built alongside (and for) the PureBlazor CMS. Our focus is supporting the CMS first and foremost.
 
-In order to use these components, the current recommendation is to add this repository as a submodule (or fork this repo). We will eventually add these components to Nuget when time permits.
+Blazor UI components for the PureBlazor CMS. Free to use for any Blazor project.
+
+## Installation
+
+`dotnet add package PureBlazor.Components`
+
+> [!NOTE]
+> The Nuget package currently only supports use with
+> the [Tailwind CDN](https://tailwindcss.com/docs/installation/play-cdn).
+>
+> If you wish to build the styles at compile time, you must clone this repository and include it in your project.
 
 # Goals
+
 - [x] Performance
 - [x] Simplicity
 
 ## Status
 
 **General**
+
 - [x] Banner
 - [x] Button
 - [x] Card
@@ -32,6 +44,7 @@ In order to use these components, the current recommendation is to add this repo
 - [ ] Navigation
 
 **Inputs**
+
 - [x] Field
 - [ ] Upload
 - [ ] Checkbox
@@ -40,4 +53,4 @@ In order to use these components, the current recommendation is to add this repo
 - [ ] Select (_in progress_)
 - [x] Toggle
 - [ ] DatePicker
-- [ ] TimePicker 
+- [ ] TimePicker
