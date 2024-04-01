@@ -7,8 +7,6 @@
 
 PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
 
-Demo: https://components.wasmhost.dev
-
 # Getting started
 
 Blazor UI components for the PureBlazor CMS. Free to use for any Blazor project.
@@ -22,6 +20,19 @@ Blazor UI components for the PureBlazor CMS. Free to use for any Blazor project.
 > the [Tailwind CDN](https://tailwindcss.com/docs/installation/play-cdn).
 >
 > If you wish to build the styles at compile time, you must clone this repository and include it in your project.
+
+## Screenshots
+![](docs/alerts.gif)
+![](docs/buttons.png)
+![](docs/indicators.png)
+![](docs/paging.png)
+
+## Demo
+
+> [!WARNING]  
+> Demo has rough edges. Handle with caution.
+
+https://components.wasmhost.dev
 
 # Goals
 
