@@ -25,32 +25,42 @@ Blazor UI components for the PureBlazor CMS. Free to use for any Blazor project.
 
 # Goals
 
-- [x] Performance
+- [x] Performance (see `/tests/benchmarks`)
 - [x] Simplicity
 
-## Status
+# FAQ
 
-**General**
+### Why not use `xx` library?
 
-- [x] Banner
-- [x] Button
-- [x] Card
-- [ ] Charts
-- [x] Dialog
-- [x] Dropdown
-- [ ] Flyout (_in progress_)
-- [x] Tab ()
-- [ ] Table
-- [ ] Navigation
+- There are many great libraries out there, but we wanted to build something that was simple and easy to use. We also
+  wanted to build something that was tailored to the PureBlazor CMS.
+- We also wanted to build something that was fast. We have a benchmark suite in `/tests/benchmarks` that we use to
+  measure performance.
+- Ultimately, we think there is plenty of room for more libraries in the Blazor ecosystem.
 
-**Inputs**
+### Is this library free to use?
 
-- [x] Field
-- [ ] Upload
-- [ ] Checkbox
-- [x] Radio
-- [ ] Rating
-- [ ] Select (_in progress_)
-- [x] Toggle
-- [ ] DatePicker
-- [ ] TimePicker
+- Yes! This library is free to use for any Blazor project.
+
+### Can I use this library with .NET MAUI Blazor projects?
+
+- This library should work with .NET MAUI, but we have not tested it yet. Please let us know if you have any issues.
+
+### Can I use this library with Blazor WebAssembly / Blazor Server / InteractiveAuto?
+
+- Yes. This library supports all Blazor hosting models.
+
+### Is this library production-ready?
+
+- No. This library is still in development.
+
+### Do you accept contributions?
+
+- Yes! We accept contributions. Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
+
+### How do I report a bug?
+
+- Please open an issue on the [GitHub repository](https://github.com/pureblazor/components/issues/new/choose).
+- Please include as much information as possible, including the version of the library you are using, the browser you
+  are using, and any steps to reproduce the issue.
+
