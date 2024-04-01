@@ -1,18 +1,46 @@
 ﻿@inherits PureButtonBase
 
-<button
-    @attributes="InputAttributes"
-    class="@InternalCss @Styles"
-    disabled="@Disabled"
-    @onmousedown="() => Pressed = true"
-    @onmouseup="() => Pressed = false"
-    @onclick="OnClicked">
-    @if (ChildContent != null)
-    {
-        @ChildContent
-    }
-    else
-    {
-        @Text
-    }
-</button>
+@if (Loading)
+{
+    <button
+        type="button"
+        @attributes="InputAttributes"
+        class="@InternalCss @Styles">
+        <PureIcon Type="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
+        @if (LoadingText is not null)
+        {
+            @LoadingText
+        }
+        else
+        {
+            if (ChildContent is not null)
+            {
+                @ChildContent
+            }
+            else
+            {
+                @Text
+            }
+        }
+
+    </button>
+}
+else
+{
+    <button
+        @attributes="InputAttributes"
+        class="@InternalCss @Styles"
+        disabled="@Disabled"
+        @onmousedown="() => Pressed = true"
+        @onmouseup="() => Pressed = false"
+        @onclick="OnClicked">
+        @if (ChildContent is not null)
+        {
+            @ChildContent
+        }
+        else
+        {
+            @Text
+        }
+    </button>
+}

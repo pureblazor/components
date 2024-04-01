@@ -19,7 +19,17 @@ public class PureButtonBase : PureComponent
 
     [Parameter] public Accent Accent { get; set; }
 
-    [Parameter] public bool Loading { get; set; }
+    /// <summary>
+    ///     Indicate the button is in a loading state
+    /// </summary>
+    [Parameter]
+    public bool Loading { get; set; }
+
+    /// <summary>
+    ///     Optional text to display when the button is loading.
+    /// </summary>
+    [Parameter]
+    public string? LoadingText { get; set; }
 
     /// <summary>
     ///     Displays simple text on the button.
@@ -48,7 +58,7 @@ public class PureButtonBase : PureComponent
         OnClick.InvokeAsync();
     }
 
-    protected virtual string BuildCss() => Theme != Theme.Off
-        ? $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant][Accent]} {PureStyles.Button.Sizes[Size]}"
-        : "";
+    protected new virtual string BuildCss() =>
+        ApplyStyle(
+            $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant][Accent]} {PureStyles.Button.Sizes[Size]}");
 }

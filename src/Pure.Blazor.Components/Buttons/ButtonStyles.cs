@@ -17,9 +17,9 @@ public class ButtonStyles
     private const string DangerOutlineButton = "border-red-400 text-gray-800 hover:border-red-400";
     private const string SuccessOutlineButton = "border-green-400 text-gray-800 hover:border-green-400";
 
-    private const string PrimarySubtleButton = "bg-transparent hover:text-brand-900 text-brand-800";
-    private const string DangerSubtleButton = "bg-transparent hover:bg-red-800 text-gray-100";
-    private const string SuccessSubtleButton = "bg-transparent hover:bg-green-900 text-gray-100";
+    private const string PrimarySubtleButton = "bg-transparent hover:text-brand-900 hover:bg-gray-100 text-brand-800";
+    private const string DangerSubtleButton = "bg-transparent hover:bg-red-800/20 text-gray-100";
+    private const string SuccessSubtleButton = "bg-transparent hover:bg-green-900/20 text-gray-100";
 
     public readonly Dictionary<PureSize, string> Sizes = new()
     {
@@ -64,5 +64,5 @@ public class ButtonStyles
     };
 
     public string Base =>
-        "inline-flex justify-center rounded-sm md:rounded-xs text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 border border-transparent";
+        "inline-flex justify-center items-center gap-1 rounded-sm md:rounded-xs text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-600 border border-transparent";
 }
