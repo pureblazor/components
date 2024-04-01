@@ -9,12 +9,6 @@ public partial class PureDropdown
     [Inject] public IElementUtils Utils { get; set; } = null!;
 
     /// <summary>
-    ///     Inner content for the dropdown button.
-    /// </summary>
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-
-    /// <summary>
     ///     Position (side) to open the dropdown menu.
     /// </summary>
     [Parameter]

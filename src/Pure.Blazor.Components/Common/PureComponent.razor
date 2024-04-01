@@ -1,9 +1,16 @@
 ﻿@code {
+    string? prevStyles;
 
     protected override void OnParametersSet()
     {
-        BuildCss();
+        if (prevStyles != Styles)
+        {
+            prevStyles = Styles;
+            BuildCss();
+        }
     }
+
+    [CascadingParameter] public ThemeProvider? ThemeProvider { get; set; } = new();
 
     /// <summary>
     ///     Add additional css classes to this component
@@ -34,6 +41,11 @@
         if (Theme == Theme.Off)
         {
             return Styles ?? "";
+        }
+
+        if (ThemeProvider?.StylePrioritizer != null && Styles != null)
+        {
+            return ThemeProvider.StylePrioritizer.PrioritizeStyles(style, Styles);
         }
 
         return $"{style} {Styles}";
