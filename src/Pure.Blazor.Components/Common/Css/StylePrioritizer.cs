@@ -1,6 +1,5 @@
 using System.Buffers;
 using System.Text;
-using BenchmarkDotNet.Attributes;
 
 namespace Pure.Blazor.Components.Common.Css;
 
@@ -12,8 +11,6 @@ public class StylePrioritizer
     /// </summary>
     /// <param name="style"></param>
     /// <returns></returns>
-    [Benchmark]
-    [Arguments("bg-gray-100")]
     public string GetKeyFromStyle(string style)
     {
         if (style.Contains('-'))
@@ -28,12 +25,6 @@ public class StylePrioritizer
         return style;
     }
 
-    [Benchmark]
-    [Arguments("bg-gray-100", "bg-gray-200")]
-    [Arguments("bg-gray-100", "border-gray-200")]
-    [Arguments("border-gray-100 bg-white text-gray-900", "border-gray-200 hover:border-gray-300")]
-    [Arguments("border-gray-100 bg-white text-gray-900 hover:text-gray-400 border-1 divide-y",
-        "border-gray-200 hover:border-gray-300 opacity-1 hover:opacity-0")]
     public string PrioritizeStyles(string defaultStyles, string userStyles)
     {
         var userStylesArray = userStyles.Split(' ');
