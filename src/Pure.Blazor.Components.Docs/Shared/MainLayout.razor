@@ -1,10 +1,9 @@
 ﻿@inherits LayoutComponentBase
-@using Pure.Blazor.Components.Common
 @inject NavigationManager Nav
 @inject IElementUtils ElementUtils
 @inject ILogger<MainLayout> Log
 
-<PureHeader Title="pureblazor components">
+<PureHeader Title="pureblazor components" Accent="Accent.Brand" Height="PureSize.ExtraLarge">
     @* <PureDarkModeToggle /> *@
     <a aria-label="GitHub Repository" href="https://github.com/pureblazor/components" target="_blank" class="mr-5 hover:text-white cursor-pointer">
         <img src="GitHub-Mark-Light-64px.png" width="32" alt="GitHub logo"/>
@@ -17,6 +16,7 @@
 </article>
 
 @code {
+
     protected override void OnAfterRender(bool firstRender)
     {
         if (firstRender)

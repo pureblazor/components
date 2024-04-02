@@ -3,11 +3,8 @@
 
     protected override void OnParametersSet()
     {
-        if (prevStyles != Styles)
-        {
-            prevStyles = Styles;
-            BuildCss();
-        }
+        // todo: figure out how to build css less
+        BuildCss();
     }
 
     [CascadingParameter] public ThemeProvider? ThemeProvider { get; set; } = new();

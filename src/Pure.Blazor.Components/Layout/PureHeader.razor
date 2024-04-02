@@ -1,7 +1,8 @@
-﻿@namespace Pure.Blazor.Components
+﻿@inherits PureComponent
+@namespace Pure.Blazor.Components
 
-<header class="text-gray-400 bg-gray-900 body-font border-b border-slate-600">
-    <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+<header class="@containerCss">
+    <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center @innerContainerCss">
         <a class="flex title-font font-medium items-center text-gray-100" href="/">
             <span class="text-xl">@Title</span>
         </a>
@@ -14,9 +15,35 @@
 </header>
 
 @code {
-    [Parameter]
-    public string Title { get; set; }
+    private string containerCss = "";
+    private string innerContainerCss = "";
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public string? Title { get; set; }
+
+    [Parameter] public string ContainerCss { get; set; } = "text-gray-200 bg-brand-900 body-font border-b border-brand-600";
+
+    [Parameter] public Accent Accent { get; set; } = Accent.Brand;
+
+    [Parameter] public PureSize Height { get; set; } = PureSize.Medium;
+
+    protected override void BuildCss()
+    {
+        containerCss = Accent switch
+        {
+            Accent.Default => "text-gray-400 bg-gray-900 body-font border-b border-slate-600",
+            Accent.Brand => "text-gray-200 bg-brand-900 body-font border-b border-brand-600",
+            _ => ""
+        };
+
+        innerContainerCss = Height switch
+        {
+            PureSize.ExtraSmall => "px-5 py-1",
+            PureSize.Small => "px-5 py-2",
+            PureSize.Medium => "px-5 py-3",
+            PureSize.Large => "px-5 py-5",
+            PureSize.ExtraLarge => "px-5 py-6",
+            _ => ""
+        };
+    }
+
 }

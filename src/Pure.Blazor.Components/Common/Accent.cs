@@ -6,5 +6,5 @@ public enum Accent
     Brand,
     Success,
     Danger,
-    Warning
+    Warning,
 }
