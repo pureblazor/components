@@ -1,20 +1,21 @@
 ﻿@using System.Text
-<a @onclick="OnClick" class="@(InternalCss) sm:px-6 py-1 text-sm w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center">
+@inherits PureComponent
+<a @onclick="OnClick" class="@ApplyStyle(InternalCss)">
     <!-- todo: icon -->
     @Title
 </a>
+
 @code {
-    [Parameter]
-    public string Title { get; set; } = string.Empty;
+    private const string BaseCss = "w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center";
+    [Parameter] public string Title { get; set; } = string.Empty;
 
-    [Parameter]
-    public bool IsActive { get; set; }
+    [Parameter] public bool IsActive { get; set; }
 
-    [Parameter]
-    public TabVariant Variant { get; set; }
+    [Parameter] public TabVariant Variant { get; set; }
 
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter] public PureSize Size { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
     private string InternalCss { get; set; } = string.Empty;
 
@@ -22,12 +23,29 @@
     {
         base.OnParametersSet();
 
-        InternalCss = BuildCss();
+        BuildCss();
     }
 
-    public string BuildCss()
+    protected override void BuildCss()
     {
-        var builder = new StringBuilder();
+        var builder = new StringBuilder(BaseCss);
+
+        switch (Size)
+        {
+            case PureSize.ExtraSmall:
+            case PureSize.Small:
+                builder.Append(" sm:px-6 py-1 text-xs");
+                break;
+            case PureSize.Medium:
+                builder.Append(" sm:px-6 px-3 py-2 text-sm");
+                break;
+            case PureSize.ExtraLarge:
+            case PureSize.Large:
+                builder.Append(" sm:px-6 px-4 py-3 text-lg");
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
 
         switch (Variant)
         {
@@ -48,6 +66,7 @@
                 throw new ArgumentOutOfRangeException();
         }
 
-        return builder.ToString();
+        InternalCss = builder.ToString();
     }
+
 }

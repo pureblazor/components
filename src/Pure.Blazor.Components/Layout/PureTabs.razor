@@ -1,10 +1,11 @@
-﻿<CascadingValue Value="this">
-    <section class="text-gray-900 body-font">
-        <div class="container mx-auto flex flex-wrap flex-col">
-            <div class="flex mx-auto flex-wrap w-full border-b border-neutral-200">
+﻿@inherits PureComponent
+<CascadingValue Value="this">
+    <section class="@ApplyStyle("text-gray-900 body-font")">
+        <div class="@ApplyStyle("container mx-auto flex flex-wrap flex-col")">
+            <div class="@ApplyStyle("flex mx-auto flex-wrap w-full border-b border-neutral-200")">
                 @foreach (var tab in Tabs)
                 {
-                    <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" OnClick="() => ChangeTab(tab)" Variant="Variant" />
+                    <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" Size="Size" OnClick="() => ChangeTab(tab)" Variant="Variant"/>
                 }
 
             </div>
@@ -16,35 +17,23 @@
 </CascadingValue>
 
 @code {
-    // [Text(TextColor.Gray100)]
-    // [Border(BorderColor.Brand400)]
-    // [Background(BackgroundColor.Brand300)]
-    // public string? defaultButtonCss;
+    [Parameter] public EventCallback OnChanging { get; set; }
 
-    // [Text(TextColor.Gray, 900)] // or [Text(TextColor.Gray, Shade = 900)]
-    // [Border(BorderColor.Brand)]
-    // [Background(BackgroundColor.Gray, 100)]
-    // public string? secondaryButtonCss;
+    [Parameter] public TabVariant Variant { get; set; }
 
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
-
-    [Parameter]
-    public EventCallback OnChanging { get; set; }
-
-    [Parameter]
-    public TabVariant Variant { get; set; }
+    [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
 
     public PureTabContent? CurrentTab { get; set; }
-    private string InternalCss { get; set; }
+    private string InternalCss { get; set; } = "";
 
 
-    internal List<PureTabContent> Tabs { get; set; } = new List<PureTabContent>();
+    internal List<PureTabContent> Tabs { get; set; } = new();
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        InternalCss = BuildCss();
+        BuildCss();
     }
 
     internal void ChangeTab(PureTabContent tab)
@@ -55,9 +44,8 @@
         CurrentTab = tab;
     }
 
-    public string BuildCss()
+    protected override void BuildCss()
     {
-        return "";
     }
 
     internal void AddTab(PureTabContent tab)
@@ -71,4 +59,5 @@
 
         StateHasChanged();
     }
+
 }

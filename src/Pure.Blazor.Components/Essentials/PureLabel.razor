@@ -1,5 +1,5 @@
 @inherits PureComponent
-<div class="@ApplyStyle("font-semibold")">@ChildContent</div>
+<label for="@For" class="@ApplyStyle("font-medium text-sm font-gray-900") @AccessibilityStyles">@ChildContent</label>
 
 @code {
 
@@ -7,5 +7,12 @@
     // touch target should be at least 24px
     // make it the same here since this field is often combined with <PureLink>
     // https://www.w3.org/WAI/WCAG21/Understanding/touch-target-size.html
-    private string AccessibilityStyles => "inline-block py-1";
+    private string AccessibilityStyles => "inline-block leading-7";
+
+    /// <summary>
+    ///     The ID of the content that this label is associated with.
+    /// </summary>
+    [Parameter]
+    public string? For { get; set; }
+
 }
