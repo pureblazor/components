@@ -6,20 +6,17 @@
 }
 
 @code {
-    [CascadingParameter]
-    private PureTabs TabContainer { get; set; }
+    [CascadingParameter] [EditorRequired] public required PureTabs TabContainer { get; set; }
 
-    [Parameter]
-    public EventCallback OnChanging { get; set; }
+    [Parameter] public EventCallback OnChanging { get; set; }
 
-    [Parameter]
-    public string Title { get; set; }
+    [Parameter] public string? Title { get; set; }
 
-    [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     protected override void OnInitialized()
     {
         TabContainer.AddTab(this);
     }
+
 }

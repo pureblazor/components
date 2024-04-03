@@ -7,21 +7,16 @@ public class ToastService
 {
     private readonly ILogger<ToastService> _log;
 
-    public Action<Toast>? OnChange { get; set; }
+    public ToastService(ILogger<ToastService> log) => _log = log;
 
-    public ToastService(ILogger<ToastService> log)
-    {
-        _log = log;
-    }
+    public Action<Toast>? OnChange { get; set; }
 
     internal List<Toast> Messages { get; set; } = new();
 
-    public async Task AddToast(string message, Accent state = Accent.Default)
-    {
+    public async Task AddToast(string message, Accent state = Accent.Default) =>
         await AddToast(new Toast(message, state));
-    }
 
-    public async Task AddToast(Toast toast)
+    public Task AddToast(Toast toast)
     {
         _log.LogInformation("Adding toast {toast}", toast);
 
@@ -33,6 +28,8 @@ public class ToastService
 #pragma warning disable CS4014
         Remove(toast, toast.Duration);
 #pragma warning restore CS4014
+
+        return Task.CompletedTask;
     }
 
     internal async Task Remove(Toast toast, int removeInMs)
@@ -75,23 +72,23 @@ public class Toast
     }
 
     /// <summary>
-    /// How long the toast should be visible before beginning to disappear.
+    ///     How long the toast should be visible before beginning to disappear.
     /// </summary>
     public int Duration { get; }
 
     /// <summary>
-    /// The text message content of the toast.
+    ///     The text message content of the toast.
     /// </summary>
     public string Message { get; }
 
     /// <summary>
-    /// The state of the toast, e.g. success, info, danger.
+    ///     The state of the toast, e.g. success, info, danger.
     /// </summary>
     public Accent State { get; }
 
     /// <summary>
-    /// Flag indicating the toast is being removed. Used for the UI to know to begin transitioning
-    /// this out of the UI (disappearing).
+    ///     Flag indicating the toast is being removed. Used for the UI to know to begin transitioning
+    ///     this out of the UI (disappearing).
     /// </summary>
     internal bool IsRemoving { get; set; }
 }

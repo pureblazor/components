@@ -26,14 +26,14 @@
 
     private RenderFragment<(string, string, string)> RenderNestedItem = data => __builder =>
     {
-        <a href="@data.Item1"><li class="@data.Item3">@data.Item2</li></a>
+        <a href="@data.Item1">
+            <li class="@data.Item3">@data.Item2</li>
+        </a>
     };
-    [Parameter]
-    public bool Active { get; set; }
 
-    [Parameter]
-    public string? Url { get; set; }
+    [Parameter] public bool Active { get; set; }
 
-    [Parameter]
-    public bool Nested { get; set; }
+    [Parameter] public string? Url { get; set; }
+
+    [Parameter] public bool Nested { get; set; }
 }

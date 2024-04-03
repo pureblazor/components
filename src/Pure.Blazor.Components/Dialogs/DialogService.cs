@@ -1,36 +1,22 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.JSInterop;
 using Pure.Blazor.Components.Buttons;
 
 namespace Pure.Blazor.Components.Dialogs;
 
 /// <summary>
-///
 /// </summary>
 /// <remarks>
-/// Supports a single dialog at a time.
+///     Supports a single dialog at a time.
 /// </remarks>
 public class DialogService
 {
-    private class DialogDefaults
-    {
-        public const string AckButton = "Continue";
-        public static Accent AckColor = Accent.Brand;
-    }
-
-    public event Action? OnOpen;
-
-    public string? Title { get; private set; }
-    public RenderFragment? Body { get; private set; }
-    public string AckButton { get; private set; } = DialogDefaults.AckButton;
-    public static Accent AckColor { get; private set; } = DialogDefaults.AckColor;
+    private readonly DialogInstance _instance = new();
 
     private readonly ILogger<DialogService> _log;
-    private readonly IJSRuntime JS;
     private readonly DotNetObjectReference<DialogService> _objRef;
-    private readonly DialogInstance _instance = new();
+    private readonly IJSRuntime JS;
 
     public DialogService(IJSRuntime js, ILogger<DialogService> log)
     {
@@ -40,11 +26,15 @@ public class DialogService
         _objRef = DotNetObjectReference.Create(this);
     }
 
+    public string? Title { get; private set; }
+    public RenderFragment? Body { get; private set; }
+    public string AckButton { get; private set; } = DialogDefaults.AckButton;
+    public static Accent AckColor { get; private set; } = DialogDefaults.AckColor;
+
+    public event Action? OnOpen;
+
     [JSInvokable]
-    public Task<int[]> ReturnArrayAsync()
-    {
-        return Task.FromResult(new int[] { 1, 2, 3 });
-    }
+    public Task<int[]> ReturnArrayAsync() => Task.FromResult(new[] { 1, 2, 3 });
 
     [JSInvokable]
     public Task CloseAsync(string returnValue)
@@ -99,10 +89,7 @@ public class DialogService
         await JS.InvokeVoidAsync("showDialog", _objRef, _instance.DialogId);
     }
 
-    public async Task CloseDialogAsync()
-    {
-        await JS.InvokeVoidAsync("closeDialog", _objRef, _instance.DialogId);
-    }
+    public async Task CloseDialogAsync() => await JS.InvokeVoidAsync("closeDialog", _objRef, _instance.DialogId);
 
     public async Task ConfirmDialogAsync()
     {
@@ -128,53 +115,60 @@ public class DialogService
         _instance.OnConfirm = null;
         _instance.OnCancel = null;
     }
+
+    private class DialogDefaults
+    {
+        public const string AckButton = "Continue";
+        public static readonly Accent AckColor = Accent.Brand;
+    }
 }
 
 public class ShowDialogOptions
 {
     /// <summary>
-    /// Fires when the dialog is closed.
+    ///     Fires when the dialog is closed.
     /// </summary>
     public Action? OnClose { get; set; }
 
     /// <summary>
-    /// Fires when the dialog is cancelled.
-    /// e.g. by pressing the escape key, or clicking outside the dialog, or clicking the cancel button.
+    ///     Fires when the dialog is cancelled.
+    ///     e.g. by pressing the escape key, or clicking outside the dialog, or clicking the cancel button.
     /// </summary>
     public Action? OnCancel { get; set; }
 
     /// <summary>
-    /// Fires when the affirmative button is clicked.
+    ///     Fires when the affirmative button is clicked.
     /// </summary>
     public Action? OnConfirm { get; set; }
 
     /// <summary>
-    /// The text displayed on the affirmative button.
+    ///     The text displayed on the affirmative button.
     /// </summary>
     public string? AckButton { get; set; }
+
     public Accent? AckColor { get; set; }
 }
 
 public class DialogInstance
 {
     /// <summary>
-    /// Fires when the dialog is closed.
+    ///     Fires when the dialog is closed.
     /// </summary>
     public Action? OnClose { get; set; }
 
     /// <summary>
-    /// Fires when the dialog is cancelled.
-    /// e.g. by pressing the escape key, or clicking outside the dialog, or clicking the cancel button.
+    ///     Fires when the dialog is cancelled.
+    ///     e.g. by pressing the escape key, or clicking outside the dialog, or clicking the cancel button.
     /// </summary>
     public Action? OnCancel { get; set; }
 
     /// <summary>
-    /// Fires when the affirmative button is clicked.
+    ///     Fires when the affirmative button is clicked.
     /// </summary>
     public Action? OnConfirm { get; set; }
 
     /// <summary>
-    /// Used to track which dialog to show/close
+    ///     Used to track which dialog to show/close
     /// </summary>
-    internal string DialogId { get; set; }
+    internal string? DialogId { get; set; }
 }

@@ -1,4 +1,5 @@
-﻿<InputSelect class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-brand-600 sm:text-sm sm:leading-6"
+﻿@using Microsoft.AspNetCore.Components.Forms
+<InputSelect class="block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-brand-600 sm:text-sm sm:leading-6"
              Value="Font"
              ValueExpression="() => Font"
              ValueChanged="@((string s) => Pick(s))">
@@ -14,9 +15,11 @@
 @code {
 
     public string Font { get; set; } = "comicsans";
-    public async Task Pick(string s)
+
+    public Task Pick(string s)
     {
         Font = s;
-        // await OnSelected.InvokeAsync(variant);
+        return Task.CompletedTask;
     }
+
 }

@@ -1,6 +1,4 @@
-﻿@using Microsoft.Extensions.Logging
-
-@inject ILogger<PureDropdown> Log
+﻿@inject ILogger<PureDropdown> Log
 
 <Header1 Id="dropdowns">Dropdowns</Header1>
 <div class="mb-10">
@@ -18,7 +16,7 @@
 @code {
     public string MenuItemClicked { get; set; } = "Select a menu item";
 
-    public List<DropdownMenuItem> Items { get; set; } = new List<DropdownMenuItem>();
+    public List<DropdownMenuItem> Items { get; set; } = new();
 
     protected override void OnInitialized()
     {
@@ -30,7 +28,7 @@
 
     protected void ItemSelected(DropdownMenuItem item)
     {
-        MenuItemClicked = item.Text;
+        MenuItemClicked = item.Text ?? "";
     }
 
     private string Markup = @"<PureDropdown Items=""Items"">Settings</PureDropdown>

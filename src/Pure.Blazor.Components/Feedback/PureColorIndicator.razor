@@ -9,17 +9,13 @@
 </div>
 
 @code {
-    [Parameter]
-    public string Title { get; set;}
+    [Parameter] public string? Title { get; set; }
 
-    [Parameter]
-    public string Status { get; set; }
+    [Parameter] public string? Status { get; set; }
 
-    [Parameter]
-    public Accent Accent { get; set; }
+    [Parameter] public Accent Accent { get; set; }
 
-    [Parameter]
-    public string Value { get; set; }
+    [Parameter] public string? Value { get; set; }
 
     private string foregroundStatusColor = "";
     private string backgroundStatusColor = "";
