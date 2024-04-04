@@ -7,7 +7,7 @@
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Components</Title>
-    <Version>0.7</Version>
+    <Version>0.8</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -40,6 +40,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0"/>
   </ItemGroup>
 
   <ItemGroup>
