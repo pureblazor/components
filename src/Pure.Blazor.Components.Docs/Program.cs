@@ -4,13 +4,22 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Serilog;
 using Serilog.Events;
 using Pure.Blazor.Components;
+using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Dialogs;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-builder.Services.AddPureBlazorComponents();
+
+// todo: create aspnet core package
+builder.Services.AddScoped<IElementUtils, ElementUtils>();
+
+// services
+builder.Services.AddScoped<ToastService>();
+builder.Services.AddScoped<DialogService>();
+// builder.Services.AddPureBlazorComponents();
 
 
 Log.Logger = new LoggerConfiguration()

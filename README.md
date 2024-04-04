@@ -34,6 +34,12 @@ Install the `PureBlazor.Components` NuGet package.
 dotnet add package PureBlazor.Components
 ```
 
+Register the components and services to your `Program.cs` file.
+
+```csharp
+builder.Services.AddPureBlazorComponents();
+```
+
 Include the following scripts in your `App.razor` file. Change your `brand` colors to match your desired primary color.
 
 ```razor
