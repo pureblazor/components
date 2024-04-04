@@ -10,19 +10,26 @@
 > This component library is pre-release software.
 
 
-Native Blazor UI components. Free to use for any Blazor project. Works seamlessly
-with [PureBlazor CMS](https://pureblazor.com).
+Native Blazor UI components. Free to use for any Blazor project.
+
+Works seamlessly with [PureBlazor CMS](https://pureblazor.com).
 
 # Features
 
-- **Native Blazor** - Built for Blazor, not a wrapper around a JavaScript library.
-- **Blazing Fast** - Built with performance in mind.
-- **Headless Mode** - Turn off the default theme globally or per component.
-- **Tailwind Compatible** - Automatically merges your Tailwind classes with built-in styles.
+- **Native Blazor** - We want components built for Blazor, not a wrapper around a JavaScript library.
+- **Blazing Fast** - We want components that are fast on every platform.
+- **Headless Mode** - We want components that are easy to customize.
+- **Tailwind Compatible** - Automatically merge your Tailwind classes with built-in styles.
 
-[Explore Components](https://components.wasmhost.dev/alerts)
+[Explore Components](https://pureblazor.com/components)
 
 [Benchmarks](/tests/Benchmarks/BenchmarkDotNet.Artifacts/results)
+
+> [!NOTE]
+> This documentation is incomplete. Not all components are documented yet.
+>
+> Please feel free to ask questions in the [Discord](https://discord.gg/PeBbYy6WKq), open an issue, or create a pull
+> request.
 
 # Getting started
 
@@ -39,6 +46,38 @@ Register the components and services to your `Program.cs` file.
 ```csharp
 builder.Services.AddPureBlazorComponents();
 ```
+
+## Theming
+
+PureBlazor components use Tailwind CSS and are designed to be customizable with pure CSS or with more Tailwind styles.
+
+Additionally, there are more extensibility points for customizing the components with C#. Documentation will come as
+this is further solidified.
+
+## Headless Mode
+
+You can wrap individual components, or your entire app using a CascadingValue for the `Theme` property.
+
+```razor
+<CascadingValue Value="Theme.Off">
+    <PureButton>Unstyled button</PureButton>
+</CascadingValue>
+```
+
+### Use the default styles
+
+Include `pureblazor.css` in your `App.Razor` file, in the `<head>` tag.
+
+```razor
+<script src="_content/PureBlazor.Components/pureblazor.css"></script>
+```
+
+### Use [dotnet-tailwind]() or the Tailwind CLI
+
+PureBlazor components are compatible with Tailwind CSS. You can use the `dotnet-tailwind` tool to compile your Tailwind,
+or use the Tailwind CLI.
+
+### Use the Tailwind CDN
 
 Include the following scripts in your `App.razor` file. Change your `brand` colors to match your desired primary color.
 
@@ -76,29 +115,13 @@ Include the following scripts in your `App.razor` file. Change your `brand` colo
 </script>
 ```
 
-> [!NOTE]
-> The Nuget package currently only supports use with
-> the [Tailwind CDN](https://tailwindcss.com/docs/installation/play-cdn).
->
-> Compile time support will come in the future. If you want compile-time CSS, add the `PureBlazor.Components` project
-> directly to your solution.
-
-## Screenshots
-
-![](docs/alerts.gif)
-![](docs/buttons.png)
-![](docs/indicators.png)
-![](docs/paging.png)
-
 # FAQ
 
 ### Why not use `xx` library?
 
-- There are many great libraries out there, but we wanted to build something that was simple and easy to use. We also
-  wanted to build something that was tailored to the PureBlazor CMS.
-- We also wanted to build something that was fast. We have a benchmark suite in `/tests/benchmarks` that we use to
-  measure performance.
-- Ultimately, we think there is plenty of room for more libraries in the Blazor ecosystem.
+Our features section is a good place to start to understand our goals.
+
+In addition, our components are built to work seamlessly with the PureBlazor CMS.
 
 ### Is this library free to use?
 

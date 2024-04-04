@@ -7,7 +7,7 @@
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Components</Title>
-    <Version>0.8</Version>
+    <Version>0.9</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -16,7 +16,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>Add PureFooter, PureNavLink, Enable Nullables</PackageReleaseNotes>
+    <PackageReleaseNotes>Add pureblazor.css</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Company>PureBlazor</Company>
     <Authors>codymullins</Authors>
