@@ -13,8 +13,8 @@ public static class WebAssemblyHostBuilderExtensions
         builder.Services.AddSingleton<IElementUtils, ElementUtils>();
 
         // services
-        builder.Services.AddSingleton<ToastService>();
-        builder.Services.AddSingleton<DialogService>();
+        builder.Services.AddScoped<ToastService>();
+        builder.Services.AddScoped<DialogService>();
 
         return builder;
     }
