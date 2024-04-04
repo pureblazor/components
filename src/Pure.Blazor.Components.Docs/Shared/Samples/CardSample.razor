@@ -1,66 +1,55 @@
 ﻿<Header1 Id="cards">Cards</Header1>
 <div>
-    <Header2>Default Card with optional image</Header2>
-    <PureCard Title="Card Title" Styles="mb-8">
+    <Header3 Styles="py-4">Card with footer and buttons</Header3>
+    <PureCard Title="Card Title" Styles="mb-8 w-1/2">
         <Paragraph>
-            The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+            The quick brown fox jumps over the lazy dog.
         </Paragraph>
         <PureCardFooter>
-            <PureButton Color="PureColor.Brand">Default</PureButton>
+            <PureButton LeftIcon="PureIcons.IconHeart" Variant="ButtonVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+            <PureButton Accent="Accent.Brand" Variant="ButtonVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
         </PureCardFooter>
     </PureCard>
 
-    <Header2>Top Aligned Card</Header2>
-    <PureCard Title="Card Title" Alignment="PureCardAlignment.Top" ImageUrl="https://picsum.photos/400/300" Styles="mb-8">
+    <Header3 Styles="py-4">Card footer alignment options</Header3>
+    <div class="flex gap-4">
+        <PureCard Title="Card Title" Styles="mb-8 w-1/2">
+            <Paragraph>
+                The quick brown fox jumps over the lazy dog.
+            </Paragraph>
+            <PureCardFooter Align="PureAlign.Center">
+                <PureButton LeftIcon="PureIcons.IconHeart" Variant="ButtonVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+                <PureButton Accent="Accent.Brand" Variant="ButtonVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
+            </PureCardFooter>
+        </PureCard>
+        <PureCard Title="Card Title" Styles="mb-8 w-1/2">
+            <Paragraph>
+                The quick brown fox jumps over the lazy dog.
+            </Paragraph>
+            <PureCardFooter Align="PureAlign.End">
+                <PureButton LeftIcon="PureIcons.IconHeart" Variant="ButtonVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+                <PureButton Accent="Accent.Brand" Variant="ButtonVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
+            </PureCardFooter>
+        </PureCard>
+    </div>
+    <Header3 Styles="py-4">Card footer without divider</Header3>
+    <PureCard Title="Card Title" Styles="mb-8 w-1/2">
         <Paragraph>
-            The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+            The quick brown fox jumps over the lazy dog.
         </Paragraph>
-        <PureCardFooter>
-            <PureButton Color="PureColor.Brand">Default</PureButton>
+        <PureCardFooter Divider="false">
+            <PureButton LeftIcon="PureIcons.IconHeart" Variant="ButtonVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+            <PureButton Accent="Accent.Brand" Variant="ButtonVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
         </PureCardFooter>
     </PureCard>
-
-    <Header2>Left Aligned Card</Header2>
-    <PureCard Title="Card Title" Alignment="PureCardAlignment.Left" ImageUrl="https://picsum.photos/400/300" Styles="mb-8">
+    <Header3 Styles="py-4">Card with an image</Header3>
+    <PureCard Title="Card Title" ImageUrl="https://picsum.photos/400/300" Styles="mb-8 w-[400px]">
         <Paragraph>
-            The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
+            The quick brown fox jumps over the lazy dog.
         </Paragraph>
         <PureCardFooter>
-            <PureButton Color="PureColor.Brand">Default</PureButton>
+            <PureButton Accent="Accent.Default" Variant="ButtonVariant.Subtle">Save</PureButton>
+            <PureButton Accent="Accent.Brand">Add to cart</PureButton>
         </PureCardFooter>
     </PureCard>
-    <PureCode Text="@docs" Language="@PureCode.Razor" Caption="Example" Styles="my-4">
-
-    </PureCode>
 </div>
-
-
-@code {
-
-    private string docs = @"<PureCard Title=""Card Title"">
-    <Paragraph>
-        The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-    </Paragraph>
-    <PureCardFooter>
-        <PureButton Color=""PureColor.Primary"">Default</PureButton>
-    </PureCardFooter>
-</PureCard>
-
-<PureCard Title=""Card Title"" Alignment=""PureCardAlignment.Top"" ImageUrl=""https://picsum.photos/400/300"">
-    <Paragraph>
-        The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-    </Paragraph>
-    <PureCardFooter>
-        <PureButton Color=""PureColor.Primary"">Default</PureButton>
-    </PureCardFooter>
-</PureCard>
-
-<PureCard Title=""Card Title"" Alignment=""PureCardAlignment.Left"" ImageUrl=""https://picsum.photos/400/300"">
-    <Paragraph>
-        The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.The quick brown fox jumps over the lazy dog.
-    </Paragraph>
-    <PureCardFooter>
-        <PureButton Color=""PureColor.Primary"">Default</PureButton>
-    </PureCardFooter>
-</PureCard>";
-}

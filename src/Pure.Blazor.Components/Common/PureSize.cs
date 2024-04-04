@@ -8,3 +8,10 @@ public enum PureSize
     Large,
     ExtraLarge
 }
+
+public enum PureAlign
+{
+    Start,
+    Center,
+    End
+}

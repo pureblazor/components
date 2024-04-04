@@ -1,17 +1,15 @@
 ﻿@inherits PureComponent
 <CascadingValue Value="this">
-    <section class="@ApplyStyle("text-gray-900 body-font")">
-        <div class="@ApplyStyle("container mx-auto flex flex-wrap flex-col")">
-            <div class="@ApplyStyle("flex mx-auto flex-wrap w-full border-b border-neutral-200")">
-                @foreach (var tab in Tabs)
-                {
-                    <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" Size="Size" OnClick="() => ChangeTab(tab)" Variant="Variant"/>
-                }
+    <section class="@ApplyStyle("text-gray-900 body-font container mx-auto flex flex-wrap flex-col")">
+        <div class="@ApplyStyle("flex mx-auto flex-wrap w-full border-b border-neutral-200")">
+            @foreach (var tab in Tabs)
+            {
+                <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" Size="Size" OnClick="() => ChangeTab(tab)" Variant="Variant"/>
+            }
 
-            </div>
-            <div class="py-4">
-                @ChildContent
-            </div>
+        </div>
+        <div>
+            @ChildContent
         </div>
     </section>
 </CascadingValue>

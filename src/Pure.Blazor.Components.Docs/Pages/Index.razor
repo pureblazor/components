@@ -2,33 +2,24 @@
 @inject ToastService Service
 @inject ILogger<Index> Log
 
-<div class="grid grid-cols-4 pt-10">
-    <div class="hidden sm:block sm:col-span-1">
-        <PureVertNav/>
-    </div>
-    <div class="col-span-4 sm:col-span-3 flex flex-col gap-4">
-        <PureBanner Accent="Accent.Brand">This component library is pre-release software.</PureBanner>
-        <p>PureBlazor Components are the building blocks for the <PureLink Url="https://pureblazor.com">PureBlazor CMS.</PureLink></p>
-        <PureLink Url="/components/alerts" Styles="w-64" Variant="ButtonVariant.Default">Explore Components</PureLink>
-        <div class="flex flex-col gap-1">
-            <Paragraph>
-                To use these components, install the <PureInlineCode>PureBlazor.Components</PureInlineCode> NuGet package.
-            </Paragraph>
-            <PureCode>
-                dotnet add package PureBlazor.Components
 
-            </PureCode>
-            <Paragraph>
-                You will also need to include the
-                Tailwind CDN in your <PureInlineCode>App.razor</PureInlineCode> file. Support for including base CSS in the
-                package may be added in the future.
-            </Paragraph>
-            @* <Paragraph> *@
-            @*     For ease of use, include the following in your <PureInlineCode>_Imports.razor</PureInlineCode> file. *@
-            @* </Paragraph> *@
-            @* <PureCode> *@
-            @*     @Markup *@
-            @* </PureCode> *@
-        </div>
-    </div>
+<PureBanner Accent="Accent.Brand">This component library is pre-release software.</PureBanner>
+<p>PureBlazor Components are the building blocks for the <PureLink Url="https://pureblazor.com">PureBlazor CMS.</PureLink></p>
+<PureLink Url="/components/alerts" Styles="w-64" Variant="ButtonVariant.Default">Explore Components</PureLink>
+<div class="flex flex-col gap-1">
+    <Prose>
+        To use these components, install the <code>PureBlazor.Components</code> NuGet package.
+    </Prose>
+    <PureCode>dotnet add package PureBlazor.Components</PureCode>
+    <Prose>
+        You will also need to include the
+        Tailwind CDN in your <code>App.razor</code> file. Support for including base CSS in the
+        package may be added in the future.
+    </Prose>
+    @* <Paragraph> *@
+    @*     For ease of use, include the following in your <PureInlineCode>_Imports.razor</PureInlineCode> file. *@
+    @* </Paragraph> *@
+    @* <PureCode> *@
+    @*     @Markup *@
+    @* </PureCode> *@
 </div>

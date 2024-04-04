@@ -22,10 +22,8 @@ public class StylePrioritizerTests
             yield return new TestCaseData("bg-gray-100 text-black border-red-200", "border-gray-200",
                 new List<string> { "bg-gray-100", "text-black", "border-gray-200" });
 
-            // complex case where we don't support swapping
-            // shouldn't swap because it is not [modifier]:{elem}-{color}-{shade}
             yield return new TestCaseData("border-r-green-400", "border-r-yellow-400",
-                new List<string> { "border-r-green-400", "border-r-yellow-400" });
+                new List<string> { "border-r-yellow-400" });
 
             // swap individual border
             // TODO: we don't support this yet, along with a few other cases that aren't [modifier]:{elem}-{color}-{shade}

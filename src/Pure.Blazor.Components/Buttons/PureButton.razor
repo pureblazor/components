@@ -34,6 +34,10 @@ else
         @onmousedown="() => Pressed = true"
         @onmouseup="() => Pressed = false"
         @onclick="OnClicked">
+        @if (LeftIcon is not null)
+        {
+            <PureIcon Type="(PureIcons)LeftIcon" Size="Size"/>
+        }
         @if (ChildContent is not null)
         {
             @ChildContent
@@ -41,6 +45,10 @@ else
         else
         {
             @Text
+        }
+        @if (RightIcon is not null)
+        {
+            <PureIcon Type="(PureIcons)RightIcon" Size="Size"/>
         }
     </button>
 }

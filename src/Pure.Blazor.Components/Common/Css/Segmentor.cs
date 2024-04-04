@@ -2,10 +2,10 @@ namespace Pure.Blazor.Components.Common.Css;
 
 public static class Segmentor
 {
-    public static Stack<string> Segment(this string input, char separator)
+    public static List<string> Segment(this string input, char separator)
     {
         var closingBracketStack = new Stack<char>();
-        var parts = new Stack<string>();
+        var parts = new List<string>();
         var lastPos = 0;
 
         for (var idx = 0; idx < input.Length; idx++)
@@ -14,7 +14,7 @@ public static class Segmentor
 
             if (closingBracketStack.Count == 0 && charValue == separator)
             {
-                parts.Push(input.Substring(lastPos, idx - lastPos));
+                parts.Add(input.Substring(lastPos, idx - lastPos));
                 lastPos = idx + 1;
                 continue;
             }
@@ -45,8 +45,8 @@ public static class Segmentor
             }
         }
 
-        parts.Push(input[lastPos..]);
+        parts.Add(input[lastPos..]);
 
-        return parts;
+        return parts.ToList();
     }
 }

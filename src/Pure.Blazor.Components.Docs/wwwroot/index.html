@@ -2,12 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="PureBlazor UI Component library - Build Blazor apps fast using PureBlazor. Components are customizable, performant, and extensible." />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="description"
+          content="PureBlazor UI Component library - Build Blazor apps fast using PureBlazor. Components are customizable, performant, and extensible."/>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <title>PureBlazor Components Docs</title>
-    <base href="/" />
+    <base href="/"/>
     <style>
         #blazor-error-ui {
             background: lightyellow;
@@ -21,12 +22,12 @@
             z-index: 1000;
         }
 
-            #blazor-error-ui .dismiss {
-                cursor: pointer;
-                position: absolute;
-                right: 0.75rem;
-                top: 0.5rem;
-            }
+        #blazor-error-ui .dismiss {
+            cursor: pointer;
+            position: absolute;
+            right: 0.75rem;
+            top: 0.5rem;
+        }
 
         .loading-progress {
             position: relative;
@@ -36,19 +37,19 @@
             margin: 20vh auto 1rem auto;
         }
 
-            .loading-progress circle {
-                fill: none;
-                stroke: #e0e0e0;
-                stroke-width: 0.6rem;
-                transform-origin: 50% 50%;
-                transform: rotate(-90deg);
-            }
+        .loading-progress circle {
+            fill: none;
+            stroke: #e0e0e0;
+            stroke-width: 0.6rem;
+            transform-origin: 50% 50%;
+            transform: rotate(-90deg);
+        }
 
-                .loading-progress circle:last-child {
-                    stroke: #1b6ec2;
-                    stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
-                    transition: stroke-dasharray 0.05s ease-in-out;
-                }
+        .loading-progress circle:last-child {
+            stroke: #1b6ec2;
+            stroke-dasharray: calc(3.141 * var(--blazor-load-percentage, 0%) * 0.8), 500%;
+            transition: stroke-dasharray 0.05s ease-in-out;
+        }
 
         .loading-progress-text {
             position: absolute;
@@ -58,11 +59,11 @@
             inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
         }
 
-            .loading-progress-text:after {
-                content: var(--blazor-load-percentage-text, "Loading");
-            }
+        .loading-progress-text:after {
+            content: var(--blazor-load-percentage-text, "Loading");
+        }
     </style>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
     <script>
         tailwind.config = {
             darkMode: 'class',
@@ -94,27 +95,28 @@
         }
     </script>
 
-    <link href="dist/docs.css" rel="stylesheet" />
+    <link href="dist/docs.css" rel="stylesheet"/>
     <!-- needed for syntax highlighter, todo: figure out best way for consumers to use this with less friction -->
-    <link href="_content/PureBlazor.Components/css/vscode-dark-plus.css" rel="stylesheet" />
+    <link href="_content/PureBlazor.Components/css/vscode-dark-plus.css" rel="stylesheet"/>
 </head>
 
-<body class="bg-gray-50">
-    <div id="app">
-        <svg class="loading-progress">
-            <circle r="40%" cx="50%" cy="50%" />
-            <circle r="40%" cx="50%" cy="50%" />
-        </svg>
-        <div class="loading-progress-text"></div>
-    </div>
+<body class="bg-gray-50 text-gray-700">
+<div id="app">
+    <svg class="loading-progress">
+        <circle r="40%" cx="50%" cy="50%"/>
+        <circle r="40%" cx="50%" cy="50%"/>
+    </svg>
+    <div class="loading-progress-text"></div>
+</div>
 
-    <div id="blazor-error-ui">
-        An unhandled error has occurred.
-        <a href="" class="reload">Reload</a>
-        <a class="dismiss">🗙</a>
-    </div>
-    <script src="_framework/blazor.webassembly.js"></script>
-    <script src="_content/PureBlazor.Components/prism.js"></script>
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
+<script src="_framework/blazor.webassembly.js"></script>
+<script src="_content/PureBlazor.Components/prism.js"></script>
+<script src="_content/PureBlazor.Components/pureBlazor.js"></script>
 </body>
 
 </html>

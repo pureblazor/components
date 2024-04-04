@@ -1,5 +1,10 @@
-﻿@code {
+using Microsoft.AspNetCore.Components;
+using Pure.Blazor.Components.Buttons;
 
+namespace Pure.Blazor.Components.Common;
+
+public class PureComponent : ComponentBase
+{
     protected override void OnParametersSet()
     {
         // todo: figure out how to build css less
@@ -32,9 +37,14 @@
     {
     }
 
-    protected virtual string ApplyStyle(string style)
+    protected virtual string ApplyStyle(string? style)
     {
         if (Theme == Theme.Off)
+        {
+            return Styles ?? "";
+        }
+
+        if (style == null)
         {
             return Styles ?? "";
         }
@@ -46,5 +56,4 @@
 
         return $"{style} {Styles}";
     }
-
 }

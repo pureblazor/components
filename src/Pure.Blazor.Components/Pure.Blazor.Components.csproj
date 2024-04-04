@@ -7,7 +7,7 @@
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Components</Title>
-    <Version>0.6</Version>
+    <Version>0.7</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -28,6 +28,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+    <None Update="Buttons\PureDropdown.razor.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 
@@ -36,7 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.13.12"/>
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.1"/>
   </ItemGroup>
 
