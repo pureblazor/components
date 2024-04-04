@@ -1,5 +1,4 @@
 ﻿using BenchmarkDotNet.Running;
-using Pure.Blazor.Components.Common.Css;
+using Benchmarks;
 
-BenchmarkRunner.Run<SegmentBenchmarks>();
-BenchmarkRunner.Run<StylePrioritizer>();
+BenchmarkRunner.Run<CssBenchmarks>();

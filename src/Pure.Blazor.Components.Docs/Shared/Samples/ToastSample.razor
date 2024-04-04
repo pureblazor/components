@@ -1,25 +1,38 @@
 ﻿@inject ToastService Service
 
 <Header1 Id="alerts">Alerts</Header1>
-<div class="mb-10">
-    <Header2>Basic toasts</Header2>
-    <PureToast Accent="@Accent.Success">This is a success toast.</PureToast>
-    <PureToast Accent="@Accent.Brand">This is an informational toast.</PureToast>
-    <PureToast Accent="@Accent.Warning">This is a warning toast.</PureToast>
-    <PureToast Accent="@Accent.Danger">This is an error toast.</PureToast>
-</div>
-<div class="mb-10">
-    <Header2>Demo toasts</Header2>
-    <PureButton OnClick="() => AddToast(Accent.Success)">Success toast</PureButton>
-    <PureButton OnClick="() => AddToast(Accent.Danger)">Error toast</PureButton>
-    <PureButton OnClick="() => AddToast(Accent.Brand)">Info toast</PureButton>
-    <PureButton OnClick="() => AddToast(Accent.Warning)">Warning toast</PureButton>
+<div class="flex flex-col gap-8 mb-8">
+    <Prose>Alerts can be triggered from code and disappear after the specified duration.</Prose>
+    <div>
+        <Header2 Styles="mb-4">Basic toasts</Header2>
+        <PureToast Accent="@Accent.Success">This is a success toast.</PureToast>
+        <PureToast Accent="@Accent.Brand">This is an informational toast.</PureToast>
+        <PureToast Accent="@Accent.Warning">This is a warning toast.</PureToast>
+        <PureToast Accent="@Accent.Danger">This is an error toast.</PureToast>
+    </div>
+    <div>
+        <PureCode Language="@PureCode.Csharp">@(sample)</PureCode>
+    </div>
+    <div>
+        <Header2 Styles="mb-4">Demo toasts</Header2>
+        <PureButton OnClick="() => AddToast(Accent.Success)">Success toast</PureButton>
+        <PureButton OnClick="() => AddToast(Accent.Danger)">Error toast</PureButton>
+        <PureButton OnClick="() => AddToast(Accent.Brand)">Info toast</PureButton>
+        <PureButton OnClick="() => AddToast(Accent.Warning)">Warning toast</PureButton>
+    </div>
 </div>
 
 @code {
+
+    private string sample = @"
+public async Task AddToast(Accent state)
+{
+    await Service.AddToast(""Adding random toast"", state);
+}";
 
     public async Task AddToast(Accent state)
     {
         await Service.AddToast("Adding random toast", state);
     }
+
 }

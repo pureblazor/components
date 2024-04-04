@@ -5,39 +5,83 @@
 
 # PureBlazor Components
 
-PureBlazor Components built for the [PureBlazor CMS](https://pureblazor.com)
+> [!NOTE]
+> This component library is pre-release software.
+
+
+Native Blazor UI components. Free to use for any Blazor project. Works seamlessly
+with [PureBlazor CMS](https://pureblazor.com).
+
+# Features
+
+- **Native Blazor** - Built for Blazor, not a wrapper around a JavaScript library.
+- **Blazing Fast** - Built with performance in mind.
+- **Headless Mode** - Turn off the default theme globally or per component.
+- **Tailwind Compatible** - Automatically merges your Tailwind classes with built-in styles.
+
+[Explore Components](https://components.wasmhost.dev/alerts)
+
+[Benchmarks](/tests/Benchmarks/BenchmarkDotNet.Artifacts/results)
 
 # Getting started
 
-Blazor UI components for the PureBlazor CMS. Free to use for any Blazor project.
-
 ## Installation
 
-`dotnet add package PureBlazor.Components`
+Install the `PureBlazor.Components` NuGet package.
+
+```sh
+dotnet add package PureBlazor.Components
+```
+
+Include the following scripts in your `App.razor` file. Change your `brand` colors to match your desired primary color.
+
+```razor
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+        darkMode: 'class',
+        theme: {
+            extend: {
+                fontFamily: {
+                    sans: ['Inter var', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
+                },
+                borderRadius: {
+                    'xs': '0.0625rem',
+                },
+                colors: {
+                    brand: {
+                        '50': '#eff9ff',
+                        '100': '#dff1ff',
+                        '200': '#b7e5ff',
+                        '300': '#77d1ff',
+                        '400': '#2fbbff',
+                        '500': '#04a3f3',
+                        '600': '#0081d0',
+                        '700': '#0067a8',
+                        '800': '#015486',
+                        '900': '#074873',
+                        '950': '#052e4c',
+                    },
+                }
+            }
+        },
+    }
+</script>
+```
 
 > [!NOTE]
 > The Nuget package currently only supports use with
 > the [Tailwind CDN](https://tailwindcss.com/docs/installation/play-cdn).
 >
-> If you wish to build the styles at compile time, you must clone this repository and include it in your project.
+> Compile time support will come in the future. If you want compile-time CSS, add the `PureBlazor.Components` project
+> directly to your solution.
 
 ## Screenshots
+
 ![](docs/alerts.gif)
 ![](docs/buttons.png)
 ![](docs/indicators.png)
 ![](docs/paging.png)
-
-## Demo
-
-> [!WARNING]  
-> Demo has rough edges. Handle with caution.
-
-https://components.wasmhost.dev
-
-# Goals
-
-- [x] Performance (see `/tests/benchmarks`)
-- [x] Simplicity
 
 # FAQ
 
@@ -74,4 +118,3 @@ https://components.wasmhost.dev
 - Please open an issue on the [GitHub repository](https://github.com/pureblazor/components/issues/new/choose).
 - Please include as much information as possible, including the version of the library you are using, the browser you
   are using, and any steps to reproduce the issue.
-

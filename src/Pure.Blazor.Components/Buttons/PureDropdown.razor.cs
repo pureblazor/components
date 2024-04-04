@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Pure.Blazor.Components.Common;
+using Microsoft.JSInterop;
 
 namespace Pure.Blazor.Components.Buttons;
 
 public partial class PureDropdown
 {
-    [Inject] public IElementUtils Utils { get; set; } = null!;
+    // todo: use source generator to generate the script path
+    protected override string ScriptPath => "Buttons/PureDropdown.razor";
 
     /// <summary>
     ///     Position (side) to open the dropdown menu.
@@ -28,8 +29,7 @@ public partial class PureDropdown
 
     public async Task OnItemClick(MouseEventArgs args, DropdownMenuItem item)
     {
-        await Utils.Blur();
-
+        await Module.InvokeVoidAsync("blur");
         await OnItemSelected.InvokeAsync(item);
     }
 }

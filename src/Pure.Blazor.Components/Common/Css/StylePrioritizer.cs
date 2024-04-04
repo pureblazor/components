@@ -15,11 +15,8 @@ public class StylePrioritizer
     {
         if (style.Contains('-'))
         {
-            var parts = style.Split('-');
-
-            // use the first segment as the key if this style is a standard [modifier]:{elem}-{color}-{shade}
-            // otherwise we don't support prioritizing that style for this component
-            return parts.Length is 2 or 3 ? parts[0] : style;
+            var result = style.ToCssKey();
+            return result;
         }
 
         return style;

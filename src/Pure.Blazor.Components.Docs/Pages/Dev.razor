@@ -6,13 +6,13 @@
     <div>
         <Header2>Radio Group</Header2>
         <Header3 Styles="my-2">Basic</Header3>
-        <PureRadioGroup Name="test" SelectedRadio="@selectedRadio">
+        <PureRadioGroup Name="test">
             <PureRadio Checked="false" Title="Foo" Value="foo"></PureRadio>
             <PureRadio Checked="false" Title="Bar" Value="bar"></PureRadio>
             <PureRadio Checked="false" Title="Fuzz" Value="fuzz"></PureRadio>
         </PureRadioGroup>
-        <PureLabel>Selected:</PureLabel>
-        <PureText>@selectedRadio?.Value</PureText>
+        @* <PureLabel>Selected:</PureLabel> *@
+        @* <PureText>@selectedRadio?.Value</PureText> *@
         <Header3 Styles="mb-2 mt-6">With Description</Header3>
         <PureRadioGroup Name="test">
             <PureRadio Checked="false"
@@ -74,7 +74,7 @@
 </div>
 
 @code {
-    private PureRadio? selectedRadio = null;
+    // private PureRadio? selectedRadio = null;
 
     private void Callback(PureRadio radio)
     {

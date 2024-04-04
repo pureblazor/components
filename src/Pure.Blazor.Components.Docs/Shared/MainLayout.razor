@@ -12,7 +12,14 @@
 
 <PureToastProvider/>
 <article class="container mx-auto px-4">
-    @Body
+    <div class="grid grid-cols-4 pt-10">
+        <div class="hidden sm:block sm:col-span-1">
+            <PureVertNav/>
+        </div>
+        <div class="col-span-4 sm:col-span-3 mb-8">
+            @Body
+        </div>
+    </div>
 </article>
 
 @code {

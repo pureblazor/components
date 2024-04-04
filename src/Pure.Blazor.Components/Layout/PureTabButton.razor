@@ -50,13 +50,13 @@
         switch (Variant)
         {
             case TabVariant.Default when IsActive:
-                builder.Append(" border-b-2 border-primary-500 cursor-pointer");
+                builder.Append(" border-b-2 border-brand-600 cursor-pointer");
                 break;
             case TabVariant.Default when !IsActive:
-                builder.Append(" border-b-2 border-secondary-300 cursor-pointer");
+                builder.Append(" border-b-2 border-gray-300 cursor-pointer");
                 break;
             case TabVariant.Outline when IsActive:
-                builder.Append(" border rounded-t-sm border-neutral-200 border-b-white bg-white cursor-default hover:bg-gray-50 relative top-px");
+                builder.Append(" border rounded-t-sm border-gray-200 border-b-white bg-white cursor-default hover:bg-gray-50 relative top-px");
 
                 break;
             case TabVariant.Outline when !IsActive:

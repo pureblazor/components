@@ -11,10 +11,12 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.12"/>
+    <PackageReference Include="BenchmarkDotNet.Annotations" Version="0.13.12"/>
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Pure.Blazor.Components\Pure.Blazor.Components.csproj"/>
+    <ProjectReference Include="..\UnitTests\UnitTests.csproj"/>
   </ItemGroup>
 
 </Project>
