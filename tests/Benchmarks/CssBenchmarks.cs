@@ -22,13 +22,13 @@ public class CssBenchmarks
         sut.PrioritizeStyles(defaultStyles, userStyles);
 
     [Benchmark]
-    [Arguments("foo", ":")]
-    [Arguments("bg-gray-100", "-")]
-    [Arguments("foo:bar:baz", ":")]
-    [Arguments("a:(b:c):d", ":")]
-    [Arguments("a:[b:c]:d", ":")]
-    [Arguments("a:{b:c}:d", ":")]
-    [Arguments("var(--a, 0 0 1px rgb(0, 0, 0)), 0 0 1px rgb(0, 0, 0)", ",")]
+    [Arguments("foo", ':')]
+    [Arguments("bg-gray-100", '-')]
+    [Arguments("foo:bar:baz", ':')]
+    [Arguments("a:(b:c):d", ':')]
+    [Arguments("a:[b:c]:d", ':')]
+    [Arguments("a:{b:c}:d", ':')]
+    [Arguments("var(--a, 0 0 1px rgb(0, 0, 0)), 0 0 1px rgb(0, 0, 0)", ',')]
     public void Segment(string str, char sep) => str.Segment(sep);
 
     public IEnumerable<string> CssStyles()

@@ -18,12 +18,12 @@ Works seamlessly with [PureBlazor CMS](https://pureblazor.com).
 
 - **Native Blazor** - We want components built for Blazor, not a wrapper around a JavaScript library.
 - **Blazing Fast** - We want components that are fast on every platform.
-- **Headless Mode** - We want components that are easy to customize.
+- **Headless Mode** - Fully customizable UI components. Disable all styles with a single property.
 - **Tailwind Compatible** - Automatically merge your Tailwind classes with built-in styles.
 
 [Explore Components](https://pureblazor.com/components)
 
-[Benchmarks](/tests/Benchmarks/BenchmarkDotNet.Artifacts/results)
+[Benchmarks](/tests/Benchmarks/README.md)
 
 > [!NOTE]
 > This documentation is incomplete. Not all components are documented yet.
@@ -35,7 +35,9 @@ Works seamlessly with [PureBlazor CMS](https://pureblazor.com).
 
 ## Installation
 
-Install the `PureBlazor.Components` NuGet package.
+### InteractiveWebAssembly / SSR
+
+Install the `PureBlazor.Components` NuGet package to your Client project.
 
 ```sh
 dotnet add package PureBlazor.Components
@@ -44,75 +46,76 @@ dotnet add package PureBlazor.Components
 Register the components and services to your `Program.cs` file.
 
 ```csharp
-builder.Services.AddPureBlazorComponents();
+builder.AddPureBlazorComponents();
+```
+
+### InteractiveServer / InteractiveAuto
+
+You'll need to add the ASP.NET Core integration package to your Server project and update your `Program.cs` file, in
+addition to the Client Project.
+
+```sh
+dotnet add package PureBlazor.Components.AspNetCore
 ```
 
 ## Theming
 
-PureBlazor components use Tailwind CSS and are designed to be customizable with pure CSS or with more Tailwind styles.
+PureBlazor components use Tailwind CSS and are designed to be customizable with Tailwind or any custom CSS.
 
 Additionally, there are more extensibility points for customizing the components with C#. Documentation will come as
 this is further solidified.
-
-## Headless Mode
-
-You can wrap individual components, or your entire app using a CascadingValue for the `Theme` property.
-
-```razor
-<CascadingValue Value="Theme.Off">
-    <PureButton>Unstyled button</PureButton>
-</CascadingValue>
-```
 
 ### Use the default styles
 
 Include `pureblazor.css` in your `App.Razor` file, in the `<head>` tag.
 
 ```razor
-<script src="_content/PureBlazor.Components/pureblazor.css"></script>
+<link rel="stylesheet" href="_content/PureBlazor.Components/pureblazor.css" />
 ```
 
-### Use [dotnet-tailwind]() or the Tailwind CLI
+To customize further on top of these default styles with TailwindCSS, see [tailwind.md](/tailwind.md).
 
-PureBlazor components are compatible with Tailwind CSS. You can use the `dotnet-tailwind` tool to compile your Tailwind,
-or use the Tailwind CLI.
+### Ad-hoc customization
 
-### Use the Tailwind CDN
+All components have a `Styles` parameter that accepts a `string` of CSS classes. If you are using Tailwind, the classes
+will be merged with the default styles. The `Styles` parameter is parsed and evaluated for conflicts; conflicting styles
+passed in here will supersede default classes.
 
-Include the following scripts in your `App.razor` file. Change your `brand` colors to match your desired primary color.
+For example, to change the shade of red for the `Danger` accent, which is `bg-red-900` by default:
 
 ```razor
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {
-                fontFamily: {
-                    sans: ['Inter var', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', "Segoe UI", 'Roboto', "Helvetica Neue", 'Arial', "Noto Sans", 'sans-serif', "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],
-                },
-                borderRadius: {
-                    'xs': '0.0625rem',
-                },
-                colors: {
-                    brand: {
-                        '50': '#eff9ff',
-                        '100': '#dff1ff',
-                        '200': '#b7e5ff',
-                        '300': '#77d1ff',
-                        '400': '#2fbbff',
-                        '500': '#04a3f3',
-                        '600': '#0081d0',
-                        '700': '#0067a8',
-                        '800': '#015486',
-                        '900': '#074873',
-                        '950': '#052e4c',
-                    },
-                }
-            }
-        },
-    }
-</script>
+<PureButton Accent="Accent.Danger" Styles="bg-red-600">Default button</PureButton>
+```
+
+### Customizing with C#
+
+You can override the default theme in C# by creating a `PureStyles` object and passing it to a `CascadingValue`.
+The `PureStyles` object has properties for each component style.
+
+```razor
+<CascadingValue Value="styles">
+    <PureButton Accent="Accent.Danger">Default button</PureButton>
+</CascadingValue>
+
+@code {
+    PureStyles styles = new();
+}
+```
+
+> [!IMPORTANT]
+> Not all components have C# customization available yet.
+
+## Headless Mode
+
+Headless mode turns the UI components into completely unstyled, accessible components. Fully customizable.
+
+Enable headless mode by setting the `Theme` property to `Off` using a `CascadingValue`. You can do this for individual
+components or wrap your entire application in a `CascadingValue`.
+
+```razor
+<CascadingValue Value="Theme.Off">
+    <PureButton>Unstyled button</PureButton>
+</CascadingValue>
 ```
 
 # FAQ
