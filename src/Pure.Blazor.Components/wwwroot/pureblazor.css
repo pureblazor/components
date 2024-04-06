@@ -3353,6 +3353,10 @@ select {
     margin-inline-start: 0.5rem;
   }
 
+  .md\:w-1\/2 {
+    width: 50%;
+  }
+
   .md\:flex-row {
     flex-direction: row;
   }

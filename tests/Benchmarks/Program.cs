@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Running;
-using Benchmarks;
+﻿using System.Reflection;
+using BenchmarkDotNet.Running;
 
-BenchmarkRunner.Run<CssBenchmarks>();
+BenchmarkSwitcher.FromAssembly(Assembly.GetExecutingAssembly()).Run(args);
