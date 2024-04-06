@@ -10,6 +10,7 @@ delete colors[`blueGray`];
 
 
 module.exports = {
+    // prefix: 'pb-',
     darkMode: 'class',
     content: [
         "./**/*.{razor,cs}"
