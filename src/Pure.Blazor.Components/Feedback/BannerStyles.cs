@@ -4,7 +4,7 @@ namespace Pure.Blazor.Components.Banners;
 
 public class BannerStyles
 {
-    public string Base => "p-3 border rounded-sm text-sm";
+    public string Base => "p-3 border-1 rounded-sm text-sm";
 
     public readonly Dictionary<Accent, string> Container = new()
     {

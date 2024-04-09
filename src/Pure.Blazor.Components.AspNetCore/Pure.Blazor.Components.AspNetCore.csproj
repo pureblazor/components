@@ -24,7 +24,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0"/>
-    <PackageReference Include="PureBlazor.Components" Version="0.7.0"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pure.Blazor.Components\Pure.Blazor.Components.csproj" />
   </ItemGroup>
 
 </Project>

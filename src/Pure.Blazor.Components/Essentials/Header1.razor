@@ -1,13 +1,13 @@
 @inherits PureComponent
-<h1 id="@Id" class="text-2xl sm:text-3xl font-extrabold leading-6 subpixel-antialiased text-gray-900 tracking-wide dark:text-slate-200 mb-4 @Styles">@ChildContent</h1>
+<h1 id="@Id" class="text-2xl sm:text-3xl font-extrabold leading-6 subpixel-antialiased text-gray-900 tracking-wide mb-4 @Styles">@ChildContent</h1>
 @if (!string.IsNullOrWhiteSpace(Subtitle))
 {
 <p class="mt-2 text-sm text-gray-800">@Subtitle</p>
-<hr class="my-4" />
+<hr class="my-4 border-gray-200" />
 }
 else
 {
-<hr class="mt-2 mb-4" />
+<hr class="mt-2 mb-4 border-gray-200" />
 }
 @code {
 

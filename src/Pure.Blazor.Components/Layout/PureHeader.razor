@@ -20,7 +20,7 @@
 
     [Parameter] public string? Title { get; set; }
 
-    [Parameter] public string ContainerCss { get; set; } = "text-gray-200 bg-brand-900 body-font border-b border-brand-600";
+    [Parameter] public string ContainerCss { get; set; } = "text-gray-200 bg-brand-900 body-font border-b-1 border-brand-600";
 
     [Parameter] public Accent Accent { get; set; } = Accent.Brand;
 
@@ -30,8 +30,8 @@
     {
         containerCss = Accent switch
         {
-            Accent.Default => "text-gray-400 bg-gray-900 body-font border-b border-slate-600",
-            Accent.Brand => "text-gray-200 bg-brand-900 body-font border-b border-brand-600",
+            Accent.Default => "text-gray-400 bg-gray-900 body-font border-b-1 border-slate-600",
+            Accent.Brand => "text-gray-200 bg-brand-900 body-font border-b-1 border-brand-600",
             _ => ""
         };
 

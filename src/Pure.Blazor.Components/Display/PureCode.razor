@@ -6,8 +6,13 @@
 @inject IJSRuntime JS
 
 <figure class="@Styles relative">
-    <PureIconButton OnClick="CopyToClipboard" Icon="IconCopy" Variant="ButtonVariant.Subtle" Styles="z-10 bg-gray-600 hover:bg-gray-800 absolute top-0 right-0 text-gray-500 hover:text-gray-100 opacity-50 hover:opacity-75 rounded-sm "/>
-    <figcaption class="dark:text-gray-200 font-semibold text-sm tracking-wide">@Caption</figcaption>
+    @* <PureIconButton *@
+    @*     OnClick="CopyToClipboard" *@
+    @*     Icon="IconCopy" *@
+    @*     Variant="ButtonVariant.Subtle" *@
+    @*     Accent="Accent.Default" *@
+    @*     Size="PureSize.Small"/> *@
+    <figcaption class="font-semibold text-sm tracking-wide">@Caption</figcaption>
     <pre class="rounded-lg">
         <code style="overflow: auto;" class="break-normal	@LanguageClass" @ref="@ElementReference">
                 @if (ChildContent is not null)

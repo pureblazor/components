@@ -1,1 +1,17 @@
 ﻿@import "tailwindcss";
+
+@theme {
+    --font-family-display: "InterVariable", sans-serif;
+    /*--color-brand: oklch(43.04% 0.107 244.67);*/
+    --color-brand-50: #eff9ff;
+    --color-brand-100: #dff1ff;
+    --color-brand-200: #b7e5ff;
+    --color-brand-300: #77d1ff;
+    --color-brand-400: #2fbbff;
+    --color-brand-500: #04a3f3;
+    --color-brand-600: #0081d0;
+    --color-brand-700: #0067a8;
+    --color-brand-800: #015486;
+    --color-brand-900: #074873;
+    --color-brand-950: #052e4c;
+}

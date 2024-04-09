@@ -1,11 +1,13 @@
 ﻿@using System.Text
 @inherits PureComponent
-<a @onclick="OnClick" class="@ApplyStyle(InternalCss)">
+<button @ref="_elementReference" tabindex="@(IsActive ? 0 : -1)" @onclick="OnClick" class="@ApplyStyle(InternalCss)" @onkeyup="OnKeyUp" role="tab">
     <!-- todo: icon -->
     @Title
-</a>
+</button>
 
 @code {
+    private ElementReference? _elementReference;
+    private bool prevStateActive = false;
     private const string BaseCss = "w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center";
     [Parameter] public string Title { get; set; } = string.Empty;
 
@@ -16,14 +18,31 @@
     [Parameter] public PureSize Size { get; set; }
 
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+    [Parameter]
+    public EventCallback<KeyboardDirection> OnKeyboardNavigation { get; set; }
+    public void OnKeyUp(KeyboardEventArgs e)
+    {
+        if (e.IsHorizontalArrow())
+        {
+            OnKeyboardNavigation.InvokeAsync(e.ToKeyboardDirection());
+        }
+    }
 
     private string InternalCss { get; set; } = string.Empty;
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
-        base.OnParametersSet();
+        if (_elementReference is null)
+        {
+            return;
+        }
 
-        BuildCss();
+        if (!prevStateActive && IsActive)
+        {
+            await _elementReference.Value.FocusAsync();
+        }
+
+        prevStateActive = IsActive;
     }
 
     protected override void BuildCss()
@@ -56,11 +75,11 @@
                 builder.Append(" border-b-2 border-gray-300 cursor-pointer");
                 break;
             case TabVariant.Outline when IsActive:
-                builder.Append(" border rounded-t-sm border-gray-200 border-b-white bg-white cursor-default hover:bg-gray-50 relative top-px");
+                builder.Append(" border-1 rounded-t-sm border-gray-200 border-b-white bg-white cursor-default hover:bg-gray-50 relative top-px");
 
                 break;
             case TabVariant.Outline when !IsActive:
-                builder.Append(" border rounded-t-sm border-transparent cursor-default hover:bg-gray-50 relative top-px");
+                builder.Append(" border-1 rounded-t-sm border-transparent cursor-default hover:bg-gray-50 relative top-px");
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
