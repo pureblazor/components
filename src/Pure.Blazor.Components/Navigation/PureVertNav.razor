@@ -4,6 +4,7 @@
 
 <ul class="@ApplyStyle("flex flex-col py-4 w-full gap-0.5")">
     @RenderTopLevel(("Alerts", "/components/alerts"))
+    @RenderTopLevel(("Badges", "/components/badges"))
     @RenderTopLevel(("Banners", "/components/banners"))
     <li class="@ApplyStyle(PureTheme.LeftNav.Container)" @key="0">
         <PureNavLink href="/components/buttons"
@@ -25,6 +26,7 @@
     </li>
     @RenderTopLevel(("Cards", "/components/cards"))
     @RenderTopLevel(("Dialog", "/components/dialog"))
+    @RenderTopLevel(("Dropdown", "/components/dropdowns"))
     @RenderTopLevel(("Inputs", "/components/inputs"))
     @RenderTopLevel(("Radio Buttons", "/components/radio"))
     @RenderTopLevel(("Tabs", "/components/tabs"))
