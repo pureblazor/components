@@ -65,6 +65,12 @@ public class PureNavLink : ComponentBase, IDisposable
     [Parameter]
     public NavLinkMatch Match { get; set; }
 
+    /// <summary>
+    /// Enables matching the anchor tag exactly with the current URI.
+    /// </summary>
+    [Parameter]
+    public bool MatchAnchor { get; set; }
+
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     /// <inheritdoc />

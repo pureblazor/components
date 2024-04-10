@@ -1,12 +1,46 @@
-﻿@inherits PureComponent
+﻿@using Pure.Blazor.Components.Navigation
+@inherits PureComponent
 @namespace Pure.Blazor.Components
 
-<ul class="flex flex-col py-4">
-    <PureVertNavItem Active="true" Url="">Getting Started</PureVertNavItem>
-    <PureVertNavItem Url="components/alerts" Nested="true">Components</PureVertNavItem>
-    <PureVertNavItem Url="components/advanced">Advanced Components</PureVertNavItem>
+<ul class="@ApplyStyle("flex flex-col py-4 w-full gap-0.5")">
+    @RenderTopLevel(("Alerts", "/components/alerts"))
+    @RenderTopLevel(("Banners", "/components/banners"))
+    <li class="@ApplyStyle(PureTheme.LeftNav.Container)" @key="0">
+        <PureNavLink href="/components/buttons"
+                     ActiveClass="@ApplyStyle(PureTheme.LeftNav.HeaderActive)"
+                     InactiveClass="@ApplyStyle(PureTheme.LeftNav.Header)">
+            Buttons
+        </PureNavLink>
+        <ul class="@ApplyStyle(PureTheme.LeftNav.MenuItemContainer)">
+            <PureNavLink Match="NavLinkMatch.All" ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/overview">@RenderListItem("Overview")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/default">@RenderListItem("Default Variant")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/outline">@RenderListItem("Outline Variant")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/subtle">@RenderListItem("Subtle Variant")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/theme">@RenderListItem("Customized Theme")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/styles">@RenderListItem("Ad-Hoc Styles")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/state">@RenderListItem("Button States")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/icons">@RenderListItem("Buttons with Icons")</PureNavLink>
+            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/headless">@RenderListItem("Headless Button")</PureNavLink>
+        </ul>
+    </li>
+    @RenderTopLevel(("Cards", "/components/cards"))
+    @RenderTopLevel(("Dialog", "/components/dialog"))
+    @RenderTopLevel(("Inputs", "/components/inputs"))
+    @RenderTopLevel(("Radio Buttons", "/components/radio"))
+    @RenderTopLevel(("Tabs", "/components/tabs"))
 </ul>
 
 @code {
+    private RenderFragment<string> RenderListItem => title =>
+        @<li class="@ApplyStyle(PureTheme.LeftNav.MenuItem)">@title</li>;
 
+    private RenderFragment<(string title, string href)> RenderTopLevel => (data)
+        => @<li class="@ApplyStyle(PureTheme.LeftNav.Container)">
+            <PureNavLink href="@data.href"
+                         Match="NavLinkMatch.All"
+                         ActiveClass="@ApplyStyle(PureTheme.LeftNav.HeaderActive)"
+                         InactiveClass="@ApplyStyle(PureTheme.LeftNav.Header)">
+                @data.title
+            </PureNavLink>
+        </li>;
 }

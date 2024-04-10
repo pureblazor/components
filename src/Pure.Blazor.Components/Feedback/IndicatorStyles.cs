@@ -1,4 +1,5 @@
 using Pure.Blazor.Components.Buttons;
+using Pure.Blazor.Components.Common;
 
 namespace Pure.Blazor.Components.Indicator;
 

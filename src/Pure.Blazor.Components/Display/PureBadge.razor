@@ -1,0 +1,31 @@
+@inherits PureComponent
+
+<div class="@ApplyStyle(OuterCss)">@ChildContent <span class="sr-only">@Description</span></div>
+
+@code {
+
+    [Parameter]
+    public Accent Accent { get; set; }
+
+    [Parameter]
+    public PureVariant Variant { get; set; }
+
+    /// <summary>
+    /// Describes the contents of the badge for screen readers and other assistive technologies.
+    ///
+    /// Content is additionally displayed visually to sighted users in most browsers and operating systems via tooltip.
+    /// </summary>
+    [Parameter]
+    public string? Description { get; set; }
+
+    /// <summary>
+    /// The name of the badge, used for accessibility purposes.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    protected override void BuildCss()
+    {
+        OuterCss = $"{PureTheme.Badge.Variants[Variant][Accent]} select-all uppercase rounded px-2 py-1 text-xs h-fit";
+    }
+}

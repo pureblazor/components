@@ -21,6 +21,7 @@ export function isDarkMode() {
 }
 
 export function scrollToFragment(elementId) {
+    console.log('scrolling');
     if (!elementId) {
         return;
     }
@@ -29,7 +30,7 @@ export function scrollToFragment(elementId) {
 
     if (element) {
         element.scrollIntoView({
-            behavior: 'smooth'
+            behavior: 'instant'
         });
     }
 }

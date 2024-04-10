@@ -5,6 +5,7 @@
     <button
         type="button"
         @attributes="InputAttributes"
+        name="@Name"
         class="@InternalCss @Styles">
         <PureIcon Type="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
         @if (LoadingText is not null)
@@ -29,10 +30,9 @@ else
 {
     <button
         @attributes="InputAttributes"
+        name="@Name"
         class="@InternalCss @Styles"
         disabled="@Disabled"
-        @onmousedown="() => Pressed = true"
-        @onmouseup="() => Pressed = false"
         @onclick="OnClicked">
         @if (LeftIcon is not null)
         {

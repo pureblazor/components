@@ -2,6 +2,17 @@ using Pure.Blazor.Components.Common;
 
 namespace Pure.Blazor.Components.Buttons;
 
+/// <summary>
+/// Base accent colors that have been checked for accessibility.
+/// </summary>
+public static class BaseAccentColors
+{
+    public const string Brand = "bg-brand-900 text-gray-100";
+    public const string Warning = "bg-yellow-400 text-black";
+    public const string Danger = "bg-red-800/95 text-gray-50";
+    public const string Success = "bg-green-500 text-black";
+}
+
 public class ButtonStyles
 {
     private const string ExtraSmallButton = "px-2.5 py-1.5 text-xs";
@@ -9,10 +20,10 @@ public class ButtonStyles
     private const string MediumButton = "px-3.5 py-2.5 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
 
-    private const string PrimaryButton = "bg-brand-900 hover:bg-brand-950 border-brand-950 text-gray-100 font-medium";
-    private const string DangerButton = "bg-red-800/95 border-red-950 hover:bg-red-900 text-gray-50 font-medium";
-    private const string WarningButton = "bg-yellow-400 hover:bg-yellow-500 text-black font-medium";
-    private const string SuccessButton = "bg-green-500 hover:bg-green-600 text-black font-medium";
+    private const string PrimaryButton = $"{BaseAccentColors.Brand} hover:bg-brand-950 border-brand-950 font-medium";
+    private const string DangerButton = $"{BaseAccentColors.Danger} border-red-950 hover:bg-red-900 font-medium";
+    private const string WarningButton = $"{BaseAccentColors.Warning} hover:bg-yellow-500 font-medium";
+    private const string SuccessButton = $"{BaseAccentColors.Success} hover:bg-green-600 font-medium";
 
     private const string PrimaryOutlineButton =
         "border-1 border-brand-700 text-brand-800 hover:bg-brand-700/10 font-medium";

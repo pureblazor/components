@@ -91,4 +91,12 @@ public class StylePrioritizerTests
         var result = sut.PrioritizeStyles(baseStyles, userStyles);
         result.Segment(' ').Should().BeEquivalentTo(expected);
     }
+
+    [TestCase("flex flex-grow flex-col", "flex-grow flex-row")]
+    public void ShouldHandleDuplicateKeys(string baseStyles, string userStyles)
+    {
+        var sut = new StylePrioritizer();
+        var result = sut.PrioritizeStyles(baseStyles, userStyles);
+        result.Should().Be($"flex flex-grow flex-row");
+    }
 }
