@@ -15,7 +15,7 @@ public static class BaseAccentColors
 
 public class ButtonStyles
 {
-    private const string ExtraSmallButton = "px-2.5 py-1.5 text-xs";
+    private const string ExtraSmallButton = "rounded px-1 py-0.5 text-xs font-normal";
     private const string SmallButton = "px-3 py-2 text-xs";
     private const string MediumButton = "px-3.5 py-2.5 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
@@ -44,7 +44,8 @@ public class ButtonStyles
     private const string WarningSubtleButton =
         "border-transparent bg-transparent hover:bg-yellow-100 text-yellow-900 font-medium";
 
-    private const string DangerSubtleButton = "border-transparent bg-transparent hover:bg-red-100 text-red-700 font-medium";
+    private const string DangerSubtleButton =
+        "border-transparent bg-transparent hover:bg-red-100 text-red-700 font-medium";
 
     private const string SuccessSubtleButton =
         "border-transparent bg-transparent hover:bg-green-400/10 text-green-700 font-medium";

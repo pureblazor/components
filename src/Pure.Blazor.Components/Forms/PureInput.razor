@@ -1,6 +1,7 @@
 ﻿@namespace Pure.Blazor.Components
 @using System.Text.RegularExpressions
 @using Pure.Blazor.Components.Forms.Validators
+@inherits PureComponent
 @implements IFormComponent
 @inject ILogger<PureInput> Log
 
@@ -9,27 +10,15 @@
     {
         if (LabelType == PureLabelType.Default)
         {
-            <label for="@Id" class="text-gray-800 mb-2">@Label</label>
+            <PureLabel For="@Id">@Label</PureLabel>
         }
     }
-    @if (!string.IsNullOrWhiteSpace(Css))
-    {
-        <input id="@Id"
-               type="text"
-               value="@Value"
-               @onchange="OnChange" @oninput="OnInput"
-               placeholder="@Placeholder"
-               class="@Css"/>
-    }
-    else
-    {
-        <input id="@Id"
-               type="text"
-               value="@Value"
-               @onchange="OnChange" @oninput="OnInput"
-               placeholder="@Placeholder"
-               class="@baseCss @(HasError ? errorBorder : defaultBorder)"/>
-    }
+    <input id="@Id"
+           type="text"
+           value="@Value"
+           @onchange="OnChange" @oninput="OnInput"
+           placeholder="@Placeholder"
+           class="@ApplyStyle(baseCss) @(HasError ? errorBorder : defaultBorder) @Styles"/>
 
     @if (Suffix != null)
     {
@@ -56,7 +45,7 @@
 @code {
     private readonly List<IEntryValidator> _validators = new();
     private readonly Guid _guid = Guid.NewGuid();
-    private string baseCss = "peer block px-4 py-2 border-1 focus:outline focus:outline-2 focus:outline-offset-2 outline-primary-500 text-gray-800 rounded-md";
+    private string baseCss = "peer block px-2 py-1 border-1 focus:outline focus:outline-2 focus:outline-offset-2 outline-brand-700 text-gray-800 rounded-md";
     private string defaultBorder = "border-gray-200";
     private string errorBorder = "border-red-600";
     private string? errorMessage;
@@ -101,6 +90,8 @@
     }
 
     public bool HasError { get; set; }
+
+    public PureSize Size { get; set; }
 
     [CascadingParameter] public PureForm? FormControl { get; set; }
 
@@ -179,8 +170,6 @@
     [Parameter] public RenderFragment? Suffix { get; set; }
 
     [Parameter] public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
-
-    [Parameter] public string? Css { get; set; }
 
     public async Task OnChange(ChangeEventArgs args)
     {
