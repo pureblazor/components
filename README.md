@@ -17,7 +17,7 @@ These components are native Blazor UI components that are free to use for any Bl
 - **Native Blazor** - The components are built for Blazor. They are not a wrapper around a JavaScript library.
 - **Blazing Fast** - The components are fast on every platform.
 - **Headless Mode** - The components have a fully customizable UI. You may disable all styles with a single property.
-- **Tailwind Compatible** - The components have  built-in styles that you may automatically merge your Tailwind classes.
+- **Tailwind Compatible** - The components have  built-in styles that automatically merge with your Tailwind classes.
 
 [Explore Components](https://pureblazor.com/components)
 
