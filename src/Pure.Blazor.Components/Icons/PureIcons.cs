@@ -10,6 +10,7 @@ public enum PureIcons
     IconChevronDoubleRight,
     IconChevronRight,
     IconChevronUpDown,
+    IconChevronDown,
     IconIdentity,
     IconSettings,
     IconSubscription,
