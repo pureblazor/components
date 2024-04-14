@@ -7,7 +7,7 @@
         @attributes="InputAttributes"
         name="@Name"
         class="@InternalCss @Styles">
-        <PureIcon Type="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
+        <PureIcon Icon="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
         @if (LoadingText is not null)
         {
             @LoadingText
@@ -36,7 +36,7 @@ else
         @onclick="OnClicked">
         @if (LeftIcon is not null)
         {
-            <PureIcon Type="(PureIcons)LeftIcon" Size="Size"/>
+            <PureIcon Icon="(PureIcons)LeftIcon" Size="Size"/>
         }
         @if (ChildContent is not null)
         {
@@ -48,7 +48,7 @@ else
         }
         @if (RightIcon is not null)
         {
-            <PureIcon Type="(PureIcons)RightIcon" Size="Size"/>
+            <PureIcon Icon="(PureIcons)RightIcon" Size="Size"/>
         }
     </button>
 }

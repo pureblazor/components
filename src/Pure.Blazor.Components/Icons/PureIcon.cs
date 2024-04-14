@@ -1,73 +1,64 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Pure.Blazor.Components.Common;
 
 namespace Pure.Blazor.Components.Icons;
 
-public partial class PureIcon
+public class PureIcon : PureComponent
 {
-    private MarkupString markupString;
+    private string? markupString;
     private PureIcons previousType;
     private string strokeColor = "currentColor";
     private string strokeFill = "none";
     private string strokeWidth = "1.5";
-    [Parameter] public required PureIcons Type { get; set; }
-
+    [Parameter] public required PureIcons Icon { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
-
     [Parameter] public PureAnimate Animate { get; set; } = PureAnimate.None;
-
-    [Parameter] public string Css { get; set; } = "";
-
-    private string InternalCss => BuildCss();
 
     protected override void OnParametersSet()
     {
-        if (previousType == Type)
+        if (previousType == Icon)
         {
             return;
         }
 
-        strokeWidth = GetStrokeWidth(Type);
-        markupString = BuildMarkup(Type);
-        strokeColor = GetStrokeColor(Type);
-        strokeFill = GetStrokeFill(Type);
-        previousType = Type;
+        strokeWidth = GetStrokeWidth(Icon);
+        markupString = BuildMarkup(Icon);
+        strokeColor = GetStrokeColor(Icon);
+        strokeFill = GetStrokeFill(Icon);
+        previousType = Icon;
     }
 
-    private static string GetStrokeWidth(PureIcons icon)
+    protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        var width = icon switch
+        var css = Size switch
         {
-            PureIcons.IconOpenCircle => "",
-            _ => "1.5"
+            PureSize.ExtraSmall => "w-3 h-3",
+            PureSize.Small => "w-4 h-4",
+            PureSize.Medium => "w-5 h-5",
+            PureSize.Large => "w-6 h-6",
+            PureSize.ExtraLarge => "w-7 h-7",
+            _ => "w-6 h-6"
         };
 
-        return width;
-    }
-
-    private static string GetStrokeFill(PureIcons icon)
-    {
-        var width = icon switch
+        if (Animate == PureAnimate.Spin)
         {
-            PureIcons.IconOpenCircle => "currentColor",
-            _ => "none"
-        };
+            css = $"{css} animate-spin";
+        }
 
-        return width;
+        builder.OpenElement(0, "svg");
+        builder.AddAttribute(1, "xmlns", "http://www.w3.org/2000/svg");
+        builder.AddAttribute(2, "fill", strokeFill);
+        builder.AddAttribute(3, "viewBox", "0 0 24 24");
+        builder.AddAttribute(4, "stroke", strokeColor);
+        builder.AddAttribute(5, "stroke-width", strokeWidth);
+        builder.AddAttribute(6, "class", $"{ApplyStyle(css)}");
+
+        builder.AddMarkupContent(2, markupString);
+        builder.CloseElement();
     }
 
-    private static string GetStrokeColor(PureIcons icon)
-    {
-        var width = icon switch
-        {
-            PureIcons.IconOpenCircle => "",
-            _ => "currentColor"
-        };
-
-        return width;
-    }
-
-    private static MarkupString BuildMarkup(PureIcons icon)
+    private static string BuildMarkup(PureIcons icon)
     {
         var path = icon switch
         {
@@ -133,64 +124,44 @@ public partial class PureIcon
                 "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z\" />",
             PureIcons.IconNewFile =>
                 "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z\" />",
+            PureIcons.IconGrabHandle =>
+                "  <path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M18 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z M18 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM18 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z\" />\n",
             _ => ""
         };
 
-        return (MarkupString)path;
+        return path;
     }
 
-    private string BuildCss()
+    private static string GetStrokeWidth(PureIcons icon)
     {
-        var css = Size switch
+        var width = icon switch
         {
-            PureSize.ExtraSmall => "w-3 h-3",
-            PureSize.Small => "w-4 h-4",
-            PureSize.Medium => "w-5 h-5",
-            PureSize.Large => "w-6 h-6",
-            PureSize.ExtraLarge => "w-7 h-7",
-            _ => "w-6 h-6"
+            PureIcons.IconOpenCircle => "",
+            _ => "1.5"
         };
 
-        if (Animate == PureAnimate.Spin)
-        {
-            css = $"{css} animate-spin";
-        }
-
-        return css;
+        return width;
     }
-}
 
-public enum PureIcons
-{
-    IconCheck,
-    IconSpin,
-    IconOpenCircle,
-    IconChevronDoubleLeft,
-    IconChevronLeft,
-    IconChevronDoubleRight,
-    IconChevronRight,
-    IconChevronUpDown,
-    IconIdentity,
-    IconSettings,
-    IconSubscription,
-    IconDashboard,
-    IconArticle,
-    IconNewspaper,
-    IconPhoto,
-    IconBlocks,
-    IconBuilder,
-    IconFunction,
-    IconRectangleStack,
-    IconBeaker,
-    IconSignOut,
-    IconEllipsis,
-    IconLanguage,
-    IconSquareStack,
-    IconCloud,
-    IconCopy,
-    IconHeart,
-    IconInfo,
-    IconArchive,
-    IconNewFolder,
-    IconNewFile,
+    private static string GetStrokeFill(PureIcons icon)
+    {
+        var width = icon switch
+        {
+            PureIcons.IconOpenCircle => "currentColor",
+            _ => "none"
+        };
+
+        return width;
+    }
+
+    private static string GetStrokeColor(PureIcons icon)
+    {
+        var width = icon switch
+        {
+            PureIcons.IconOpenCircle => "",
+            _ => "currentColor"
+        };
+
+        return width;
+    }
 }

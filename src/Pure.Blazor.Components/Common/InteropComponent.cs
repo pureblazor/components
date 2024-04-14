@@ -6,7 +6,7 @@ namespace Pure.Blazor.Components.Common;
 
 public abstract class InteropComponent : PureComponent, IAsyncDisposable
 {
-    private const string Root = "./_content/PureBlazor.Components";
+    protected virtual string Root => "./_content/PureBlazor.Components";
 
     // set the default value to NoOpJsObjectReference to avoid null reference exceptions
     // this is a fallback in case the module fails to load

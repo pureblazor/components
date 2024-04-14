@@ -1,0 +1,37 @@
+namespace Pure.Blazor.Components.Icons;
+
+public enum PureIcons
+{
+    IconCheck,
+    IconSpin,
+    IconOpenCircle,
+    IconChevronDoubleLeft,
+    IconChevronLeft,
+    IconChevronDoubleRight,
+    IconChevronRight,
+    IconChevronUpDown,
+    IconIdentity,
+    IconSettings,
+    IconSubscription,
+    IconDashboard,
+    IconArticle,
+    IconNewspaper,
+    IconPhoto,
+    IconBlocks,
+    IconBuilder,
+    IconFunction,
+    IconRectangleStack,
+    IconBeaker,
+    IconSignOut,
+    IconEllipsis,
+    IconLanguage,
+    IconSquareStack,
+    IconCloud,
+    IconCopy,
+    IconHeart,
+    IconInfo,
+    IconArchive,
+    IconNewFolder,
+    IconNewFile,
+    IconGrabHandle
+}

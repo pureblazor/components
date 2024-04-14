@@ -4,18 +4,26 @@
 
     @if (EdgeControls)
     {
-        <PurePaginationItem Value="@(FirstPage)" Disabled="@(Current == FirstPage)" OnClick="@OnChange"><PureIcon Type=PureIcons.IconChevronDoubleLeft /></PurePaginationItem>
+        <PurePaginationItem Value="@(FirstPage)" Disabled="@(Current == FirstPage)" OnClick="@OnChange">
+            <PureIcon Icon=PureIcons.IconChevronDoubleLeft/>
+        </PurePaginationItem>
     }
-    <PurePaginationItem Value="@(PreviousPage)" Disabled="@(PreviousPage < FirstPage)" OnClick="@OnChange"><PureIcon Type=PureIcons.IconChevronLeft /></PurePaginationItem>
+    <PurePaginationItem Value="@(PreviousPage)" Disabled="@(PreviousPage < FirstPage)" OnClick="@OnChange">
+        <PureIcon Icon=PureIcons.IconChevronLeft/>
+    </PurePaginationItem>
     @for (var _i = FirstSibling; _i <= LastSibling; _i++)
     {
         //Capture variable; required as the render is only evaluated once the loop terminates
         var i = _i;
         <PurePaginationItem Value="@i" Active="@(i == Current)" OnClick="@OnChange">@i</PurePaginationItem>
     }
-    <PurePaginationItem Value="@(NextPage)" Disabled="@(NextPage > LastPage)" OnClick="@OnChange"><PureIcon Type=PureIcons.IconChevronRight /></PurePaginationItem>
+    <PurePaginationItem Value="@(NextPage)" Disabled="@(NextPage > LastPage)" OnClick="@OnChange">
+        <PureIcon Icon=PureIcons.IconChevronRight/>
+    </PurePaginationItem>
     @if (EdgeControls)
     {
-        <PurePaginationItem Value="@(LastPage)" Disabled="@(Current == LastPage)"  OnClick="@OnChange"><PureIcon Type=PureIcons.IconChevronDoubleRight /></PurePaginationItem>
+        <PurePaginationItem Value="@(LastPage)" Disabled="@(Current == LastPage)" OnClick="@OnChange">
+            <PureIcon Icon=PureIcons.IconChevronDoubleRight/>
+        </PurePaginationItem>
     }
 </ul>
