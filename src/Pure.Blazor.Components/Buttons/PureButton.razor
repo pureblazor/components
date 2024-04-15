@@ -5,8 +5,10 @@
     <button
         type="button"
         @attributes="InputAttributes"
+        aria-label="@Label"
         name="@Name"
-        class="@InternalCss @Styles">
+        class="@InternalCss @Styles"
+        @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
         <PureIcon Icon="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
         @if (LoadingText is not null)
         {
@@ -30,10 +32,12 @@ else
 {
     <button
         @attributes="InputAttributes"
+        aria-label="@Label"
         name="@Name"
         class="@InternalCss @Styles"
         disabled="@Disabled"
-        @onclick="OnClicked">
+        @onclick="OnClicked"
+        @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
         @if (LeftIcon is not null)
         {
             <PureIcon Icon="(PureIcons)LeftIcon" Size="Size"/>

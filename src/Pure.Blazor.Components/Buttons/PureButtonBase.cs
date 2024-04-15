@@ -10,12 +10,18 @@ public class PureButtonBase : PureComponent
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? InputAttributes { get; set; } =
         new() { { "type", "button" } };
+
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
     [Parameter] public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
     [Parameter] public Accent Accent { get; set; }
 
+    [Parameter] public string? Name { get; set; }
+
+    /// <summary>
+    /// Labels the button for accessibility if no child content is provided.
+    /// </summary>
     [Parameter]
-    public string? Name { get; set; }
+    public string? Label { get; set; }
 
     /// <summary>
     ///     Indicate the button is in a loading state
@@ -37,9 +43,11 @@ public class PureButtonBase : PureComponent
 
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+    [Parameter] public bool PropagateClicks { get; set; }
     [Parameter] public bool Disabled { get; set; }
     [Inject] public ILogger<PureButtonBase>? Logger { get; set; }
     protected string? InternalCss { get; set; }
+
     protected void OnClicked(MouseEventArgs e)
     {
         if (Disabled)

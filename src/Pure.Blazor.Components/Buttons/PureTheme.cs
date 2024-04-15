@@ -8,6 +8,7 @@ namespace Pure.Blazor.Components.Buttons;
 public class PureTheme
 {
     public ButtonStyles Button { get; set; } = new();
+    public DropdownStyles Dropdown { get; set; } = new();
     public IndicatorStyles Indicator { get; set; } = new();
     public BannerStyles Banner { get; set; } = new();
     public LinkStyles Link { get; set; } = new();
