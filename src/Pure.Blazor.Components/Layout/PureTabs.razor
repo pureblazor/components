@@ -1,10 +1,15 @@
 ﻿@inherits PureComponent
 <CascadingValue Value="this">
-    <section class="@ApplyStyle("text-gray-900 body-font container mx-auto flex flex-wrap flex-col")">
-        <div class="@ApplyStyle("flex mx-auto flex-wrap w-full border-b border-neutral-200")">
+    <section role="tabpanel" class="@ApplyStyle("text-gray-900 body-font container mx-auto flex flex-wrap flex-col")">
+        <div role="tablist" class="@ApplyStyle("flex mx-auto flex-wrap w-full border-b-1 border-neutral-200")">
             @foreach (var tab in Tabs)
             {
-                <PureTabButton Title="@tab.Title" IsActive="@(CurrentTab == tab)" Size="Size" OnClick="() => ChangeTab(tab)" Variant="Variant"/>
+                <PureTabButton
+                    Title="@tab.Title"
+                    IsActive="@(CurrentTab == tab)"
+                    Size="Size"
+                    OnKeyboardNavigation="KeyboardNavigation"
+                    OnClick="() => ChangeTab(tab)" Variant="Variant"/>
             }
 
         </div>
@@ -15,6 +20,9 @@
 </CascadingValue>
 
 @code {
+    // enable endless tab cycle
+    // if true, when you reach the last tab and press right arrow, it will go to the first tab
+    private bool useEndlessTabCycle = false;
     [Parameter] public EventCallback OnChanging { get; set; }
 
     [Parameter] public TabVariant Variant { get; set; }
@@ -32,6 +40,27 @@
         base.OnParametersSet();
 
         BuildCss();
+    }
+
+    internal void KeyboardNavigation(KeyboardDirection direction)
+    {
+        if (CurrentTab == null)
+        {
+            CurrentTab = Tabs.FirstOrDefault();
+            return;
+        }
+
+        var currentIndex = Tabs.IndexOf(CurrentTab);
+        var nextIndex = direction switch
+        {
+            KeyboardDirection.Left when currentIndex > 0 => currentIndex - 1,
+            KeyboardDirection.Right when currentIndex < Tabs.Count - 1 => currentIndex + 1,
+            KeyboardDirection.Left when useEndlessTabCycle => Tabs.Count - 1,
+            KeyboardDirection.Right when useEndlessTabCycle => 0,
+            _ => currentIndex
+        };
+
+        ChangeTab(Tabs[nextIndex]);
     }
 
     internal void ChangeTab(PureTabContent tab)

@@ -4,10 +4,8 @@
 <button
     type="button"
     @attributes="InputAttributes"
-    class="cursor-pointer @InternalCss @Styles"
+    class="@InternalCss @Styles"
     disabled="@Disabled"
-    @onmousedown="() => Pressed = true"
-    @onmouseup="() => Pressed = false"
     @onclick="OnClicked">
-    <PureIcon Type="Icon" Size="Size"/>
+    <PureIcon Icon="Icon" Size="Size"/>
 </button>

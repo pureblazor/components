@@ -1,7 +1,7 @@
 ﻿@using Pure.Blazor.Components.Essentials
 @inherits PureComponent
 
-<div class="@ApplyStyle("rounded-md sm:rounded-sm overflow-hidden shadow-md border border-gray-200 bg-white")">
+<div class="@ApplyStyle("rounded-md sm:rounded-sm overflow-hidden shadow-md border-1 border-gray-200 bg-white")">
     @if (!string.IsNullOrWhiteSpace(ImageUrl))
     {
         <img src="@ImageUrl" alt="@ImageAlt"/>

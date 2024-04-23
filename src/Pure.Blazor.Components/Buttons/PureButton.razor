@@ -5,8 +5,11 @@
     <button
         type="button"
         @attributes="InputAttributes"
-        class="@InternalCss @Styles">
-        <PureIcon Type="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
+        aria-label="@Label"
+        name="@Name"
+        class="@InternalCss @Styles"
+        @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
+        <PureIcon Icon="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
         @if (LoadingText is not null)
         {
             @LoadingText
@@ -29,14 +32,15 @@ else
 {
     <button
         @attributes="InputAttributes"
+        aria-label="@Label"
+        name="@Name"
         class="@InternalCss @Styles"
         disabled="@Disabled"
-        @onmousedown="() => Pressed = true"
-        @onmouseup="() => Pressed = false"
-        @onclick="OnClicked">
+        @onclick="OnClicked"
+        @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
         @if (LeftIcon is not null)
         {
-            <PureIcon Type="(PureIcons)LeftIcon" Size="Size"/>
+            <PureIcon Icon="(PureIcons)LeftIcon" Size="Size"/>
         }
         @if (ChildContent is not null)
         {
@@ -48,7 +52,7 @@ else
         }
         @if (RightIcon is not null)
         {
-            <PureIcon Type="(PureIcons)RightIcon" Size="Size"/>
+            <PureIcon Icon="(PureIcons)RightIcon" Size="Size"/>
         }
     </button>
 }

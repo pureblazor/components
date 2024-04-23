@@ -1,73 +1,66 @@
-﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Pure.Blazor.Components.Common;
 
 namespace Pure.Blazor.Components.Icons;
 
-public partial class PureIcon
+public class PureIcon : PureComponent
 {
-    private MarkupString markupString;
+    private string? markupString;
     private PureIcons previousType;
     private string strokeColor = "currentColor";
     private string strokeFill = "none";
     private string strokeWidth = "1.5";
-    [Parameter] public required PureIcons Type { get; set; }
-
+    [Parameter] public required PureIcons Icon { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
-
     [Parameter] public PureAnimate Animate { get; set; } = PureAnimate.None;
-
-    [Parameter] public string Css { get; set; } = "";
-
-    private string InternalCss => BuildCss();
 
     protected override void OnParametersSet()
     {
-        if (previousType == Type)
+        if (previousType == Icon)
         {
             return;
         }
 
-        strokeWidth = GetStrokeWidth(Type);
-        markupString = BuildMarkup(Type);
-        strokeColor = GetStrokeColor(Type);
-        strokeFill = GetStrokeFill(Type);
-        previousType = Type;
+        strokeWidth = GetStrokeWidth(Icon);
+        markupString = BuildMarkup(Icon);
+        strokeColor = GetStrokeColor(Icon);
+        strokeFill = GetStrokeFill(Icon);
+        previousType = Icon;
     }
 
-    private static string GetStrokeWidth(PureIcons icon)
+    protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
-        var width = icon switch
+        var css = Size switch
         {
-            PureIcons.IconOpenCircle => "",
-            _ => "1.5"
+            // extra small is intentionally the same size as small
+            // they get too hard to see after a certain size
+            PureSize.ExtraSmall => "w-4 h-4",
+            PureSize.Small => "w-4 h-4",
+            PureSize.Medium => "w-5 h-5",
+            PureSize.Large => "w-6 h-6",
+            PureSize.ExtraLarge => "w-8 h-8",
+            _ => "w-6 h-6"
         };
 
-        return width;
-    }
-
-    private static string GetStrokeFill(PureIcons icon)
-    {
-        var width = icon switch
+        if (Animate == PureAnimate.Spin)
         {
-            PureIcons.IconOpenCircle => "currentColor",
-            _ => "none"
-        };
+            css = $"{css} animate-spin";
+        }
 
-        return width;
+        builder.OpenElement(0, "svg");
+        builder.AddAttribute(1, "xmlns", "http://www.w3.org/2000/svg");
+        builder.AddAttribute(2, "fill", strokeFill);
+        builder.AddAttribute(3, "viewBox", "0 0 24 24");
+        builder.AddAttribute(4, "stroke", strokeColor);
+        builder.AddAttribute(5, "stroke-width", strokeWidth);
+        builder.AddAttribute(6, "class", $"{ApplyStyle(css)}");
+
+        builder.AddMarkupContent(2, markupString);
+        builder.CloseElement();
     }
 
-    private static string GetStrokeColor(PureIcons icon)
-    {
-        var width = icon switch
-        {
-            PureIcons.IconOpenCircle => "",
-            _ => "currentColor"
-        };
-
-        return width;
-    }
-
-    private static MarkupString BuildMarkup(PureIcons icon)
+    private static string BuildMarkup(PureIcons icon)
     {
         var path = icon switch
         {
@@ -125,60 +118,56 @@ public partial class PureIcon
                 "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z\" />",
             PureIcons.IconChevronUpDown =>
                 "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9\" />",
+            PureIcons.IconInfo =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z\"/>",
+            PureIcons.IconArchive =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0-3-3m3 3 3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z\" />",
+            PureIcons.IconNewFolder =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M12 10.5v6m3-3H9m4.06-7.19-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z\" />",
+            PureIcons.IconNewFile =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m3.75 9v6m3-3H9m1.5-12H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z\" />",
+            PureIcons.IconGrabHandle =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M18 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z M18 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM18 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z M12 6.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 12.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5ZM12 18.75a.75.75 0 1 1 0-1.5.75.75 0 0 1 0 1.5Z\" />",
+            PureIcons.IconChevronDown =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m19.5 8.25-7.5 7.5-7.5-7.5\" />",
+            PureIcons.IconTrash =>
+                "<path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0\" />",
             _ => ""
         };
 
-        return (MarkupString)path;
+        return path;
     }
 
-    private string BuildCss()
+    private static string GetStrokeWidth(PureIcons icon)
     {
-        var css = Size switch
+        var width = icon switch
         {
-            PureSize.ExtraSmall => "w-3 h-3",
-            PureSize.Small => "w-4 h-4",
-            PureSize.Medium => "w-5 h-5",
-            PureSize.Large => "w-6 h-6",
-            PureSize.ExtraLarge => "w-7 h-7",
-            _ => "w-6 h-6"
+            PureIcons.IconOpenCircle => "",
+            _ => "1.5"
         };
 
-        if (Animate == PureAnimate.Spin)
-        {
-            css = $"{css} animate-spin";
-        }
-
-        return css;
+        return width;
     }
-}
 
-public enum PureIcons
-{
-    IconCheck,
-    IconSpin,
-    IconOpenCircle,
-    IconChevronDoubleLeft,
-    IconChevronLeft,
-    IconChevronDoubleRight,
-    IconChevronRight,
-    IconChevronUpDown,
-    IconIdentity,
-    IconSettings,
-    IconSubscription,
-    IconDashboard,
-    IconArticle,
-    IconNewspaper,
-    IconPhoto,
-    IconBlocks,
-    IconBuilder,
-    IconFunction,
-    IconRectangleStack,
-    IconBeaker,
-    IconSignOut,
-    IconEllipsis,
-    IconLanguage,
-    IconSquareStack,
-    IconCloud,
-    IconCopy,
-    IconHeart
+    private static string GetStrokeFill(PureIcons icon)
+    {
+        var width = icon switch
+        {
+            PureIcons.IconOpenCircle => "currentColor",
+            _ => "none"
+        };
+
+        return width;
+    }
+
+    private static string GetStrokeColor(PureIcons icon)
+    {
+        var width = icon switch
+        {
+            PureIcons.IconOpenCircle => "",
+            _ => "currentColor"
+        };
+
+        return width;
+    }
 }

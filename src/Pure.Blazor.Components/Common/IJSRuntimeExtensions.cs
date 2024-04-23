@@ -3,7 +3,7 @@ using Microsoft.JSInterop;
 namespace Pure.Blazor.Components.Common;
 
 // ReSharper disable once InconsistentNaming
-public static class IJSRuntimeExtensions
+public static class JSRuntimeExtensions
 {
     private const string Root = "./_content/PureBlazor.Components";
 
@@ -16,4 +16,8 @@ public static class IJSRuntimeExtensions
     public static async Task<IJSObjectReference> Razor(this IJSRuntime JS, string module) =>
         await JS.InvokeAsync<IJSObjectReference>("import",
             $"{Root}/{module}.razor.js");
+
+    public static async Task<IJSObjectReference> Script(this IJSRuntime JS, string module) =>
+        await JS.InvokeAsync<IJSObjectReference>("import",
+            $"{Root}/{module}.js");
 }

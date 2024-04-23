@@ -1,8 +1,9 @@
-﻿@inherits PureComponent
+﻿@using Pure.Blazor.Components.Layout
+@inherits PureComponent
 @namespace Pure.Blazor.Components
 
-<header class="@containerCss">
-    <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center @innerContainerCss">
+<header class="@ApplyStyle(containerCss)">
+    <PureContainer Styles="@innerContainerCss">
         <a class="flex title-font font-medium items-center text-gray-100" href="/">
             <span class="text-xl">@Title</span>
         </a>
@@ -11,7 +12,17 @@
         <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
             @ChildContent
         </nav>
-    </div>
+    </PureContainer>
+    @* <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center @innerContainerCss"> *@
+    @*     <a class="flex title-font font-medium items-center text-gray-100" href="/"> *@
+    @*         <span class="text-xl">@Title</span> *@
+    @*     </a> *@
+    @* *@
+    @* *@
+    @*     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center"> *@
+    @*         @ChildContent *@
+    @*     </nav> *@
+    @* </div> *@
 </header>
 
 @code {
@@ -20,22 +31,23 @@
 
     [Parameter] public string? Title { get; set; }
 
-    [Parameter] public string ContainerCss { get; set; } = "text-gray-200 bg-brand-900 body-font border-b border-brand-600";
+    [Parameter] public string ContainerCss { get; set; } = "text-gray-200 bg-brand-900 body-font border-b-1 border-brand-600";
 
     [Parameter] public Accent Accent { get; set; } = Accent.Brand;
 
     [Parameter] public PureSize Height { get; set; } = PureSize.Medium;
+    [Parameter] public PureContainerType InnerContainer { get; set; }
 
     protected override void BuildCss()
     {
         containerCss = Accent switch
         {
-            Accent.Default => "text-gray-400 bg-gray-900 body-font border-b border-slate-600",
-            Accent.Brand => "text-gray-200 bg-brand-900 body-font border-b border-brand-600",
+            Accent.Default => "text-gray-400 bg-gray-900 body-font border-b-1 border-slate-600",
+            Accent.Brand => "text-gray-200 bg-brand-900 body-font border-b-1 border-brand-600",
             _ => ""
         };
 
-        innerContainerCss = Height switch
+        var heightCss = Height switch
         {
             PureSize.ExtraSmall => "px-5 py-1",
             PureSize.Small => "px-5 py-2",
@@ -44,6 +56,8 @@
             PureSize.ExtraLarge => "px-5 py-6",
             _ => ""
         };
+
+        innerContainerCss = $"flex flex-wrap flex-col md:flex-row items-center {heightCss}";
     }
 
 }

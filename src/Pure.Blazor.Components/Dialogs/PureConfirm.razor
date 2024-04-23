@@ -1,20 +1,25 @@
-﻿<dialog class="p-6 border rounded-sm" id="confirm">
-    <div class="py-4">
-        @if (DialogService.Title != null)
-        {
-            <p class="font-bold leading-6">@DialogService.Title</p>
-        }
-    </div>
-    <div class="mt-4 flex justify-end gap-4">
-        <PureButton
-            id="dialog_confirm--cancel"
-            Variant="ButtonVariant.Subtle"
-            OnClick="CancelAsync">Cancel</PureButton>
+﻿<div class="grid grid-cols-1 h-screen absolute">
+    <dialog class="md:min-w-96 p-6 border-1 border-gray-300 gap-8 rounded-sm self-center justify-self-center" id="confirm">
+        <div class="flex flex-col gap-6">
+            @if (DialogService.Title != null)
+            {
+                <Header2>@DialogService.Title</Header2>
+            }
+            <div class="flex justify-end gap-4">
+                <PureButton
+                    id="dialog_confirm--cancel"
+                    Variant="ButtonVariant.Subtle"
+                    OnClick="CancelAsync">
+                    Cancel
+                </PureButton>
 
-        <PureButton id="dialog_confirm--ack"
-            Variant="ButtonVariant.Default"
-            Accent="Accent.Danger"
-            Color="@DialogService.AckColor"
-                    OnClick="ConfirmAsync">@DialogService.AckButton</PureButton>
-    </div>
-</dialog>
+                <PureButton id="dialog_confirm--ack"
+                            Variant="ButtonVariant.Default"
+                            Accent="@DialogService.AckColor"
+                            OnClick="ConfirmAsync">
+                    @DialogService.AckButton
+                </PureButton>
+            </div>
+        </div>
+    </dialog>
+</div>

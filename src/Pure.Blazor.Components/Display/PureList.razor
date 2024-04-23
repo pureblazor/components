@@ -1,0 +1,12 @@
+@inherits PureComponent
+<ul class="flex flex-wrap items-center gap-2" aria-labelledby="@LabelledBy">
+    @ChildContent
+</ul>
+
+@code {
+    /// <summary>
+    /// The aria-labelledby attribute of the list.
+    /// </summary>
+    [Parameter]
+    public string? LabelledBy { get; set; }
+}
