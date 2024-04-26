@@ -1,4 +1,5 @@
 ﻿@inherits PureComponent
+@using Microsoft.AspNetCore.Components.Forms
 @implements IFormComponent
 @inject ILogger<PureInput> Log
 
@@ -10,13 +11,9 @@
             <PureLabel For="@Id">@Label</PureLabel>
         }
     }
-    <input id="@Id"
-           autocomplete="@GetAutoComplete()"
-           type="@GetInputType()"
-           value="@Value"
-           @onchange="OnChange" @oninput="OnInput"
-           placeholder="@Placeholder"
-           class="@ApplyStyle(baseCss) @(HasError ? errorBorder : defaultBorder) @Styles"/>
+    <InputText @bind-Value="Value" id="@Id" class="@($"{ApplyStyle(baseCss)} {(HasError ? errorBorder : defaultBorder)}")"
+               type="@GetInputType()" autocomplete="@GetAutoComplete()" placeholder="@Placeholder"
+               @onchange="OnChange" @oninput="OnInput" required="@Required"/>
 
     @if (Suffix != null)
     {
