@@ -2,10 +2,10 @@ name: .NET
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "preview" ]
       
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "preview" ]
       
 jobs:
   build:
