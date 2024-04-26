@@ -3,11 +3,11 @@
 @if (Loading)
 {
     <button
-        type="button"
-        @attributes="InputAttributes"
+        type="@(ButtonType == ButtonType.Form ? "submit" : "button")"
         aria-label="@Label"
         name="@Name"
-        class="@InternalCss @Styles"
+        title="@Title"
+        class="@ApplyStyle(InternalCss)"
         @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
         <PureIcon Icon="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
         @if (LoadingText is not null)
@@ -31,10 +31,11 @@
 else
 {
     <button
-        @attributes="InputAttributes"
+        type="@(ButtonType == ButtonType.Form ? "submit" : "button")"
         aria-label="@Label"
         name="@Name"
-        class="@InternalCss @Styles"
+        title="@Title"
+        class="@ApplyStyle(InternalCss)"
         disabled="@Disabled"
         @onclick="OnClicked"
         @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">

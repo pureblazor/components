@@ -3,19 +3,27 @@
 
 @if (Variant is null or ButtonVariant.Subtle)
 {
-    <a class="@AccessibilityStyles @ApplyStyle(PureTheme.Link.Base) @Styles" href="@Url" target="@GetTarget()">@ChildContent</a>
+    <a class="@AccessibilityStyles @ApplyStyle(PureTheme.Link.Base) @Styles" href="@Href" target="@GetTarget()">@ChildContent</a>
 }
 else
 {
     <a class="@ApplyStyle(InternalCss) @Styles"
-       href="@Url" target="@GetTarget()">
+       href="@Href" target="@GetTarget()">
         @ChildContent
     </a>
 }
 
 @code {
 
-    [Parameter] public string? Url { get; set; }
+    [Obsolete("Use Href instead of Url")]
+    [Parameter]
+    public string? Url
+    {
+        get => Href;
+        set => Href = value;
+    }
+
+    [Parameter] public string? Href { get; set; }
 
     /// <summary>
     ///     Style the link as a button

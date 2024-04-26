@@ -7,14 +7,11 @@ namespace Pure.Blazor.Components.Buttons;
 
 public class PureButtonBase : PureComponent
 {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public Dictionary<string, object>? InputAttributes { get; set; } =
-        new() { { "type", "button" } };
-
+    [Parameter] public ButtonType ButtonType { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
     [Parameter] public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
     [Parameter] public Accent Accent { get; set; }
-
+    [Parameter] public string? Title { get; set; }
     [Parameter] public string? Name { get; set; }
 
     /// <summary>
@@ -45,7 +42,6 @@ public class PureButtonBase : PureComponent
 
     [Parameter] public bool PropagateClicks { get; set; }
     [Parameter] public bool Disabled { get; set; }
-    [Inject] public ILogger<PureButtonBase>? Logger { get; set; }
     protected string? InternalCss { get; set; }
 
     protected void OnClicked(MouseEventArgs e)
