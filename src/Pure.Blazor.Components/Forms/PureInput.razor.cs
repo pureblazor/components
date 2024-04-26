@@ -169,6 +169,8 @@ public partial class PureInput
     [Parameter]
     public EntryMode Mode { get; set; } = EntryMode.Immediate;
 
+    [Parameter] public string? Name { get; set; }
+
     /// <summary>
     ///     Optional label (recommended)
     /// </summary>

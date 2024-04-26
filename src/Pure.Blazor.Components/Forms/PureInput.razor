@@ -12,7 +12,7 @@
         }
     }
     <InputText @bind-Value="Value" id="@Id" class="@($"{ApplyStyle(baseCss)} {(HasError ? errorBorder : defaultBorder)}")"
-               type="@GetInputType()" autocomplete="@GetAutoComplete()" placeholder="@Placeholder"
+               type="@GetInputType()" autocomplete="@GetAutoComplete()" placeholder="@Placeholder" name="@Name"
                @onchange="OnChange" @oninput="OnInput" required="@Required"/>
 
     @if (Suffix != null)
