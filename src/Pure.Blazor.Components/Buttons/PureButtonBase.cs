@@ -38,6 +38,8 @@ public class PureButtonBase : PureComponent
     [Parameter]
     public string? Text { get; set; }
 
+    [Parameter] public string? Value { get; set; }
+
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
     [Parameter] public bool PropagateClicks { get; set; }
