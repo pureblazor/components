@@ -1,6 +1,6 @@
 ﻿@using Pure.Blazor.Components.Display
 @inherits PureComponent
-<div class="@ContainerCss @Styles">
+<div class="@ApplyStyle(ContainerCss)">
     <div class="flex gap-4 items-center">
         <div class="pl-1">
             <PureIcon Icon="IconInfo"/>
@@ -10,7 +10,7 @@
         </div>
         <div class="flex flex-col">
             <div class="font-bold">@Title</div>
-            <div>
+            <div class="@ContentContainerStyles">
                 @if (ChildContent != null)
                 {
                     @ChildContent
@@ -32,6 +32,12 @@
 
     [Parameter] public Accent Accent { get; set; } = Accent.Brand;
     [Parameter] public PureVariant Variant { get; set; }
+
+    /// <summary>
+    /// Styles applied to the content container
+    /// </summary>
+    [Parameter]
+    public string? ContentContainerStyles { get; set; }
 
     protected override void BuildCss()
     {
