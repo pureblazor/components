@@ -10,17 +10,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="bunit" Version="2.0.24-preview"/>
-    <PackageReference Include="bunit.generators" Version="2.0.24-preview"/>
-    <PackageReference Include="FluentAssertions" Version="7.0.0-alpha.3"/>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0"/>
-    <PackageReference Include="NUnit" Version="4.1.0"/>
-    <PackageReference Include="NUnit3TestAdapter" Version="4.5.0"/>
-    <PackageReference Include="NUnit.Analyzers" Version="4.1.0">
+    <PackageReference Include="bunit"/>
+    <PackageReference Include="bunit.generators"/>
+    <PackageReference Include="FluentAssertions"/>
+    <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+    <PackageReference Include="NUnit"/>
+    <PackageReference Include="NUnit3TestAdapter"/>
+    <PackageReference Include="NUnit.Analyzers">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="coverlet.collector" Version="6.0.0"/>
+    <PackageReference Include="coverlet.collector"/>
+    <PackageReference Include="System.Text.Json"/>
   </ItemGroup>
 
   <ItemGroup>

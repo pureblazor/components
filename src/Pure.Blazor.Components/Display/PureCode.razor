@@ -1,22 +1,29 @@
 ﻿@namespace Pure.Blazor.Components
 @inherits PureComponent
 @using Microsoft.JSInterop
-@implements IAsyncDisposable
+@using Pure.Blazor.Components.Display
+@* @implements IAsyncDisposable *@
+@* @implements IHandleEvent *@
 @inject ILogger<PureCode> Logger
 @inject IJSRuntime JS
 
 <figure class="@Styles relative">
-    <PureIconButton OnClick="CopyToClipboard" Icon="IconCopy" Variant="ButtonVariant.Subtle" Styles="z-10 bg-gray-600 hover:bg-gray-800 absolute top-0 right-0 text-gray-500 hover:text-gray-100 opacity-50 hover:opacity-75 rounded-sm "/>
-    <figcaption class="dark:text-gray-200 font-semibold text-sm tracking-wide">@Caption</figcaption>
-    <pre class="rounded-lg">
-        <code style="overflow: auto;" class="break-normal	@LanguageClass" @ref="@ElementReference">
+    @* <PureIconButton *@
+    @*     OnClick="CopyToClipboard" *@
+    @*     Icon="IconCopy" *@
+    @*     Variant="ButtonVariant.Subtle" *@
+    @*     Accent="Accent.Default" *@
+    @*     Size="PureSize.Small"/> *@
+    <figcaption class="font-semibold text-sm tracking-wide">@Caption</figcaption>
+    <pre class="rounded-lg bg-gray-800 text-gray-200 px-4 py-2 text-sm font-normal font-mono leading-6 overflow-auto">
+        <code class="break-normal @LanguageClass" @ref="@ElementReference">
                 @if (ChildContent is not null)
                 {
                     @ChildContent
                 }
-                else
+                else if (!string.IsNullOrWhiteSpace(Text))
                 {
-                    @Text
+                    @Highlighter.Highlight(Text, "razor")
                 }
         </code>
     </pre>
@@ -39,6 +46,8 @@
     public static string Shell = "sh";
 
     public static string Csharp = "csharp";
+
+    public SyntaxHighligher Highlighter = new();
     // protobuf
     // powershell
     // solution file
@@ -58,47 +67,53 @@
     [Parameter] public string? Language { get; set; }
 
     [Parameter] public string? Text { get; set; }
-    private IJSObjectReference? module;
+    // private IJSObjectReference? module;
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
+    // protected override async Task OnAfterRenderAsync(bool firstRender)
+    // {
+    //     if (firstRender)
+    //     {
+    //         module = await JS.Razor("Display/PureCode");
+    //         await module.InvokeVoidAsync("highlight");
+    //     }
+    // }
+
+    protected override bool ShouldRender()
     {
-        Logger.LogInformation("Rendering {Component}", nameof(PureCode));
-        if (firstRender)
-        {
-            module = await JS.Razor("Display/PureCode");
-            await module.InvokeVoidAsync("highlight");
-        }
+        return false;
+    }
+    //
+    // Task IHandleEvent.HandleEventAsync(
+    //     EventCallbackWorkItem callback, object? arg) => callback.InvokeAsync(arg);
 
-        await base.OnAfterRenderAsync(firstRender);
+    private Task CopyToClipboard()
+    {
+        return Task.CompletedTask;
+        // if (module is null)
+        // {
+        //     return;
+        // }
+        //
+        // var text = Text;
+        // if (ChildContent is not null)
+        // {
+        //     Logger.LogInformation("Copying to clipboard from child content");
+        //     text = await module.InvokeAsync<string>("getText", ElementReference);
+        // }
+        // else
+        // {
+        //     Logger.LogInformation("Copying to clipboard from text");
+        // }
+        //
+        // await module.InvokeVoidAsync("copyToClipboard", text);
     }
 
-    private async Task CopyToClipboard()
-    {
-        if (module is null)
-        {
-            return;
-        }
-
-        var text = Text;
-        if (ChildContent is not null)
-        {
-            Logger.LogInformation("Copying to clipboard from child content");
-            text = await module.InvokeAsync<string>("getText", ElementReference);
-        }
-        else
-        {
-            Logger.LogInformation("Copying to clipboard from text");
-        }
-
-        await module.InvokeVoidAsync("copyToClipboard", text);
-    }
-
-    async ValueTask IAsyncDisposable.DisposeAsync()
-    {
-        if (module is not null)
-        {
-            await module.DisposeAsync();
-        }
-    }
+    // async ValueTask IAsyncDisposable.DisposeAsync()
+    // {
+    //     if (module is not null)
+    //     {
+    //         await module.DisposeAsync();
+    //     }
+    // }
 
 }

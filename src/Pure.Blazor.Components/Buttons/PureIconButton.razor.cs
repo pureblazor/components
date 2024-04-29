@@ -7,7 +7,9 @@ public partial class PureIconButton
 {
     [Parameter] public PureIcons Icon { get; set; }
 
-    protected override string BuildCss() =>
-        ApplyStyle(
-            $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant][Accent]} {PureStyles.Button.Sizes[Size]}");
+    protected override void BuildCss()
+    {
+        InternalCss = ApplyStyle(
+            $"{PureTheme.Button.Base} {PureTheme.Button.Variants[Variant][Accent]} {PureTheme.Button.Sizes[Size]}");
+    }
 }

@@ -25,7 +25,14 @@ public class StylePrioritizer
     public string PrioritizeStyles(string defaultStyles, string userStyles)
     {
         var userStylesArray = userStyles.Split(' ');
-        var userStylesDict = userStylesArray.ToDictionary(GetKeyFromStyle, s => s);
+        var userStylesDict = new Dictionary<string, string>();
+        for (var i = 0; i < userStylesArray.Length; i++)
+        {
+            var style = userStylesArray[i];
+            var key = GetKeyFromStyle(style);
+            userStylesDict.TryAdd(key, style);
+        }
+        // var userStylesDict = userStylesArray.ToDictionary(GetKeyFromStyle, s => s);
 
         var result = new StringBuilder(defaultStyles.Length + userStyles.Length);
         var buffer = ArrayPool<char>.Shared.Rent(defaultStyles.Length);

@@ -21,10 +21,11 @@
 @code {
     public bool DarkModeEnabled { get; set; }
 
-    public async Task Toggle()
+    public Task Toggle()
     {
         DarkModeEnabled = !DarkModeEnabled;
-        await ElementUtils.ChangeDarkMode(DarkModeEnabled);
+        return Task.CompletedTask;
+        // await ElementUtils.ChangeDarkMode(DarkModeEnabled);
     }
 
 }

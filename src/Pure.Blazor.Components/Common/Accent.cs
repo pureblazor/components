@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components.Common;
 
 public enum Accent
 {

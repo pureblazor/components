@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.JSInterop;
+using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Icons;
 
 namespace Pure.Blazor.Components.Buttons;
 
@@ -15,6 +15,10 @@ public partial class PureDropdown
     [Parameter]
     public DropdownPosition Position { get; set; } = DropdownPosition.Left;
 
+    [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
+    [Parameter] public PureIcons Icon { get; set; } = PureIcons.IconChevronUpDown;
+    [Parameter] public RenderFragment? Menu { get; set; }
+
     /// <summary>
     ///     Dropdown menu items.
     /// </summary>
@@ -26,12 +30,6 @@ public partial class PureDropdown
     /// </summary>
     [Parameter]
     public EventCallback<DropdownMenuItem> OnItemSelected { get; set; }
-
-    public async Task OnItemClick(MouseEventArgs args, DropdownMenuItem item)
-    {
-        await Module.InvokeVoidAsync("blur");
-        await OnItemSelected.InvokeAsync(item);
-    }
 }
 
 public enum DropdownPosition

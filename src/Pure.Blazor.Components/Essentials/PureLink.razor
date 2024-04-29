@@ -3,19 +3,27 @@
 
 @if (Variant is null or ButtonVariant.Subtle)
 {
-    <a class="@AccessibilityStyles @ApplyStyle(PureStyles.Link.Base) @Styles" href="@Url" target="@GetTarget()">@ChildContent</a>
+    <a class="@AccessibilityStyles @ApplyStyle(PureTheme.Link.Base) @Styles" href="@Href" target="@GetTarget()">@ChildContent</a>
 }
 else
 {
     <a class="@ApplyStyle(InternalCss) @Styles"
-       href="@Url" target="@GetTarget()">
+       href="@Href" target="@GetTarget()">
         @ChildContent
     </a>
 }
 
 @code {
 
-    [Parameter] public string? Url { get; set; }
+    [Obsolete("Use Href instead of Url")]
+    [Parameter]
+    public string? Url
+    {
+        get => Href;
+        set => Href = value;
+    }
+
+    [Parameter] public string? Href { get; set; }
 
     /// <summary>
     ///     Style the link as a button
@@ -23,12 +31,14 @@ else
     [Parameter]
     public ButtonVariant? Variant { get; set; }
 
+    [Parameter] public Accent Accent { get; set; } = Brand;
+
     [Parameter] public LinkTarget Target { get; set; }
 
     // required styles for accessibility, not overridable
     // touch target should be at least 24px
     private string AccessibilityStyles => "inline-block py-1";
-    private string InternalCss => $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant ?? ButtonVariant.Default][Accent.Brand]} {PureStyles.Button.Sizes[PureSize.Medium]}";
+    private string InternalCss => $"{PureTheme.Button.Base} {PureTheme.Button.Variants[Variant ?? ButtonVariant.Default][Accent]} {PureTheme.Button.Sizes[PureSize.Medium]}";
 
     private string GetTarget()
     {

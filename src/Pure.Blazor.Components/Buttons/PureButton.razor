@@ -3,10 +3,14 @@
 @if (Loading)
 {
     <button
-        type="button"
-        @attributes="InputAttributes"
-        class="@InternalCss @Styles">
-        <PureIcon Type="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
+        type="@(ButtonType == ButtonType.Submit ? "submit" : "button")"
+        aria-label="@Label"
+        name="@Name"
+        title="@Title"
+        class="@ApplyStyle(InternalCss)"
+        value="@Value"
+        @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
+        <PureIcon Icon="IconOpenCircle" Animate="PureAnimate.Spin" Size="PureSize.Small"></PureIcon>
         @if (LoadingText is not null)
         {
             @LoadingText
@@ -28,15 +32,18 @@
 else
 {
     <button
-        @attributes="InputAttributes"
-        class="@InternalCss @Styles"
+        type="@(ButtonType == ButtonType.Submit ? "submit" : "button")"
+        aria-label="@Label"
+        name="@Name"
+        title="@Title"
+        value="@Value"
+        class="@ApplyStyle(InternalCss)"
         disabled="@Disabled"
-        @onmousedown="() => Pressed = true"
-        @onmouseup="() => Pressed = false"
-        @onclick="OnClicked">
+        @onclick="OnClicked"
+        @onclick:stopPropagation="@(!PropagateClicks)" @onclick:preventDefault="@(!PropagateClicks)">
         @if (LeftIcon is not null)
         {
-            <PureIcon Type="(PureIcons)LeftIcon" Size="Size"/>
+            <PureIcon Icon="(PureIcons)LeftIcon" Size="Size"/>
         }
         @if (ChildContent is not null)
         {
@@ -48,7 +55,7 @@ else
         }
         @if (RightIcon is not null)
         {
-            <PureIcon Type="(PureIcons)RightIcon" Size="Size"/>
+            <PureIcon Icon="(PureIcons)RightIcon" Size="Size"/>
         }
     </button>
 }

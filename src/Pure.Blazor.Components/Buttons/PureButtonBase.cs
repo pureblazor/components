@@ -1,23 +1,24 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 using Pure.Blazor.Components.Common;
 
 namespace Pure.Blazor.Components.Buttons;
 
 public class PureButtonBase : PureComponent
 {
-    [Parameter(CaptureUnmatchedValues = true)]
-    public Dictionary<string, object>? InputAttributes { get; set; } =
-        new() { { "type", "button" } };
-
-    protected bool Pressed { get; set; }
-    protected string? InternalCss { get; private set; }
-
+    [Parameter] public ButtonType ButtonType { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
-
     [Parameter] public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
-
     [Parameter] public Accent Accent { get; set; }
+    [Parameter] public string? Title { get; set; }
+    [Parameter] public string? Name { get; set; }
+
+    /// <summary>
+    /// Labels the button for accessibility if no child content is provided.
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
 
     /// <summary>
     ///     Indicate the button is in a loading state
@@ -37,16 +38,13 @@ public class PureButtonBase : PureComponent
     [Parameter]
     public string? Text { get; set; }
 
+    [Parameter] public string? Value { get; set; }
+
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+    [Parameter] public bool PropagateClicks { get; set; }
     [Parameter] public bool Disabled { get; set; }
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        InternalCss = BuildCss();
-    }
+    protected string? InternalCss { get; set; }
 
     protected void OnClicked(MouseEventArgs e)
     {
@@ -58,7 +56,9 @@ public class PureButtonBase : PureComponent
         OnClick.InvokeAsync();
     }
 
-    protected new virtual string BuildCss() =>
-        ApplyStyle(
-            $"{PureStyles.Button.Base} {PureStyles.Button.Variants[Variant][Accent]} {PureStyles.Button.Sizes[Size]}");
+    protected override void BuildCss()
+    {
+        InternalCss = ApplyStyle(
+            $"{PureTheme.Button.Base} {PureTheme.Button.Variants[Variant][Accent]} {PureTheme.Button.Sizes[Size]}");
+    }
 }
