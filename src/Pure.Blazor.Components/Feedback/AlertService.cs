@@ -1,55 +1,54 @@
 ﻿using Microsoft.Extensions.Logging;
-using Pure.Blazor.Components.Buttons;
 using Pure.Blazor.Components.Common;
 
-namespace Pure.Blazor.Components;
+namespace Pure.Blazor.Components.Feedback;
 
-public class ToastService
+public class AlertService
 {
-    private readonly ILogger<ToastService> _log;
+    private readonly ILogger<AlertService> _log;
 
-    public ToastService(ILogger<ToastService> log) => _log = log;
+    public AlertService(ILogger<AlertService> log) => _log = log;
 
-    public Action<Toast>? OnChange { get; set; }
+    public Action<Alert>? OnChange { get; set; }
 
-    internal List<Toast> Messages { get; set; } = new();
+    internal List<Alert> Messages { get; set; } = new();
 
-    public async Task AddToast(string message, Accent state = Accent.Default) =>
-        await AddToast(new Toast(message, state));
+    public async Task ShowAsync(string message, Accent state = Accent.Default) =>
+        await ShowAsync(new Alert(message, state));
 
-    public Task AddToast(Toast toast)
+    public Task ShowAsync(Alert alert)
     {
-        _log.LogInformation("Adding toast {toast}", toast);
+        _log.LogInformation("Adding toast {toast}", alert);
 
-        Messages.Add(toast);
+        Messages.Add(alert);
 
-        OnChange?.Invoke(toast);
+        OnChange?.Invoke(alert);
 
         // don't wait for the remove to fire
 #pragma warning disable CS4014
-        Remove(toast, toast.Duration);
+        Remove(alert, alert.Duration);
 #pragma warning restore CS4014
 
         return Task.CompletedTask;
     }
 
-    internal async Task Remove(Toast toast, int removeInMs)
+    internal async Task Remove(Alert alert, int removeInMs)
     {
         var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(removeInMs));
 
         while (await timer.WaitForNextTickAsync())
         {
-            _log.LogInformation("Removing toast {toast}", toast);
-            await BeginRemove(toast);
+            _log.LogInformation("Removing toast {toast}", alert);
+            await BeginRemove(alert);
         }
     }
 
-    private async Task BeginRemove(Toast toast)
+    private async Task BeginRemove(Alert alert)
     {
         // mark the toast as removing so the UI has a chance
         // to make it disappear nicely
-        toast.IsRemoving = true;
-        OnChange?.Invoke(toast);
+        alert.IsRemoving = true;
+        OnChange?.Invoke(alert);
 
         // start a timer to remove the toast a few seconds after the UI can
         // fade it out
@@ -57,15 +56,15 @@ public class ToastService
         while (await timer.WaitForNextTickAsync())
         {
             // actually remove the toast
-            Messages.Remove(toast);
-            OnChange?.Invoke(toast);
+            Messages.Remove(alert);
+            OnChange?.Invoke(alert);
         }
     }
 }
 
-public class Toast
+public class Alert
 {
-    public Toast(string message, Accent state = Accent.Default, int duration = 5 * 1000)
+    public Alert(string message, Accent state = Accent.Default, int duration = 5 * 1000)
     {
         Message = message;
         State = state;
