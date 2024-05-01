@@ -14,4 +14,5 @@ public class PureTheme
     public LinkStyles Link { get; set; } = new();
     public LeftNavStyles LeftNav { get; set; } = new();
     public BadgeStyles Badge { get; set; } = new();
+    public AlertStyles Alert { get; set; } = new();
 }
