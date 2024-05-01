@@ -11,9 +11,19 @@
             <PureLabel For="@Id">@Label</PureLabel>
         }
     }
-    <InputText @bind-Value="Value" id="@Id" class="@($"{ApplyStyle(baseCss)} {(HasError ? errorBorder : defaultBorder)}")"
-               type="@GetInputType()" autocomplete="@GetAutoComplete()" placeholder="@Placeholder" name="@Name"
-               @onchange="OnChange" @oninput="OnInput" required="@Required"/>
+    <InputText id="@Id"
+               @ref="InputRef"
+               @bind-Value="Value"
+               class="@($"{ApplyStyle(baseCss)} {(HasError ? errorBorder : defaultBorder)}")"
+               type="@GetInputType()"
+               autocomplete="@GetAutoComplete()"
+               placeholder="@Placeholder"
+               name="@Name"
+               @onchange="OnChange"
+               @oninput="OnInput"
+               required="@Required"
+               @onblur="OnBlur" />
+
 
     @if (Suffix != null)
     {

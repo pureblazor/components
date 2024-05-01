@@ -1,5 +1,6 @@
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Forms.Validators;
@@ -139,6 +140,7 @@ public enum InputAutoFill
 
 public partial class PureInput
 {
+    private InputText? InputRef { get; set; } = null!;
     private readonly Guid guid = Guid.NewGuid();
     private readonly List<IEntryValidator> validators = new();
 
@@ -240,6 +242,15 @@ public partial class PureInput
     [Parameter] public RenderFragment? Suffix { get; set; }
 
     [Parameter] public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
+    [Parameter] public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
+    public async ValueTask FocusAsync()
+    {
+        if (InputRef?.Element is not null)
+        {
+            await InputRef.Element.Value.FocusAsync();
+        }
+    }
 
     public bool HasError { get; set; }
 
