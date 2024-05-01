@@ -35,5 +35,6 @@ public enum PureIcons
     IconNewFolder,
     IconNewFile,
     IconGrabHandle,
-    IconTrash
+    IconTrash,
+    IconCheckCircle
 }
