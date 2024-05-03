@@ -1,14 +1,14 @@
-using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Feedback;
 
 public class AlertStyles
 {
     // todo: change width of toast based on device, e.g. browser vs phone vs tablet
-    public string Base =>
+    public static string Base =>
         "w-96 border-solid border-1 border-y-gray-200 border-r-gray-200 border-l-8 text-gray-900 bg-white shadow-md px-5 py-4 rounded mb-2 antialiased";
 
-    public readonly Dictionary<Accent, string> Accents = new()
+    public static readonly Dictionary<Accent, string> Accents = new()
     {
         { Accent.Success, "border-l-green-500" },
         { Accent.Danger, "border-l-red-500" },

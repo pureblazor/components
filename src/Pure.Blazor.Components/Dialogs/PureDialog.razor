@@ -11,18 +11,17 @@
     </div>
     <div class="mt-4 flex justify-end gap-4">
         <PureButton
-            id="dialog_component--cancel"
-            Variant="ButtonVariant.Subtle"
+            Id="dialog_component--cancel"
+            Variant="PureVariant.Subtle"
             OnClick="CancelAsync">
             Cancel
         </PureButton>
 
         @if (!string.IsNullOrWhiteSpace(DialogService.AckButton))
         {
-            <PureButton id="dialog_component--ack"
-                        Variant="ButtonVariant.Default"
-                        Accent="Accent.Danger"
-                        Color="@DialogService.AckColor"
+            <PureButton Id="dialog_component--ack"
+                        Variant="PureVariant.Default"
+                        Accent="@DialogService.AckColor"
                         OnClick="ConfirmAsync">
                 @DialogService.AckButton
             </PureButton>

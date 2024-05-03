@@ -6,8 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
     <Title>PureBlazor Components</Title>
-    <Version>0.19.0</Version>
+    <Version>0.22.0</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -46,9 +47,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="wwwroot\app.css">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Update="wwwroot\css\atom-dark.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -67,5 +65,15 @@
     <Content Update="wwwroot\pureblazor.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Update="tailwind.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pure.Blazor.Components.Icons\Pure.Blazor.Components.Icons.csproj" />
+    <ProjectReference Include="..\Pure.Blazor.Components.Primitives\Pure.Blazor.Components.Primitives.csproj" />
   </ItemGroup>
 </Project>

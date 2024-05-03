@@ -1,4 +1,4 @@
-using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Display;
 
@@ -10,7 +10,7 @@ public class BadgeStyles
     private const string Success = "border-1 border-transparent bg-green-500 text-black font-semibold";
     private const string Default = "border-1 border-transparent bg-gray-600 text-gray-50 font-semibold";
 
-    public readonly Dictionary<PureVariant, Dictionary<Accent, string>> Variants = new()
+    public static readonly Dictionary<PureVariant, Dictionary<Accent, string>> Variants = new()
     {
         {
             PureVariant.Default, new Dictionary<Accent, string>

@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Components;
-using Pure.Blazor.Components.Buttons;
+﻿using Microsoft.AspNetCore.Components;
 
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components.Primitives;
 
 public class PureComponent : ComponentBase
 {
@@ -10,8 +9,6 @@ public class PureComponent : ComponentBase
         // todo: figure out how to build css less
         BuildCss();
     }
-
-    [CascadingParameter] public ThemeProvider? ThemeProvider { get; set; } = new();
 
     /// <summary>
     ///     Add additional css classes to this component
@@ -29,7 +26,7 @@ public class PureComponent : ComponentBase
     ///     The current theme styles
     /// </summary>
     [CascadingParameter]
-    public PureTheme PureTheme { get; set; } = new();
+    public required IPureTheme PureTheme { get; set; }
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
@@ -44,6 +41,13 @@ public class PureComponent : ComponentBase
     protected virtual void BuildCss()
     {
     }
+
+    /// <summary>
+    /// Gets the component style from the theme for the specific type of component.
+    /// </summary>
+    protected ComponentStyle Css => PureTheme.GetStyle(GetType());
+
+    protected ComponentStyle CssStyle(string name) => PureTheme.GetStyleByName(name);
 
     /// <summary>
     /// Applies the style based on the theme settings.
@@ -65,9 +69,9 @@ public class PureComponent : ComponentBase
             return Styles ?? "";
         }
 
-        if (ThemeProvider?.StylePrioritizer != null && Styles != null)
+        if (PureTheme?.StylePrioritizer != null && Styles != null)
         {
-            return ThemeProvider.StylePrioritizer.PrioritizeStyles(style, Styles);
+            return PureTheme.StylePrioritizer.PrioritizeStyles(style, Styles);
         }
 
         return $"{style} {Styles}";

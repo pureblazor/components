@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components.Primitives;
 
 public enum PureAnimate
 {

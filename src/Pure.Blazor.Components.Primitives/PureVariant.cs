@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Display;
+namespace Pure.Blazor.Components.Primitives;
 
 public enum PureVariant
 {

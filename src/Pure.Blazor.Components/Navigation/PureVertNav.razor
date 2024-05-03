@@ -2,46 +2,47 @@
 @inherits PureComponent
 @namespace Pure.Blazor.Components
 
-<ul class="@ApplyStyle("flex flex-col py-4 w-full gap-0.5")">
+<ul class="flex flex-col py-4 w-full gap-0.5">
     @RenderTopLevel(("Alerts", "/components/alerts"))
     @RenderTopLevel(("Badges", "/components/badges"))
     @RenderTopLevel(("Banners", "/components/banners"))
-    <li class="@ApplyStyle(PureTheme.LeftNav.Container)" @key="0">
+    <li class="" @key="0">
         <PureNavLink href="/components/buttons"
-                     ActiveClass="@ApplyStyle(PureTheme.LeftNav.HeaderActive)"
-                     InactiveClass="@ApplyStyle(PureTheme.LeftNav.Header)">
+                     ActiveClass="px-2 py-0.5 inline-block text-brand-700 hover:text-brand-900 antialiased font-bold font-sans leading-6 rounded-md bg-transparent"
+                     InactiveClass="px-2 py-0.5 inline-block text-slate-700 hover:text-brand-900 antialiased font-medium font-sans leading-6 rounded-md bg-transparent">
             Buttons
         </PureNavLink>
-        <ul class="@ApplyStyle(PureTheme.LeftNav.MenuItemContainer)">
-            <PureNavLink Match="NavLinkMatch.All" ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/overview">@RenderListItem("Overview")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/default">@RenderListItem("Default Variant")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/outline">@RenderListItem("Outline Variant")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/subtle">@RenderListItem("Subtle Variant")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/theme">@RenderListItem("Customized Theme")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/styles">@RenderListItem("Ad-Hoc Styles")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/state">@RenderListItem("Button States")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/icons">@RenderListItem("Buttons with Icons")</PureNavLink>
-            <PureNavLink ActiveClass="@ApplyStyle(PureTheme.LeftNav.MenuItemActive)" href="/components/buttons/headless">@RenderListItem("Headless Button")</PureNavLink>
+        <ul class="pl-4">
+            <PureNavLink Match="NavLinkMatch.All" ActiveClass="font-bold text-brand-700" href="/components/buttons/overview">@RenderListItem("Overview")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/default">@RenderListItem("Default Variant")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/outline">@RenderListItem("Outline Variant")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/subtle">@RenderListItem("Subtle Variant")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/theme">@RenderListItem("Customized Theme")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/styles">@RenderListItem("Ad-Hoc Styles")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/state">@RenderListItem("Button States")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/icons">@RenderListItem("Buttons with Icons")</PureNavLink>
+            <PureNavLink ActiveClass="font-bold text-brand-700" href="/components/buttons/headless">@RenderListItem("Headless Button")</PureNavLink>
         </ul>
     </li>
     @RenderTopLevel(("Cards", "/components/cards"))
     @RenderTopLevel(("Dialog", "/components/dialog"))
     @RenderTopLevel(("Dropdown", "/components/dropdowns"))
     @RenderTopLevel(("Inputs", "/components/inputs"))
+    @RenderTopLevel(("Icons", "/components/icons"))
     @RenderTopLevel(("Radio Buttons", "/components/radio"))
     @RenderTopLevel(("Tabs", "/components/tabs"))
 </ul>
 
 @code {
     private RenderFragment<string> RenderListItem => title =>
-        @<li class="@ApplyStyle(PureTheme.LeftNav.MenuItem)">@title</li>;
+        @<li class="@ApplyStyle("px-2 py-1 text-sm hover:text-brand-900")">@title</li>;
 
     private RenderFragment<(string title, string href)> RenderTopLevel => (data)
-        => @<li class="@ApplyStyle(PureTheme.LeftNav.Container)">
+        => @<li class="">
             <PureNavLink href="@data.href"
                          Match="NavLinkMatch.All"
-                         ActiveClass="@ApplyStyle(PureTheme.LeftNav.HeaderActive)"
-                         InactiveClass="@ApplyStyle(PureTheme.LeftNav.Header)">
+                         ActiveClass="@ApplyStyle("px-2 py-0.5 inline-block text-brand-700 hover:text-brand-900 antialiased font-bold font-sans leading-6 rounded-md bg-transparent")"
+                         InactiveClass="@ApplyStyle("px-2 py-0.5 inline-block text-slate-700 hover:text-brand-900 antialiased font-medium font-sans leading-6 rounded-md bg-transparent")">
                 @data.title
             </PureNavLink>
         </li>;

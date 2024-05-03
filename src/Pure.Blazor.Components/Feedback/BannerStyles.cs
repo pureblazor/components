@@ -1,13 +1,12 @@
-using Pure.Blazor.Components.Common;
-using Pure.Blazor.Components.Display;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Feedback;
 
 public class BannerStyles
 {
-    public string Base => "p-3 border-1 rounded-sm text-sm";
+    public static string Base => "p-3 border-1 rounded-sm text-sm";
 
-    public readonly Dictionary<Accent, string> Container = new()
+    public static readonly Dictionary<Accent, string> Container = new()
     {
         { Accent.Brand, "bg-brand-400 text-gray-900 font-bold" },
         { Accent.Danger, "bg-red-400" },
@@ -16,7 +15,7 @@ public class BannerStyles
         { Accent.Default, "bg-gray-300" }
     };
 
-    public readonly Dictionary<PureVariant, Dictionary<Accent, string>> Variants = new()
+    public static readonly Dictionary<PureVariant, Dictionary<Accent, string>> Variants = new()
     {
         {
             PureVariant.Default, new Dictionary<Accent, string>

@@ -1,8 +1,8 @@
-using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Buttons;
 
-public class ButtonStyles
+internal class ButtonStyles
 {
     private const string ExtraSmallButton = "rounded px-1 py-0.5 text-xs font-normal";
     private const string SmallButton = "px-3 py-2 text-xs";
@@ -40,7 +40,7 @@ public class ButtonStyles
     private const string SuccessSubtleButton =
         "border-transparent bg-transparent hover:bg-green-400/10 text-green-700 font-medium";
 
-    public readonly Dictionary<PureSize, string> Sizes = new()
+    public static readonly Dictionary<PureSize, string> Sizes = new()
     {
         { PureSize.Large, LargeButton },
         { PureSize.Small, SmallButton },
@@ -48,10 +48,10 @@ public class ButtonStyles
         { PureSize.ExtraSmall, ExtraSmallButton }
     };
 
-    public readonly Dictionary<ButtonVariant, Dictionary<Accent, string>> Variants = new()
+    public static readonly Dictionary<PureVariant, Dictionary<Accent, string>> Variants = new()
     {
         {
-            ButtonVariant.Default,
+            PureVariant.Default,
             new Dictionary<Accent, string>
             {
                 { Accent.Brand, PrimaryButton },
@@ -62,7 +62,7 @@ public class ButtonStyles
             }
         },
         {
-            ButtonVariant.Outline,
+            PureVariant.Outline,
             new Dictionary<Accent, string>
             {
                 { Accent.Brand, PrimaryOutlineButton },
@@ -73,7 +73,7 @@ public class ButtonStyles
             }
         },
         {
-            ButtonVariant.Subtle,
+            PureVariant.Subtle,
             new Dictionary<Accent, string>
             {
                 { Accent.Brand, PrimarySubtleButton },
@@ -85,6 +85,6 @@ public class ButtonStyles
         }
     };
 
-    public string Base =>
+    public static string Base =>
         "flex justify-center items-center cursor-pointer gap-1 rounded-sm md:rounded-xs text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-900 border-1";
 }

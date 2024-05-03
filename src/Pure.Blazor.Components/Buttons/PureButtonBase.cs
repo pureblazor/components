@@ -1,15 +1,16 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Logging;
-using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Buttons;
 
 public class PureButtonBase : PureComponent
 {
+    [Parameter]
+    public string? Id { get; set; }
     [Parameter] public ButtonType ButtonType { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
-    [Parameter] public ButtonVariant Variant { get; set; } = ButtonVariant.Default;
+    [Parameter] public PureVariant Variant { get; set; } = PureVariant.Default;
     [Parameter] public Accent Accent { get; set; }
     [Parameter] public string? Title { get; set; }
     [Parameter] public string? Name { get; set; }
@@ -42,7 +43,7 @@ public class PureButtonBase : PureComponent
 
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
-    [Parameter] public bool PropagateClicks { get; set; }
+    [Parameter] public bool StopPropagation { get; set; }
     [Parameter] public bool Disabled { get; set; }
     protected string? InternalCss { get; set; }
 
@@ -58,7 +59,6 @@ public class PureButtonBase : PureComponent
 
     protected override void BuildCss()
     {
-        InternalCss = ApplyStyle(
-            $"{PureTheme.Button.Base} {PureTheme.Button.Variants[Variant][Accent]} {PureTheme.Button.Sizes[Size]}");
+        InternalCss = ApplyStyle($"{Css.Base} {Css.Variant(Variant, Accent)} {Css.Size(Size)}");
     }
 }
