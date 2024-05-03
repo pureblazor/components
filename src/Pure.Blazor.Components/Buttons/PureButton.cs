@@ -68,7 +68,6 @@ public class PureButton : PureButtonBase
         builder.AddAttributeIfNotNullOrEmpty(12, "title", Title);
         builder.AddAttributeIfNotNullOrEmpty(13, "value", Value);
 
-        Console.WriteLine($"Rendering IsPressed: {IsPressed}");
         builder.AddAttributeIfNotNullOrEmpty(14, "class",
             $"{ApplyStyle(InternalCss)} {pressEffectCss} {hoverEffectCss}");
         if (StopPropagation)
