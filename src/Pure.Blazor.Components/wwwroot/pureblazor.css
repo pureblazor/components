@@ -888,10 +888,6 @@
     --tw-translate-y: var(--spacing-0, 0px);
     translate: var(--tw-translate-x) var(--tw-translate-y);
   }
-  .translate-y-1 {
-    --tw-translate-y: var(--spacing-1, 0.25rem);
-    translate: var(--tw-translate-x) var(--tw-translate-y);
-  }
   .translate-y-px {
     --tw-translate-y: 1px;
     translate: var(--tw-translate-x) var(--tw-translate-y);
@@ -905,6 +901,12 @@
   }
   .transform {
     transform: var(--tw-rotate-x) var(--tw-rotate-y) var(--tw-rotate-z) var(--tw-skew-x) var(--tw-skew-y);
+  }
+  .animate-ping {
+    animation: var(--animate-ping, ping 1s cubic-bezier(0, 0, 0.2, 1) infinite);
+  }
+  .animate-pulse {
+    animation: var(--animate-pulse, pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite);
   }
   .animate-spin {
     animation: var(--animate-spin, spin 1s linear infinite);
@@ -1852,6 +1854,22 @@
     &:is(:where(.peer):focus ~ *) {
       font-size: var(--font-size-sm, 0.875rem);
       line-height: var(--font-size-sm--line-height, 1.25rem);
+    }
+  }
+  .hover\:translate-y-px {
+    &:hover {
+      --tw-translate-y: 1px;
+      translate: var(--tw-translate-x) var(--tw-translate-y);
+    }
+  }
+  .hover\:animate-ping {
+    &:hover {
+      animation: var(--animate-ping, ping 1s cubic-bezier(0, 0, 0.2, 1) infinite);
+    }
+  }
+  .hover\:animate-pulse {
+    &:hover {
+      animation: var(--animate-pulse, pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite);
     }
   }
   .hover\:border-emerald-950 {
