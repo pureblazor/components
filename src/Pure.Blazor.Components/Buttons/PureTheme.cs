@@ -18,7 +18,22 @@ public class DefaultTheme : IPureTheme
                 nameof(PureButton),
                 new ComponentStyle(ButtonStyles.Base, null, ButtonStyles.Variants, ButtonStyles.Sizes)
             },
-            { nameof(PureDropdown), new ComponentStyle(DropdownStyles.Base, null, null, DropdownStyles.Sizes) },
+            {
+                nameof(PureIconButton),
+                new ComponentStyle(ButtonStyles.Base, null, ButtonStyles.Variants, ButtonStyles.Sizes)
+            },
+            {
+                nameof(PureDropdown),
+                new ComponentStyle(DropdownStyles.Base, null, null, DropdownStyles.Sizes)
+                {
+                    InnerContainer = new ComponentStyle(DropdownStyles.Container.Base, null, null, null)
+                }
+            },
+            {
+                nameof(PureDropdownItem),
+                new ComponentStyle(DropdownStyles.MenuItem.Base, DropdownStyles.MenuItem.Accents, null,
+                    DropdownStyles.MenuItem.Sizes)
+            },
             { nameof(PureBanner), new ComponentStyle(BannerStyles.Base, null, BannerStyles.Variants, null) },
             { nameof(PureLink), new ComponentStyle(LinkStyles.Base, null, null, null) },
             { nameof(PureBadge), new ComponentStyle("", null, BadgeStyles.Variants, null) },

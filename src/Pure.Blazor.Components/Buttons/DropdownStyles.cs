@@ -12,8 +12,8 @@ public class DropdownStyles
     public static string Base { get; set; } =
         "inline-flex gap-2 justify-center rounded-md font-semibold text-gray-700 border-1 border-gray-200 hover:border-gray-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-300 group-focus-within/dropdown:rounded-b-none";
 
-    public DropdownMenuContainerStyles Container { get; set; } = new();
-    public DropdownMenuItemStyles MenuItem { get; set; } = new();
+    public static DropdownMenuContainerStyles Container { get; set; } = new();
+    public static DropdownMenuItemStyles MenuItem { get; set; } = new();
 
     public static readonly Dictionary<PureSize, string> Sizes = new()
     {
