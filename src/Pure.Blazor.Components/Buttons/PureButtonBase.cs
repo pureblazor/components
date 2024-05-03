@@ -43,7 +43,7 @@ public class PureButtonBase : PureComponent
 
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
 
-    [Parameter] public bool PropagateClicks { get; set; }
+    [Parameter] public bool StopPropagation { get; set; }
     [Parameter] public bool Disabled { get; set; }
     protected string? InternalCss { get; set; }
 

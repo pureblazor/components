@@ -2,142 +2,10 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
-using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Forms.Validators;
 using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Forms;
-
-public static class InputTypeMap
-{
-    public static Dictionary<InputType, string> Map = new()
-    {
-        { InputType.Text, "text" },
-        { InputType.Button, "button" },
-        { InputType.Checkbox, "checkbox" },
-        { InputType.Color, "color" },
-        { InputType.Date, "date" },
-        { InputType.DateTimeLocal, "datetime-local" },
-        { InputType.Email, "email" },
-        { InputType.File, "file" },
-        { InputType.Hidden, "hidden" },
-        { InputType.Image, "image" },
-        { InputType.Month, "month" },
-        { InputType.Number, "number" },
-        { InputType.Password, "password" },
-        { InputType.Radio, "radio" },
-        { InputType.Range, "range" },
-        { InputType.Reset, "reset" },
-        { InputType.Search, "search" },
-        { InputType.Submit, "submit" },
-        { InputType.Tel, "tel" },
-        { InputType.Time, "time" },
-        { InputType.Url, "url" },
-        { InputType.Week, "week" }
-    };
-}
-
-public static class InputAutoFillMap
-{
-    public static Dictionary<InputAutoFill, string> Map = new Dictionary<InputAutoFill, string>
-    {
-        { InputAutoFill.None, "none" },
-        { InputAutoFill.Off, "off" },
-        { InputAutoFill.On, "on" },
-        { InputAutoFill.Name, "name" },
-        { InputAutoFill.HonorificPrefix, "honorific-prefix" },
-        { InputAutoFill.GivenName, "given-name" },
-        { InputAutoFill.AdditionalName, "additional-name" },
-        { InputAutoFill.FamilyName, "family-name" },
-        { InputAutoFill.HonorificSuffix, "honorific-suffix" },
-        { InputAutoFill.Nickname, "nickname" },
-        { InputAutoFill.Email, "email" },
-        { InputAutoFill.Username, "username" },
-        { InputAutoFill.NewPassword, "new-password" },
-        { InputAutoFill.CurrentPassword, "current-password" },
-        { InputAutoFill.OrganizationTitle, "organization-title" },
-        { InputAutoFill.Organization, "organization" },
-        { InputAutoFill.StreetAddress, "street-address" },
-        { InputAutoFill.AddressLine1, "address-line1" },
-        { InputAutoFill.AddressLine2, "address-line2" },
-        { InputAutoFill.AddressLine3, "address-line3" },
-        { InputAutoFill.AddressLevel4, "address-level4" },
-        { InputAutoFill.AddressLevel3, "address-level3" },
-        { InputAutoFill.AddressLevel2, "address-level2" },
-        { InputAutoFill.AddressLevel1, "address-level1" },
-        { InputAutoFill.Country, "country" },
-        { InputAutoFill.CountryName, "country-name" },
-        { InputAutoFill.PostalCode, "postal-code" },
-        { InputAutoFill.CCName, "cc-name" },
-        { InputAutoFill.CCCSC, "cc-csc" },
-        { InputAutoFill.CCExp, "cc-exp" },
-        { InputAutoFill.CCExpMonth, "cc-exp-month" },
-        { InputAutoFill.CCExpYear, "cc-exp-year" },
-        { InputAutoFill.CCToken, "cc-token" },
-        { InputAutoFill.TransactionCurrency, "transaction-currency" },
-        { InputAutoFill.TransactionAmount, "transaction-amount" },
-        { InputAutoFill.Language, "language" },
-        { InputAutoFill.Bday, "bday" },
-        { InputAutoFill.BdayDay, "bday-day" },
-        { InputAutoFill.BdayMonth, "bday-month" },
-        { InputAutoFill.BdayYear, "bday-year" },
-        { InputAutoFill.Sex, "sex" },
-        { InputAutoFill.URL, "url" },
-        { InputAutoFill.Photo, "photo" }
-    };
-}
-
-/// <summary>
-/// Input autofill values
-/// https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofilling-form-controls:-the-autocomplete-attribute
-/// </summary>
-[Flags]
-public enum InputAutoFill
-{
-    None,
-    Off,
-    On,
-    Name,
-    HonorificPrefix,
-    GivenName,
-    AdditionalName,
-    FamilyName,
-    HonorificSuffix,
-    Nickname,
-    Email,
-    Username,
-    NewPassword,
-    CurrentPassword,
-    OrganizationTitle,
-    Organization,
-    StreetAddress,
-    AddressLine1,
-    AddressLine2,
-    AddressLine3,
-    AddressLevel4,
-    AddressLevel3,
-    AddressLevel2,
-    AddressLevel1,
-    Country,
-    CountryName,
-    PostalCode,
-    CCName,
-    CCCSC,
-    CCExp,
-    CCExpMonth,
-    CCExpYear,
-    CCToken,
-    TransactionCurrency,
-    TransactionAmount,
-    Language,
-    Bday,
-    BdayDay,
-    BdayMonth,
-    BdayYear,
-    Sex,
-    URL,
-    Photo
-}
 
 public partial class PureInput
 {
@@ -163,7 +31,7 @@ public partial class PureInput
 
     [CascadingParameter] public PureForm? FormControl { get; set; }
 
-    [Parameter] public InputAutoFill AutoComplete { get; set; }
+    [Parameter] public InputAutoComplete AutoComplete { get; set; }
     [Parameter] public InputType InputType { get; set; } = InputType.Text;
 
     /// <summary>
@@ -337,7 +205,7 @@ public partial class PureInput
 
     private string GetAutoComplete()
     {
-        return AutoComplete == InputAutoFill.None ? "" : InputAutoFillMap.Map[AutoComplete];
+        return AutoComplete == InputAutoComplete.None ? "" : InputAutoFillMap.Map[AutoComplete];
     }
 
     private string GetSuffixCss()
