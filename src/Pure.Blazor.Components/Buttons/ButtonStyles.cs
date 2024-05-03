@@ -1,9 +1,8 @@
-using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Buttons;
 
-public class ButtonStyles
+internal class ButtonStyles
 {
     private const string ExtraSmallButton = "rounded px-1 py-0.5 text-xs font-normal";
     private const string SmallButton = "px-3 py-2 text-xs";
