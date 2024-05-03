@@ -6,6 +6,8 @@ namespace Pure.Blazor.Components.Buttons;
 
 public class PureButtonBase : PureComponent
 {
+    [Parameter]
+    public string? Id { get; set; }
     [Parameter] public ButtonType ButtonType { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
     [Parameter] public PureVariant Variant { get; set; } = PureVariant.Default;

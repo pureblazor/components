@@ -64,7 +64,7 @@ public class DialogService
 
     public async Task ShowConfirmDialog(string title, ShowDialogOptions? options = null)
     {
-        log.LogInformation("Showing confirmation dialog.");
+        log.LogDebug("Showing confirmation dialog.");
 
         Title = title;
         AckButton = options?.AckButton ?? DialogDefaults.AckButton;
@@ -75,9 +75,9 @@ public class DialogService
         _instance.OnCancel = options?.OnCancel;
         _instance.DialogId = "confirm";
         OnOpen?.Invoke();
-        log.LogInformation("Invoking JS module...");
+        log.LogDebug("Invoking JS module...");
         module ??= await JS.Razor("Dialogs/PureDialog");
-        log.LogInformation("Invoking JS...");
+        log.LogDebug("Invoking JS...");
 
         try
         {
@@ -88,13 +88,13 @@ public class DialogService
             log.LogError(ex, "failed to show dialog");
         }
 
-        log.LogInformation("Invoked JS...");
+        log.LogDebug("Invoked JS...");
         IsOpen = true;
     }
 
     public async Task ShowDialog(string title, RenderFragment body, ShowDialogOptions? options = null)
     {
-        log.LogInformation("ShowDialog requested");
+        log.LogDebug("ShowDialog requested");
         Title = title;
         Body = body;
         AckButton = options?.AckButton ?? DialogDefaults.AckButton;
@@ -119,7 +119,7 @@ public class DialogService
 
     public async Task ConfirmDialogAsync()
     {
-        log.LogInformation("Confirmed dialog");
+        log.LogDebug("Confirmed dialog");
         _instance.OnConfirm?.Invoke();
         module ??= await JS.Razor("Dialogs/PureDialog");
         await module.InvokeVoidAsync("closeDialog", objRef, _instance.DialogId);

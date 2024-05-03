@@ -4,12 +4,8 @@ using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Feedback;
 
-public class AlertService
+public class AlertService(ILogger<AlertService> log)
 {
-    private readonly ILogger<AlertService> _log;
-
-    public AlertService(ILogger<AlertService> log) => _log = log;
-
     public Action<Alert>? OnChange { get; set; }
 
     internal List<Alert> Messages { get; set; } = new();
@@ -19,7 +15,7 @@ public class AlertService
 
     public Task ShowAsync(Alert alert)
     {
-        _log.LogInformation("Adding toast {toast}", alert);
+        log.LogDebug("Adding toast {toast}", alert);
 
         Messages.Add(alert);
 
@@ -39,13 +35,24 @@ public class AlertService
 
         while (await timer.WaitForNextTickAsync())
         {
-            _log.LogInformation("Removing toast {toast}", alert);
+            log.LogDebug("Removing toast {toast}", alert);
             await BeginRemove(alert);
         }
     }
 
+    internal async Task RemoveImmediately(Alert alert)
+    {
+        log.LogDebug("Removing toast {toast}", alert);
+        await BeginRemove(alert);
+    }
+
     private async Task BeginRemove(Alert alert)
     {
+        if (alert.IsRemoving || !Messages.Contains(alert))
+        {
+            return;
+        }
+
         // mark the toast as removing so the UI has a chance
         // to make it disappear nicely
         alert.IsRemoving = true;
@@ -54,12 +61,14 @@ public class AlertService
         // start a timer to remove the toast a few seconds after the UI can
         // fade it out
         var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(2000));
-        while (await timer.WaitForNextTickAsync())
+        while (await timer.WaitForNextTickAsync() && Messages.Contains(alert))
         {
             // actually remove the toast
             Messages.Remove(alert);
             OnChange?.Invoke(alert);
         }
+
+        timer.Dispose();
     }
 }
 

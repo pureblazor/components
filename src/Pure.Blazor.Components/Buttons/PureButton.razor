@@ -3,6 +3,7 @@
 @if (Loading)
 {
     <button
+        id="@Id"
         type="@(ButtonType == ButtonType.Submit ? "submit" : "button")"
         aria-label="@Label"
         name="@Name"
@@ -32,6 +33,7 @@
 else
 {
     <button
+        id="@Id"
         type="@(ButtonType == ButtonType.Submit ? "submit" : "button")"
         aria-label="@Label"
         name="@Name"
