@@ -2,7 +2,7 @@ namespace Pure.Blazor.Components.Icons;
 
 public enum PureIcons
 {
-    IconCheck,
+    IconNone,
     IconSpin,
     IconOpenCircle,
     IconChevronDoubleLeft,
@@ -39,5 +39,6 @@ public enum PureIcons
     IconCheckCircle,
     IconFile,
     IconFolder,
-    IconFolderOpen
+    IconFolderOpen,
+    IconCheck
 }
