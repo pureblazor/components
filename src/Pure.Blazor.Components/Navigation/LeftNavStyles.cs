@@ -1,8 +1,8 @@
-namespace Pure.Blazor.Components.Layout;
+namespace Pure.Blazor.Components.Navigation;
 
 public class LeftNavStyles
 {
-    public string Container => "";
+    public string Container => "flex flex-col py-4 w-full gap-0.5";
     public string Header => "px-2 py-0.5 inline-block text-slate-700 hover:text-brand-900 antialiased font-medium font-sans leading-6 rounded-md bg-transparent";
     public string HeaderActive => "px-2 py-0.5 inline-block text-brand-700 hover:text-brand-900 antialiased font-bold font-sans leading-6 rounded-md bg-transparent";
     public string MenuItemContainer => "pl-4";

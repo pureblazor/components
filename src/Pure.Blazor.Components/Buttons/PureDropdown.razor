@@ -2,14 +2,14 @@
 
 <div class="relative inline-block text-left group/dropdown">
     <div>
-        <button type="button" class="@ApplyStyle($"{PureTheme.Dropdown.Base} {PureTheme.Dropdown.Sizes[Size]}")"
+        <button type="button" class="@ApplyStyle($"{Css.Base} {Css.Size(Size)}")"
                 @onclick:stopPropagation="true" @onclick:preventDefault="true">
             @ChildContent
             <PureIcon Size="Size" Icon="Icon"></PureIcon>
         </button>
     </div>
 
-    <div class="@($"{PureTheme.Dropdown.Container.Base}") @(Position == DropdownPosition.Right ? "right-0" : "left-0")"
+    <div class="@($"{Css.InnerContainer?.Base}") @(Position == DropdownPosition.Right ? "right-0" : "left-0")"
          role="menu"
          aria-orientation="vertical"
          aria-labelledby="menu-button"

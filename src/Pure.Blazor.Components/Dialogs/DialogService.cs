@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using Pure.Blazor.Components.Buttons;
 using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Dialogs;
 

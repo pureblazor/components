@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Feedback;
 

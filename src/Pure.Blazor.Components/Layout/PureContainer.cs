@@ -1,6 +1,5 @@
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Layout;
 

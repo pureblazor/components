@@ -10,6 +10,6 @@ public partial class PureIconButton
     protected override void BuildCss()
     {
         InternalCss = ApplyStyle(
-            $"{PureTheme.Button.Base} {PureTheme.Button.Variants[Variant][Accent]} {PureTheme.Button.Sizes[Size]}");
+            $"{Css.Base} {Css.Variant(Variant, Accent)} {Css.Size(Size)}");
     }
 }

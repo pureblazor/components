@@ -1,4 +1,4 @@
-using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Buttons;
 

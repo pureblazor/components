@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "..\tests\UnitT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Blazor.Components.AspNetCore", "Pure.Blazor.Components.AspNetCore\Pure.Blazor.Components.AspNetCore.csproj", "{7C1E46DA-B78B-4A34-9BCE-3F46A761057E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Blazor.Components.Icons", "Pure.Blazor.Components.Icons\Pure.Blazor.Components.Icons.csproj", "{C5A7A57E-740D-4A76-8791-A459D578E161}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Blazor.Components.Primitives", "Pure.Blazor.Components.Primitives\Pure.Blazor.Components.Primitives.csproj", "{1BAEB487-2B41-4899-B37C-A3404FB57040}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{7C1E46DA-B78B-4A34-9BCE-3F46A761057E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C1E46DA-B78B-4A34-9BCE-3F46A761057E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C1E46DA-B78B-4A34-9BCE-3F46A761057E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5A7A57E-740D-4A76-8791-A459D578E161}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5A7A57E-740D-4A76-8791-A459D578E161}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5A7A57E-740D-4A76-8791-A459D578E161}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5A7A57E-740D-4A76-8791-A459D578E161}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

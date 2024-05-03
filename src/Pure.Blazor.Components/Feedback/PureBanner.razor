@@ -1,4 +1,4 @@
-﻿@using Pure.Blazor.Components.Display
+﻿@using Pure.Blazor.Components.Icons
 @inherits PureComponent
 <div class="@ApplyStyle(ContainerCss)">
     <div class="flex gap-4 items-center">
@@ -42,7 +42,7 @@
 
     protected override void BuildCss()
     {
-        ContainerCss = $"{PureTheme.Banner.Base} {PureTheme.Banner.Variants[Variant][Accent]}";
+        ContainerCss = $"{Css.Base} {Css.Variant(Variant, Accent)}";
     }
 
 }

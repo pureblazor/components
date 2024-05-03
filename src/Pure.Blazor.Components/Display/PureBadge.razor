@@ -26,6 +26,6 @@
 
     protected override void BuildCss()
     {
-        OuterCss = $"{PureTheme.Badge.Variants[Variant][Accent]} select-all uppercase rounded px-2 py-1 text-xs h-fit";
+        OuterCss = $"{Css.Variant(Variant, Accent)} select-all uppercase rounded px-2 py-1 text-xs h-fit";
     }
 }

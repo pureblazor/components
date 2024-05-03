@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Icons;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Buttons;
 

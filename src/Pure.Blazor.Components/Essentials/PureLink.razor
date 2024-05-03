@@ -1,9 +1,9 @@
 ﻿@inherits PureComponent
 @namespace Pure.Blazor.Components
 
-@if (Variant is null or ButtonVariant.Subtle)
+@if (Variant is null or PureVariant.Subtle)
 {
-    <a class="@AccessibilityStyles @ApplyStyle(PureTheme.Link.Base) @Styles" href="@Href" target="@GetTarget()">@ChildContent</a>
+    <a class="@AccessibilityStyles @ApplyStyle(Css.Base) @Styles" href="@Href" target="@GetTarget()">@ChildContent</a>
 }
 else
 {
@@ -29,16 +29,16 @@ else
     ///     Style the link as a button
     /// </summary>
     [Parameter]
-    public ButtonVariant? Variant { get; set; }
+    public PureVariant? Variant { get; set; }
 
-    [Parameter] public Accent Accent { get; set; } = Brand;
+    [Parameter] public Accent Accent { get; set; } = Accent.Brand;
 
     [Parameter] public LinkTarget Target { get; set; }
 
     // required styles for accessibility, not overridable
     // touch target should be at least 24px
     private string AccessibilityStyles => "inline-block py-1";
-    private string InternalCss => $"{PureTheme.Button.Base} {PureTheme.Button.Variants[Variant ?? ButtonVariant.Default][Accent]} {PureTheme.Button.Sizes[PureSize.Medium]}";
+    private string InternalCss => $"{CssStyle("Button").Base} {CssStyle("Button").Variant(Variant ?? PureVariant.Default, Accent)} {CssStyle("Button").Size(PureSize.Medium)}";
 
     private string GetTarget()
     {

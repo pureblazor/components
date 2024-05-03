@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Pure.Blazor.Components.Common;
+using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Buttons;
 
@@ -44,13 +45,6 @@ public interface IButtonProps
     ///     Custom styles to apply to the component
     /// </summary>
     public string Styles { get; set; }
-}
-
-public enum ButtonVariant
-{
-    Default,
-    Outline,
-    Subtle
 }
 
 public enum TabVariant

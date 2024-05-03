@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <WarningsAsErrors>Nullable</WarningsAsErrors>
     <Title>PureBlazor Components</Title>
     <Version>0.19.0</Version>
     <PackageId>PureBlazor.Components</PackageId>
@@ -67,5 +68,10 @@
     <Content Update="wwwroot\pureblazor.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Pure.Blazor.Components.Icons\Pure.Blazor.Components.Icons.csproj" />
+    <ProjectReference Include="..\Pure.Blazor.Components.Primitives\Pure.Blazor.Components.Primitives.csproj" />
   </ItemGroup>
 </Project>

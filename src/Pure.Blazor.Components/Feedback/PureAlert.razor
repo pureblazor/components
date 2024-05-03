@@ -1,7 +1,7 @@
 ﻿@namespace Pure.Blazor.Components
 @inherits PureComponent
 
-<div class="@ApplyStyle($"{PureTheme.Alert.Base} {PureTheme.Alert.Accents[Accent]}")">
+<div class="@ApplyStyle($"{Css.Base} {Css.Accent(Accent)}")">
     <div class="flex justify-between">
         <div class="font-sm">
             @ChildContent
