@@ -10,7 +10,7 @@ public class DefaultTheme : IPureTheme
 {
     public ButtonDefaults ButtonDefaults { get; set; } = new()
     {
-        PressEffect = Effect.Jiggle,
+        PressEffect = Effect.InsetShadow,
         HoverEffect = Effect.Unset
     };
 
