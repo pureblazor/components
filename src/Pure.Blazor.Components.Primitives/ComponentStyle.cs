@@ -1,19 +1,19 @@
 namespace Pure.Blazor.Components.Primitives;
 
-public class ComponentStyle
+public record ComponentStyle
 {
-    private readonly IReadOnlyDictionary<Accent, string> accents;
-    private readonly IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>> variants;
-    private readonly IReadOnlyDictionary<PureSize, string> sizes;
+    public readonly IReadOnlyDictionary<Accent, string> Accents;
+    public readonly IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>> Variants;
+    public readonly IReadOnlyDictionary<PureSize, string> Sizes;
 
     public ComponentStyle(string baseStyle,
         IReadOnlyDictionary<Accent, string>? accents,
         IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>>? variants,
         IReadOnlyDictionary<PureSize, string>? sizes)
     {
-        this.accents = accents ?? new Dictionary<Accent, string>();
-        this.variants = variants ?? new Dictionary<PureVariant, Dictionary<Accent, string>>();
-        this.sizes = sizes ?? new Dictionary<PureSize, string>();
+        this.Accents = accents ?? new Dictionary<Accent, string>();
+        this.Variants = variants ?? new Dictionary<PureVariant, Dictionary<Accent, string>>();
+        this.Sizes = sizes ?? new Dictionary<PureSize, string>();
         Base = baseStyle;
     }
 
@@ -36,12 +36,12 @@ public class ComponentStyle
 
     public string Accent(Accent accent)
     {
-        return accents.TryGetValue(accent, out var value) ? value : string.Empty;
+        return Accents.TryGetValue(accent, out var value) ? value : string.Empty;
     }
 
     public string Variant(PureVariant variant, Accent accent)
     {
-        if (variants.TryGetValue(variant, out var value) && value.TryGetValue(accent, out var style))
+        if (Variants.TryGetValue(variant, out var value) && value.TryGetValue(accent, out var style))
         {
             return style;
         }
@@ -51,6 +51,6 @@ public class ComponentStyle
 
     public string Size(PureSize size)
     {
-        return sizes.TryGetValue(size, out var value) ? value : string.Empty;
+        return Sizes.TryGetValue(size, out var value) ? value : string.Empty;
     }
 }

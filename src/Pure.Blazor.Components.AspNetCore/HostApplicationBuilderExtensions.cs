@@ -12,7 +12,7 @@ namespace Pure.Blazor.Components.AspNetCore;
 public static class HostApplicationBuilderExtensions
 {
     public static IHostApplicationBuilder AddPureBlazorComponents(this IHostApplicationBuilder builder,
-        IPureTheme? theme = null)
+        PureTheme? theme = null)
     {
         // javascript
         builder.Services.AddScoped<IElementUtils, ElementUtils>();
@@ -24,7 +24,7 @@ public static class HostApplicationBuilderExtensions
         builder.Services.AddCascadingValue(sp =>
         {
             theme ??= new DefaultTheme();
-            var source = new CascadingValueSource<IPureTheme>(theme, isFixed: true);
+            var source = new CascadingValueSource<PureTheme>(theme, isFixed: true);
             return source;
         });
 

@@ -26,7 +26,7 @@ public class PureComponent : ComponentBase
     ///     The current theme styles
     /// </summary>
     [CascadingParameter]
-    public required IPureTheme PureTheme { get; set; }
+    public required PureTheme PureTheme { get; set; }
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
