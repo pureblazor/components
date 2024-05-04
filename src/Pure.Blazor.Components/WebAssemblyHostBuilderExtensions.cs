@@ -12,7 +12,7 @@ namespace Pure.Blazor.Components;
 public static class WebAssemblyHostBuilderExtensions
 {
     public static WebAssemblyHostBuilder AddPureBlazorComponents(this WebAssemblyHostBuilder builder,
-        IPureTheme? theme = null)
+        PureTheme? theme = null)
     {
         // javascript
         builder.Services.AddSingleton<IElementUtils, ElementUtils>();
@@ -23,7 +23,7 @@ public static class WebAssemblyHostBuilderExtensions
         builder.Services.AddCascadingValue(sp =>
         {
             theme ??= new DefaultTheme();
-            var source = new CascadingValueSource<IPureTheme>(theme, isFixed: true);
+            var source = new CascadingValueSource<PureTheme>(theme, isFixed: true);
             return source;
         });
         return builder;
