@@ -34,7 +34,7 @@ public class BannerStyles
                 { Accent.Danger, "border-1 border-red-800 text-red-800 font-bold" },
                 { Accent.Warning, "border-1 border-yellow-700 text-yellow-800 font-bold" },
                 { Accent.Success, "border-1 border-green-700 text-green-800 font-bold" },
-                { Accent.Default, "border-1 border-gray-600 text-gray-600 font-bold" }
+                { Accent.Default, "border-1 border-gray-600 text-gray-800 font-bold" }
             }
         },
         {
@@ -44,7 +44,7 @@ public class BannerStyles
                 { Accent.Danger, "border-1 border-transparent text-red-800 font-bold" },
                 { Accent.Warning, "border-1 border-transparent text-yellow-800 font-bold" },
                 { Accent.Success, "border-1 border-transparent text-green-800 font-bold" },
-                { Accent.Default, "border-1 border-transparent text-gray-600 font-bold" }
+                { Accent.Default, "border-1 border-transparent text-gray-800 font-bold" }
             }
         }
     };

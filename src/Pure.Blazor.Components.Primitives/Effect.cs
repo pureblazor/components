@@ -26,8 +26,13 @@ public enum Effect
     /// <summary>
     ///
     /// </summary>
-    Ping
+    Ping,
 
     // TODO: https://github.com/pureblazor/components/issues/57
     //Ripple,
+
+    /// <summary>
+    /// Applies an inset shadow effect.
+    /// </summary>
+    InsetShadow
 }

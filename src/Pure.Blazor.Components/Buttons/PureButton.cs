@@ -116,10 +116,12 @@ public class PureButton : PureButtonBase
     {
         return effect switch
         {
-            Effect.Jiggle when pressed => "translate-y-px",
+            Effect.Jiggle when pressed => "motion-safe:translate-y-px",
             Effect.Jiggle => "translate-y-0",
             Effect.Pulse when pressed => "animate-pulse",
-            Effect.Ping when pressed => "animate-ping",
+            Effect.Ping when pressed => "motion-safe:animate-ping",
+            Effect.InsetShadow when pressed => "shadow-inner",
+            Effect.InsetShadow => "shadow-none",
             _ => ""
         };
     }
@@ -128,9 +130,9 @@ public class PureButton : PureButtonBase
     {
         return effect switch
         {
-            Effect.Jiggle => "hover:translate-y-px",
+            Effect.Jiggle => "motion-safe:hover:translate-y-px",
             Effect.Pulse => "hover:animate-pulse",
-            Effect.Ping => "hover:animate-ping",
+            Effect.Ping => "motion-safe:hover:animate-ping",
             _ => ""
         };
     }
