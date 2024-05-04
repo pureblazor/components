@@ -27,6 +27,7 @@ public record PureTheme
     }
 }
 
+// https://stackoverflow.com/a/2679857/783284
 internal static class DictionaryExtensions
 {
     // Works in C#3/VS2008:
