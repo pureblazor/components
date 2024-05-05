@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Pure.Blazor.Components.Buttons;
 using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Dialogs;
 using Pure.Blazor.Components.Feedback;
