@@ -40,5 +40,10 @@ public enum PureIcons
     IconFile,
     IconFolder,
     IconFolderOpen,
-    IconCheck
+    IconCheck,
+    IconPlus,
+    IconArrowRight,
+    IconArrowLeft,
+    IconArrowDown,
+    IconArrowUp,
 }

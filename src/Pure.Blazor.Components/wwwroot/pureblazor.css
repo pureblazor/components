@@ -1410,6 +1410,9 @@
     padding-top: var(--spacing-6, 1.5rem);
     padding-bottom: var(--spacing-6, 1.5rem);
   }
+  .pt-3 {
+    padding-top: var(--spacing-3, 0.75rem);
+  }
   .pt-4 {
     padding-top: var(--spacing-4, 1rem);
   }
@@ -1439,6 +1442,12 @@
   }
   .pr-10 {
     padding-right: var(--spacing-10, 2.5rem);
+  }
+  .pb-0 {
+    padding-bottom: var(--spacing-0, 0px);
+  }
+  .pb-0\.5 {
+    padding-bottom: var(--spacing-0_5, 0.125rem);
   }
   .pl-1 {
     padding-left: var(--spacing-1, 0.25rem);
@@ -1590,9 +1599,6 @@
   .text-gray-950 {
     color: var(--color-gray-950, #030712);
   }
-  .text-green-700 {
-    color: var(--color-green-700, #15803d);
-  }
   .text-green-800 {
     color: var(--color-green-800, #166534);
   }
@@ -1690,10 +1696,6 @@
       0 8px 10px -6px var(--tw-shadow-color);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
-  .shadow-brand-200 {
-    --tw-shadow-color: var(--color-brand-200, #b7e5ff);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
   .shadow-brand-400 {
     --tw-shadow-color: var(--color-brand-400, #2fbbff);
     --tw-shadow: var(--tw-shadow-colored);
@@ -1702,36 +1704,12 @@
     --tw-shadow-color: color-mix(in srgb, var(--color-brand-400, #2fbbff) 20%, transparent);
     --tw-shadow: var(--tw-shadow-colored);
   }
-  .shadow-brand-500 {
-    --tw-shadow-color: var(--color-brand-500, #04a3f3);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-brand-500\/20 {
-    --tw-shadow-color: color-mix(in srgb, var(--color-brand-500, #04a3f3) 20%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-brand-700 {
-    --tw-shadow-color: var(--color-brand-700, #0067a8);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-brand-700\/50 {
-    --tw-shadow-color: color-mix(in srgb, var(--color-brand-700, #0067a8) 50%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
   .shadow-brand-950 {
     --tw-shadow-color: var(--color-brand-950, #052e4c);
     --tw-shadow: var(--tw-shadow-colored);
   }
-  .shadow-brand-950\/70 {
-    --tw-shadow-color: color-mix(in srgb, var(--color-brand-950, #052e4c) 70%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
   .shadow-brand-950\/90 {
     --tw-shadow-color: color-mix(in srgb, var(--color-brand-950, #052e4c) 90%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-gray-200 {
-    --tw-shadow-color: var(--color-gray-200, #e5e7eb);
     --tw-shadow: var(--tw-shadow-colored);
   }
   .shadow-gray-400 {
@@ -1762,16 +1740,8 @@
     --tw-shadow-color: var(--color-green-400, #4ade80);
     --tw-shadow: var(--tw-shadow-colored);
   }
-  .shadow-green-400\/15 {
-    --tw-shadow-color: color-mix(in srgb, var(--color-green-400, #4ade80) 15%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
   .shadow-green-400\/20 {
     --tw-shadow-color: color-mix(in srgb, var(--color-green-400, #4ade80) 20%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-green-400\/40 {
-    --tw-shadow-color: color-mix(in srgb, var(--color-green-400, #4ade80) 40%, transparent);
     --tw-shadow: var(--tw-shadow-colored);
   }
   .shadow-green-800 {
@@ -1780,10 +1750,6 @@
   }
   .shadow-green-800\/70 {
     --tw-shadow-color: color-mix(in srgb, var(--color-green-800, #166534) 70%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-red-200 {
-    --tw-shadow-color: var(--color-red-200, #fecaca);
     --tw-shadow: var(--tw-shadow-colored);
   }
   .shadow-red-400 {
@@ -1802,20 +1768,12 @@
     --tw-shadow-color: color-mix(in srgb, var(--color-red-950, #450a0a) 70%, transparent);
     --tw-shadow: var(--tw-shadow-colored);
   }
-  .shadow-yellow-200 {
-    --tw-shadow-color: var(--color-yellow-200, #fef08a);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
   .shadow-yellow-400 {
     --tw-shadow-color: var(--color-yellow-400, #facc15);
     --tw-shadow: var(--tw-shadow-colored);
   }
   .shadow-yellow-400\/20 {
     --tw-shadow-color: color-mix(in srgb, var(--color-yellow-400, #facc15) 20%, transparent);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-  .shadow-yellow-400\/50 {
-    --tw-shadow-color: color-mix(in srgb, var(--color-yellow-400, #facc15) 50%, transparent);
     --tw-shadow: var(--tw-shadow-colored);
   }
   .shadow-yellow-700 {
@@ -2036,34 +1994,14 @@
       background-color: var(--color-blue-300, #93c5fd);
     }
   }
-  .hover\:bg-brand-100 {
-    &:hover {
-      background-color: var(--color-brand-100, #dff1ff);
-    }
-  }
   .hover\:bg-brand-400\/10 {
     &:hover {
       background-color: color-mix(in srgb, var(--color-brand-400, #2fbbff) 10%, transparent);
     }
   }
-  .hover\:bg-brand-500\/10 {
-    &:hover {
-      background-color: color-mix(in srgb, var(--color-brand-500, #04a3f3) 10%, transparent);
-    }
-  }
-  .hover\:bg-brand-700\/10 {
-    &:hover {
-      background-color: color-mix(in srgb, var(--color-brand-700, #0067a8) 10%, transparent);
-    }
-  }
   .hover\:bg-brand-900 {
     &:hover {
       background-color: var(--color-brand-900, #074873);
-    }
-  }
-  .hover\:bg-gray-100 {
-    &:hover {
-      background-color: var(--color-gray-100, #f3f4f6);
     }
   }
   .hover\:bg-gray-200 {
@@ -2096,16 +2034,6 @@
       background-color: color-mix(in srgb, var(--color-green-400, #4ade80) 10%, transparent);
     }
   }
-  .hover\:bg-green-400\/15 {
-    &:hover {
-      background-color: color-mix(in srgb, var(--color-green-400, #4ade80) 15%, transparent);
-    }
-  }
-  .hover\:bg-green-400\/5 {
-    &:hover {
-      background-color: color-mix(in srgb, var(--color-green-400, #4ade80) 5%, transparent);
-    }
-  }
   .hover\:bg-green-600 {
     &:hover {
       background-color: var(--color-green-600, #16a34a);
@@ -2116,16 +2044,6 @@
       background-color: var(--color-red-300, #fca5a5);
     }
   }
-  .hover\:bg-red-400\/10 {
-    &:hover {
-      background-color: color-mix(in srgb, var(--color-red-400, #f87171) 10%, transparent);
-    }
-  }
-  .hover\:bg-red-400\/15 {
-    &:hover {
-      background-color: color-mix(in srgb, var(--color-red-400, #f87171) 15%, transparent);
-    }
-  }
   .hover\:bg-red-400\/5 {
     &:hover {
       background-color: color-mix(in srgb, var(--color-red-400, #f87171) 5%, transparent);
@@ -2134,11 +2052,6 @@
   .hover\:bg-red-900\/95 {
     &:hover {
       background-color: color-mix(in srgb, var(--color-red-900, #7f1d1d) 95%, transparent);
-    }
-  }
-  .hover\:bg-yellow-100 {
-    &:hover {
-      background-color: var(--color-yellow-100, #fef9c3);
     }
   }
   .hover\:bg-yellow-400\/10 {
@@ -2174,11 +2087,6 @@
   .hover\:text-gray-500 {
     &:hover {
       color: var(--color-gray-500, #6b7280);
-    }
-  }
-  .hover\:text-gray-900 {
-    &:hover {
-      color: var(--color-gray-900, #111827);
     }
   }
   .hover\:text-green-300 {
