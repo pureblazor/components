@@ -76,4 +76,44 @@ public class PureComponent : ComponentBase
 
         return $"{style} {Styles}";
     }
+
+    protected virtual string ApplyStyle(string baseStyle, string? newStyles)
+    {
+        if (Theme == Theme.Off)
+        {
+            return baseStyle ?? "";
+        }
+
+        if (newStyles == null)
+        {
+            return baseStyle ?? "";
+        }
+
+        if (PureTheme?.StylePrioritizer != null)
+        {
+            return PureTheme.StylePrioritizer.PrioritizeStyles(baseStyle, newStyles);
+        }
+
+        return $"{baseStyle} {newStyles}";
+    }
+
+    protected string ApplyOuterStyle(string? style)
+    {
+        if (Theme == Theme.Off)
+        {
+            return OuterCss ?? "";
+        }
+
+        if (style == null)
+        {
+            return OuterCss ?? "";
+        }
+
+        if (PureTheme?.StylePrioritizer != null && OuterCss != null)
+        {
+            return PureTheme.StylePrioritizer.PrioritizeStyles(style, OuterCss);
+        }
+
+        return $"{style} {OuterCss}";
+    }
 }
