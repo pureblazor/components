@@ -9,11 +9,20 @@ internal class ButtonStyles
     private const string MediumButton = "px-3.5 py-2.5 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
 
-    private const string PrimaryButton = $"{BaseAccentColors.Brand} hover:bg-brand-900 shadow-brand-950/90 border-brand-950 font-medium";
-    private const string DefaultButton = $"bg-gray-300 hover:bg-gray-400 border-gray-500 shadow-gray-500/70 font-medium";
-    private const string DangerButton = $"{BaseAccentColors.Danger} border-red-950 hover:bg-red-900/95 shadow-red-950/70 font-medium";
-    private const string WarningButton = $"{BaseAccentColors.Warning} hover:bg-yellow-500 shadow-yellow-700/70 font-medium";
-    private const string SuccessButton = $"{BaseAccentColors.Success} hover:bg-green-600 shadow-green-800/70 font-medium";
+    private const string PrimaryButton =
+        $"{BaseAccentColors.Brand} hover:bg-brand-900 shadow-brand-950/90 border-brand-950 font-medium";
+
+    private const string DefaultButton =
+        $"bg-gray-300 hover:bg-gray-400 border-gray-500 shadow-gray-500/70 font-medium";
+
+    private const string DangerButton =
+        $"{BaseAccentColors.Danger} border-red-950 hover:bg-red-900/95 shadow-red-950/70 font-medium";
+
+    private const string WarningButton =
+        $"{BaseAccentColors.Warning} hover:bg-yellow-500 shadow-yellow-700/70 font-medium";
+
+    private const string SuccessButton =
+        $"{BaseAccentColors.Success} hover:bg-green-600 shadow-green-800/70 font-medium";
 
     private const string PrimaryOutlineButton =
         "border-1 border-brand-700 text-brand-800 hover:bg-brand-400/10 shadow-brand-400/20 font-medium";
@@ -21,9 +30,14 @@ internal class ButtonStyles
     private const string DefaultOutlineButton =
         "border-1 border-gray-700 text-gray-800 hover:bg-gray-700/10 shadow-gray-700/50 font-medium";
 
-    private const string WarningOutlineButton = "border-yellow-400 hover:bg-yellow-400/10 text-yellow-900 shadow-yellow-400/20 font-medium";
-    private const string DangerOutlineButton = "border-red-400 hover:bg-red-400/5 text-red-800/80 shadow-red-400/15 font-medium";
-    private const string SuccessOutlineButton = "border-green-400 hover:bg-green-400/10 text-green-800 shadow-green-400/20 font-medium";
+    private const string WarningOutlineButton =
+        "border-yellow-400 hover:bg-yellow-400/10 text-yellow-900 shadow-yellow-400/20 font-medium";
+
+    private const string DangerOutlineButton =
+        "border-red-400 hover:bg-red-400/5 text-red-800/80 shadow-red-400/15 font-medium";
+
+    private const string SuccessOutlineButton =
+        "border-green-400 hover:bg-green-400/10 text-green-800 shadow-green-400/20 font-medium";
 
     private const string PrimarySubtleButton =
         "border-transparent bg-transparent text-brand-800 hover:bg-brand-400/10 shadow-brand-400/20 font-medium";
@@ -86,5 +100,5 @@ internal class ButtonStyles
     };
 
     public static string Base =>
-        "flex justify-center items-center cursor-pointer gap-1 rounded-sm md:rounded-xs text-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-900 border-1";
+        "flex justify-center items-center cursor-pointer gap-1 rounded-sm md:rounded-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-900 border-1";
 }

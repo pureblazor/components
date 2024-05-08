@@ -9,7 +9,7 @@
 </nav>
 
 @code {
-    private List<PureBreadcrumbItem> Breadcrumbs { get; } = [];
+    internal List<PureBreadcrumbItem> Breadcrumbs { get; } = [];
     private string InnerCss => "inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse";
 
     protected override void BuildCss()
