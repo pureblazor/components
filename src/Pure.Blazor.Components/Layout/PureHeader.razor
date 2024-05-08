@@ -4,25 +4,24 @@
 
 <header class="@ApplyStyle(containerCss)">
     <PureContainer Styles="@innerContainerCss">
-        <a class="flex title-font font-medium items-center text-gray-100" href="/">
-            <span class="text-xl">@Title</span>
-        </a>
+        @if (Prefix is not null)
+        {
+            <div class="flex items-center font-medium">
+                @Prefix
+            </div>
+        }
+        @if (Title is not null)
+        {
+            <a class="flex title-font font-medium items-center" href="/">
+                <span class="text-xl">@Title</span>
+            </a>
+        }
 
 
-        <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+        <nav class="@(ApplyStyle("md:ml-auto flex flex-wrap items-center text-base justify-end grow gap-4", NavStyles))">
             @ChildContent
         </nav>
     </PureContainer>
-    @* <div class="container mx-auto flex flex-wrap flex-col md:flex-row items-center @innerContainerCss"> *@
-    @*     <a class="flex title-font font-medium items-center text-gray-100" href="/"> *@
-    @*         <span class="text-xl">@Title</span> *@
-    @*     </a> *@
-    @* *@
-    @* *@
-    @*     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center"> *@
-    @*         @ChildContent *@
-    @*     </nav> *@
-    @* </div> *@
 </header>
 
 @code {
@@ -37,6 +36,9 @@
 
     [Parameter] public PureSize Height { get; set; } = PureSize.Medium;
     [Parameter] public PureContainerType InnerContainer { get; set; }
+    [Parameter] public string? InnerContainerStyles { get; set; }
+    [Parameter] public string? NavStyles { get; set; }
+    [Parameter] public RenderFragment? Prefix { get; set; }
 
     protected override void BuildCss()
     {
@@ -57,7 +59,7 @@
             _ => ""
         };
 
-        innerContainerCss = $"flex flex-wrap flex-col md:flex-row items-center {heightCss}";
+        innerContainerCss = $"flex flex-wrap flex-col md:flex-row items-center gap-16 {heightCss}";
     }
 
 }
