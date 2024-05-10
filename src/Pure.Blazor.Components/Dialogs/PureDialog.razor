@@ -1,30 +1,32 @@
-﻿<dialog class="p-6 border-1 rounded-sm" id="component">
-    <div class="py-4">
-        @if (DialogService.Title != null)
-        {
-            <p class="font-bold leading-6">@DialogService.Title</p>
-        }
-        @if (DialogService.Body != null)
-        {
-            @DialogService.Body
-        }
-    </div>
-    <div class="mt-4 flex justify-end gap-4">
-        <PureButton
-            Id="dialog_component--cancel"
-            Variant="PureVariant.Subtle"
-            OnClick="CancelAsync">
-            Cancel
-        </PureButton>
-
-        @if (!string.IsNullOrWhiteSpace(DialogService.AckButton))
-        {
-            <PureButton Id="dialog_component--ack"
-                        Variant="PureVariant.Default"
-                        Accent="@DialogService.AckColor"
-                        OnClick="ConfirmAsync">
-                @DialogService.AckButton
+﻿<div class="grid grid-cols-1 h-screen absolute">
+    <dialog class="p-6 border-1 rounded-sm self-center justify-self-center" id="component">
+        <div class="py-4">
+            @if (DialogService.Title != null)
+            {
+                <p class="font-bold leading-6">@DialogService.Title</p>
+            }
+            @if (DialogService.Body != null)
+            {
+                @DialogService.Body
+            }
+        </div>
+        <div class="mt-4 flex justify-end gap-4">
+            <PureButton
+                Id="dialog_component--cancel"
+                Variant="PureVariant.Subtle"
+                OnClick="CancelAsync">
+                Cancel
             </PureButton>
-        }
-    </div>
-</dialog>
+
+            @if (!string.IsNullOrWhiteSpace(DialogService.AckButton))
+            {
+                <PureButton Id="dialog_component--ack"
+                            Variant="PureVariant.Default"
+                            Accent="@DialogService.AckColor"
+                            OnClick="ConfirmAsync">
+                    @DialogService.AckButton
+                </PureButton>
+            }
+        </div>
+    </dialog>
+</div>

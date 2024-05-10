@@ -1,13 +1,14 @@
-﻿@namespace Pure.Blazor.Components
+﻿@using Pure.Blazor.Components.Forms
+@namespace Pure.Blazor.Components
 <CascadingValue Value="this">
     @ChildContent
 </CascadingValue>
 
 @code {
-    [Parameter]
-    public RenderFragment? ChildContent { get; set; }
+    [Parameter] public RenderFragment? ChildContent { get; set; }
 
     private List<IFormComponent> _components { get; set; } = new();
+
     internal void AddControl(IFormComponent component)
     {
         if (!_components.Contains(component))
@@ -21,4 +22,5 @@
         _components.ForEach(p => p.Validate(p.Value));
         return !_components.Any(p => p.HasError);
     }
+
 }

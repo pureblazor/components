@@ -5,15 +5,15 @@ namespace Pure.Blazor.Components.Buttons;
 internal class ButtonStyles
 {
     private const string ExtraSmallButton = "rounded px-1 py-0.5 text-xs font-normal";
-    private const string SmallButton = "px-3 py-2 text-xs";
-    private const string MediumButton = "px-3.5 py-2.5 text-sm";
+    private const string SmallButton = "px-3 py-1.5 text-xs";
+    private const string MediumButton = "px-3.5 py-2 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
 
     private const string PrimaryButton =
         $"{BaseAccentColors.Brand} hover:bg-brand-900 shadow-brand-950/90 border-brand-950 font-medium";
 
     private const string DefaultButton =
-        $"bg-gray-300 hover:bg-gray-400 border-gray-500 shadow-gray-500/70 font-medium";
+        $"bg-white hover:bg-gray-50 border-gray-200 shadow-gray-500/70 text-gray-800 font-medium";
 
     private const string DangerButton =
         $"{BaseAccentColors.Danger} border-red-950 hover:bg-red-900/95 shadow-red-950/70 font-medium";

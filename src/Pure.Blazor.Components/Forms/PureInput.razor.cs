@@ -4,17 +4,17 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Pure.Blazor.Components.Forms.Validators;
 using Pure.Blazor.Components.Primitives;
+using Pure.Core.Abstractions;
 
 namespace Pure.Blazor.Components.Forms;
 
 public partial class PureInput
 {
     private InputText? InputRef { get; set; } = null!;
-    private readonly Guid guid = Guid.NewGuid();
     private readonly List<IEntryValidator> validators = new();
 
     private string baseCss =
-        "peer block px-2 py-1 border-1 focus:outline focus:outline-2 focus:outline-offset-2 outline-brand-700 text-gray-800 rounded-md";
+        "peer block px-2 py-1 border-1 focus:outline focus:outline-2 focus:outline-offset-2 outline-brand-700 bg-gray-50 text-gray-800 rounded";
 
     private string defaultBorder = "border-gray-200";
     private string errorBorder = "border-red-600";
@@ -23,9 +23,6 @@ public partial class PureInput
 
     // the suffix needs different margins depending on labels and helper text
     private string suffixCss => GetSuffixCss();
-
-
-    internal string Id => $"entry-{guid}";
 
     public PureSize Size { get; set; }
 
@@ -40,27 +37,11 @@ public partial class PureInput
     [Parameter]
     public EntryMode Mode { get; set; } = EntryMode.Immediate;
 
-    [Parameter] public string? Name { get; set; }
-
-    /// <summary>
-    ///     Optional label (recommended)
-    /// </summary>
-    [Parameter]
-    public string? Label { get; set; }
-
     /// <summary>
     ///     Optional label type
     /// </summary>
     [Parameter]
     public PureLabelType LabelType { get; set; }
-
-    /// <summary>
-    ///     Optional helper text
-    /// </summary>
-    [Parameter]
-    public string? HelperText { get; set; }
-
-    [Parameter] public EventCallback<string> ValueChanged { get; set; }
 
     /// <summary>
     ///     Makes the input required.
@@ -122,8 +103,6 @@ public partial class PureInput
     }
 
     public bool HasError { get; set; }
-
-    [Parameter] public string? Value { get; set; }
 
     public void Validate(object? val)
     {

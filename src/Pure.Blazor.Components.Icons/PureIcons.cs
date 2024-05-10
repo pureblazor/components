@@ -46,4 +46,9 @@ public enum PureIcons
     IconArrowLeft,
     IconArrowDown,
     IconArrowUp,
+    IconGlobeAlt,
+    IconLongArrowRight,
+    IconLongArrowLeft,
+    IconLongArrowDown,
+    IconLongArrowUp,
 }
