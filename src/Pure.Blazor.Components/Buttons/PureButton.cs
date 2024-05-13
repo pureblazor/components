@@ -26,9 +26,9 @@ public class PureButton : PureButtonBase
         builder.AddAttributeIfNotNullOrEmpty(1, "id", Id);
         builder.AddAttributeIfNotNullOrEmpty(2, "aria-label", Label);
 
-        if (Disabled)
+        if (Disabled || Loading)
         {
-            builder.AddAttribute(3, "disabled", "disabled");
+            builder.AddAttribute(3, "aria-disabled", "aria-disabled");
         }
 
         builder.AddAttribute(4, "onclick", EventCallback.Factory.Create<MouseEventArgs>(this, OnClicked));
@@ -76,12 +76,15 @@ public class PureButton : PureButtonBase
             builder.AddEventStopPropagationAttribute(16, "onclick", true);
         }
 
-        if (LeftIcon is not null)
+        // var icon = Loading ? PureIcons.IconOpenCircle : LeftIcon;
+        var icon = LeftIcon;
+        if (icon is not null)
         {
             builder.OpenRegion(17);
             builder.OpenComponent<PureIcon>(1);
-            builder.AddAttribute(2, "Icon", LeftIcon);
-            builder.AddAttribute(3, "Size", Size);
+            builder.AddComponentParameter(2, "Icon", icon);
+            builder.AddComponentParameter(3, "Size", Size);
+            builder.AddComponentParameter(4, "Animate", Loading ? PureAnimate.Spin : PureAnimate.None);
             builder.CloseComponent();
             builder.CloseRegion();
         }

@@ -5,6 +5,7 @@ public record ComponentStyle
     public readonly IReadOnlyDictionary<Accent, string> Accents;
     public readonly IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>> Variants;
     public readonly IReadOnlyDictionary<PureSize, string> Sizes;
+    public string Disabled { get; set; } = "opacity-50 cursor-not-allowed";
 
     public ComponentStyle(string baseStyle,
         IReadOnlyDictionary<Accent, string>? accents,

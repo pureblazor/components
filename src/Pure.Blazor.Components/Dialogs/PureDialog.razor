@@ -1,20 +1,33 @@
 ﻿<div class="grid grid-cols-1 h-screen absolute">
-    <dialog class="p-6 border-1 rounded-sm self-center justify-self-center" id="component">
-        <div class="py-4">
-            @if (DialogService.Title != null)
-            {
-                <p class="font-bold leading-6">@DialogService.Title</p>
-            }
-            @if (DialogService.Body != null)
-            {
-                @DialogService.Body
-            }
+    <dialog class="min-w-96 px-4 border-1 border-gray-300 shadow rounded self-center justify-self-center" id="component">
+        <div class="flex flex-col gap-2 py-4">
+            <div>
+                @if (DialogService.Title != null)
+                {
+                    <Header2>@DialogService.Title</Header2>
+                }
+            </div>
+            <div>
+                @if (DialogService.Body != null)
+                {
+                    @DialogService.Body
+                }
+            </div>
         </div>
-        <div class="mt-4 flex justify-end gap-4">
+        <div class="flex justify-end gap-4 py-4">
+            @if (Message is not null)
+            {
+                <div class="py-2 text-sm text-gray-800">@Message</div>
+            }
+            else if (MessageFragment is not null)
+            {
+                @MessageFragment
+            }
             <PureButton
                 Id="dialog_component--cancel"
                 Variant="PureVariant.Subtle"
-                OnClick="CancelAsync">
+                OnClick="CancelAsync"
+                Loading="@(IsConfirming || IsCanceling)">
                 Cancel
             </PureButton>
 
@@ -23,7 +36,8 @@
                 <PureButton Id="dialog_component--ack"
                             Variant="PureVariant.Default"
                             Accent="@DialogService.AckColor"
-                            OnClick="ConfirmAsync">
+                            OnClick="ConfirmAsync"
+                            Loading="@(IsConfirming || IsCanceling)">
                     @DialogService.AckButton
                 </PureButton>
             }

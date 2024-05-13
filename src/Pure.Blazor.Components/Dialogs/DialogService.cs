@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Pure.Blazor.Components.Buttons;
 using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Primitives;
 
@@ -14,6 +13,7 @@ namespace Pure.Blazor.Components.Dialogs;
 /// </remarks>
 public class DialogService
 {
+    // private readonly Dictionary<string, DialogInstance> dialogs = new();
     private readonly DialogInstance _instance = new();
 
     private readonly ILogger<DialogService> log;
@@ -41,19 +41,18 @@ public class DialogService
     [JSInvokable]
     public Task CloseAsync(string returnValue)
     {
-        _instance.OnClose?.Invoke();
+        _instance.OnEvent?.Invoke(new DialogResult(DialogEvent.Dismiss));
         IsOpen = false;
         return Task.CompletedTask;
     }
 
-    public async Task ShowConfirmDialog(string title, Action onConfirm, Action? onCancel = null)
+    public async Task ShowConfirmDialog(string title, Func<DialogResult, Task<DialogEventResult>> onEvent)
     {
         Title = title;
         AckButton = DialogDefaults.AckButton;
         AckColor = DialogDefaults.AckColor;
 
-        _instance.OnConfirm = onConfirm;
-        _instance.OnCancel = onCancel;
+        _instance.OnEvent = onEvent;
         _instance.DialogId = "confirm";
         OnOpen?.Invoke();
         module ??= await JS.Razor("Dialogs/PureDialog");
@@ -70,9 +69,7 @@ public class DialogService
         AckButton = options?.AckButton ?? DialogDefaults.AckButton;
         AckColor = options?.AckColor ?? DialogDefaults.AckColor;
 
-        _instance.OnClose = options?.OnClose;
-        _instance.OnConfirm = options?.OnConfirm;
-        _instance.OnCancel = options?.OnCancel;
+        _instance.OnEvent = options?.OnEvent;
         _instance.DialogId = "confirm";
         OnOpen?.Invoke();
         log.LogDebug("Invoking JS module...");
@@ -101,9 +98,7 @@ public class DialogService
         AckColor = options?.AckColor ?? DialogDefaults.AckColor;
 
         _instance.DialogId = "component";
-        _instance.OnClose = options?.OnClose;
-        _instance.OnConfirm = options?.OnConfirm;
-        _instance.OnCancel = options?.OnCancel;
+        _instance.OnEvent = options?.OnEvent;
         OnOpen?.Invoke();
         module ??= await JS.Razor("Dialogs/PureDialog");
 
@@ -117,32 +112,39 @@ public class DialogService
         IsOpen = false;
     }
 
-    public async Task ConfirmDialogAsync()
+    public async Task<DialogEventResult> ConfirmDialogAsync()
     {
         log.LogDebug("Confirmed dialog");
-        _instance.OnConfirm?.Invoke();
+        var res = DialogEventResult.Confirmed;
+        if (_instance.OnEvent is not null)
+        {
+            res = await _instance.OnEvent(new DialogResult(DialogEvent.Confirm));
+            if (res.Interrupted)
+            {
+                return res;
+            }
+        }
+
+        // _instance.OnConfirm?.Invoke(new DialogResult());
         module ??= await JS.Razor("Dialogs/PureDialog");
         await module.InvokeVoidAsync("closeDialog", objRef, _instance.DialogId);
 
         _instance.DialogId = "";
         Body = null;
-        _instance.OnClose = null;
-        _instance.OnConfirm = null;
-        _instance.OnCancel = null;
+        _instance.OnEvent = null;
+        return res;
     }
 
     public async Task CancelDialogAsync()
     {
-        _instance.OnCancel?.Invoke();
+        _instance.OnEvent?.Invoke(new DialogResult(DialogEvent.Cancel));
         module ??= await JS.Razor("Dialogs/PureDialog");
         await module.InvokeVoidAsync("closeDialog", objRef, _instance.DialogId);
 
         // TODO: may make sense to move body/title and such to _instance
         Body = null;
         _instance.DialogId = "";
-        _instance.OnClose = null;
-        _instance.OnConfirm = null;
-        _instance.OnCancel = null;
+        _instance.OnEvent = null;
         IsOpen = false;
     }
 
@@ -153,23 +155,19 @@ public class DialogService
     }
 }
 
+public record DialogResult(DialogEvent Event);
+
+public enum DialogEvent
+{
+    Dismiss,
+    Confirm,
+    Cancel,
+}
+
 public class ShowDialogOptions
 {
-    /// <summary>
-    ///     Fires when the dialog is closed.
-    /// </summary>
-    public Action? OnClose { get; set; }
+    public Func<DialogResult, Task<DialogEventResult>>? OnEvent { get; set; }
 
-    /// <summary>
-    ///     Fires when the dialog is cancelled.
-    ///     e.g. by pressing the escape key, or clicking outside the dialog, or clicking the cancel button.
-    /// </summary>
-    public Action? OnCancel { get; set; }
-
-    /// <summary>
-    ///     Fires when the affirmative button is clicked.
-    /// </summary>
-    public Action? OnConfirm { get; set; }
 
     /// <summary>
     ///     The text displayed on the affirmative button.
@@ -182,23 +180,25 @@ public class ShowDialogOptions
 public class DialogInstance
 {
     /// <summary>
-    ///     Fires when the dialog is closed.
-    /// </summary>
-    public Action? OnClose { get; set; }
-
-    /// <summary>
-    ///     Fires when the dialog is cancelled.
-    ///     e.g. by pressing the escape key, or clicking outside the dialog, or clicking the cancel button.
-    /// </summary>
-    public Action? OnCancel { get; set; }
-
-    /// <summary>
-    ///     Fires when the affirmative button is clicked.
-    /// </summary>
-    public Action? OnConfirm { get; set; }
-
-    /// <summary>
     ///     Used to track which dialog to show/close
     /// </summary>
     internal string? DialogId { get; set; }
+
+    public Func<DialogResult, Task<DialogEventResult>>? OnEvent { get; set; }
+}
+
+public record DialogEventResult
+{
+    public string? Message { get; set; }
+    public RenderFragment? MessageFragment { get; set; }
+    public bool Interrupted { get; set; }
+
+    public static DialogEventResult Confirmed => new() { Interrupted = false };
+    public static DialogEventResult Canceled => new() { Interrupted = true };
+
+    public static DialogEventResult Error(string message) =>
+        new() { Interrupted = true, Message = message };
+
+    public static DialogEventResult Error(RenderFragment? messageFragment = null) =>
+        new() { Interrupted = true, MessageFragment = messageFragment };
 }
