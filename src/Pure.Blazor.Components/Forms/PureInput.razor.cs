@@ -94,6 +94,10 @@ public partial class PureInput
     [Parameter] public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnBlur { get; set; }
 
+    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyPress { get; set; }
+    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyUp { get; set; }
+    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
+
     public async ValueTask FocusAsync()
     {
         if (InputRef?.Element is not null)
