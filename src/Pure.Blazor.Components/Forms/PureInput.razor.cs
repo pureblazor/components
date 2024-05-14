@@ -94,9 +94,6 @@ public partial class PureInput
     [Parameter] public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnBlur { get; set; }
 
-    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyPress { get; set; }
-    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyUp { get; set; }
-    [Parameter] public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
     [Parameter] public EventCallback OnEnter { get; set; }
 
     private async Task OnKeyDownHandler(KeyboardEventArgs args)
@@ -106,9 +103,6 @@ public partial class PureInput
         {
             await OnEnter.InvokeAsync();
         }
-
-        await OnKeyDown.InvokeAsync(args);
-        
     }
 
     public async ValueTask FocusAsync()
