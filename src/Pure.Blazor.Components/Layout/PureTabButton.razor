@@ -39,7 +39,14 @@
 
         if (!prevStateActive && IsActive)
         {
-            await _elementReference.Value.FocusAsync();
+            try
+            {
+                await _elementReference.Value.FocusAsync();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         prevStateActive = IsActive;

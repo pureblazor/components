@@ -6,153 +6,80 @@ using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Dialogs;
 
-/// <summary>
-/// </summary>
-/// <remarks>
-///     Supports a single dialog at a time.
-/// </remarks>
 public class DialogService
 {
-    // private readonly Dictionary<string, DialogInstance> dialogs = new();
-    private readonly DialogInstance _instance = new();
-
     private readonly ILogger<DialogService> log;
     private readonly DotNetObjectReference<DialogService> objRef;
-    private readonly IJSRuntime JS;
+    private readonly IJSRuntime js;
     private IJSObjectReference? module;
 
     public DialogService(IJSRuntime js, ILogger<DialogService> log)
     {
-        JS = js;
+        this.js = js;
         this.log = log;
         objRef = DotNetObjectReference.Create(this);
     }
 
-    public string? Title { get; private set; }
-    public RenderFragment? Body { get; private set; }
-    public string AckButton { get; private set; } = DialogDefaults.AckButton;
-    public static Accent AckColor { get; private set; } = DialogDefaults.AckColor;
-    public bool IsOpen { get; set; }
-    public event Action? OnOpen;
+    // public bool IsOpen { get; set; }
+    public event Action<DialogInstance>? OnOpen;
 
-    [JSInvokable]
-    public Task<int[]> ReturnArrayAsync() => Task.FromResult(new[] { 1, 2, 3 });
-
+    /// <summary>
+    /// Invoked by the JavaScript module when the dialog is closed.
+    /// </summary>
+    /// <param name="returnValue"></param>
+    /// <returns></returns>
     [JSInvokable]
     public Task CloseAsync(string returnValue)
     {
-        _instance.OnEvent?.Invoke(new DialogResult(DialogEvent.Dismiss));
-        IsOpen = false;
+        // instance.OnEvent?.Invoke(new DialogResult(DialogEvent.Dismiss));
+        // IsOpen = false;
         return Task.CompletedTask;
     }
 
-    public async Task ShowConfirmDialog(string title, Func<DialogResult, Task<DialogEventResult>> onEvent)
-    {
-        Title = title;
-        AckButton = DialogDefaults.AckButton;
-        AckColor = DialogDefaults.AckColor;
-
-        _instance.OnEvent = onEvent;
-        _instance.DialogId = "confirm";
-        OnOpen?.Invoke();
-        module ??= await JS.Razor("Dialogs/PureDialog");
-
-        await module.InvokeVoidAsync("showDialog", objRef, _instance.DialogId);
-        IsOpen = true;
-    }
-
-    public async Task ShowConfirmDialog(string title, ShowDialogOptions? options = null)
-    {
-        log.LogDebug("Showing confirmation dialog.");
-
-        Title = title;
-        AckButton = options?.AckButton ?? DialogDefaults.AckButton;
-        AckColor = options?.AckColor ?? DialogDefaults.AckColor;
-
-        _instance.OnEvent = options?.OnEvent;
-        _instance.DialogId = "confirm";
-        OnOpen?.Invoke();
-        log.LogDebug("Invoking JS module...");
-        module ??= await JS.Razor("Dialogs/PureDialog");
-        log.LogDebug("Invoking JS...");
-
-        try
-        {
-            await module.InvokeVoidAsync("showDialog", objRef, _instance.DialogId);
-        }
-        catch (Exception ex)
-        {
-            log.LogError(ex, "failed to show dialog");
-        }
-
-        log.LogDebug("Invoked JS...");
-        IsOpen = true;
-    }
 
     public async Task ShowDialog(string title, RenderFragment body, ShowDialogOptions? options = null)
     {
         log.LogDebug("ShowDialog requested");
-        Title = title;
-        Body = body;
-        AckButton = options?.AckButton ?? DialogDefaults.AckButton;
-        AckColor = options?.AckColor ?? DialogDefaults.AckColor;
+        var instance = new DialogInstance();
+        await instance.ShowAsync(title, body, options);
 
-        _instance.DialogId = "component";
-        _instance.OnEvent = options?.OnEvent;
-        OnOpen?.Invoke();
-        module ??= await JS.Razor("Dialogs/PureDialog");
+        OnOpen?.Invoke(instance);
+        module ??= await js.Razor("Dialogs/PureDialog");
 
-        await module.InvokeVoidAsync("showDialog", objRef, _instance.DialogId);
-        IsOpen = true;
+        await module.InvokeVoidAsync("showDialog", objRef, instance.DialogId);
     }
 
-    public async Task CloseDialogAsync()
+    public async Task CloseDialogAsync(DialogInstance instance)
     {
-        await JS.InvokeVoidAsync("closeDialog", objRef, _instance.DialogId);
-        IsOpen = false;
+        // await js.InvokeVoidAsync("closeDialog", objRef, instance.DialogId);
+        module ??= await js.Razor("Dialogs/PureDialog");
+        await module.InvokeVoidAsync("closeDialog", objRef, instance.DialogId);
     }
 
-    public async Task<DialogEventResult> ConfirmDialogAsync()
+    public async Task<DialogEventResult> ConfirmDialogAsync(DialogInstance instance)
     {
-        log.LogDebug("Confirmed dialog");
-        var res = DialogEventResult.Confirmed;
-        if (_instance.OnEvent is not null)
+        var res = await instance.ConfirmAsync();
+        if (res.Interrupted)
         {
-            res = await _instance.OnEvent(new DialogResult(DialogEvent.Confirm));
-            if (res.Interrupted)
-            {
-                return res;
-            }
+            return res;
         }
 
-        // _instance.OnConfirm?.Invoke(new DialogResult());
-        module ??= await JS.Razor("Dialogs/PureDialog");
-        await module.InvokeVoidAsync("closeDialog", objRef, _instance.DialogId);
+        await CloseDialogAsync(instance);
 
-        _instance.DialogId = "";
-        Body = null;
-        _instance.OnEvent = null;
         return res;
     }
 
-    public async Task CancelDialogAsync()
+    public async Task CancelDialogAsync(DialogInstance instance)
     {
-        _instance.OnEvent?.Invoke(new DialogResult(DialogEvent.Cancel));
-        module ??= await JS.Razor("Dialogs/PureDialog");
-        await module.InvokeVoidAsync("closeDialog", objRef, _instance.DialogId);
-
-        // TODO: may make sense to move body/title and such to _instance
-        Body = null;
-        _instance.DialogId = "";
-        _instance.OnEvent = null;
-        IsOpen = false;
+        await CloseDialogAsync(instance);
+        await instance.CancelAsync();
     }
+}
 
-    private class DialogDefaults
-    {
-        public const string AckButton = "Continue";
-        public static readonly Accent AckColor = Accent.Brand;
-    }
+internal class DialogDefaults
+{
+    public const string AckButton = "Continue";
+    public static readonly Accent AckColor = Accent.Brand;
 }
 
 public record DialogResult(DialogEvent Event);
@@ -166,8 +93,8 @@ public enum DialogEvent
 
 public class ShowDialogOptions
 {
-    public Func<DialogResult, Task<DialogEventResult>>? OnEvent { get; set; }
-
+    public Func<DialogResult, Task>? OnEvent { get; set; }
+    public Func<DialogResult, Task<DialogEventResult>>? OnConfirm { get; set; }
 
     /// <summary>
     ///     The text displayed on the affirmative button.
@@ -177,20 +104,24 @@ public class ShowDialogOptions
     public Accent? AckColor { get; set; }
 }
 
-public class DialogInstance
-{
-    /// <summary>
-    ///     Used to track which dialog to show/close
-    /// </summary>
-    internal string? DialogId { get; set; }
-
-    public Func<DialogResult, Task<DialogEventResult>>? OnEvent { get; set; }
-}
-
 public record DialogEventResult
 {
+    /// <summary>
+    /// The message text to display in the dialog. For example, an error message.
+    /// </summary>
     public string? Message { get; set; }
+
+    /// <summary>
+    /// The message fragment (component) to display in the dialog.
+    /// </summary>
     public RenderFragment? MessageFragment { get; set; }
+
+    /// <summary>
+    /// If specified, the dialog will continue with the specified fragment. This is useful
+    /// for showing a dialog with multiple chained steps.
+    /// </summary>
+    public DialogInstance? ContinueWith { get; set; }
+
     public bool Interrupted { get; set; }
 
     public static DialogEventResult Confirmed => new() { Interrupted = false };

@@ -7,27 +7,53 @@ public partial class PureDialog
     public string? Message { get; set; }
     public RenderFragment? MessageFragment { get; set; }
     [Inject] public required DialogService DialogService { get; set; }
-    public bool IsConfirming { get; set; }
-    public bool IsCanceling { get; set; }
+    private DialogInstance? dialog;
 
     protected override void OnInitialized()
     {
-        DialogService.OnOpen += () => StateHasChanged();
+        DialogService.OnOpen += (d) =>
+        {
+            dialog = d;
+            MessageFragment = null;
+            Message = null;
+            StateHasChanged();
+        };
     }
 
     public async Task CancelAsync()
     {
-        IsCanceling = true;
-        await DialogService.CancelDialogAsync();
+        if (dialog is null)
+        {
+            return;
+        }
+
+        dialog.Locked = true;
+        await DialogService.CancelDialogAsync(dialog);
     }
 
     public async Task ConfirmAsync()
     {
+        if (dialog is null)
+        {
+            return;
+        }
+
         Message = "Saving...";
-        IsConfirming = true;
-        var result = await DialogService.ConfirmDialogAsync();
-        Message = result.Message;
-        MessageFragment = result.MessageFragment;
-        IsConfirming = false;
+        dialog.Locked = true;
+        var result = await DialogService.ConfirmDialogAsync(dialog);
+        if (result.Interrupted && result.ContinueWith is not null)
+        {
+            dialog = result.ContinueWith;
+            MessageFragment = null;
+            Message = null;
+            StateHasChanged();
+        }
+        else if (result.Interrupted)
+        {
+            Message = result.Message;
+            MessageFragment = result.MessageFragment;
+        }
+
+        dialog.Locked = false;
     }
 }

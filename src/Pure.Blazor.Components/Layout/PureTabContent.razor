@@ -1,8 +1,21 @@
-﻿@if (TabContainer.CurrentTab == this)
+﻿@using Pure.Blazor.Components.Display
+@inherits PureComponent
+@if (TabContainer.CurrentTab == this)
 {
-    <div class="flex flex-col w-full" role="tab">
-        @ChildContent
-    </div>
+    @if (UseCard)
+    {
+        <div class="flex flex-col w-full @Styles" role="tab">
+            <PureCard Styles="border-t-transparent">
+                @ChildContent
+            </PureCard>
+        </div>
+    }
+    else
+    {
+        <div class="flex flex-col w-full @Styles" role="tab">
+            @ChildContent
+        </div>
+    }
 }
 
 @code {
@@ -11,8 +24,7 @@
     [Parameter] public EventCallback OnChanging { get; set; }
 
     [Parameter] public string? Title { get; set; }
-
-    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter] public bool UseCard { get; set; }
 
     protected override void OnInitialized()
     {

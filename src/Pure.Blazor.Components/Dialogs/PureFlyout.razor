@@ -1,4 +1,6 @@
-﻿<div class="@(IsOpen ? "" : "")  relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+﻿@inherits PureComponent
+
+<div class="@(IsOpen ? "" : "")  relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     @* <div class="fixed inset-0"></div> *@
 
@@ -10,9 +12,9 @@
                         <div class="h-0 flex-1 overflow-y-auto">
                             <div class="bg-brand-900 px-4 py-6 sm:px-6">
                                 <div class="flex items-center justify-between">
-                                    <h2 class="text-base font-semibold leading-6 text-gray-100" id="slide-over-title">Title</h2>
+                                    <h2 class="text-base font-semibold leading-6 text-gray-100" id="slide-over-title">@Title</h2>
                                     <div class="ml-3 flex h-7 items-center">
-                                        <button @onclick="OnDismiss" type="button" class="relative rounded-md bg-brand-900 text-gray-100 hover:text-white focus:outline-none focus:ring-2 focus:ring-white">
+                                        <button @onclick="Dismiss" type="button" class="relative rounded-md bg-brand-900 text-gray-200 hover:text-white hover:ring-2 hover:ring-gray-400 focus:outline-none focus:ring-2 focus:ring-white">
                                             <span class="absolute -inset-2.5"></span>
                                             <span class="sr-only">Close panel</span>
                                             <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -22,18 +24,21 @@
                                     </div>
                                 </div>
                                 <div class="mt-1">
-                                    <p class="text-sm antialiased text-brand-100">Subtitle</p>
+                                    <p class="text-sm antialiased text-brand-100">@Subtitle</p>
                                 </div>
                             </div>
                             <div class="flex flex-1 flex-col justify-between">
                                 <div class="divide-y divide-gray-200 px-4 sm:px-6">
-                                    <p>Content</p>
+                                    @ChildContent
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-shrink-0 justify-end px-4 py-4">
-                            <p>Actions</p>
-                        </div>
+                        @if (Actions is not null)
+                        {
+                            <div class="flex flex-shrink-0 justify-end px-4 py-4">
+                                @Actions
+                            </div>
+                        }
                     </form>
                 </div>
             </div>
