@@ -73,7 +73,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Pure.Core.Abstractions\Pure.Core.Abstractions.csproj"/>
     <ProjectReference Include="..\Pure.Blazor.Components.Icons\Pure.Blazor.Components.Icons.csproj"/>
     <ProjectReference Include="..\Pure.Blazor.Components.Primitives\Pure.Blazor.Components.Primitives.csproj"/>
   </ItemGroup>

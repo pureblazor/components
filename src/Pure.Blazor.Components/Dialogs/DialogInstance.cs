@@ -69,31 +69,13 @@ public class DialogInstance
             OnEvent?.Invoke(new DialogResult(DialogEvent.Confirm));
         }
 
-        // module ??= await js.Razor("Dialogs/PureDialog");
-        // await module.InvokeVoidAsync("closeDialog", objRef, instance.DialogId);
-
-        Reset();
         return res;
     }
 
     public Task CancelAsync()
     {
         OnEvent?.Invoke(new DialogResult(DialogEvent.Cancel));
-        // module ??= await js.Razor("Dialogs/PureDialog");
-        // await module.InvokeVoidAsync("closeDialog", objRef, instance.DialogId);
-
-        Reset();
 
         return Task.CompletedTask;
-    }
-
-    private void Reset()
-    {
-        // DialogId = "";
-        // Title = null;
-        // Body = null;
-        // DialogId = "";
-        // OnEvent = null;
-        // OnConfirm = null;
     }
 }
