@@ -9,12 +9,12 @@
 </nav>
 
 @code {
-    private List<PureBreadcrumbItem> Breadcrumbs { get; } = [];
+    internal List<PureBreadcrumbItem> Breadcrumbs { get; } = [];
     private string InnerCss => "inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse";
 
     protected override void BuildCss()
     {
-        OuterCss = "flex -mx-6 md:-mx-4 -mt-4 mb-3 px-5 py-3 text-gray-700 border-1 border-gray-200 rounded-lg bg-gray-50";
+        OuterCss = "text-gray-700"; //border-1 border-gray-200 rounded-lg bg-gray-50
     }
 
     internal void AddBreadcrumb(PureBreadcrumbItem breadcrumb)

@@ -6,8 +6,7 @@ namespace Pure.Blazor.Components.Buttons;
 
 public class PureButtonBase : PureComponent
 {
-    [Parameter]
-    public string? Id { get; set; }
+    [Parameter] public string? Id { get; set; }
     [Parameter] public ButtonType ButtonType { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
     [Parameter] public PureVariant Variant { get; set; } = PureVariant.Default;
@@ -49,7 +48,7 @@ public class PureButtonBase : PureComponent
 
     protected void OnClicked(MouseEventArgs e)
     {
-        if (Disabled)
+        if (Disabled || Loading)
         {
             return;
         }
@@ -59,6 +58,8 @@ public class PureButtonBase : PureComponent
 
     protected override void BuildCss()
     {
-        InternalCss = ApplyStyle($"{Css.Base} {Css.Variant(Variant, Accent)} {Css.Size(Size)}");
+        InternalCss =
+            ApplyStyle(
+                $"{Css.Base} {Css.Variant(Variant, Accent)} {Css.Size(Size)} {(Disabled || Loading ? Css.Disabled : "")}");
     }
 }

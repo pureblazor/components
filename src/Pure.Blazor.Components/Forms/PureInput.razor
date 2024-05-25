@@ -1,4 +1,4 @@
-﻿@inherits PureComponent
+﻿@inherits PureInputBase
 @using Microsoft.AspNetCore.Components.Forms
 @implements IFormComponent
 @inject ILogger<PureInput> Log
@@ -22,7 +22,7 @@
                @onchange="OnChange"
                @oninput="OnInput"
                required="@Required"
-               @onblur="OnBlur" />
+               @onblur="OnBlur"/>
 
 
     @if (Suffix != null)

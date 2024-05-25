@@ -56,25 +56,16 @@ public class PureComponent : ComponentBase
     /// If the theme is on, the user defined styles are applied on top of the theme styles and override them where necessary.
     /// </summary>
     /// <param name="style"></param>
+    /// <param name="requiredStyles">Required styles are necessary for the component to function or accessibility related.</param>
     /// <returns></returns>
     protected virtual string ApplyStyle(string? style)
     {
-        if (Theme == Theme.Off)
-        {
-            return Styles ?? "";
-        }
-
         if (style == null)
         {
             return Styles ?? "";
         }
 
-        if (PureTheme?.StylePrioritizer != null && Styles != null)
-        {
-            return PureTheme.StylePrioritizer.PrioritizeStyles(style, Styles);
-        }
-
-        return $"{style} {Styles}";
+        return ApplyStyle(style, Styles);
     }
 
     protected virtual string ApplyStyle(string baseStyle, string? newStyles)

@@ -4,21 +4,56 @@ namespace Pure.Blazor.Components.Dialogs;
 
 public partial class PureDialog
 {
-    [Inject]
-    public required DialogService DialogService { get; set; }
+    public string? Message { get; set; }
+    public RenderFragment? MessageFragment { get; set; }
+    [Inject] public required DialogService DialogService { get; set; }
+    private DialogInstance? dialog;
 
     protected override void OnInitialized()
     {
-        DialogService.OnOpen += () => StateHasChanged();
+        DialogService.OnOpen += (d) =>
+        {
+            dialog = d;
+            MessageFragment = null;
+            Message = null;
+            StateHasChanged();
+        };
     }
 
     public async Task CancelAsync()
     {
-        await DialogService.CancelDialogAsync();
+        if (dialog is null)
+        {
+            return;
+        }
+
+        dialog.Locked = true;
+        await DialogService.CancelDialogAsync(dialog);
     }
 
     public async Task ConfirmAsync()
     {
-        await DialogService.ConfirmDialogAsync();
+        if (dialog is null)
+        {
+            return;
+        }
+
+        Message = "Saving...";
+        dialog.Locked = true;
+        var result = await DialogService.ConfirmDialogAsync(dialog);
+        if (result.Interrupted && result.ContinueWith is not null)
+        {
+            dialog = result.ContinueWith;
+            MessageFragment = null;
+            Message = null;
+            StateHasChanged();
+        }
+        else if (result.Interrupted)
+        {
+            Message = result.Message;
+            MessageFragment = result.MessageFragment;
+        }
+
+        dialog.Locked = false;
     }
 }

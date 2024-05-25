@@ -1,8 +1,7 @@
 @inherits PureComponent
-<h2 id="@Id" class="text-xl text-gray-900 font-bold tracking-wide @Styles">@ChildContent</h2>
+<h2 id="@Id" class="text-xl text-gray-800 font-extrabold @Styles">@ChildContent</h2>
 
 @code {
 
-    [Parameter]
-    public string Id { get; set; } = string.Empty;
+    [Parameter] public string Id { get; set; } = string.Empty;
 }
