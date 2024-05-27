@@ -84,7 +84,7 @@
     <PackageVersion Include="NATS.Client.KeyValueStore" Version="2.2.1" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
     <PackageVersion Include="NUnit" Version="4.1.0" />
-    <PackageVersion Include="NUnit.Analyzers" Version="4.1.0" />
+    <PackageVersion Include="NUnit.Analyzers" Version="4.2.0" />
     <PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
     <PackageVersion Include="OpenIddict.Client" Version="5.4.0" />
     <PackageVersion Include="OpenIddict.Client.AspNetCore" Version="5.4.0" />
