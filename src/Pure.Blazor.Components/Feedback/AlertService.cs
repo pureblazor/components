@@ -1,18 +1,14 @@
 ﻿using System.Collections.Concurrent;
-using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
 using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Feedback;
 
 public class AlertService(ILogger<AlertService> log) : IDisposable
-public class AlertService(ILogger<AlertService> log) : IDisposable
 {
     private readonly ConcurrentDictionary<Guid, PeriodicTimer> timers = [];
-    private ConcurrentDictionary<Guid, PeriodicTimer> timers = [];
     public Action<Alert>? OnChange { get; set; }
 
-    internal List<Alert> Messages { get; set; } = [];
     internal List<Alert> Messages { get; set; } = [];
 
     public async Task ShowAsync(string message, Accent state = Accent.Default) =>
@@ -35,20 +31,14 @@ public class AlertService(ILogger<AlertService> log) : IDisposable
     }
 
     private async Task Remove(Alert alert, int removeInMs)
-    private async Task Remove(Alert alert, int removeInMs)
     {
         var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(removeInMs));
-        timers.TryAdd(alert.AlertId, timer);
-        while (await timer.WaitForNextTickAsync() && Messages.Contains(alert))
         timers.TryAdd(alert.AlertId, timer);
         while (await timer.WaitForNextTickAsync() && Messages.Contains(alert))
         {
             log.LogDebug("Removing toast {toast}", alert);
             await BeginRemove(alert);
         }
-
-        timer.Dispose();
-        timers.Remove(alert.AlertId, out _);
 
         timer.Dispose();
         timers.Remove(alert.AlertId, out _);
@@ -76,7 +66,6 @@ public class AlertService(ILogger<AlertService> log) : IDisposable
         // fade it out
         var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(2000));
         timers.TryAdd(alert.AlertId, timer);
-        timers.TryAdd(alert.AlertId, timer);
         while (await timer.WaitForNextTickAsync() && Messages.Contains(alert))
         {
             // actually remove the toast
@@ -85,16 +74,6 @@ public class AlertService(ILogger<AlertService> log) : IDisposable
         }
 
         timer.Dispose();
-        timers.TryRemove(alert.AlertId, out _);
-    }
-
-    public void Dispose()
-    {
-        Messages.Clear();
-        foreach (var timer in timers.Values)
-        {
-            timer.Dispose();
-        }
         timers.TryRemove(alert.AlertId, out _);
     }
 
@@ -116,8 +95,6 @@ public class Alert
         State = state;
         Duration = duration;
     }
-
-    public Guid AlertId { get; } = Guid.NewGuid();
 
     public Guid AlertId { get; } = Guid.NewGuid();
 
