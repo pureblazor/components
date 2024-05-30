@@ -4,6 +4,7 @@ namespace Pure.Blazor.Components.Dialogs;
 
 public class ShowDialogOptions
 {
+    public object? Model { get; set; }
     public Func<DialogResult, Task>? OnEvent { get; set; }
     public Func<DialogResult, Task<DialogEventResult>>? OnConfirm { get; set; }
 
