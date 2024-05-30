@@ -1,14 +1,15 @@
-﻿using Microsoft.Extensions.Logging;
-using Pure.Blazor.Components.Common;
+﻿using System.Collections.Concurrent;
+using Microsoft.Extensions.Logging;
 using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Feedback;
 
-public class AlertService(ILogger<AlertService> log)
+public class AlertService(ILogger<AlertService> log) : IDisposable
 {
+    private ConcurrentDictionary<Guid, PeriodicTimer> timers = [];
     public Action<Alert>? OnChange { get; set; }
 
-    internal List<Alert> Messages { get; set; } = new();
+    internal List<Alert> Messages { get; set; } = [];
 
     public async Task ShowAsync(string message, Accent state = Accent.Default) =>
         await ShowAsync(new Alert(message, state));
@@ -29,15 +30,18 @@ public class AlertService(ILogger<AlertService> log)
         return Task.CompletedTask;
     }
 
-    internal async Task Remove(Alert alert, int removeInMs)
+    private async Task Remove(Alert alert, int removeInMs)
     {
         var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(removeInMs));
-
-        while (await timer.WaitForNextTickAsync())
+        timers.TryAdd(alert.AlertId, timer);
+        while (await timer.WaitForNextTickAsync() && Messages.Contains(alert))
         {
             log.LogDebug("Removing toast {toast}", alert);
             await BeginRemove(alert);
         }
+
+        timer.Dispose();
+        timers.Remove(alert.AlertId, out _);
     }
 
     internal async Task RemoveImmediately(Alert alert)
@@ -61,6 +65,7 @@ public class AlertService(ILogger<AlertService> log)
         // start a timer to remove the toast a few seconds after the UI can
         // fade it out
         var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(2000));
+        timers.TryAdd(alert.AlertId, timer);
         while (await timer.WaitForNextTickAsync() && Messages.Contains(alert))
         {
             // actually remove the toast
@@ -69,6 +74,16 @@ public class AlertService(ILogger<AlertService> log)
         }
 
         timer.Dispose();
+        timers.TryRemove(alert.AlertId, out _);
+    }
+
+    public void Dispose()
+    {
+        Messages.Clear();
+        foreach (var timer in timers.Values)
+        {
+            timer.Dispose();
+        }
     }
 }
 
@@ -80,6 +95,8 @@ public class Alert
         State = state;
         Duration = duration;
     }
+
+    public Guid AlertId { get; } = Guid.NewGuid();
 
     /// <summary>
     ///     How long the toast should be visible before beginning to disappear.

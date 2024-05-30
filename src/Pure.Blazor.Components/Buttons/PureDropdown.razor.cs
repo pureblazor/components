@@ -18,13 +18,7 @@ public partial class PureDropdown
 
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
     [Parameter] public PureIcons Icon { get; set; } = PureIcons.IconChevronUpDown;
-    [Parameter] public RenderFragment? Menu { get; set; }
-
-    /// <summary>
-    ///     Dropdown menu items.
-    /// </summary>
-    [Parameter]
-    public List<DropdownMenuItem> Items { get; set; } = new();
+    [Parameter] public RenderFragment? MenuItems { get; set; }
 
     /// <summary>
     ///     Returns the menu item selected.
