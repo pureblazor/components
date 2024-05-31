@@ -65,8 +65,6 @@ public class PureTextArea : PureInputBase
 
         builder.AddAttribute(10, "oninput",
             EventCallback.Factory.CreateBinder<string>(this, (value => CurrentValue = value), CurrentValue));
-        // builder.AddAttribute(11, "oninput",
-        //     EventCallback.Factory.CreateBinder<string>(this, (value => CurrentValue = value), CurrentValue));
 
         builder.CloseElement();
         builder.CloseRegion();

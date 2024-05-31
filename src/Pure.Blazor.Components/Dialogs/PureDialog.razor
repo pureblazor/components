@@ -2,15 +2,15 @@
     <dialog class="min-w-96 px-4 border-1 border-gray-300 shadow rounded self-center justify-self-center" id="component">
         <div class="flex flex-col gap-2 py-4">
             <div>
-                @if (DialogService.Title != null)
+                @if (dialog?.Title != null)
                 {
-                    <Header2>@DialogService.Title</Header2>
+                    <Header2>@dialog?.Title</Header2>
                 }
             </div>
             <div>
-                @if (DialogService.Body != null)
+                @if (dialog?.Body != null)
                 {
-                    @DialogService.Body
+                    @dialog?.Body
                 }
             </div>
         </div>
@@ -27,18 +27,18 @@
                 Id="dialog_component--cancel"
                 Variant="PureVariant.Subtle"
                 OnClick="CancelAsync"
-                Loading="@(IsConfirming || IsCanceling)">
+                Loading="@(dialog?.Locked ?? true)">
                 Cancel
             </PureButton>
 
-            @if (!string.IsNullOrWhiteSpace(DialogService.AckButton))
+            @if (!string.IsNullOrWhiteSpace(dialog?.AckButton))
             {
                 <PureButton Id="dialog_component--ack"
                             Variant="PureVariant.Default"
-                            Accent="@DialogService.AckColor"
+                            Accent="@(dialog?.AckColor ?? DialogDefaults.AckColor)"
                             OnClick="ConfirmAsync"
-                            Loading="@(IsConfirming || IsCanceling)">
-                    @DialogService.AckButton
+                            Loading="@(dialog?.Locked ?? true)">
+                    @(dialog?.AckButton ?? DialogDefaults.AckButton)
                 </PureButton>
             }
         </div>

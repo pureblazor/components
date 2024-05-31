@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Pure.Blazor.Components.Primitives;
-using Pure.Core.Abstractions;
 
 namespace Pure.Blazor.Components.Forms;
 
@@ -12,7 +11,7 @@ public class PureInputBase : PureComponent
     /// ID attribute for the input element. Defaults to a unique ID.
     /// </summary>
     [Parameter]
-    public string Id { get; set; } = $"entry-{Uuid.New()}";
+    public string Id { get; set; } = $"entry-{Guid.NewGuid()}";
 
     /// <summary>
     ///     Optional label (recommended)

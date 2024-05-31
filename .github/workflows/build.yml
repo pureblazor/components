@@ -26,6 +26,9 @@ jobs:
       
     - name: Test
       run: dotnet test ./src/Pure.Blazor.Components --no-build --verbosity normal
+
+    - name: Build AspNetCore Integration Package
+      run: dotnet build ./src/Pure.Blazor.Components.AspNetCore
     
     - name: Publish to NuGet
       if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/preview' }}
