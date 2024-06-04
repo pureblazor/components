@@ -183,7 +183,7 @@ public partial class PureInput
 
     private string GetAutoComplete()
     {
-        return AutoComplete == InputAutoComplete.None ? "" : InputAutoFillMap.Map[AutoComplete];
+        return AutoComplete == InputAutoComplete.None ? "off" : InputAutoFillMap.Map[AutoComplete];
     }
 
     private string GetSuffixCss()
