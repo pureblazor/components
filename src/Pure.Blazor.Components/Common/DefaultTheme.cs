@@ -2,6 +2,7 @@ using Pure.Blazor.Components.Buttons;
 using Pure.Blazor.Components.Common.Css;
 using Pure.Blazor.Components.Display;
 using Pure.Blazor.Components.Feedback;
+using Pure.Blazor.Components.Forms;
 using Pure.Blazor.Components.Primitives;
 
 namespace Pure.Blazor.Components.Common;
@@ -25,6 +26,13 @@ public record DefaultTheme : PureTheme
             },
             {
                 nameof(PureDropdown),
+                new ComponentStyle(DropdownStyles.Base, null, null, DropdownStyles.Sizes)
+                {
+                    InnerContainer = new ComponentStyle(DropdownStyles.Container.Base, null, null, null)
+                }
+            },
+            {
+                nameof(PureSelect),
                 new ComponentStyle(DropdownStyles.Base, null, null, DropdownStyles.Sizes)
                 {
                     InnerContainer = new ComponentStyle(DropdownStyles.Container.Base, null, null, null)
