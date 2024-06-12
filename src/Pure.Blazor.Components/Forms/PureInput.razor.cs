@@ -95,14 +95,14 @@ public partial class PureInput
 
     [Parameter] public EventCallback OnEnter { get; set; }
 
-    private async Task OnKeyDownHandler(KeyboardEventArgs args)
-    {
-        const string EnterKey = "Enter";
-        if(args.Code == EnterKey)
-        {
-            await OnEnter.InvokeAsync();
-        }
-    }
+    // private async Task OnKeyDownHandler(KeyboardEventArgs args)
+    // {
+    //     const string EnterKey = "Enter";
+    //     if(args.Code == EnterKey)
+    //     {
+    //         await OnEnter.InvokeAsync();
+    //     }
+    // }
 
     public async ValueTask FocusAsync()
     {
