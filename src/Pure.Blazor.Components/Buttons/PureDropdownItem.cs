@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Primitives;
@@ -15,12 +16,12 @@ public class PureDropdownItem : InteropComponent
         {
             builder.OpenElement(0, "button");
             builder.AddAttribute(1, "type", "button");
-            builder.AddEventPreventDefaultAttribute(2, "onclick", true);
-            builder.AddEventStopPropagationAttribute(3, "onclick", true);
+            // builder.AddEventPreventDefaultAttribute(2, "onclick", true);
+            // builder.AddEventStopPropagationAttribute(3, "onclick", true);
             builder.AddAttribute(4, "class", ApplyStyle($"{Css.Base} {Css.Size(Parent.Size)} {Css.Accent(Accent)}"));
             builder.AddAttribute(5, "role", "menuitem");
             builder.AddAttribute(6, "tabindex", "-1");
-            builder.AddAttribute(7, "@onclick",
+            builder.AddAttribute(7, "onclick",
                 EventCallback.Factory.Create<MouseEventArgs>(this, OnItemClick));
             builder.AddContent(8, ChildContent);
             builder.CloseElement();
@@ -47,7 +48,15 @@ public class PureDropdownItem : InteropComponent
 
     private async Task OnItemClick(MouseEventArgs _)
     {
-        await Module.InvokeVoidAsync("blur");
+        Logger.LogTrace("Dropdown item clicked");
         await OnItemSelected.InvokeAsync();
+        try
+        {
+            await Module.InvokeVoidAsync("blur");
+        }
+        catch (Exception e)
+        {
+            Logger.LogError(e, "Failed to close dropdown item");
+        }
     }
 }
