@@ -6,7 +6,7 @@ internal class ButtonStyles
 {
     private const string ExtraSmallButton = "rounded px-1 py-0.5 text-xs font-normal";
     private const string SmallButton = "px-3 py-1.5 text-xs";
-    private const string MediumButton = "px-3.5 py-2 text-sm";
+    private const string MediumButton = "px-3.5 py-1.5 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
 
     private const string PrimaryButton =
@@ -100,5 +100,5 @@ internal class ButtonStyles
     };
 
     public static string Base =>
-        "flex justify-center items-center cursor-pointer gap-1 rounded-sm md:rounded-xs focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-900 border-1";
+        "flex justify-center items-center cursor-pointer gap-1 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-900 border-1";
 }

@@ -2,8 +2,7 @@
 
 <div class="relative inline-block text-left group/dropdown">
     <div>
-        <button type="button" class="@ApplyStyle($"{Css.Base} {Css.Size(Size)}")"
-                @onclick:stopPropagation="true" @onclick:preventDefault="true">
+        <button type="button" class="@ApplyStyle($"{Css.Base} {Css.Size(Size)}")">
             @ChildContent
             <PureIcon Size="Size" Icon="Icon"></PureIcon>
         </button>
