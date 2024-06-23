@@ -25,7 +25,7 @@
     <PackageVersion Include="EFCore.NamingConventions" Version="8.0.3" />
     <PackageVersion Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.1.2" />
     <PackageVersion Include="FakeItEasy.Analyzer.CSharp" Version="6.1.1" />
-    <PackageVersion Include="FluentAssertions" Version="7.0.0-alpha.3" />
+    <PackageVersion Include="FluentAssertions" Version="7.0.0-alpha.4" />
     <PackageVersion Include="Google.Api.CommonProtos" Version="2.15.0" />
     <PackageVersion Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.62.0" />
     <PackageVersion Include="Grpc.AspNetCore.Web" Version="2.62.0" />

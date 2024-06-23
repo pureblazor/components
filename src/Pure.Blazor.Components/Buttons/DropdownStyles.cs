@@ -6,7 +6,7 @@ public class DropdownStyles
 {
     private const string ExtraSmallButton = "px-1 py-0.5 text-xs font-normal";
     private const string SmallButton = "px-1 py-1 text-xs";
-    private const string MediumButton = "px-2.5 py-2 text-sm";
+    private const string MediumButton = "px-2.5 py-1.5 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
 
     public static string Base { get; set; } =
