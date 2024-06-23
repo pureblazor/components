@@ -9,7 +9,7 @@ public class DropdownMenuItemStyles
     private const string MediumMenuItem = "px-4 py-2 text-sm ";
     private const string LargeMenuItem = "px-4 py-2 text-sm ";
 
-    public string Base { get; set; } = "text-gray-700 hover:bg-gray-200 block text-sm grow text-left";
+    public string Base { get; set; } = "text-gray-700 hover:bg-gray-200 cursor-pointer block text-sm grow text-left w-full";
 
     public readonly Dictionary<Accent, string> Accents = new()
     {

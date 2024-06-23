@@ -8,7 +8,7 @@
 @code {
     private ElementReference? _elementReference;
     private bool prevStateActive = false;
-    private const string BaseCss = "w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center";
+    private const string BaseCss = "w-1/2 sm:w-auto justify-center sm:justify-start inline-flex items-center font-medium";
     [Parameter] public string Title { get; set; } = string.Empty;
 
     [Parameter] public bool IsActive { get; set; }
@@ -76,10 +76,10 @@
         switch (Variant)
         {
             case TabVariant.Default when IsActive:
-                builder.Append(" border-b-2 border-brand-600 cursor-pointer");
+                builder.Append(" border-b-2 border-brand-600 cursor-pointer focus-visible:outline-transparent");
                 break;
             case TabVariant.Default when !IsActive:
-                builder.Append(" border-b-2 border-gray-300 cursor-pointer");
+                builder.Append(" border-b-2 border-gray-300 cursor-pointer focus-visible:outline-transparent");
                 break;
             case TabVariant.Outline when IsActive:
                 builder.Append(" border-1 rounded-t-sm border-gray-200 border-b-white bg-white cursor-default hover:bg-gray-50 relative top-px");

@@ -8,7 +8,7 @@
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Icons</Title>
-    <Version>0.30</Version>
+    <Version>0.31</Version>
     <PackageId>PureBlazor.Components.Icons</PackageId>
     <Description>Blazor Icons</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>

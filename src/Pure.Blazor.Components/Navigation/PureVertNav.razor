@@ -2,12 +2,12 @@
 @inherits PureComponent
 @namespace Pure.Blazor.Components
 
-<ul class="flex flex-col py-4 w-full gap-0.5">
+<ul class="flex flex-row flex-wrap sm:flex-col py-4 w-full gap-0.5 @Styles">
     @RenderTopLevel(("Overview", "/components"))
-    <li class="pb-0.5 pt-3 font-semibold text-gray-800">Getting Started</li>
+    <li class="pb-0.5 pt-3 font-semibold text-gray-800 hidden sm:block">Getting Started</li>
     @RenderTopLevel(("Installation", "/components/getting-started"))
     @RenderTopLevel(("Theme Customization", "/components/getting-started/customizing-the-theme"))
-    <li class="pt-3 pb-0.5 font-semibold text-gray-800">Components</li>
+    <li class="pt-3 pb-0.5 font-semibold text-gray-800 hidden sm:block">Components</li>
     @RenderTopLevel(("Alerts", "/components/alerts"))
     @RenderTopLevel(("Badges", "/components/badges"))
     @RenderTopLevel(("Banners", "/components/banners"))
@@ -17,7 +17,7 @@
                      InactiveClass="px-2 py-0.5 inline-block text-slate-700 hover:text-brand-900 antialiased font-medium font-sans leading-6 rounded-md bg-transparent">
             Buttons
         </PureNavLink>
-        <ul class="pl-4">
+        <ul class="pl-4 hidden sm:block">
 
             <li class="px-2 py-1 text-sm hover:text-brand-900">
                 <PureNavLink Match="NavLinkMatch.All" ActiveClass="font-bold text-brand-700" InactiveClass="hover:text-brand-800" href="/components/buttons/overview">Overview</PureNavLink>
@@ -51,6 +51,7 @@
     @RenderTopLevel(("Cards", "/components/cards"))
     @RenderTopLevel(("Dialog", "/components/dialog"))
     @RenderTopLevel(("Dropdown", "/components/dropdowns"))
+    @RenderTopLevel(("Flyout", "/components/flyout"))
     @RenderTopLevel(("Inputs", "/components/inputs"))
     @RenderTopLevel(("Icons", "/components/icons"))
     @RenderTopLevel(("Radio Buttons", "/components/radio"))

@@ -25,7 +25,7 @@
     <PackageVersion Include="EFCore.NamingConventions" Version="8.0.3" />
     <PackageVersion Include="EntityFrameworkCore.Exceptions.PostgreSQL" Version="8.1.2" />
     <PackageVersion Include="FakeItEasy.Analyzer.CSharp" Version="6.1.1" />
-    <PackageVersion Include="FluentAssertions" Version="7.0.0-alpha.3" />
+    <PackageVersion Include="FluentAssertions" Version="7.0.0-alpha.4" />
     <PackageVersion Include="Google.Api.CommonProtos" Version="2.15.0" />
     <PackageVersion Include="Grpc.AspNetCore.Server.ClientFactory" Version="2.62.0" />
     <PackageVersion Include="Grpc.AspNetCore.Web" Version="2.62.0" />
@@ -37,8 +37,8 @@
     <PackageVersion Include="Markdig" Version="0.37.0" />
     <PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.4" />
-    <PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="8.0.4" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components" Version="8.0.5" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authorization" Version="8.0.6" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components" Version="8.0.6" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Authorization" Version="8.0.4" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="8.0.5" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.5" />
