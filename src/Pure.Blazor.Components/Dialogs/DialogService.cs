@@ -52,7 +52,7 @@ public class DialogService
         await module.InvokeVoidAsync("closeDialog", objRef, instance.DialogId);
     }
 
-    public async Task<DialogEventResult> ConfirmDialogAsync(DialogInstance instance)
+    internal async Task<DialogEventResult> ConfirmDialogAsync(DialogInstance instance)
     {
         var res = await instance.ConfirmAsync();
         if (res.Interrupted)
