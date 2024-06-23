@@ -34,6 +34,7 @@ public class DialogInstance
     public Func<DialogResult, Task<DialogEventResult>>? OnConfirm { get; set; }
 
     public string? Title { get; set; }
+    public object? Model { get; set; }
     public RenderFragment? Body { get; set; }
     public string AckButton { get; set; } = DialogDefaults.AckButton;
     public Accent AckColor { get; set; } = DialogDefaults.AckColor;
@@ -43,6 +44,8 @@ public class DialogInstance
     {
         Title = title;
         Body = body;
+        Model = options?.Model;
+
         AckButton = options?.AckButton ?? DialogDefaults.AckButton;
         AckColor = options?.AckColor ?? DialogDefaults.AckColor;
 
@@ -58,7 +61,7 @@ public class DialogInstance
         var res = DialogEventResult.Confirmed;
         if (OnConfirm is not null)
         {
-            res = await OnConfirm(new DialogResult(DialogEvent.Confirm));
+            res = await OnConfirm(new DialogResult(DialogEvent.Confirm, Model));
             if (res.Interrupted)
             {
                 return res;

@@ -93,6 +93,17 @@ public partial class PureInput
     [Parameter] public EventCallback<MouseEventArgs> OnSuffixClick { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnBlur { get; set; }
 
+    [Parameter] public EventCallback OnEnter { get; set; }
+
+    // private async Task OnKeyDownHandler(KeyboardEventArgs args)
+    // {
+    //     const string EnterKey = "Enter";
+    //     if(args.Code == EnterKey)
+    //     {
+    //         await OnEnter.InvokeAsync();
+    //     }
+    // }
+
     public async ValueTask FocusAsync()
     {
         if (InputRef?.Element is not null)
@@ -183,7 +194,7 @@ public partial class PureInput
 
     private string GetAutoComplete()
     {
-        return AutoComplete == InputAutoComplete.None ? "" : InputAutoFillMap.Map[AutoComplete];
+        return AutoComplete == InputAutoComplete.None ? "off" : InputAutoFillMap.Map[AutoComplete];
     }
 
     private string GetSuffixCss()
