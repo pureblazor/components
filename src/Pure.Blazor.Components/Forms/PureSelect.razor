@@ -19,6 +19,7 @@
 
 @code {
     [Parameter, EditorRequired] public required string Value { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
     [Parameter] public EventCallback<string> OnSelected { get; set; }
 
     /// <summary>
@@ -63,5 +64,6 @@
     {
         Value = s;
         OnSelected.InvokeAsync(Value);
+        ValueChanged.InvokeAsync(Value);
     }
 }

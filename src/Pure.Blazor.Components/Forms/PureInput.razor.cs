@@ -18,7 +18,13 @@ public partial class PureInput
     private string defaultBorder = "border-gray-200";
     private string errorBorder = "border-red-600";
     private string? errorMessage;
-    private string value = string.Empty;
+    private object? innerValue;
+
+    private string? TextValue
+    {
+        get { return innerValue?.ToString(); }
+        set { innerValue = value; }
+    }
 
     // the suffix needs different margins depending on labels and helper text
     private string suffixCss => GetSuffixCss();
@@ -29,7 +35,7 @@ public partial class PureInput
 
     [Parameter] public InputAutoComplete AutoComplete { get; set; }
     [Parameter] public InputType InputType { get; set; } = InputType.Text;
-
+    [Parameter] public string? ContainerStyles { get; set; }
     /// <summary>
     ///     Defaults to immediate mode
     /// </summary>
@@ -138,7 +144,7 @@ public partial class PureInput
 
     protected override void OnInitialized()
     {
-        value = Value ?? string.Empty;
+        innerValue = Value ?? default;
 
         if (Required == true)
         {

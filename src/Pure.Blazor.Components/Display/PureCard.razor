@@ -11,13 +11,14 @@
         {
             <Header2>@Title</Header2>
         }
-        <div class="text-base">
+        <div class="@ContentContainerStyles">
             @ChildContent
         </div>
     </div>
 </div>
 
 @code {
+    [Parameter] public string? ContentContainerStyles { get; set; }
     [Parameter] public string? InnerContainerStyles { get; set; }
 
     [Parameter] public string? Title { get; set; }

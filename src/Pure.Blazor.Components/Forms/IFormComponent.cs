@@ -2,7 +2,7 @@
 
 internal interface IFormComponent
 {
-    string Value { get; set; }
+    object? Value { get; set; }
     bool HasError { get; set; }
     void Validate(object? val);
 }

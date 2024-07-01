@@ -48,7 +48,7 @@ public class PureDropdownItem : InteropComponent
 
     private async Task OnItemClick(MouseEventArgs _)
     {
-        Logger.LogTrace("Dropdown item clicked");
+        Logger.LogInformation("Dropdown item clicked");
         await OnItemSelected.InvokeAsync();
         try
         {

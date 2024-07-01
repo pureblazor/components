@@ -1,9 +1,17 @@
 ﻿@inherits InteropComponent
 
-<div class="relative inline-block text-left group/dropdown">
+<!-- Dropdowns take up full width of their parent container -->
+<div class="relative inline-block text-left group/dropdown w-full">
     <div>
         <button type="button" class="@ApplyStyle($"{Css.Base} {Css.Size(Size)}")">
-            @ChildContent
+            @if (TitleFragment is not null)
+            {
+                @TitleFragment
+            }
+            else
+            {
+                @Title
+            }
             <PureIcon Size="Size" Icon="Icon"></PureIcon>
         </button>
     </div>
@@ -14,7 +22,7 @@
          aria-labelledby="menu-button"
          tabindex="-1">
         <CascadingValue Value="this">
-            @MenuItems
+            @ChildContent
         </CascadingValue>
     </div>
 </div>

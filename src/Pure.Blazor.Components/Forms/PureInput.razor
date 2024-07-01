@@ -3,7 +3,7 @@
 @implements IFormComponent
 @inject ILogger<PureInput> Log
 
-<div class="flex flex-col relative">
+<div class="@ApplyStyle("flex flex-col relative", ContainerStyles)">
     @if (!string.IsNullOrWhiteSpace(Label))
     {
         if (LabelType == PureLabelType.Default)
@@ -13,7 +13,7 @@
     }
     <InputText id="@Id"
                @ref="InputRef"
-               @bind-Value="Value"
+               @bind-Value="@TextValue"
                class="@($"{ApplyStyle(baseCss)} {(HasError ? errorBorder : defaultBorder)}")"
                type="@GetInputType()"
                autocomplete="@GetAutoComplete()"

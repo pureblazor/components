@@ -5,7 +5,7 @@ namespace Pure.Blazor.Components.Forms;
 
 public class PureInputBase : PureComponent
 {
-    private string currentValue = "";
+    private object? currentValue;
 
     /// <summary>
     /// ID attribute for the input element. Defaults to a unique ID.
@@ -32,7 +32,7 @@ public class PureInputBase : PureComponent
     public string? Name { get; set; }
 
     [Parameter]
-    public string Value
+    public object? Value
     {
         get => currentValue;
         set { currentValue = value; }
