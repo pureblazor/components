@@ -10,15 +10,14 @@ public class PureButton : PureButtonBase
 {
     private bool IsPressed { get; set; }
 
-    [Parameter] public PureIcons? LeftIcon { get; set; }
-    [Parameter] public PureIcons? RightIcon { get; set; }
+    [Parameter] public PureIcons? StartIcon { get; set; }
+    [Parameter] public PureSize? StartIconSize { get; set; }
+    [Parameter] public PureIcons? EndIcon { get; set; }
+    [Parameter] public PureSize? EndIconSize { get; set; }
     [Parameter] public Effect PressEffect { get; set; }
     [Parameter] public Effect HoverEffect { get; set; }
 
-    private void SetPressed(bool pressed)
-    {
-        IsPressed = pressed;
-    }
+    private void SetPressed(bool pressed) => IsPressed = pressed;
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
@@ -77,13 +76,13 @@ public class PureButton : PureButtonBase
         }
 
         // var icon = Loading ? PureIcons.IconOpenCircle : LeftIcon;
-        var icon = LeftIcon;
+        var icon = StartIcon;
         if (icon is not null)
         {
             builder.OpenRegion(17);
             builder.OpenComponent<PureIcon>(1);
             builder.AddComponentParameter(2, "Icon", icon);
-            builder.AddComponentParameter(3, "Size", Size);
+            builder.AddComponentParameter(3, "Size", StartIconSize ?? Size);
             builder.AddComponentParameter(4, "Animate", Loading ? PureAnimate.Spin : PureAnimate.None);
             builder.CloseComponent();
             builder.CloseRegion();
@@ -102,12 +101,12 @@ public class PureButton : PureButtonBase
             builder.AddContent(20, Text);
         }
 
-        if (RightIcon is not null)
+        if (EndIcon is not null)
         {
             builder.OpenRegion(21);
             builder.OpenComponent<PureIcon>(1);
-            builder.AddAttribute(2, "Icon", RightIcon);
-            builder.AddAttribute(3, "Size", Size);
+            builder.AddAttribute(2, "Icon", EndIcon);
+            builder.AddAttribute(3, "Size", EndIconSize ?? Size);
             builder.CloseComponent();
             builder.CloseRegion();
         }
@@ -115,9 +114,8 @@ public class PureButton : PureButtonBase
         builder.CloseElement();
     }
 
-    private static string GetPressEffect(Effect effect, bool pressed)
-    {
-        return effect switch
+    private static string GetPressEffect(Effect effect, bool pressed) =>
+        effect switch
         {
             Effect.Jiggle when pressed => "motion-safe:translate-y-px",
             Effect.Jiggle => "translate-y-0",
@@ -127,16 +125,13 @@ public class PureButton : PureButtonBase
             Effect.InsetShadow => "shadow-none",
             _ => ""
         };
-    }
 
-    private static string GetHoverEffect(Effect effect)
-    {
-        return effect switch
+    private static string GetHoverEffect(Effect effect) =>
+        effect switch
         {
             Effect.Jiggle => "motion-safe:hover:translate-y-px",
             Effect.Pulse => "hover:animate-pulse",
             Effect.Ping => "motion-safe:hover:animate-ping",
             _ => ""
         };
-    }
 }

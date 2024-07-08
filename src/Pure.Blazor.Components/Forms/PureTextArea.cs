@@ -24,7 +24,7 @@ public class PureTextArea : PureInputBase
     }
 
     /// <summary>
-    /// Specifies the number of rows for the textarea.
+    ///     Specifies the number of rows for the textarea.
     /// </summary>
     [Parameter]
     public int Rows { get; set; }
@@ -64,8 +64,8 @@ public class PureTextArea : PureInputBase
         builder.AddAttribute(5, "rows", Rows);
 
         builder.AddAttribute(10, "oninput",
-            EventCallback.Factory.CreateBinder<string>(this, (value => CurrentValue = value), CurrentValue));
-
+            EventCallback.Factory.CreateBinder<string>(this, value => CurrentValue = value, CurrentValue));
+        builder.AddContent(11, Value);
         builder.CloseElement();
         builder.CloseRegion();
         builder.CloseElement();

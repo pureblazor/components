@@ -51,4 +51,7 @@ public enum PureIcons
     IconLongArrowLeft,
     IconLongArrowDown,
     IconLongArrowUp,
+    IconWrenchScrewdriver,
+    IconPlay,
+    IconClock
 }
