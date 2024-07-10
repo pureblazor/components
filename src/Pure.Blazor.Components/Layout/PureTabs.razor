@@ -53,10 +53,10 @@
         var currentIndex = Tabs.IndexOf(CurrentTab);
         var nextIndex = direction switch
         {
-            KeyboardDirection.Left when currentIndex > 0 => currentIndex - 1,
-            KeyboardDirection.Right when currentIndex < Tabs.Count - 1 => currentIndex + 1,
-            KeyboardDirection.Left when useEndlessTabCycle => Tabs.Count - 1,
-            KeyboardDirection.Right when useEndlessTabCycle => 0,
+            KeyboardDirection.Backward when currentIndex > 0 => currentIndex - 1,
+            KeyboardDirection.Forward when currentIndex < Tabs.Count - 1 => currentIndex + 1,
+            KeyboardDirection.Backward when useEndlessTabCycle => Tabs.Count - 1,
+            KeyboardDirection.Forward when useEndlessTabCycle => 0,
             _ => currentIndex
         };
 

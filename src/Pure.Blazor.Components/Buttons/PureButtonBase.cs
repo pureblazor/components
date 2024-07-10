@@ -53,7 +53,7 @@ public class PureButtonBase : PureComponent
             return;
         }
 
-        OnClick.InvokeAsync();
+        OnClick.InvokeAsync(e);
     }
 
     protected override void BuildCss()

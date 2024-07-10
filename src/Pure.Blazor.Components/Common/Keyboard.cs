@@ -26,8 +26,8 @@ public static class Keyboard
     {
         return e.Key switch
         {
-            ArrowLeft => KeyboardDirection.Left,
-            ArrowRight => KeyboardDirection.Right,
+            ArrowLeft => KeyboardDirection.Backward,
+            ArrowRight => KeyboardDirection.Forward,
             ArrowUp => KeyboardDirection.Up,
             ArrowDown => KeyboardDirection.Down,
             _ => throw new ArgumentOutOfRangeException(nameof(e))
@@ -45,6 +45,6 @@ public enum KeyboardDirection
 {
     Up,
     Down,
-    Left,
-    Right
+    Backward,
+    Forward
 }
