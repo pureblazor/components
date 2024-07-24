@@ -15,3 +15,31 @@
     --color-brand-900: #074873;
     --color-brand-950: #052e4c;
 }
+
+.slider::-webkit-slider-thumb {
+    @apply w-4 h-4 bg-blue-500 rounded-full cursor-pointer appearance-none;
+}
+
+.slider::-moz-range-thumb {
+    @apply w-4 h-4 bg-blue-500 rounded-full cursor-pointer appearance-none;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    @apply bg-blue-700;
+}
+
+.slider::-moz-range-thumb:hover {
+    @apply bg-blue-700;
+}
+
+.slider:focus {
+    @apply outline-none;
+}
+
+.slider:focus::-webkit-slider-thumb {
+    @apply ring-2 ring-offset-2 ring-blue-500;
+}
+
+.slider:focus::-moz-range-thumb {
+    @apply ring-2 ring-offset-2 ring-blue-500;
+}

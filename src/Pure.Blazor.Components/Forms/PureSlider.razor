@@ -1,0 +1,23 @@
+@* @using Microsoft.JSInterop *@
+@* @inject IJSRuntime JSRuntime *@
+
+<input type="range" min="@Min" max="@Max" step="@Step" value="@Value" @oninput="HandleInput" class="slider w-full h-2 bg-brand-600/20 rounded-lg appearance-none cursor-pointer"/>
+
+@code {
+    [Parameter] public double Min { get; set; } = 0;
+    [Parameter] public double Max { get; set; } = 5;
+    [Parameter] public double Step { get; set; } = 1;
+    [Parameter] public double Value { get; set; } = 0;
+    [Parameter] public EventCallback<double> ValueChanged { get; set; }
+
+    private async Task HandleInput(ChangeEventArgs e)
+    {
+        if (double.TryParse(e.Value?.ToString(), out double newValue))
+        {
+            Value = newValue;
+            await ValueChanged.InvokeAsync(Value);
+            // await JSRuntime.InvokeVoidAsync("sliderTactileFeedback");
+        }
+    }
+
+}

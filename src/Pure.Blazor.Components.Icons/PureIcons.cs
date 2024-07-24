@@ -53,5 +53,7 @@ public enum PureIcons
     IconLongArrowUp,
     IconWrenchScrewdriver,
     IconPlay,
-    IconClock
+    IconClock,
+    PencilSquare,
+    XMark
 }
