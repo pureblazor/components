@@ -34,7 +34,7 @@ public class DialogService
     }
 
 
-    public async Task ShowDialog(string title, RenderFragment body, ShowDialogOptions? options = null)
+    public async Task ShowDialogAsync(string title, RenderFragment body, ShowDialogOptions? options = null)
     {
         log.LogDebug("ShowDialog requested");
         var instance = new DialogInstance();
