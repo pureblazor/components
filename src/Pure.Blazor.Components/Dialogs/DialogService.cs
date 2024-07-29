@@ -54,15 +54,24 @@ public class DialogService
 
     internal async Task<DialogEventResult> ConfirmDialogAsync(DialogInstance instance)
     {
-        var res = await instance.ConfirmAsync();
-        if (res.Interrupted)
+        try
         {
+            var res = await instance.ConfirmAsync();
+            if (res.Interrupted)
+            {
+                return res;
+            }
+
+            await CloseDialogAsync(instance);
+
             return res;
         }
+        catch (Exception ex)
+        {
+            log.LogError(ex, "Error confirming dialog");
+        }
 
-        await CloseDialogAsync(instance);
-
-        return res;
+        return new ();
     }
 
     public async Task CancelDialogAsync(DialogInstance instance)
