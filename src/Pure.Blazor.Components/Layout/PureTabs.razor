@@ -9,7 +9,7 @@
                     IsActive="@(CurrentTab == tab)"
                     Size="Size"
                     OnKeyboardNavigation="KeyboardNavigation"
-                    OnClick="() => ChangeTab(tab)" Variant="Variant"/>
+                    OnClick="@(async () => await ChangeTab(tab))" Variant="Variant"/>
             }
 
         </div>
@@ -42,7 +42,7 @@
         BuildCss();
     }
 
-    internal void KeyboardNavigation(KeyboardDirection direction)
+    internal async Task KeyboardNavigation(KeyboardDirection direction)
     {
         if (CurrentTab == null)
         {
@@ -60,13 +60,14 @@
             _ => currentIndex
         };
 
-        ChangeTab(Tabs[nextIndex]);
+        await ChangeTab(Tabs[nextIndex]);
     }
 
-    internal void ChangeTab(PureTabContent tab)
+    internal async Task ChangeTab(PureTabContent tab)
     {
-        OnChanging.InvokeAsync();
-        tab.OnChanging.InvokeAsync();
+        Console.WriteLine("Changing tab");
+        await OnChanging.InvokeAsync();
+        await tab.OnChanging.InvokeAsync();
 
         CurrentTab = tab;
     }
