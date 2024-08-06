@@ -67,8 +67,12 @@ public class PureButton : PureButtonBase
         builder.AddAttributeIfNotNullOrEmpty(12, "title", Title);
         builder.AddAttributeIfNotNullOrEmpty(13, "value", Value);
 
-        builder.AddAttributeIfNotNullOrEmpty(14, "class",
-            $"{ApplyStyle(InternalCss)} {pressEffectCss} {hoverEffectCss}");
+        if (Theme != Theme.Off)
+        {
+            builder.AddAttributeIfNotNullOrEmpty(14, "class",
+                $"{ApplyStyle(InternalCss)} {pressEffectCss} {hoverEffectCss}");
+        }
+
         if (StopPropagation)
         {
             builder.AddEventPreventDefaultAttribute(15, "onclick", true);

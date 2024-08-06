@@ -58,6 +58,12 @@ public class PureButtonBase : PureComponent
 
     protected override void BuildCss()
     {
+        if (Theme == Theme.Off)
+        {
+            InternalCss = "";
+            return;
+        }
+
         InternalCss =
             ApplyStyle(
                 $"{Css.Base} {Css.Variant(Variant, Accent)} {Css.Size(Size)} {(Disabled || Loading ? Css.Disabled : "")}");

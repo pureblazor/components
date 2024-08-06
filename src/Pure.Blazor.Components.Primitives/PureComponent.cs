@@ -72,7 +72,7 @@ public class PureComponent : ComponentBase
     {
         if (Theme == Theme.Off)
         {
-            return baseStyle ?? "";
+            return newStyles ?? "";
         }
 
         if (newStyles == null)
