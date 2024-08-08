@@ -1,6 +1,6 @@
 ﻿@using System.Text
 @inherits PureComponent
-<button @ref="_elementReference" tabindex="@(IsActive ? 0 : -1)" @onclick="@((e) => {  Console.WriteLine("clicked"); OnClick.InvokeAsync(e); })" class="@ApplyStyle(InternalCss)" @onkeyup="OnKeyUp" role="tab">
+<button @ref="_elementReference" tabindex="@(IsActive ? 0 : -1)" @onclick="@((e) => { Console.WriteLine("clicked"); OnClick.InvokeAsync(e); })" class="@ApplyStyle(InternalCss)" @onkeyup="OnKeyUp" role="tab">
     <!-- todo: icon -->
     @Title
 </button>
@@ -8,7 +8,6 @@
 @code {
     private ElementReference? _elementReference;
     private bool prevStateActive = false;
-    private const string BaseCss = "sm:w-auto sm:justify-start inline-flex items-center font-medium";
     [Parameter] public string Title { get; set; } = string.Empty;
 
     [Parameter] public bool IsActive { get; set; }
@@ -18,8 +17,8 @@
     [Parameter] public PureSize Size { get; set; }
 
     [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
-    [Parameter]
-    public EventCallback<KeyboardDirection> OnKeyboardNavigation { get; set; }
+    [Parameter] public EventCallback<KeyboardDirection> OnKeyboardNavigation { get; set; }
+
     public void OnKeyUp(KeyboardEventArgs e)
     {
         if (e.IsHorizontalArrow())
@@ -54,24 +53,8 @@
 
     protected override void BuildCss()
     {
-        var builder = new StringBuilder(BaseCss);
-
-        switch (Size)
-        {
-            case PureSize.ExtraSmall:
-            case PureSize.Small:
-                builder.Append(" sm:px-6 py-1 text-xs");
-                break;
-            case PureSize.Medium:
-                builder.Append(" sm:px-6 px-3 py-2 text-sm");
-                break;
-            case PureSize.ExtraLarge:
-            case PureSize.Large:
-                builder.Append(" sm:px-6 px-4 py-3 text-lg");
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        var builder = new StringBuilder(Css.Base);
+        builder.Append(" " + Css.Sizes[Size]);
 
         switch (Variant)
         {

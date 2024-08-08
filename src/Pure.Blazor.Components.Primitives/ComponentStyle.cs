@@ -2,19 +2,16 @@ namespace Pure.Blazor.Components.Primitives;
 
 public record ComponentStyle
 {
-    public readonly IReadOnlyDictionary<Accent, string> Accents;
-    public readonly IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>> Variants;
-    public readonly IReadOnlyDictionary<PureSize, string> Sizes;
+    public IReadOnlyDictionary<Accent, string> Accents;
+    public IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>> Variants;
+    public IReadOnlyDictionary<PureSize, string> Sizes;
     public string Disabled { get; set; } = "opacity-50 cursor-not-allowed";
 
-    public ComponentStyle(string baseStyle,
-        IReadOnlyDictionary<Accent, string>? accents,
-        IReadOnlyDictionary<PureVariant, Dictionary<Accent, string>>? variants,
-        IReadOnlyDictionary<PureSize, string>? sizes)
+    public ComponentStyle(string baseStyle)
     {
-        this.Accents = accents ?? new Dictionary<Accent, string>();
-        this.Variants = variants ?? new Dictionary<PureVariant, Dictionary<Accent, string>>();
-        this.Sizes = sizes ?? new Dictionary<PureSize, string>();
+        this.Accents = new Dictionary<Accent, string>();
+        this.Variants = new Dictionary<PureVariant, Dictionary<Accent, string>>();
+        this.Sizes = new Dictionary<PureSize, string>();
         Base = baseStyle;
     }
 

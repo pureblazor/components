@@ -14,7 +14,7 @@ public record PureTheme
     public ComponentStyle GetStyleByName(string name)
     {
         // TODO: decide if we want this to be an exceptional event
-        return Styles.GetValueOrDefault(name) ?? new ComponentStyle("", null, null, null);
+        return Styles.GetValueOrDefault(name) ?? new ComponentStyle("");
     }
 
     /// <summary>

@@ -82,7 +82,8 @@ public class PureComponent : ComponentBase
 
         if (PureTheme?.StylePrioritizer != null)
         {
-            return PureTheme.StylePrioritizer.PrioritizeStyles(baseStyle, newStyles);
+            var styles = PureTheme.StylePrioritizer.PrioritizeStyles(baseStyle, newStyles);
+            return styles;
         }
 
         return $"{baseStyle} {newStyles}";

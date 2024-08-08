@@ -1,18 +1,17 @@
 @inherits PureComponent
-<label for="@For" class="@ApplyStyle("font-bold text-sm font-gray-900") @AccessibilityStyles">@ChildContent</label>
+<label for="@For" class="@ApplyStyle($"{Css.Base} {Css.Size(Size)}")">@ChildContent</label>
 
 @code {
-
-    // required styles for accessibility, not overridable
-    // touch target should be at least 24px
-    // make it the same here since this field is often combined with <PureLink>
-    // https://www.w3.org/WAI/WCAG21/Understanding/touch-target-size.html
-    private string AccessibilityStyles => "inline-block leading-7";
-
     /// <summary>
     ///     The ID of the content that this label is associated with.
     /// </summary>
     [Parameter]
     public string? For { get; set; }
+
+    /// <summary>
+    /// The relative size of the label.
+    /// </summary>
+    [Parameter]
+    public PureSize Size { get; set; } = PureSize.Medium;
 
 }
