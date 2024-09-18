@@ -7,8 +7,8 @@
     <Nullable>enable</Nullable>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Title>PureBlazor Icons</Title>
-    <Version>0.31</Version>
+    <Title>PureBlazor Primitives</Title>
+    <Version>0.32</Version>
     <PackageId>PureBlazor.Components.Primitives</PackageId>
     <Description>PureBlazor.Components.Primitives</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>

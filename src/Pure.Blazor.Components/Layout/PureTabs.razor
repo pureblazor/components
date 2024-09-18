@@ -1,7 +1,7 @@
 ﻿@inherits PureComponent
 <CascadingValue Value="this">
-    <section role="tabpanel" class="@ApplyStyle("text-gray-900 body-font container mx-auto flex flex-wrap flex-col")">
-        <div role="tablist" class="@ApplyStyle("flex mx-auto flex-wrap w-full border-b-1 border-neutral-200")">
+    <section role="tabpanel" class="@ApplyStyle("text-gray-900 body-font flex flex-col")">
+        <div role="tablist" class="@ApplyStyle("flex w-full border-b-1 border-neutral-200")">
             @foreach (var tab in Tabs)
             {
                 <PureTabButton
