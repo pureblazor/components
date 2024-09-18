@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Blazor.Components.Icon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pure.Blazor.Components.Primitives", "Pure.Blazor.Components.Primitives\Pure.Blazor.Components.Primitives.csproj", "{1BAEB487-2B41-4899-B37C-A3404FB57040}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureBlazor.com", "..\website\PureBlazor.com\PureBlazor.com\PureBlazor.com.csproj", "{5E4774D8-449C-4E78-8D55-2BC3B2B33F83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PureBlazor.com.Client", "..\website\PureBlazor.com\PureBlazor.com.Client\PureBlazor.com.Client.csproj", "{B3104461-D457-4D51-9F45-C64AE673012F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BAEB487-2B41-4899-B37C-A3404FB57040}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E4774D8-449C-4E78-8D55-2BC3B2B33F83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E4774D8-449C-4E78-8D55-2BC3B2B33F83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E4774D8-449C-4E78-8D55-2BC3B2B33F83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E4774D8-449C-4E78-8D55-2BC3B2B33F83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3104461-D457-4D51-9F45-C64AE673012F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3104461-D457-4D51-9F45-C64AE673012F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3104461-D457-4D51-9F45-C64AE673012F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3104461-D457-4D51-9F45-C64AE673012F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
