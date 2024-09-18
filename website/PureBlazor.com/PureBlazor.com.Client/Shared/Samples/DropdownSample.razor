@@ -1,0 +1,46 @@
+﻿@inject ILogger<PureDropdown> Log
+@inject SnippetService SnippetService
+
+<Header1 Id="dropdowns" Subtitle="Dropdowns are toggleable, contextual overlays for displaying lists of links and more. They’re toggled by clicking, not by hovering; this is an intentional design decision. Clicking outside of the dropdown will close it.">
+    <ChildContent>
+        Dropdowns
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true"/>
+    </Suffix>
+</Header1>
+<div class="mb-10">
+    <Header2>Button dropdown</Header2>
+    <div class="flex items-baseline">
+        <PureDropdown Styles="w-36" Title="Settings">
+            <PureDropdownItem OnItemSelected="@(() => ItemSelected("Menu item 1"))">Menu item 1</PureDropdownItem>
+            <PureDropdownItem OnItemSelected="@(() => ItemSelected("Menu item 2"))">Menu item 2</PureDropdownItem>
+            <PureDropdownItem OnItemSelected="@(() => ItemSelected("Menu item 3"))">Menu item 3</PureDropdownItem>
+            <PureDropdownItem OnItemSelected="@(() => ItemSelected("Menu item 4"))">Menu item 4</PureDropdownItem>
+        </PureDropdown>
+        <p class="ml-4 mb-4">
+            <strong>Selected: </strong> @MenuItemClicked
+        </p>
+    </div>
+    <Header3>Static Usage</Header3>
+    <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.DropdownStaticUsage, Languages.CSharp)"></Snippet>
+    <Header3>Dynamic Usage</Header3>
+    <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.DropdownDynamicUsage, Languages.CSharp)"></Snippet>
+</div>
+
+@code {
+    private string MenuItemClicked { get; set; } = "Select a menu item";
+    private void ItemSelected(string item)
+    {
+        MenuItemClicked = item;
+    }
+
+    private string markup = @"<PureDropdown Styles=""w-36"" Title=""Settings"">
+            <PureDropdownItem OnItemSelected=""@(() => ItemSelected(""Menu item 1""))"">Menu item 1</PureDropdownItem>
+            <PureDropdownItem OnItemSelected=""@(() => ItemSelected(""Menu item 2""))"">Menu item 2</PureDropdownItem>
+            <PureDropdownItem OnItemSelected=""@(() => ItemSelected(""Menu item 3""))"">Menu item 3</PureDropdownItem>
+            <PureDropdownItem OnItemSelected=""@(() => ItemSelected(""Menu item 4""))"">Menu item 4</PureDropdownItem>
+        </PureDropdown>
+";
+
+}

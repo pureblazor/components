@@ -1,0 +1,188 @@
+﻿@layout DocsLayout
+@page "/components/buttons"
+@page "/components/buttons/{id}"
+@attribute [PureBlazorPage("components-buttons")]
+@using Theme = Pure.Blazor.Components.Common.Theme
+@rendermode InteractiveWebAssembly
+@* @rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false)) *@
+
+<HeadContent>
+    <link rel="canonical" href="https://pureblazor.com/components/buttons" />
+</HeadContent>
+<PageTitle>Buttons - PureBlazor Components</PageTitle>
+
+<Header1 Id="overview" Subtitle="Use buttons when you need interactivity, such as saving a form. Prefer buttons over links, except when navigating to a different page.">
+    <ChildContent>
+        Buttons
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true"/>
+    </Suffix>
+</Header1>
+
+<div class="mb-10 flex flex-col gap-8 divide-y-1 divide-gray-300 *:pb-8 first:*:pt-0">
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="default" Styles="py-4">Default Buttons</Header2>
+            <DocumentationCard Component="typeof(PureButton)">
+                <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                    <PureButton OnClick="() => clickCount1++" Accent="Brand">Brand</PureButton>
+                    <PureButton OnClick="() => clickCount1++" Accent="Success">Success</PureButton>
+                    <PureButton OnClick="() => clickCount1++" Accent="Warning">Warning</PureButton>
+                    <PureButton OnClick="() => clickCount1++" Accent="Danger">Danger</PureButton>
+                    <PureButton OnClick="() => clickCount1++" Accent="Accent.Default">Default</PureButton>
+                    <PureLabel>Clicks: @clickCount1</PureLabel>
+                </div>
+            </DocumentationCard>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">@s</PureCode>
+        @* <CodeSnippet Content="@s" /> *@
+    </div>
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="outline" Styles="py-4">Outline Buttons</Header2>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <PureButton Variant="PureVariant.Outline" Accent="Brand">Primary</PureButton>
+                <PureButton Variant="PureVariant.Outline" Accent="Success">Success</PureButton>
+                <PureButton Variant="PureVariant.Outline" Accent="Warning">Warning</PureButton>
+                <PureButton Variant="PureVariant.Outline" Accent="Danger">Danger</PureButton>
+                <PureButton Variant="PureVariant.Outline" Accent="Accent.Default">Default</PureButton>
+            </div>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">
+            @s2
+        </PureCode>
+    </div>
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="subtle" Styles="py-4">Subtle Buttons</Header2>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <PureButton Variant="PureVariant.Subtle" Accent="Brand">Primary</PureButton>
+                <PureButton Variant="PureVariant.Subtle" Accent="Success">Success</PureButton>
+                <PureButton Variant="PureVariant.Subtle" Accent="Warning">Warning</PureButton>
+                <PureButton Variant="PureVariant.Subtle" Accent="Danger">Danger</PureButton>
+                <PureButton Variant="PureVariant.Subtle" Accent="Accent.Default">Default</PureButton>
+            </div>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">
+            @s3
+        </PureCode>
+    </div>
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="theme" Styles="py-4">Customized Button Theme</Header2>
+            <Paragraph Styles="mt-0 mb-6">You can completely override all default themes.</Paragraph>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <CascadingValue Value="demoTheme">
+                    <PureButton Accent="Brand">Brand</PureButton>
+                    <PureButton Accent="Success">Success</PureButton>
+                    <PureButton Accent="Warning">Warning</PureButton>
+                    <PureButton Accent="Danger">Danger</PureButton>
+                    <PureButton Accent="Accent.Default">Default</PureButton>
+                </CascadingValue>
+            </div>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">
+            @s4
+        </PureCode>
+    </div>
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="styles" Styles="py-4">Customized Buttons</Header2>
+            <Paragraph Styles="mt-0 mb-6">You can customize buttons ad-hoc without creating an entire theme.</Paragraph>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <CascadingValue Value="Theme.Off">
+                    <PureButton Styles="bg-sky-400 text-gray-50 text-3xl p-3 cursor-pointer">Custom button 1</PureButton>
+                    <PureButton Styles="bg-emerald-400 text-gray-50 text-3xl p-3 cursor-pointer">Custom button 2</PureButton>
+                </CascadingValue>
+            </div>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">
+            @s5
+        </PureCode>
+    </div>
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="state" Styles="py-4">Button States</Header2>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <PureButton Name="normal-btn" OnClick="() => clickCount2++">Click me</PureButton>
+                <PureButton Accent="Success" OnClick="() => clickCount2++" Disabled="true">Can't click me now</PureButton>
+                <PureButton Accent="Warning" OnClick="() => clickCount2++" Loading="true">Waiting for something</PureButton>
+                <PureLabel>Clicks: @clickCount2</PureLabel>
+            </div>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">
+            @s7
+        </PureCode>
+    </div>
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="icons" Styles="py-4">Buttons with Icons</Header2>
+            <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                <PureButton Accent="Accent.Danger" LeftIcon="PureIcons.IconBeaker">Experiment</PureButton>
+                <PureButton Accent="Accent.Default" RightIcon="PureIcons.IconBuilder">Build solution</PureButton>
+                <PureButton Accent="Accent.Default" RightIcon="PureIcons.IconChevronDoubleLeft" LeftIcon="PureIcons.IconChevronDoubleRight">Engage thrusters</PureButton>
+            </div>
+        </div>
+        <PureCode Language="@PureCode.Razor" Caption="Code Sample">
+            @s6
+        </PureCode>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        <div>
+            <Header2 Id="effects" Styles="py-4">Button Effects</Header2>
+            <div class="flex flex-col gap-2">
+                <p>Enable a simple hover or press effect on your buttons. Enable globally by default or per button.</p>
+                <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                    <PureButton Variant="PureVariant.Default" Accent="Brand" HoverEffect="Effect.Pulse">Pulse (hover)</PureButton>
+                    <PureButton Variant="PureVariant.Default" Accent="Brand" PressEffect="Effect.Pulse">Pulse (press & hold)</PureButton>
+                    <PureButton Variant="PureVariant.Default" Accent="Brand" PressEffect="Effect.InsetShadow">Shadow (press)</PureButton>
+                </div>
+                <div class="flex flex-col gap-2 mt-6 items-start">
+                    <PureBadge Accent="Warning">Motion Effect Warning</PureBadge>
+                    <p class="text-sm">The below effects have motion and may affect people with vestibular disorders.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2 sm:items-center">
+                    <PureButton Variant="PureVariant.Default" Accent="Success" PressEffect="Effect.Jiggle">Jiggle (press)</PureButton>
+                    <PureButton Variant="PureVariant.Default" Accent="Success" PressEffect="Effect.Ping">Ping (press & hold)</PureButton>
+                </div>
+                <PureBanner Accent="Accent.Warning" Title="Regarding Motion Effects" Styles="mt-6">
+                    <div class="font-medium prose">If the `prefers-reduced-motion` media feature detects a user wants to reduce motion, certain effects may be limited. <PureLink Href="@("https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion")" Target="LinkTarget.NewTab">Read more</PureLink></div>
+                </PureBanner>
+            </div>
+        </div>
+    </div>
+    <div>
+        <Header2 Id="headless" Styles="pb-4">Headless</Header2>
+        <Paragraph Styles="mt-0 mb-6">As with all components, you can disable the theme completely.</Paragraph>
+        <CascadingValue Value="Theme.Off">
+            <PureButton OnClick="() => clickCount2++">I am a button! Click me.</PureButton>
+        </CascadingValue>
+        <PureLabel>Clicks: @clickCount2</PureLabel>
+    </div>
+
+    @* <PureCode Text="@docs" Language="@PureCode.Razor" Caption="Example" Styles="my-4"></PureCode> *@
+</div>
+
+@code {
+    // DemoTheme theme2 = new();
+
+    private string? currentId;
+    public int clickCount1 = 0;
+    public int clickCount2 = 0;
+    [Inject] public required ILogger<Buttons> Logger { get; set; }
+    [Parameter] public string? Id { get; set; }
+
+    [Inject] public required IElementUtils ElementUtils { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        if (Id is not null && Id != currentId)
+        {
+            currentId = Id;
+            ElementUtils.ScrollToFragment(Id);
+        }
+    }
+
+}

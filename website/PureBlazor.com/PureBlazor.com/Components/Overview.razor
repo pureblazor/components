@@ -1,0 +1,33 @@
+@page "/components"
+@using Pure.Blazor.Components.Essentials
+@using Pure.Blazor.Components
+@using Pure.Blazor.Components.Primitives
+@attribute [PureBlazorPage("components-overview")]
+@layout DocsLayout
+@* <HeadContent> *@
+@*     <meta name="description" content="Open source Blazor UI components focused on accessibility, performance, and customization with TailwindCSS."/> *@
+@* </HeadContent> *@
+<PageTitle>Pure Blazor Component Library</PageTitle>
+<Header1 Subtitle="Open source Blazor UI components focused on accessibility, performance, and customization with TailwindCSS.">
+    <ChildContent>
+        Pure Blazor Component Library
+    </ChildContent>
+</Header1>
+<div class="flex flex-col gap-8 mb-8">
+    <div class="max-w-[40rem] space-y-20 divide-y divide-slate-200 sm:space-y-24 lg:max-w-none lg:space-y-32">
+        <section class="grid grid-cols-1 items-baseline gap-x-6 gap-y-10 lg:grid-cols-3">
+            <Header2>Our goals</Header2>
+            <div class="max-w-2xl space-y-10 lg:col-span-2 prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
+                <div class="space-y-4">
+                    <p><strong>Native Blazor</strong> — built from the ground up with C#, for Blazor.</p>
+                    <p><strong>Blazing Fast</strong> — fast on every platform.</p>
+                    <p><strong>Tailwind CSS</strong> — everything is styled with Tailwind utility classes and is easy to customize.</p>
+                    <p><strong>Accessible</strong> — our components help developers build accessible applications and websites.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div>
+        <PureLink Variant="PureVariant.Default" Accent="Accent.Brand" Styles="w-48" Href="/components/getting-started/installation">Get started</PureLink>
+    </div>
+</div>

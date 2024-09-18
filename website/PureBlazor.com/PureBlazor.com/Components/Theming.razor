@@ -1,0 +1,61 @@
+@page "/components/getting-started/customizing-the-theme"
+@using Pure.Blazor.Components.Essentials
+@using Pure.Blazor.Components.Feedback
+@using Pure.Blazor.Components.Icons
+@using PureBlazor.com.Client.Shared
+@using Pure.Blazor.Components.Buttons
+@using Pure.Blazor.Components.Primitives
+@using Pure.Blazor.Components.Display
+@layout DocsLayout
+@attribute [PureBlazorPage("components-theming")]
+
+@inject SnippetService SnippetService
+<PageTitle>Customizing the Theme - PureBlazor Components</PageTitle>
+<Header1 Id="getting-started" Subtitle="PureBlazor UI Components ship with a default theme out of the box using TailwindCSS.">
+    <ChildContent>
+        Customizing the Theme
+    </ChildContent>
+</Header1>
+<div class="flex flex-col gap-8 mb-8">
+    <PureBanner Variant="PureVariant.Outline" Icon="PureIcons.IconInfo" Accent="Accent.Brand" Styles="font-medium" ContentContainerStyles="text-pretty">
+        Certain features may not yet be themable and the API is subject to change until v1.0. We welcome feedback and pull requests to improve this feature.
+    </PureBanner>
+    <div class="leading-7">
+        <Header2 Styles="mb-4">The <InlineSnippet>Styles</InlineSnippet> Parameter</Header2>
+        <p class="text-balance">Every component supports passing CSS classes via the <InlineSnippet>Styles</InlineSnippet> parameter. Components with complex layouts provide additional parameters for customization.</p>
+        <Snippet Loader="@(() => SnippetService.LoadSnippet("install.md", Languages.PowerShell))"></Snippet>
+        <p class="mb-2 text-balance">Components automatically merge any Tailwind classes that conflict with an existing class.</p>
+        <p>For example, if you prefer a lighter color when hovering over a button:</p>
+        <PureCard>
+            <div class="flex flex-col md:flex-row justify-between gap-1 items-center">
+                <div class="flex md:flex-col gap-1">
+                    <PureButton Variant="PureVariant.Default" Accent="Accent.Brand">Original Button</PureButton>
+                    <InlineSnippet Styles="text-sm">hover:bg-brand-900</InlineSnippet>
+                </div>
+                <div>
+                    <PureIcon Icon="PureIcons.IconArrowRight"/>
+                </div>
+                <div>
+                    <InlineSnippet Styles="text-sm">@("<PureButton Styles=\"hover:bg-brand-700\">Button</PureButton>")</InlineSnippet>
+                </div>
+                <div>
+                    <PureIcon Icon="PureIcons.IconArrowRight"/>
+                </div>
+                <div class="flex md:flex-col gap-1">
+                    <PureButton Variant="PureVariant.Default" Accent="Accent.Brand" Styles="hover:bg-brand-700">Final Button</PureButton>
+                    <InlineSnippet Styles="text-sm">hover:bg-brand-700</InlineSnippet>
+                </div>
+            </div>
+        </PureCard>
+    </div>
+    <div class="leading-7">
+        <Header2 Styles="mb-4">Extending the Default Theme</Header2>
+        <p class="text-balance">Extend <InlineSnippet>DefaultTheme</InlineSnippet> to selectively change the appearance of components:</p>
+        <Snippet Loader="@(() => SnippetService.LoadSnippet("extend-default-theme.md", Languages.CSharp))"/>
+        <p class="text-balance">Register the new theme as a CascadingValue or in the call to <InlineSnippet>AddPureBlazorComponents(new DemoTheme());</InlineSnippet></p>
+        <Snippet Loader="@(() => SnippetService.LoadSnippet("register-theme.md", Languages.Razor))"/>
+        <Header2 Styles="mb-4">Building Custom Theme</Header2>
+        <p class="text-balance">Extend <InlineSnippet>PureTheme</InlineSnippet> to completely customize all components:</p>
+        <Snippet Loader="@(() => SnippetService.LoadSnippet("build-custom-theme.md", Languages.CSharp))"/>
+    </div>
+</div>

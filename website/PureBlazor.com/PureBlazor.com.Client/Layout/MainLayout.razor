@@ -1,0 +1,55 @@
+﻿@inherits LayoutComponentBase
+<PureHeader Accent="Accent.Brand" Height="PureSize.ExtraLarge" Styles="bg-white text-gray-900 border-brand-800" NavStyles="justify-between">
+    @* <PureDarkModeToggle /> *@
+    <Prefix>
+        <a href="/">
+            <img src="/blazor-brand-grey.svg" alt="pureblazor logo" class="h-8"/>
+        </a>
+    </Prefix>
+    <ChildContent>
+        <div class="text-md text-gray-800 flex gap-6">
+            <a class="flex gap-3 items-center cursor-pointer text-gray-900" href="/components">Components</a>
+            @* <a class="flex gap-3 items-center" href="#">Documentation</a> *@
+            @* <MegaMenu /> *@
+            <button class="flex gap-3 items-center cursor-pointer text-gray-900" href="#" popovertarget="product-menu">Products <PureIcon Icon="PureIcons.IconChevronDown"/></button>
+            <div popover id="product-menu" class="w-full md:w-fit mt-[160px] md:mt-[70px] bg-transparent">
+                <div class="ml-0 md:ml-[300px] bg-white py-8 px-4 border-b-1 border-gray-200 rounded-b shadow">
+                    <div class="flex flex-col gap-4">
+                        <a href="https://cms.pureblazor.com" class="flex gap-6 items-center hover:shadow rounded border-transparent hover:border-gray-200 border-1 p-2 cursor-pointer">
+                            <div>
+                                <img src="/logo-512x512.png" alt="pureblazor icon" class="h-12 rounded"/>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="font-extrabold tracking-wide text-2xl text-gray-900">CMS</div>
+                                <div class="text-gray-500 text-sm">Build sites and publish content from the PureBlazor CMS.</div>
+                            </div>
+                        </a>
+                        <a href="https://www.nuget.org/packages/dotnet-pb" class="flex gap-6 items-center hover:shadow rounded border-transparent hover:border-gray-200 border-1 p-2 cursor-pointer">
+                            <div>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m6.75 7.5 3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z"/>
+                                </svg>
+                            </div>
+                            <div class="flex flex-col">
+                                <div class="font-extrabold tracking-wide text-2xl text-gray-900">Command Line</div>
+                                <div class="text-gray-500 text-sm">Build and deploy apps using the PureBlazor CLI.</div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a class="flex gap-3 items-center cursor-pointer text-gray-900" href="/pricing">Pricing</a>
+        </div>
+        <PureLink Href="/waitlist" Variant="PureVariant.Default" Accent="Brand">Sign in</PureLink>
+    </ChildContent>
+</PureHeader>
+<main class="flex flex-col grow h-full bg-white">
+    @Body
+    <Footer/>
+</main>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>

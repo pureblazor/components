@@ -1,0 +1,47 @@
+@layout DocsLayout
+@rendermode InteractiveWebAssembly
+@page "/components/advanced"
+@attribute [PureBlazorPage("components-advanced")]
+
+
+<Header1>Advanced Components</Header1>
+<div class="mb-8">
+    <Header2>Syntax Highligher</Header2>
+    <div class="mb-10">
+        <p class="">The below code snippet is your example and your documentation!</p>
+        <PureCode Text="@syntax" Language="@PureCode.Html" Caption="Example" Styles="my-4"/>
+    </div>
+
+    <div class="mb-10">
+        <p class="mt-4">Several languages have support built in, discoverable via intellisense in the <code>PureCode</code> component.</p>
+        <PureCode Text="@markup" Language="@PureCode.Csharp" Caption="Example" Styles="my-4"></PureCode>
+    </div>
+</div>
+
+
+@code {
+
+    private string syntax = @"<PureCode Text=""@markup"" Language=""@PureCode.Html"" />
+
+<!-- optional caption -->
+ <PureCode Text=""@markup"" Language=""@PureCode.Html"" Caption=""Example""/>
+
+@code
+{
+    private string markup = @""<PureButton Color=""PureColor.Primary"" Size=""PureSize.Small"">Small</PureButton>"";
+}
+";
+
+    private string markup = @"public static string Html = ""html"";
+public static string Markup = ""markup"";
+public static string Xml = ""xml"";
+public static string Svg = ""svg"";
+public static string MathMl = ""mathml"";
+public static string Rss = ""rss"";
+public static string Css = ""css"";
+public static string Javascript = ""js"";
+public static string Razor = ""razor"";
+public static string Csharp = ""csharp"";
+";
+
+}

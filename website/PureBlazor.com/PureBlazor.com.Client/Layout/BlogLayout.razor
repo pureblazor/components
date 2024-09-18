@@ -1,0 +1,23 @@
+﻿@inherits LayoutComponentBase
+
+<main class="flex flex-col grow h-screen">
+    <div class="flex bg-brand-800">
+        <div class="w-96 flex container space-between px-32">
+            <a href="/">
+                <img class="w-auto h-24" src="./logo.svg" alt="PureBlazor CMS">
+            </a>
+        </div>
+    </div>
+    <div class=" flex flex-col grow bg-gray-50">
+        <article class="container mx-auto px-16">
+            @Body
+        </article>
+    </div>
+    <Footer />
+</main>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>

@@ -1,0 +1,61 @@
+@layout DocsLayout
+@rendermode InteractiveWebAssembly
+@page "/components/badges"
+@attribute [PureBlazorPage("components-badges")]
+<PageTitle>Badges - PureBlazor Components</PageTitle>
+
+<Header1 Subtitle="Badges are used to highlight an item or to provide additional information. They are typically used in lists, tables, or cards.">
+    <ChildContent>
+        Badges
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true" Static="true"/>
+    </Suffix>
+</Header1>
+<div class="mb-10 flex flex-col gap-8">
+    <PureBanner Accent="Accent.Default">
+        The below examples take advantage of the <code>using static</code> directive to simplify the code. This is not required and you can use the full namespace if you prefer.
+    </PureBanner>
+    <div class="flex flex-col gap-2">
+        <Header2>Default Badges</Header2>
+        <div class="flex items-baseline gap-2">
+            <PureBadge Accent="Brand">webassembly</PureBadge>
+            <PureBadge Accent="Danger">server</PureBadge>
+            <PureBadge Accent="Warning">ssr</PureBadge>
+            <PureBadge Accent="Success">interactive</PureBadge>
+            <PureBadge Accent="Accent.Default">auto mode</PureBadge>
+        </div>
+        <PureCode Language="@PureCode.Razor">
+            @("""<PureBadge Accent="Brand">webassembly</PureBadge>""")
+        </PureCode>
+    </div>
+    <div class="flex flex-col gap-2">
+        <Header2>Outline Badges</Header2>
+        <div class="flex items-baseline gap-2">
+            <PureBadge Accent="Brand" Variant="Outline">webassembly</PureBadge>
+            <PureBadge Accent="Danger" Variant="Outline">server</PureBadge>
+            <PureBadge Accent="Warning" Variant="Outline">ssr</PureBadge>
+            <PureBadge Accent="Success" Variant="Outline">interactive</PureBadge>
+            <PureBadge Accent="Accent.Default" Variant="Outline">auto mode</PureBadge>
+        </div>
+        <PureCode Language="@PureCode.Razor">
+            @("""<PureBadge Accent="Brand" Variant="Outline">webassembly</PureBadge>""")
+        </PureCode>
+    </div>
+
+    <div class="flex flex-col gap-2">
+        <Header2>Subtle Badges</Header2>
+        <div class="flex items-baseline gap-2">
+            <PureBadge Accent="Brand" Variant="Subtle">webassembly</PureBadge>
+            <PureBadge Accent="Danger" Variant="Subtle">server</PureBadge>
+            <PureBadge Accent="Warning" Variant="Subtle">ssr</PureBadge>
+            <PureBadge Accent="Success" Variant="Subtle">interactive</PureBadge>
+            <PureBadge Accent="Accent.Default" Variant="Subtle">auto mode</PureBadge>
+        </div>
+        <PureCode Language="@PureCode.Razor">
+            @("""<PureBadge Accent="Brand" Variant="Subtle">webassembly</PureBadge>""")
+        </PureCode>
+    </div>
+
+    @* <PureCode Text="@Markup" Language="@PureCode.Razor" Caption="Example" Styles="my-4"/> *@
+</div>
