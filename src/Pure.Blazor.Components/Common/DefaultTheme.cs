@@ -23,6 +23,20 @@ public record DefaultTheme : PureTheme
                 new(ButtonStyles.Base) { Variants = ButtonStyles.Variants, Sizes = ButtonStyles.Sizes }
             },
             {
+                nameof(PureInput),
+                new("peer block border-1 focus:ring focus:ring-inset ring-brand-700 bg-gray-50 text-gray-800 rounded")
+                {
+                    Sizes = new Dictionary<PureSize, string>
+                    {
+                        { PureSize.ExtraSmall, "text-xs px-1 py-0.5" },
+                        { PureSize.Small, "text-sm px-1 py-0.5" },
+                        { PureSize.Medium, "text-sm px-2 py-1" },
+                        { PureSize.Large, "text-md px-2.5 py-1.5" },
+                        { PureSize.ExtraLarge, "text-lg px-3 py-2" }
+                    }
+                }
+            },
+            {
                 nameof(PureTabButton), new("sm:w-auto sm:justify-start inline-flex items-center font-medium")
                 {
                     Sizes = new Dictionary<PureSize, string>()

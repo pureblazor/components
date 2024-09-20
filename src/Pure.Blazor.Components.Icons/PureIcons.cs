@@ -55,5 +55,7 @@ public enum PureIcons
     IconPlay,
     IconClock,
     PencilSquare,
-    XMark
+    XMark,
+    IconMinus,
+    IconCamera
 }
