@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>5c42352d-9529-405c-89fd-57cc2a0844a4</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />
+        <PackageReference Include="PureBlazor.Extensions" />
+        <PackageReference Include="PureBlazor.Extensions.AspNetCore" />
+        <PackageReference Include="SendGrid.Extensions.DependencyInjection" />
+        <PackageReference Include="Serilog.AspNetCore" />
+        <PackageReference Include="Serilog.Sinks.Seq" />
+        <ProjectReference Include="..\..\..\src\Pure.Blazor.Components.AspNetCore\Pure.Blazor.Components.AspNetCore.csproj" />
+        <ProjectReference Include="..\PureBlazor.com.Client\PureBlazor.com.Client.csproj"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" />
+    </ItemGroup>
+
+</Project>

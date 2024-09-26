@@ -1,0 +1,60 @@
+﻿@inject ILogger<Index> Logger
+@inject IJSRuntime JS
+@* @inject ServerClient ServerClient *@
+
+<EditForm FormName="Newsletter" Model="@Model" OnSubmit="@OnPostAsync" class="sm:max-w-xl lg:mx-0">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    @if (MessageSent)
+    {
+        <p class="text-gray-300 mt-sm-4 mt-3">You&apos;re in - we will let you know when we launch.</p>
+    }
+    else
+    {
+        <div class="sm:flex">
+            <div class="min-w-0 flex-1">
+                <label for="email" class="sr-only">Email address</label>
+                <input id="email" type="email" @bind-value="Model!.EmailAddress" placeholder="Enter your email" class="block w-full rounded-md border-0 px-4 py-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-gray-900 bg-white">
+            </div>
+            <div class="mt-3 sm:ml-3 sm:mt-0">
+                <button disabled="@Loading" type="submit" class="block w-full rounded-md bg-gradient-to-r from-brand-600 to-brand-500 px-4 py-3 font-medium text-white shadow hover:from-brand-700 hover:to-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-400 focus:ring-offset-2 focus:ring-offset-gray-900">@(Loading ? "Loading..." : "Join")</button>
+            </div>
+        </div>
+        <p class="mt-3 text-sm text-gray-300 sm:mt-4">We have a no spam policy. You'll only get the really important emails.</p>
+    }
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    public NewsletterForm? Model { get; set; }
+    protected override void OnInitialized() => Model ??= new();
+
+    public bool MessageSent { get; set; }
+    public bool Loading { get; set; }
+    public async Task OnPostAsync()
+    {
+        Loading = true;
+        await SendEmail();
+        MessageSent = true;
+        Loading = false;
+
+        try
+        {
+            await JS.InvokeVoidAsync("trackNewsletter");
+        }
+        catch (Exception ex)
+        {
+            Logger.LogWarning(ex, "Failed to send tracking for newsletter");
+        }
+    }
+
+    private async Task SendEmail()
+    {
+        if (Model == null)
+        {
+            return;
+        }
+
+        //await ServerClient.AddToNewsletter(Model);
+    }
+}

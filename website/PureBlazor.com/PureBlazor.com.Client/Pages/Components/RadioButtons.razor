@@ -1,0 +1,41 @@
+@layout DocsLayout
+@rendermode InteractiveWebAssembly
+@page "/components/radio"
+@attribute [PureBlazorPage("components-radio")]
+<PageTitle>Radio Buttons - PureBlazor Components</PageTitle>
+
+<PageHeader Subtitle="Common components used in forms, such as labels, inputs, and textareas.">
+    <ChildContent>
+        Radio Buttons
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true"/>
+    </Suffix>
+</PageHeader>
+<div class="flex flex-col *:py-8 first:*:pt-0 last:*:pb-0 divide-y divide-gray-200">
+    <div class="flex flex-col gap-2">
+        <Header2>Basic Radio Buttons</Header2>
+        <PureRadioGroup Name="test">
+            <PureRadio Checked="false" Title="Foo" Value="foo"></PureRadio>
+            <PureRadio Checked="false" Title="Bar" Value="bar"></PureRadio>
+            <PureRadio Checked="false" Title="Fuzz" Value="fuzz"></PureRadio>
+        </PureRadioGroup>
+        <Header2 Styles="mb-2 mt-6">With Description</Header2>
+        <PureRadioGroup Name="test">
+            <PureRadio Checked="false"
+                       Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                       Title="Foo"
+                       Value="foo">
+            </PureRadio>
+            <PureRadio Checked="false"
+                       Description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                       Title="Bar"
+                       Value="bar">
+            </PureRadio>
+        </PureRadioGroup>
+    </div>
+</div>
+
+@code {
+
+}

@@ -1,0 +1,147 @@
+@layout DocsLayout
+@rendermode InteractiveWebAssembly
+@page "/components/dialog"
+@attribute [PureBlazorPage("components-dialog")]
+<PageTitle>Dialog - PureBlazor Components</PageTitle>
+
+<PageHeader Subtitle="Dialogs are used to show a message, confirm an action, or display a form. They are modal, meaning they block interaction with the rest of the page until they are dismissed.">
+    <ChildContent>
+        Dialog
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true"/>
+    </Suffix>
+</PageHeader>
+<div class="mb-10 flex flex-col gap-8">
+    <PureBanner Accent="Warning">Dialogs are experimental and currently work best in Chromium.</PureBanner>
+    <div class="flex flex-col gap-2">
+        <Header2>Basic Confirmation Dialog</Header2>
+        <div class="flex items-baseline">
+            <PureButton OnClick="ShowConfirmDialog">Show Dialog</PureButton>
+        </div>
+        <Header3>Sample</Header3>
+        <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.DialogBasicSample, Languages.Razor)"></Snippet>
+    </div>
+    <div class="flex flex-col gap-2">
+        <Header2>Confirmation Dialog with Custom Button</Header2>
+        <div class="flex items-baseline gap-3">
+            <PureButton OnClick="ShowConfirmDialogBrand">Show Branded</PureButton>
+            <PureButton OnClick="ShowConfirmDialogDanger">Show Danger</PureButton>
+            <PureButton OnClick="ShowConfirmDialogSuccess">Show Success</PureButton>
+            <PureButton OnClick="ShowConfirmDialogWarning">Show Warning</PureButton>
+        </div>
+        <Header3>Sample</Header3>
+        <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.DialogAdvancedSample, Languages.Razor)"></Snippet>
+    </div>
+
+    <div class="flex flex-col gap-2">
+        <Header2>Action Dialog</Header2>
+        <div class="flex items-baseline gap-3">
+            <PureButton OnClick="ShowValidatingDialog">Show Dialog</PureButton>
+        </div>
+        <Header3>With Options</Header3>
+        <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.DialogInterrupt, Languages.CSharp)"></Snippet>
+    </div>
+
+    <div class="flex flex-col gap-2">
+        <Header2>Dialog Continuations</Header2>
+        <div class="flex items-baseline gap-3">
+            <PureButton OnClick="ShowContinuationDialog">Show First Dialog</PureButton>
+        </div>
+        <Header3>With Options</Header3>
+        <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.DialogContinuations, Languages.CSharp)"></Snippet>
+    </div>
+</div>
+<PureDialog/>
+<PureConfirm/>
+
+@code {
+    [Inject] public required SnippetService SnippetService { get; set; }
+    [Inject] public required DialogService DialogService { get; set; }
+    [Inject] public required ILogger<DialogDocs> Logger { get; set; }
+
+    public async Task ShowValidatingDialog()
+    {
+        await DialogService.ShowDialogAsync("Action Dialog", builder => builder.AddContent(0, "Press continue to simulate a 4 second network request."),
+            new()
+            {
+                OnConfirm = OnConfirmValidateEvent
+            });
+    }
+
+    private async Task<DialogEventResult> OnConfirmValidateEvent(DialogResult arg)
+    {
+        // Simulate a network request
+        await Task.Delay(4000);
+
+        // Return a dialog result that will keep the dialog open
+        // To close the dialog, just return a Confirmed result:
+        // `return DialogEventResult.Confirmed;`
+        return new DialogEventResult
+        {
+            // Signal the dialog to stay open
+            Interrupted = true,
+
+            // Show a continuation dialog
+            Message = "Validation failed",
+
+            // You can also pass a RenderFragment
+            //MessageFragment = MyRenderFragment
+        };
+    }
+
+    public async Task ShowContinuationDialog()
+    {
+        await DialogService.ShowDialogAsync("Dialog title.", builder => builder.AddContent(0, "This is a dialog!"),
+            new()
+            {
+                OnConfirm = OnConfirmEvent
+            });
+    }
+
+    private async Task<DialogEventResult> OnConfirmEvent(DialogResult arg)
+    {
+        return new()
+        {
+            // Signal the dialog to stay open
+            Interrupted = true,
+
+            // Show a continuation dialog
+            ContinueWith = new DialogInstance("component")
+            {
+                // Provide a RenderFragment for the 2nd dialog
+                Body = b => b.AddContent(0, "This is a continuation!"),
+            }
+        };
+    }
+
+    public async Task ShowConfirmDialog()
+    {
+        await DialogService.ShowDialogAsync("Dialog title.", builder => builder.AddContent(0, "This is a dialog!"));
+    }
+
+    public async Task ShowConfirmDialogBrand()
+    {
+        await DialogService.ShowDialogAsync("Confirm", builder => builder.AddContent(0, "Just so you know..."), new() { AckColor = Brand, AckButton = "You're awesome!" });
+    }
+
+    public async Task ShowConfirmDialogSuccess()
+    {
+        await DialogService.ShowDialogAsync("Confirm", builder => builder.AddContent(0, "Encrypt your data?"), new() { AckColor = Success, AckButton = "Encrypt" });
+    }
+
+    public async Task ShowConfirmDialogDanger()
+    {
+        await DialogService.ShowDialogAsync("Confirm", builder => builder.AddContent(0, "Confirm deletion"), new() { AckColor = Danger, AckButton = "Delete everything!" });
+    }
+
+    public async Task ShowConfirmDialogWarning()
+    {
+        await DialogService.ShowDialogAsync("Confirm", builder => builder.AddContent(0, "Watch out for gators!"),
+            new()
+            {
+                AckColor = Warning, AckButton = "I understand"
+            });
+    }
+
+}

@@ -1,0 +1,62 @@
+﻿<PageHeader Id="cards" Subtitle="Use cards to highlight information or as an alternative to displaying data in a table.">
+    <ChildContent>
+        Cards
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true" Static="true"/>
+    </Suffix>
+</PageHeader>
+<div>
+    <Header3 Styles="py-4">Card with footer and buttons</Header3>
+    <PureCard Title="Card Title" Styles="mb-8 w-full md:w-1/2">
+        <Paragraph>
+            The quick brown fox jumps over the lazy dog.
+        </Paragraph>
+        <PureCardFooter>
+            <PureButton LeftIcon="PureIcons.IconHeart" Variant="PureVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+            <PureButton Accent="Accent.Brand" Variant="PureVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
+        </PureCardFooter>
+    </PureCard>
+
+    <Header3 Styles="py-4">Card footer alignment options</Header3>
+    <div class="flex flex-col md:flex-row gap-4">
+        <PureCard Title="Card Title" Styles="mb-8 w-full md:w-1/2">
+            <Paragraph>
+                The quick brown fox jumps over the lazy dog.
+            </Paragraph>
+            <PureCardFooter Align="PureAlign.Center">
+                <PureButton LeftIcon="PureIcons.IconHeart" Variant="PureVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+                <PureButton Accent="Accent.Brand" Variant="PureVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
+            </PureCardFooter>
+        </PureCard>
+        <PureCard Title="Card Title" Styles="mb-8 w-full md:w-1/2">
+            <Paragraph>
+                The quick brown fox jumps over the lazy dog.
+            </Paragraph>
+            <PureCardFooter Align="PureAlign.End">
+                <PureButton LeftIcon="PureIcons.IconHeart" Variant="PureVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+                <PureButton Accent="Accent.Brand" Variant="PureVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
+            </PureCardFooter>
+        </PureCard>
+    </div>
+    <Header3 Styles="py-4">Card footer without divider</Header3>
+    <PureCard Title="Card Title" Styles="mb-8 w-full md:w-1/2">
+        <Paragraph>
+            The quick brown fox jumps over the lazy dog.
+        </Paragraph>
+        <PureCardFooter Divider="false">
+            <PureButton LeftIcon="PureIcons.IconHeart" Variant="PureVariant.Subtle" Size="PureSize.Small">Wishlist</PureButton>
+            <PureButton Accent="Accent.Brand" Variant="PureVariant.Outline" Size="PureSize.Small">Add to cart</PureButton>
+        </PureCardFooter>
+    </PureCard>
+    <Header3 Styles="py-4">Card with an image</Header3>
+    <PureCard Title="Card Title" ImageUrl="https://picsum.photos/400/300" Styles="mb-8 w-[400px]">
+        <Paragraph>
+            The quick brown fox jumps over the lazy dog.
+        </Paragraph>
+        <PureCardFooter>
+            <PureButton Accent="Accent.Default" Variant="PureVariant.Subtle">Save</PureButton>
+            <PureButton Accent="Accent.Brand">Add to cart</PureButton>
+        </PureCardFooter>
+    </PureCard>
+</div>

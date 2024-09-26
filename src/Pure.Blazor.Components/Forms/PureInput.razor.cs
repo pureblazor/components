@@ -12,9 +12,6 @@ public partial class PureInput
     private InputText? InputRef { get; set; } = null!;
     private readonly List<IEntryValidator> validators = new();
 
-    private string baseCss =
-        "peer block px-2 py-1 border-1 focus:outline focus:outline-2 focus:outline-offset-2 outline-brand-700 bg-gray-50 text-gray-800 rounded";
-
     private string defaultBorder = "border-gray-200";
     private string errorBorder = "border-red-600";
     private string? errorMessage;
@@ -29,7 +26,7 @@ public partial class PureInput
     // the suffix needs different margins depending on labels and helper text
     private string suffixCss => GetSuffixCss();
 
-    public PureSize Size { get; set; }
+    [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
 
     [CascadingParameter] public PureForm? FormControl { get; set; }
 

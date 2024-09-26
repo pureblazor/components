@@ -8,6 +8,7 @@ internal class ButtonStyles
     private const string SmallButton = "px-3 py-1.5 text-xs";
     private const string MediumButton = "px-3.5 py-1.5 text-sm";
     private const string LargeButton = "px-4 py-3 text-lg";
+    private const string ExtraLargeButton = "px-4 py-3 text-lg w-full";
 
     private const string PrimaryButton =
         $"{BaseAccentColors.Brand} hover:bg-brand-900 shadow-brand-950/90 border-transparent font-medium";
@@ -56,6 +57,7 @@ internal class ButtonStyles
 
     public static readonly Dictionary<PureSize, string> Sizes = new()
     {
+        { PureSize.ExtraLarge, ExtraLargeButton },
         { PureSize.Large, LargeButton },
         { PureSize.Small, SmallButton },
         { PureSize.Medium, MediumButton },
