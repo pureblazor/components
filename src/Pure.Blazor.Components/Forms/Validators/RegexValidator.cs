@@ -19,7 +19,7 @@ internal class RegexValidator : EntryValidator
         }
 
         var match = _rx.Match(input);
-        var success = match.Success && match.Value == input;
+        var success = match.Success && match.Value.Length == input.Length;
         return new ValidationResult(success, success == false ? $"{input} does not match the regular expression" : null);
     }
 }
