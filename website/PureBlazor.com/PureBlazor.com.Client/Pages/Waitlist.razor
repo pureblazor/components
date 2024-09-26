@@ -1,0 +1,13 @@
+@page "/waitlist"
+@attribute [PureBlazorPage("waitlist")]
+
+<PageTitle>PureBlazor - Blazor CMS & Static Site Generator for .NET</PageTitle>
+<div class="bg-brand-800 flex flex-col px-16 py-16 md:items-center">
+    <div class="mt-10 sm:mt-12 subpixel-antialiased">
+        <h3 class="max-w-2xl text-xl font-bold tracking-tight text-brand-100 sm:text-2xl mb-2">Join our waitlist:</h3>
+        <ContactForm @rendermode="InteractiveWebAssembly"/>
+    </div>
+</div>
+@code {
+
+}

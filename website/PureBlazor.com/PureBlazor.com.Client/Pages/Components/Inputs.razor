@@ -1,0 +1,38 @@
+﻿@layout DocsLayout
+@rendermode InteractiveWebAssembly
+@page "/components/inputs"
+@attribute [PureBlazorPage("components-inputs")]
+<PageTitle>TextInput - PureBlazor Components</PageTitle>
+
+<PageHeader Subtitle="Common components used in forms, such as labels, inputs, and textareas.">
+    <ChildContent>
+        Inputs
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true"/>
+    </Suffix>
+</PageHeader>
+<div class="flex flex-col *:py-8 first:*:pt-0 last:*:pb-0 divide-y divide-gray-200">
+    <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2">
+            <Header2 Styles="my-2">Basic</Header2>
+            <PureInput Label="Name"/>
+
+            <Header2 Styles="mb-2 mt-4">With placeholder</Header2>
+            <PureInput Label="Name" Placeholder="What's your name?"/>
+
+            <Header2 Styles="mb-2 mt-4">Required fields</Header2>
+            <PureInput Label="Name" Required="true" Placeholder="You must tell me your name."/>
+
+            <Header2 Styles="mb-2 mt-4">With helper text</Header2>
+            <PureInput Label="Name" HelperText="Use any name you want. Nobody will check. Promise."/>
+
+            <Header2 Styles="mb-2 mt-4">With helper text + required</Header2>
+            <PureInput Label="Name" Required="true" HelperText="Use any name you want. Nobody will check. Promise."/>
+        </div>
+    </div>
+</div>
+
+@code {
+
+}

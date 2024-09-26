@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    @* <meta name="description" content="Pure Blazor CMS is the next-gen .NET CMS to build static sites, blogs, web applications and more."/> *@
+
+    <meta property="og:title" content="PureBlazor - Build anything. Ship faster. The modern Blazor CMS & Static Site Generator for .NET"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://pureblazor.com"/>
+    <meta property="og:image" content="https://pureblazor.com/blazor-brand-grey.svg"/>
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@@pureblazor">
+    <meta name="twitter:creator" content="@@codemullins"/>
+    <meta name="twitter:image" content="https://pureblazor.com/blazor-brand-grey.svg"/>
+    <meta name="twitter:description" content="Pure Blazor CMS is the next-gen .NET CMS to build static sites, blogs, web applications and more.">
+    <meta name="twitter:image:alt" content="Pure Blazor - Build anything. Ship faster.">
+
+    <base href="/"/>
+    <link rel="preconnect" href="css/inter">
+    <link rel="stylesheet" href="css/inter/inter.css">
+    <link rel="stylesheet" href="PureBlazor.com.styles.css"/>
+    <link rel="stylesheet" href="_content/PureBlazor.Components/pureblazor.css"/>
+    <link rel="stylesheet" href="site.css"/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+    <HeadOutlet/>
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2WBJJ5XTP0"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-2WBJJ5XTP0', { 'anonymize_ip': true });
+</script>
+<body class="flex flex-col min-h-svh">
+<Routes/>
+<script src="_framework/blazor.web.js" autostart="false"></script>
+<script>
+        Blazor.start({
+            //ssr: { disableDomPreservation: true }
+        });
+
+        Blazor.addEventListener('enhancedload', () => {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        });
+    </script>
+
+<script type="text/javascript">
+            window.trackNewsletter = function () {
+                gtag('event', 'newsletter');
+            }
+    </script>
+</body>
+
+</html>

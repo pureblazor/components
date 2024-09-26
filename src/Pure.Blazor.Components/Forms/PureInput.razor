@@ -14,7 +14,7 @@
     <InputText id="@Id"
                @ref="InputRef"
                @bind-Value="@TextValue"
-               class="@($"{ApplyStyle(baseCss)} {(HasError ? errorBorder : defaultBorder)}")"
+               class="@($"{ApplyStyle($"{Css.Base} {Css.Size(Size)}")} {(HasError ? errorBorder : defaultBorder)}")"
                type="@GetInputType()"
                autocomplete="@GetAutoComplete()"
                placeholder="@Placeholder"

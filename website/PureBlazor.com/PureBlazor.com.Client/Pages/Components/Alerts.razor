@@ -1,0 +1,52 @@
+﻿@layout DocsLayout
+@rendermode InteractiveWebAssembly
+@page "/components/alerts"
+@attribute [PureBlazorPage("components-alerts")]
+
+@inject AlertService Service
+@inject SnippetService SnippetService
+<PageHeader Id="alerts" Subtitle="Alerts can be triggered from code and disappear after the specified duration.">
+    <ChildContent>
+        Alerts
+    </ChildContent>
+    <Suffix>
+        <SupportedRenderModes Wasm="true" Server="true"/>
+    </Suffix>
+</PageHeader>
+<PageTitle>Alerts - PureBlazor Components</PageTitle>
+
+<div class="flex flex-col gap-8 mb-8">
+    <div>
+        <Header2 Styles="mb-4">Usage</Header2>
+        <p class="leading-7">The <InlineSnippet>AlertService</InlineSnippet> triggers notifications to be displayed on top of the current page.
+            To use the <InlineSnippet>AlertService</InlineSnippet>, add the <InlineSnippet>@("<PureAlertProvider/>")</InlineSnippet> component to your page.
+        </p>
+    </div>
+    <div>
+        <Snippet Loader="() => SnippetService.LoadSnippetFromSource(Samples.AlertServiceUsage, Languages.CSharp)"></Snippet>
+    </div>
+    <div>
+        <Header2 Styles="mb-4">Basic alerts</Header2>
+        <PureAlert Accent="@Success">Account information updated.</PureAlert>
+        <PureAlert Accent="@Brand">Your session will end in five minutes.</PureAlert>
+        <PureAlert Accent="@Warning">Watch for gators.</PureAlert>
+        <PureAlert Accent="@Danger">Background job failed. <PureLink Href="/components/alerts">View details</PureLink></PureAlert>
+    </div>
+    <div>
+        <Header2 Styles="mb-4">Demo</Header2>
+        <div class="flex flex-row gap-2">
+            <PureButton OnClick="() => AddAlert(Success)">Success</PureButton>
+            <PureButton OnClick="() => AddAlert(Danger)">Error</PureButton>
+            <PureButton OnClick="() => AddAlert(Brand)">Info</PureButton>
+            <PureButton OnClick="() => AddAlert(Warning)">Warning</PureButton>
+        </div>
+    </div>
+</div>
+<PureAlertProvider/>
+
+@code {
+    public async Task AddAlert(Accent state)
+    {
+        await Service.ShowAsync("Adding random toast", state);
+    }
+}

@@ -1,0 +1,291 @@
+@page "/pricing"
+@attribute [PureBlazorPage("pricing")]
+
+<PageTitle>Pricing - PureBlazor</PageTitle>
+<div class="bg-brand-800 flex flex-col px-16 py-8 items-center">
+</div>
+
+@using System.Globalization
+@using Pure.Blazor.Components.Display
+@using Pure.Blazor.Components.Primitives
+
+<div class="bg-white pb-12">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto mt-12 max-w-md space-y-8 sm:mt-16 lg:hidden">
+            @foreach (var plan in plans)
+            {
+            <section class="p-8">
+                <h3 id="tier-basic" class="text-sm font-semibold leading-6 text-gray-900">@plan.Name</h3>
+                <p class="mt-2 flex items-baseline gap-x-1 text-gray-900">
+                    <span class="text-4xl font-bold">@plan.Price.ToString("C", CultureInfo.GetCultureInfo("en-us"))</span>
+                    <span class="text-sm font-semibold">/month</span>
+                </p>
+                <a href="@plan.PurchaseLink" aria-describedby="tier-basic" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 text-brand-800 ring-1 ring-inset ring-brand-200 hover:ring-brand-300">Buy plan</a>
+                <ul role="list" class="mt-10 space-y-4 text-sm leading-6 text-gray-900">
+                    @foreach (var feature in plan.Features)
+                    {
+                    <li>
+                        <ul role="list" class="space-y-4">
+                            <li class="flex gap-x-3">
+                                <svg class="h-6 w-5 flex-none text-brand-800" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+                                </svg>
+                                <span>
+                                            @if (!string.IsNullOrWhiteSpace(feature.Limit))
+                                    {
+                                    @($"{Features.Single(p => p.FeatureId == feature.FeatureId).Name}: {feature.Limit}")
+                                    }
+                                    else
+                                    {
+                                    @($"{Features.Single(p => p.FeatureId == feature.FeatureId).Name}")
+                                    }
+                                        </span>
+                            </li>
+                        </ul>
+                    </li>
+                    }
+                </ul>
+            </section>
+            }
+        </div>
+
+        <!-- lg+ -->
+        <div class="isolate mt-20 hidden lg:block">
+            <div class="relative -mx-8">
+                <div class="absolute inset-x-4 inset-y-0 -z-10 flex">
+                    <div class="flex w-1/4 px-4" style="margin-left: 50%" aria-hidden="true">
+                        <div class="w-full rounded-t-xl border-x border-t border-gray-900/10 bg-gray-400/5"></div>
+                    </div>
+                </div>
+                <table class="w-full table-fixed border-separate border-spacing-x-8 text-left">
+                    <caption class="sr-only">
+                        Pricing plan comparison
+                    </caption>
+                    <colgroup>
+                        <col class="w-1/4">
+                        <col class="w-1/4">
+                        <col class="w-1/4">
+                        <col class="w-1/4">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <td></td>
+                        @foreach (var plan in plans)
+                        {
+                        <th scope="col" class="px-6 pt-6 xl:px-8 xl:pt-8">
+                            <div class="text-sm font-semibold leading-7 text-gray-900">@plan.Name</div>
+                        </th>
+                        }
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">
+                            <span class="sr-only">Price</span>
+                        </th>
+                        @foreach (var plan in plans)
+                        {
+                        <td class="px-6 pt-2 xl:px-8">
+                            <div class="flex items-baseline gap-x-1 text-gray-900">
+                                <span class="text-4xl font-bold">@plan.Price.ToString("C", CultureInfo.GetCultureInfo("en-us"))</span>
+                                <span class="text-sm font-semibold leading-6">/month</span>
+                            </div>
+                            <a href="@plan.PurchaseLink" class="mt-8 block rounded-md py-2 px-3 text-center text-sm font-semibold leading-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700 @(plan.Highlighted ? "bg-brand-700 text-white hover:bg-brand-800" : "text-brand-800 ring-1 ring-inset ring-brand-200 hover:ring-brand-300")">Buy plan</a>
+                        </td>
+                        }
+                    </tr>
+                    @foreach (var category in Features.GroupBy(p => p.Category))
+                    {
+                    <tr>
+                        <th scope="colgroup" colspan="4" class="pb-4 text-sm font-semibold leading-6 text-gray-900 pt-8">
+                            @category.Key
+                            <div class="absolute inset-x-8 mt-4 h-px bg-gray-900/10"></div>
+                        </th>
+                    </tr>
+
+                    @foreach (var feature in category.OrderBy(p => p.DisplayOrder))
+                    {
+                    <tr>
+                        <th scope="row" class="py-4 text-sm font-normal leading-6 text-gray-900">
+                            @feature.Name
+                            @if (feature.ComingSoon)
+                            {
+                            <PureBadge Styles="px-0 py-0" Accent="Accent.Default" Variant="PureVariant.Subtle">coming soon</PureBadge>
+                            }
+                            @if (feature.IsPreview)
+                            {
+                            <PureBadge Styles="px-0 py-0" Accent="Accent.Brand" Variant="PureVariant.Subtle">preview</PureBadge>
+                            }
+                            <div class="absolute inset-x-8 mt-4 h-px bg-gray-900/5"></div>
+                        </th>
+                        @foreach (var plan in plans)
+                        {
+                        <td class="px-6 py-4 xl:px-8">
+                            <div class="text-center text-sm leading-6 text-gray-600">
+                                @{ var thisFeature = plan.Features.FirstOrDefault(p => p.FeatureId == feature.FeatureId); }
+                                @if (thisFeature != null)
+                                {
+                                if (string.IsNullOrWhiteSpace(thisFeature.Limit))
+                                {
+                                <svg class="mx-auto h-5 w-5 text-brand-800" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="sr-only">Included in @plan.Name</span>
+                                }
+                                else
+                                {
+                                <div class="text-center text-sm leading-6 text-gray-600">@thisFeature.Limit</div>
+                                }
+                                }
+                                else
+                                {
+                                <svg class="mx-auto h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M4 10a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H4.75A.75.75 0 014 10z" clip-rule="evenodd"/>
+                                </svg>
+                                <span class="sr-only">Not included in @plan.Name</span>
+                                }
+                            </div>
+                        </td>
+                        }
+                    </tr>
+                    }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+static List<FeatureLimit> communityFeatureLimits =
+[
+new FeatureLimit(1, "1 app"),
+new FeatureLimit(2),
+new FeatureLimit(3),
+new FeatureLimit(4),
+new FeatureLimit(5, "5 GB per month"),
+// new FeatureLimit(6, "1"),
+// new FeatureLimit(7),
+new FeatureLimit(8, "10 MB"),
+
+new FeatureLimit(20, "1 site integration"),
+new FeatureLimit(21, "5 pages"),
+new FeatureLimit(22),
+// new FeatureLimit(23),
+new FeatureLimit(24, "Unlimited"),
+new FeatureLimit(25),
+new FeatureLimit(26),
+
+new FeatureLimit(40),
+// new FeatureLimit(41),
+// new FeatureLimit(42),
+// new FeatureLimit(43),
+];
+
+static List<FeatureLimit> proFeatureLimits =
+[
+new FeatureLimit(1, "3 apps"),
+new FeatureLimit(2),
+new FeatureLimit(3),
+new FeatureLimit(4),
+new FeatureLimit(5, "10 GB per month"),
+// new FeatureLimit(6, "1"),
+// new FeatureLimit(7),
+new FeatureLimit(8, "500 MB"),
+
+new FeatureLimit(20, "1 site"),
+new FeatureLimit(21, "100 pages"),
+new FeatureLimit(22),
+// new FeatureLimit(23),
+new FeatureLimit(24, "Unlimited"),
+new FeatureLimit(25),
+new FeatureLimit(26),
+
+new FeatureLimit(40),
+new FeatureLimit(41),
+// new FeatureLimit(42),
+// new FeatureLimit(43),
+];
+
+static List<FeatureLimit> premiumFeatureLimits =
+[
+new FeatureLimit(1, "5 apps"),
+new FeatureLimit(2),
+new FeatureLimit(3),
+new FeatureLimit(4),
+new FeatureLimit(5, "500 GB per month"),
+// new FeatureLimit(6, "1"),
+new FeatureLimit(7),
+new FeatureLimit(8, "1 GB"),
+
+new FeatureLimit(20, "Unlimited"),
+new FeatureLimit(21, "Unlimited"),
+new FeatureLimit(22),
+new FeatureLimit(23),
+new FeatureLimit(24, "Unlimited"),
+new FeatureLimit(25),
+new FeatureLimit(26),
+
+new FeatureLimit(40),
+new FeatureLimit(41),
+new FeatureLimit(42),
+new FeatureLimit(43),
+];
+
+public List<Plan> plans =
+[
+new Plan { Name = "Community", Price = 0, Features = communityFeatureLimits, PurchaseLink = "https://buy.stripe.com/28og1h8MU5kv8BqbII" },
+new Plan { Name = "Pro", Price = 9.97M, Features = proFeatureLimits, Highlighted = true, PurchaseLink = "https://buy.stripe.com/9AQ9CT5AIbITeZO145" },
+new Plan { Name = "Premium", Price = 19.97M, Features = premiumFeatureLimits, PurchaseLink = "https://buy.stripe.com/6oE02jfbiaEP9Fu146" }
+];
+
+public List<Feature> Features =
+[
+new Feature { FeatureId = 1, Category = "Infrastructure", Name = "App Hosting", DisplayOrder = 1, },
+new Feature { FeatureId = 2, Category = "Infrastructure", Name = "Automatic TLS Certificates", DisplayOrder = 4 },
+new Feature { FeatureId = 3, Category = "Infrastructure", Name = "Automatic Web Application Firewall (WAF)", DisplayOrder = 5 },
+new Feature { FeatureId = 4, Category = "Infrastructure", Name = "DDoS Protection", DisplayOrder = 6 },
+new Feature { FeatureId = 5, Category = "Infrastructure", Name = "Bandwidth", DisplayOrder = 3 },
+// new Feature { FeatureId = 6, Category = "Infrastructure", Name = "App Hosting", DisplayOrder = 1  },
+new Feature { FeatureId = 7, Category = "Infrastructure", Name = "Always-on Availability", DisplayOrder = 7 },
+new Feature { FeatureId = 8, Category = "Infrastructure", Name = "Cloud Database", DisplayOrder = 2, ComingSoon = true },
+
+new Feature { FeatureId = 20, Category = "CMS", Name = "Site Integrations", DisplayOrder = 20 },
+new Feature { FeatureId = 21, Category = "CMS", Name = "CMS Pages", DisplayOrder = 21, IsPreview = true },
+new Feature { FeatureId = 22, Category = "CMS", Name = "Visual Page Builder", DisplayOrder = 24, ComingSoon = true },
+new Feature { FeatureId = 23, Category = "CMS", Name = "Native AI", DisplayOrder = 25, ComingSoon = true },
+new Feature { FeatureId = 24, Category = "CMS", Name = "Team Members", DisplayOrder = 23 },
+new Feature { FeatureId = 25, Category = "CMS", Name = "Blazor UI Components", DisplayOrder = 26 },
+new Feature { FeatureId = 26, Category = "CMS", Name = "SEO Manager", DisplayOrder = 22 },
+
+new Feature { FeatureId = 40, Category = "Support", Name = "Standard Support (3-day response)", DisplayOrder = 30 },
+new Feature { FeatureId = 41, Category = "Support", Name = "Priority Support (24-hour response)", DisplayOrder = 31 },
+new Feature { FeatureId = 42, Category = "Support", Name = "Early Access to New Features", DisplayOrder = 32 },
+new Feature { FeatureId = 43, Category = "Support", Name = "Feature Prioritization", DisplayOrder = 33 },
+];
+
+public record Plan
+{
+public required string Name { get; set; }
+public required decimal Price { get; set; }
+public bool Highlighted { get; set; }
+public List<FeatureLimit> Features { get; set; } = [];
+public string? PurchaseLink { get; set; }
+}
+
+public record Feature
+{
+public required int FeatureId { get; set; }
+public required string Category { get; set; }
+public required string Name { get; set; }
+public int DisplayOrder { get; set; }
+public bool ComingSoon { get; set; }
+public bool IsPreview { get; set; }
+}
+
+public record FeatureLimit(int FeatureId, string? Limit = null);
+
+}
+
