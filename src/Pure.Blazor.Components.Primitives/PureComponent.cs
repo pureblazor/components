@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 
 namespace Pure.Blazor.Components.Primitives;
 
@@ -10,6 +11,8 @@ public class PureComponent : ComponentBase
         BuildCss();
     }
 
+    [Inject] public required ILogger<PureComponent> Logger { get; set; }
+
     /// <summary>
     ///     Add additional css classes to this component
     /// </summary>
@@ -20,7 +23,7 @@ public class PureComponent : ComponentBase
     ///     Disables or enables the theme. Default is Auto, which means the theme is inherited from the parent component.
     /// </summary>
     [CascadingParameter]
-    public Theme Theme { get; set; } = Theme.Auto;
+    public Theme Theme { get; set; }
 
     /// <summary>
     ///     The current theme styles
@@ -60,6 +63,11 @@ public class PureComponent : ComponentBase
     /// <returns></returns>
     protected virtual string ApplyStyle(string? style)
     {
+        if (Theme == Theme.Off)
+        {
+            return "";
+        }
+
         if (style == null)
         {
             return Styles ?? "";
