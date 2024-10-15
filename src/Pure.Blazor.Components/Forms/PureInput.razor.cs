@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
 using Pure.Blazor.Components.Forms.Validators;
 using Pure.Blazor.Components.Primitives;
 
@@ -15,12 +16,21 @@ public partial class PureInput
     private string defaultBorder = "border-gray-200";
     private string errorBorder = "border-red-600";
     private string? errorMessage;
-    private object? innerValue;
 
     private string? TextValue
     {
-        get { return innerValue?.ToString(); }
-        set { innerValue = value; }
+        get
+        {
+            return Value?.ToString();
+        }
+        set
+        {
+            // We abuse the fact that we bind Text-Value instead of Value directly.
+            // updates are sent via OnValue up to the actual user inputted bind
+            // Since we never update 'TextValue', only the getter is required to be implemented
+            // The compiler still requires a setter
+            Log.LogDebug("TextValue's `set` is not implemented; please use Value's `set`");
+        }
     }
 
     // the suffix needs different margins depending on labels and helper text
@@ -141,7 +151,6 @@ public partial class PureInput
 
     protected override void OnInitialized()
     {
-        innerValue = Value ?? default;
 
         if (Required == true)
         {
