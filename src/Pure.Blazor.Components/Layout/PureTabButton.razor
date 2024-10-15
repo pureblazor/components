@@ -8,7 +8,6 @@
 @code {
     private ElementReference _elementReference;
     private bool prevStateActive = false;
-    [Inject] public required ILogger<PureTabButton> Logger { get; set; }
     [Parameter] public string Title { get; set; } = string.Empty;
 
     [Parameter] public bool IsActive { get; set; }

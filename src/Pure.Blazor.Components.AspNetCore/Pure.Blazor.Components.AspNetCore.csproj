@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <LangVersion>preview</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor.Components.AspNetCore</Title>
-    <Version>0.32</Version>
+    <Version>0.40-rc1</Version>
     <PackageId>PureBlazor.Components.AspNetCore</PackageId>
     <Description>ASP.NET Core integration package for PureBlazor UI components.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>

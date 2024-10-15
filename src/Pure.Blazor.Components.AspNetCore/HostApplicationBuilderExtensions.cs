@@ -6,6 +6,7 @@ using Pure.Blazor.Components.Common;
 using Pure.Blazor.Components.Dialogs;
 using Pure.Blazor.Components.Feedback;
 using Pure.Blazor.Components.Primitives;
+using Theme = Pure.Blazor.Components.Primitives.Theme;
 
 namespace Pure.Blazor.Components.AspNetCore;
 
@@ -27,6 +28,8 @@ public static class HostApplicationBuilderExtensions
             var source = new CascadingValueSource<PureTheme>(theme, isFixed: true);
             return source;
         });
+
+        builder.Services.TryAddCascadingValue(_ => Theme.Auto);
 
         return builder;
     }

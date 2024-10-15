@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <LangVersion>preview</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Primitives</Title>
-    <Version>0.32</Version>
+    <Version>0.40-rc1</Version>
     <PackageId>PureBlazor.Components.Primitives</PackageId>
     <Description>PureBlazor.Components.Primitives</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>

@@ -39,7 +39,6 @@ public abstract class InteropComponent : PureComponent, IAsyncDisposable
         }
     }
 
-    [Inject] public required ILogger<InteropComponent> Logger { get; set; }
     [Inject] public required IJSRuntime Js { get; set; }
 
     async ValueTask IAsyncDisposable.DisposeAsync()
