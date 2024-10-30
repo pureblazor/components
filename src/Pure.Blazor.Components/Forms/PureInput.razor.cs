@@ -43,6 +43,8 @@ public partial class PureInput
     [Parameter] public InputAutoComplete AutoComplete { get; set; }
     [Parameter] public InputType InputType { get; set; } = InputType.Text;
     [Parameter] public string? ContainerStyles { get; set; }
+    [Parameter] public bool IsDisabled { get; set; }
+
     /// <summary>
     ///     Defaults to immediate mode
     /// </summary>
