@@ -4,7 +4,7 @@ namespace Pure.Blazor.Components.Feedback;
 
 public class BannerStyles
 {
-    public static string Base => "p-3 border-1 rounded-sm text-sm";
+    public static string Base => "p-3 border-1 border-gray-300 rounded-sm text-sm";
 
     public static readonly Dictionary<Accent, string> Container = new()
     {
@@ -23,7 +23,7 @@ public class BannerStyles
                 { Accent.Brand, "bg-brand-400 text-gray-900 font-bold" },
                 { Accent.Danger, "bg-red-400" },
                 { Accent.Success, "bg-green-400" },
-                { Accent.Warning, "bg-yellow-400" },
+                { Accent.Warning, "bg-yellow-100" },
                 { Accent.Default, "bg-gray-300" }
             }
         },
