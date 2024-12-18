@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor.Components.AspNetCore</Title>
-    <Version>0.40-rc2</Version>
+    <Version>0.41</Version>
     <PackageId>PureBlazor.Components.AspNetCore</PackageId>
     <Description>ASP.NET Core integration package for PureBlazor UI components.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>

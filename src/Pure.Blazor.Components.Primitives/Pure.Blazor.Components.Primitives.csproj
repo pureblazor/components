@@ -8,7 +8,7 @@
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>PureBlazor Primitives</Title>
-    <Version>0.40-rc2</Version>
+    <Version>0.41</Version>
     <PackageId>PureBlazor.Components.Primitives</PackageId>
     <Description>PureBlazor.Components.Primitives</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
