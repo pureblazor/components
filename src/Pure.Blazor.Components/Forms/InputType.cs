@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Forms;
+namespace Pure.Blazor.Components;
 
 public enum InputType
 {

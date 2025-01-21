@@ -1,4 +1,5 @@
-﻿@using System.Text
+﻿@namespace Pure.Blazor.Components
+@using System.Text
 @inherits PureComponent
 <button @ref="_elementReference" @key="Title" tabindex="@(IsActive ? 0 : -1)" @onclick="@((e) => { Console.WriteLine("clicked"); OnClick.InvokeAsync(e); })" class="@ApplyStyle(InternalCss)" @onkeyup="OnKeyUp" role="tab">
     <!-- todo: icon -->

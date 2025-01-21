@@ -1,11 +1,11 @@
-namespace Pure.Blazor.Components.Layout;
+namespace Pure.Blazor.Components;
 
 internal class FlexMap
 {
-    internal const string Row = "row";
-    internal const string RowReverse = "row-reverse";
-    internal const string Column = "column";
-    internal const string ColumnReverse = "column-reverse";
+    internal const string Row = "flex-row";
+    internal const string RowReverse = "flex-row-reverse";
+    internal const string Column = "flex-col";
+    internal const string ColumnReverse = "flex-col-reverse";
 
     internal static FlexDirection GetFlexDirection(string value)
     {

@@ -1,12 +1,11 @@
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Dialogs;
+namespace Pure.Blazor.Components;
 
 public class ShowDialogOptions
 {
     public object? Model { get; set; }
-    public Func<DialogResult, Task>? OnEvent { get; set; }
-    public Func<DialogResult, Task<DialogEventResult>>? OnConfirm { get; set; }
+    public Func<DialogEvent, ValueTask>? OnEvent { get; set; }
 
     /// <summary>
     ///     The text displayed on the affirmative button.

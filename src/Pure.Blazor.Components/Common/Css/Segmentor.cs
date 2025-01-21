@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Common.Css;
+namespace Pure.Blazor.Components;
 
 public static class Segmentor
 {

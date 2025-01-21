@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components;
-using Pure.Blazor.Components.Primitives;
 
-namespace Pure.Blazor.Components.Forms;
+namespace Pure.Blazor.Components;
 
 public class PureInputBase : PureComponent
 {

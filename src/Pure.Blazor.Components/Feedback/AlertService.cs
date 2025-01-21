@@ -1,8 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.Extensions.Logging;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Feedback;
+namespace Pure.Blazor.Components;
 
 public class AlertService(ILogger<AlertService> log) : IDisposable
 {

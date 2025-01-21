@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 public enum ButtonType
 {

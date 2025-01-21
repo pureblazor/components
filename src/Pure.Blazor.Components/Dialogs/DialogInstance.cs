@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Dialogs;
+namespace Pure.Blazor.Components;
 
 public class DialogInstance
 {
@@ -24,14 +24,7 @@ public class DialogInstance
     ///
     /// If the OnConfirm event is set, this event will not be fired for the confirm event.
     /// </summary>
-    public Func<DialogResult, Task>? OnEvent { get; set; }
-
-    /// <summary>
-    /// Fires for affirmative button clicks, providing the caller with the dialog result and
-    /// allowing them to interrupt the dialog process. For example, to show an error message
-    /// that the user must correct or acknowledge before continuing.
-    /// </summary>
-    public Func<DialogResult, Task<DialogEventResult>>? OnConfirm { get; set; }
+    public Func<DialogEvent, ValueTask>? OnEvent { get; set; }
 
     public string? Title { get; set; }
     public object? Model { get; set; }
@@ -51,34 +44,27 @@ public class DialogInstance
 
         DialogId = "component";
         OnEvent = options?.OnEvent;
-        OnConfirm = options?.OnConfirm;
 
         return Task.CompletedTask;
     }
 
-    public async Task<DialogEventResult> ConfirmAsync()
+    public async ValueTask ConfirmAsync()
     {
-        var res = DialogEventResult.Confirmed;
-        if (OnConfirm is not null)
+        if (OnEvent is null)
         {
-            res = await OnConfirm(new DialogResult(DialogEvent.Confirm, Model));
-            if (res.Interrupted)
-            {
-                return res;
-            }
-        }
-        else
-        {
-            OnEvent?.Invoke(new DialogResult(DialogEvent.Confirm));
+            return;
         }
 
-        return res;
+        await OnEvent.Invoke(DialogEvent.Confirm);
     }
 
-    public Task CancelAsync()
+    public async ValueTask CancelAsync()
     {
-        OnEvent?.Invoke(new DialogResult(DialogEvent.Cancel));
+        if (OnEvent is null)
+        {
+            return;
+        }
 
-        return Task.CompletedTask;
+        await OnEvent.Invoke(DialogEvent.Cancel);
     }
 }

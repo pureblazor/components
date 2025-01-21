@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components;
 
 public class NoOpJsObjectReference : IJSObjectReference
 {

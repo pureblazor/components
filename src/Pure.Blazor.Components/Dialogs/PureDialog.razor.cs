@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Pure.Blazor.Components.Dialogs;
+namespace Pure.Blazor.Components;
 
 public partial class PureDialog
 {
@@ -40,19 +40,19 @@ public partial class PureDialog
 
         Message = "Saving...";
         dialog.Locked = true;
-        var result = await DialogService.ConfirmDialogAsync(dialog);
-        if (result.Interrupted && result.ContinueWith is not null)
-        {
-            dialog = result.ContinueWith;
-            MessageFragment = null;
-            Message = null;
-            StateHasChanged();
-        }
-        else if (result.Interrupted)
-        {
-            Message = result.Message;
-            MessageFragment = result.MessageFragment;
-        }
+        await DialogService.ConfirmDialogAsync(dialog);
+        // if (result.Interrupted && result.ContinueWith is not null)
+        // {
+        //     dialog = result.ContinueWith;
+        //     MessageFragment = null;
+        //     Message = null;
+        //     StateHasChanged();
+        // }
+        // else if (result.Interrupted)
+        // {
+        //     Message = result.Message;
+        //     MessageFragment = result.MessageFragment;
+        // }
 
         dialog.Locked = false;
     }

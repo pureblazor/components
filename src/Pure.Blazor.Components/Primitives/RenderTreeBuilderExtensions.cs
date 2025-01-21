@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Pure.Blazor.Components.Primitives;
+namespace Pure.Blazor.Components;
 
 public static class RenderTreeBuilderExtensions
 {

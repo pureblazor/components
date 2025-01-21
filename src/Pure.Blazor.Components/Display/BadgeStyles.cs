@@ -1,6 +1,6 @@
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Display;
+namespace Pure.Blazor.Components;
 
 public class BadgeStyles
 {

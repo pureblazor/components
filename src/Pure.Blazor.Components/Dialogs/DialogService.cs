@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Pure.Blazor.Components.Common;
 
-namespace Pure.Blazor.Components.Dialogs;
+namespace Pure.Blazor.Components;
 
 public class DialogService
 {
@@ -33,8 +32,13 @@ public class DialogService
         return Task.CompletedTask;
     }
 
+    public ValueTask ShowDialogAsync(string title, RenderFragment body,
+        Func<DialogEvent, ValueTask> onEvent)
+    {
+        return ShowDialogAsync(title, body, new ShowDialogOptions() { OnEvent = onEvent });
+    }
 
-    public async Task ShowDialogAsync(string title, RenderFragment body, ShowDialogOptions? options = null)
+    public async ValueTask ShowDialogAsync(string title, RenderFragment body, ShowDialogOptions? options = null)
     {
         log.LogDebug("ShowDialog requested");
         var instance = new DialogInstance();
@@ -52,26 +56,10 @@ public class DialogService
         await module.InvokeVoidAsync("closeDialog", objRef, instance.DialogId);
     }
 
-    internal async Task<DialogEventResult> ConfirmDialogAsync(DialogInstance instance)
+    internal async Task ConfirmDialogAsync(DialogInstance instance)
     {
-        try
-        {
-            var res = await instance.ConfirmAsync();
-            if (res.Interrupted)
-            {
-                return res;
-            }
-
-            await CloseDialogAsync(instance);
-
-            return res;
-        }
-        catch (Exception ex)
-        {
-            log.LogError(ex, "Error confirming dialog");
-        }
-
-        return new ();
+        await CloseDialogAsync(instance);
+        await instance.ConfirmAsync();
     }
 
     public async Task CancelDialogAsync(DialogInstance instance)

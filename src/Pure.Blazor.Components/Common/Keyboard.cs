@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components;
 
 public static class Keyboard
 {

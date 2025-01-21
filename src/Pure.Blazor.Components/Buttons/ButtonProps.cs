@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Pure.Blazor.Components.Common;
-using Pure.Blazor.Components.Primitives;
 
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 public interface IButtonProps
 {

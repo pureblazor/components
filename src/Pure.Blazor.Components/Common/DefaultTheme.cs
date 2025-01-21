@@ -1,14 +1,9 @@
-using Pure.Blazor.Components.Buttons;
-using Pure.Blazor.Components.Common.Css;
-using Pure.Blazor.Components.Display;
-using Pure.Blazor.Components.Essentials;
-using Pure.Blazor.Components.Feedback;
-using Pure.Blazor.Components.Forms;
-using Pure.Blazor.Components.Layout;
-using Pure.Blazor.Components.Primitives;
+namespace Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Common;
-
+internal sealed class TailwindHack
+{
+    internal const string BuiltInStyles = "bg-background";
+}
 public record DefaultTheme : PureTheme
 {
     public DefaultTheme()
@@ -48,10 +43,6 @@ public record DefaultTheme : PureTheme
                         { PureSize.ExtraLarge, "sm:px-6 px-4 py-3 text-lg" },
                     }
                 }
-            },
-            {
-                nameof(PureIconButton),
-                new(ButtonStyles.Base) { Variants = ButtonStyles.Variants, Sizes = ButtonStyles.Sizes }
             },
             {
                 nameof(PureDropdown),

@@ -1,8 +1,8 @@
 using System.Buffers;
 using System.Text;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Common.Css;
+namespace Pure.Blazor.Components;
 
 public class StylePrioritizer : IStylePrioritizer
 {

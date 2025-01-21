@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components.Rendering;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Layout;
+namespace Pure.Blazor.Components;
 
 public class PureContainer : PureComponent
 {

@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 public class PureButtonBase : PureComponent
 {
     [Parameter] public string? Id { get; set; }
     [Parameter] public ButtonType ButtonType { get; set; }
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
-    [Parameter] public PureVariant Variant { get; set; } = PureVariant.Default;
+    [Parameter] public PureVariant Variant { get; set; }
     [Parameter] public Accent Accent { get; set; }
     [Parameter] public string? Title { get; set; }
     [Parameter] public string? Name { get; set; }

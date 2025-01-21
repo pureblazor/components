@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Routing;
 
-namespace Pure.Blazor.Components.Navigation;
+namespace Pure.Blazor.Components;
 
 /// <summary>
 /// FORK of the NavLink component from Microsoft.AspNetCore.Components.Web

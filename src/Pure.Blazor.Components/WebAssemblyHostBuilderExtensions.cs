@@ -1,33 +1,29 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Pure.Blazor.Components.Common;
-using Pure.Blazor.Components.Dialogs;
-using Pure.Blazor.Components.Feedback;
-using Pure.Blazor.Components.Primitives;
-using Theme = Pure.Blazor.Components.Primitives.Theme;
 
 namespace Pure.Blazor.Components;
 
-public static class WebAssemblyHostBuilderExtensions
+public static class ServiceCollectionExtensions
 {
-    public static WebAssemblyHostBuilder AddPureBlazorComponents(this WebAssemblyHostBuilder builder,
+    public static IServiceCollection AddPureBlazor(this IServiceCollection services,
         PureTheme? theme = null)
     {
         // javascript
-        builder.Services.AddSingleton<IElementUtils, ElementUtils>();
+        services.AddScoped<IElementUtils, ElementUtils>();
 
         // services
-        builder.Services.AddScoped<AlertService>();
-        builder.Services.AddScoped<DialogService>();
-        builder.Services.AddCascadingValue(_ =>
+        services.AddScoped<AlertService>();
+        services.AddScoped<DialogService>();
+
+        // theme
+        services.AddCascadingValue(_ =>
         {
             theme ??= new DefaultTheme();
-            var source = new CascadingValueSource<PureTheme>(theme, isFixed: true);
+            var source = new CascadingValueSource<PureTheme>(theme, isFixed: false);
             return source;
         });
 
-        builder.Services.TryAddCascadingValue(_ => Theme.Auto);
-        return builder;
+        services.TryAddCascadingValue(_ => Theme.Auto);
+        return services;
     }
 }

@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Pure.Blazor.Components.Icons;
-using Pure.Blazor.Components.Primitives;
 
-namespace Pure.Blazor.Components.Navigation;
+namespace Pure.Blazor.Components;
 
 public class PureBreadcrumbItem : PureComponent
 {
+    private const string separator = " / ";
     [Parameter] public string? Href { get; set; }
     [Parameter] public string? Name { get; set; }
     [CascadingParameter] public required PureBreadcrumb Parent { get; set; }
@@ -36,11 +35,12 @@ public class PureBreadcrumbItem : PureComponent
         builder.AddAttribute(3, "class", "flex items-center");
         if (!IsFirst())
         {
-            builder.OpenComponent<PureIcon>(4);
-            builder.AddComponentParameter(5, "Icon", PureIcons.IconChevronRight);
-            builder.AddComponentParameter(6, "Size", PureSize.Small);
-            builder.AddComponentParameter(7, "Styles", "rtl:rotate-180");
-            builder.CloseComponent();
+         builder.AddContent(4, separator);
+         // builder.OpenComponent<PureIcon>(4);
+         // builder.AddComponentParameter(5, "Icon", PureIcons.IconChevronRight);
+         // builder.AddComponentParameter(6, "Size", PureSize.Small);
+         // builder.AddComponentParameter(7, "Styles", "rtl:rotate-180");
+         // builder.CloseComponent();
         }
 
         if (last)

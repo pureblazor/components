@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
-using Pure.Blazor.Components.Icons;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 public class PureButton : PureButtonBase
 {
     private bool IsPressed { get; set; }
 
-    [Parameter] public PureIcons? StartIcon { get; set; }
+    [Parameter] public RenderFragment? StartIcon { get; set; }
     [Parameter] public PureSize? StartIconSize { get; set; }
-    [Parameter] public PureIcons? EndIcon { get; set; }
+    [Parameter] public RenderFragment? EndIcon { get; set; }
     [Parameter] public PureSize? EndIconSize { get; set; }
     [Parameter] public Effect PressEffect { get; set; }
     [Parameter] public Effect HoverEffect { get; set; }
@@ -84,11 +83,12 @@ public class PureButton : PureButtonBase
         if (icon is not null)
         {
             builder.OpenRegion(17);
-            builder.OpenComponent<PureIcon>(1);
-            builder.AddComponentParameter(2, "Icon", icon);
-            builder.AddComponentParameter(3, "Size", StartIconSize ?? Size);
-            builder.AddComponentParameter(4, "Animate", Loading ? PureAnimate.Spin : PureAnimate.None);
-            builder.CloseComponent();
+            builder.AddContent(1, StartIcon);
+            // builder.OpenComponent<PureIcon>(1);
+            // builder.AddComponentParameter(2, "Icon", icon);
+            // builder.AddComponentParameter(3, "Size", StartIconSize ?? Size);
+            // builder.AddComponentParameter(4, "Animate", Loading ? PureAnimate.Spin : PureAnimate.None);
+            // builder.CloseComponent();
             builder.CloseRegion();
         }
 
@@ -108,10 +108,11 @@ public class PureButton : PureButtonBase
         if (EndIcon is not null)
         {
             builder.OpenRegion(21);
-            builder.OpenComponent<PureIcon>(1);
-            builder.AddAttribute(2, "Icon", EndIcon);
-            builder.AddAttribute(3, "Size", EndIconSize ?? Size);
-            builder.CloseComponent();
+            builder.AddContent(1, EndIcon);
+            // builder.OpenComponent<PureIcon>(1);
+            // builder.AddAttribute(2, "Icon", EndIcon);
+            // builder.AddAttribute(3, "Size", EndIconSize ?? Size);
+            // builder.CloseComponent();
             builder.CloseRegion();
         }
 

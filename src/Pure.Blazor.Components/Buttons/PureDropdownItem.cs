@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Pure.Blazor.Components.Common;
-using Pure.Blazor.Components.Primitives;
 
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 public class PureDropdownItem : InteropComponent
 {

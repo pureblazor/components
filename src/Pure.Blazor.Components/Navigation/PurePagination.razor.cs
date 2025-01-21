@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Pure.Blazor.Components.Navigation;
+namespace Pure.Blazor.Components;
 
 public partial class PurePagination
 {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 
-namespace Pure.Blazor.Components.Primitives;
+namespace Pure.Blazor.Components;
 
 public class PureComponent : ComponentBase
 {
@@ -29,7 +29,7 @@ public class PureComponent : ComponentBase
     ///     The current theme styles
     /// </summary>
     [CascadingParameter]
-    public required PureTheme PureTheme { get; set; }
+    public PureTheme PureTheme { get; set; } = new DefaultTheme();
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 

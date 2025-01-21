@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Pure.Blazor.Components.Dialogs;
+namespace Pure.Blazor.Components;
 
 public record DialogEventResult
 {

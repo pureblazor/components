@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Pure.Blazor.Components.Essentials;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Forms;
+namespace Pure.Blazor.Components;
 
 public class PureTextArea : PureInputBase
 {

@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 /// <summary>
 /// Base accent colors that have been checked for accessibility.

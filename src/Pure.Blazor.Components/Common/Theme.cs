@@ -1,13 +1,6 @@
-﻿using Pure.Blazor.Components.Common.Css;
+﻿using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Common;
-
-public enum Theme
-{
-    Off,
-    On,
-    Auto
-}
+namespace Pure.Blazor.Components;
 
 public class ThemeProvider
 {

@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Navigation;
+namespace Pure.Blazor.Components;
 
 public class LeftNavStyles
 {

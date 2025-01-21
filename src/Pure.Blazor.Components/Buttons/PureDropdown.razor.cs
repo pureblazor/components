@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Pure.Blazor.Components.Common;
-using Pure.Blazor.Components.Icons;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Buttons;
+namespace Pure.Blazor.Components;
 
 public partial class PureDropdown
 {
@@ -23,7 +21,6 @@ public partial class PureDropdown
     public DropdownPosition Position { get; set; } = DropdownPosition.Left;
 
     [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
-    [Parameter] public PureIcons Icon { get; set; } = PureIcons.IconChevronUpDown;
 
     // /// <summary>
     // ///     Returns the menu item selected.

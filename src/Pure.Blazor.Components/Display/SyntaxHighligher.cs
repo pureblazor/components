@@ -1,6 +1,6 @@
 using System.Text;
 
-namespace Pure.Blazor.Components.Display;
+namespace Pure.Blazor.Components;
 
 public class SyntaxHighligher
 {

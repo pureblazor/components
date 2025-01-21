@@ -1,0 +1,87 @@
+@namespace Pure.Blazor.Components
+
+<button class="@CssClass" @onclick="OnClick">
+    @ChildContent
+</button>
+
+@code {
+    /// <summary>
+    /// We store the variant as a string. This enables us to add more variants at runtime.
+    ///
+    /// The published API is an enum for built-in variants. We may later add a parameter for custom variants. Ideally,
+    /// we could coerce or accept a discriminated union here and maintain 1 parameter.
+    /// </summary>
+    private string? variant;
+
+    /// <summary>
+    /// We store the size as a string, for the same reasons as the variant.
+    /// </summary>
+    private string? size;
+
+    protected override void OnParametersSet()
+    {
+        variant = Variant switch
+        {
+            Variants.Primary => "primary",
+            Variants.Secondary => "secondary",
+            Variants.Destructive => "destructive",
+            Variants.Outline => "outline",
+            Variants.Ghost => "ghost",
+            _ => null
+        };
+
+        size = Size switch
+        {
+            Sm => "sm",
+            Lg => "lg",
+            _ => null
+        };
+    }
+
+    /// <summary>
+    /// Use a built-in variant.
+    /// </summary>
+    [Parameter]
+    public Variants? Variant { get; set; }
+
+    [Parameter] public Sizes? Size { get; set; }
+
+    [Parameter] public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+
+    // Our multi-level variant config
+    private static readonly Pb _config = new()
+    {
+        Base = "inline-flex items-center justify-center font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:pointer-events-none",
+
+        VariantsByCategory = new Dictionary<string, Dictionary<string, string>>
+        {
+            // 1) Category: "variant"
+            ["variant"] = new()
+            {
+                ["primary"] = "bg-primary/90 hover:bg-primary/80 text-primary-foreground cursor-pointer active:bg-primary",
+                ["secondary"] = "bg-secondary hover:bg-secondary/80 text-secondary-foreground cursor-pointer",
+                ["destructive"] = "bg-destructive hover:bg-destructive/80 text-destructive-foreground cursor-pointer",
+                ["outline"] = "bg-transparent border border-primary hover:bg-primary/20 text-primary-foreground cursor-pointer",
+                ["ghost"] = "bg-transparent hover:bg-secondary/20 text-secondary-foreground cursor-pointer",
+            },
+
+            // 2) Category: "size"
+            ["size"] = new()
+            {
+                ["sm"] = "h-8 px-3 rounded-md text-sm",
+                ["lg"] = "h-10 px-5 rounded-md text-base",
+            },
+        }
+    };
+
+    /// <summary>
+    /// Generate the CSS classes from multi-level variants: (variant) + (size).
+    /// </summary>
+    private string CssClass => _config.GenerateClass(
+        ("variant", variant),
+        ("size", size)
+    );
+
+}

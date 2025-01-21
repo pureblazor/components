@@ -1,6 +1,6 @@
 using Microsoft.JSInterop;
 
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components;
 
 // ReSharper disable once InconsistentNaming
 public static class JSRuntimeExtensions

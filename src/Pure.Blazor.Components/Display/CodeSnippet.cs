@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Pure.Blazor.Components.Display;
+namespace Pure.Blazor.Components;
 
 public class CodeSnippet : ComponentBase
 {

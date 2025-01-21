@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
-using Pure.Blazor.Components.Forms.Validators;
-using Pure.Blazor.Components.Primitives;
 
-namespace Pure.Blazor.Components.Forms;
+namespace Pure.Blazor.Components;
 
 public partial class PureInput
 {

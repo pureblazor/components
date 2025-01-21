@@ -1,11 +1,11 @@
-﻿@using Pure.Blazor.Components.Icons
+﻿@namespace Pure.Blazor.Components
 @inherits PureComponent
 <div class="@ApplyStyle(ContainerCss)">
     <div class="flex gap-4 items-center">
         @if (Icon is not null)
         {
             <div class="pl-1">
-                <PureIcon Icon="@((PureIcons)Icon)"/>
+                @Icon
             </div>
         }
         <div class="flex flex-col">
@@ -32,7 +32,7 @@
 
     [Parameter] public Accent Accent { get; set; } = Accent.Brand;
     [Parameter] public PureVariant Variant { get; set; }
-    [Parameter] public PureIcons? Icon { get; set; }
+    [Parameter] public RenderFragment? Icon { get; set; }
 
     /// <summary>
     /// Styles applied to the content container

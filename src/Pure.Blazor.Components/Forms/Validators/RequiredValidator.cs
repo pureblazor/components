@@ -1,4 +1,4 @@
-﻿namespace Pure.Blazor.Components.Forms.Validators;
+﻿namespace Pure.Blazor.Components;
 
 internal class RequiredValidator : EntryValidator
 {

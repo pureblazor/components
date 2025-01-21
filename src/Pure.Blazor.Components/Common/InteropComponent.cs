@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Pure.Blazor.Components.Primitives;
+using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components;
 
 public abstract class InteropComponent : PureComponent, IAsyncDisposable
 {

@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components.Primitives;
+namespace Pure.Blazor.Components;
 
 /// <summary>
 /// Animation effects that can be applied to any component that supports it.

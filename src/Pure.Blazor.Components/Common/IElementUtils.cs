@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 
-namespace Pure.Blazor.Components.Common;
+namespace Pure.Blazor.Components;
 
 public interface IElementUtils
 {
