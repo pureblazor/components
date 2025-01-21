@@ -1,6 +1,6 @@
 @namespace Pure.Blazor.Components
 
-<button class="@CssClass" @onclick="OnClick">
+<button class="@CssClass" @onclick="OnClick" @attributes="AdditionalAttributes">
     @ChildContent
 </button>
 
@@ -50,6 +50,8 @@
 
     [Parameter] public RenderFragment? ChildContent { get; set; }
 
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
     // Our multi-level variant config
     private static readonly Pb _config = new()
     {

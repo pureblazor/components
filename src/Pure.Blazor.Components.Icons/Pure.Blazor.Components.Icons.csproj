@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pure.Blazor.Components.Primitives\Pure.Blazor.Components.Primitives.csproj"/>
+    <ProjectReference Include="..\Pure.Blazor.Components\Pure.Blazor.Components.csproj" />
   </ItemGroup>
 
 </Project>
