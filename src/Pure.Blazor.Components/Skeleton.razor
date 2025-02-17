@@ -1,0 +1,6 @@
+<div @attributes="AdditionalAttributes" class="animate-pulse bg-primary/10 rounded-full @AdditionalAttributes?.GetValueOrDefault("class")"></div>
+
+@code {
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

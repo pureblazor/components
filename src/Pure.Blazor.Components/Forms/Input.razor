@@ -1,51 +1,35 @@
 @namespace Pure.Blazor.Components
+@inherits Microsoft.AspNetCore.Components.Forms.InputBase<TValue>
+@using System.Diagnostics.CodeAnalysis
 @using System.Globalization
 @typeparam TValue
 
 <input
     class="flex h-10 w-full rounded-md border-1 border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
     @attributes="AdditionalAttributes"
-    value="@CurrentValueAsString"
-    @onchange="OnChange"
+    @bind="@CurrentValueAsString"
 />
 
 @code {
-    // The generic parameter you are binding to
-    [Parameter] public TValue? Value { get; set; }
-
-    // EventCallback so that two-way binding (@bind) works
-    [Parameter] public EventCallback<TValue?> ValueChanged { get; set; }
-
-    // Unmatched attributes (e.g. "type", "placeholder", etc.)
-    [Parameter(CaptureUnmatchedValues = true)]
-    public Dictionary<string, object>? AdditionalAttributes { get; set; }
-
-    // This is how we display the value on the <input>; it is always a string for HTML.
-    private string? CurrentValueAsString
+    protected override bool TryParseValueFromString(string? value, [MaybeNullWhen(false)] out TValue result, [NotNullWhen(false)] out string? validationErrorMessage)
     {
-        get => BindConverter.FormatValue(Value)?.ToString();
-        set
+        // Convert the incoming string from the browser into a TValue.
+        // If parsing fails or value is null, you may decide how to handle that (e.g. set default(TValue))
+        if (BindConverter.TryConvertTo<TValue>(value, CultureInfo.CurrentCulture, out result))
         {
-            // Convert the incoming string from the browser into a TValue.
-            // If parsing fails or value is null, you may decide how to handle that (e.g. set default(TValue))
-            if (BindConverter.TryConvertTo<TValue>(value, CultureInfo.CurrentCulture, out var result))
-            {
-                // Trigger the two-way bind
-                _ = ValueChanged.InvokeAsync(result);
-            }
-            else
-            {
-                // If conversion fails, you can handle it accordingly,
-                // e.g. set to default or leave the old value in place.
-                _ = ValueChanged.InvokeAsync(default);
-            }
+            // Trigger the two-way bind
+            _ = ValueChanged.InvokeAsync(result);
+            validationErrorMessage = null;
+            return true;
+        }
+        else
+        {
+            // If conversion fails, you can handle it accordingly,
+            // e.g. set to default or leave the old value in place.
+            _ = ValueChanged.InvokeAsync(default);
+            validationErrorMessage = $"The {FieldIdentifier.FieldName} field is not valid.";
+            return false;
         }
     }
 
-    private void OnChange(ChangeEventArgs e)
-    {
-        // When the input changes, update CurrentValueAsString
-        // (which will parse and invoke ValueChanged)
-        CurrentValueAsString = e.Value?.ToString();
-    }
 }

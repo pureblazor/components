@@ -1,0 +1,48 @@
+@using Microsoft.AspNetCore.Components.Forms
+@namespace Pure.Blazor.Components
+<div class="text-xs text-foreground flex gap-2 p-2 text-md items-center">
+    <button
+        type="button"
+        role="checkbox"
+        aria-checked="@Value"
+        data-state="@(Value ? "checked" : "unchecked")"
+        class="peer h-4 w-4 shrink-0 rounded-sm border border-primary shadow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground"
+        @onclick="@ToggleAsync">
+        @if (Value == true)
+        {
+            <span data-state="checked" class="flex items-center justify-center text-current"
+                  style="pointer-events: none;"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                     height="24" viewBox="0 0 24 24" fill="none"
+                                                     stroke="currentColor" stroke-width="2"
+                                                     stroke-linecap="round" stroke-linejoin="round"
+                                                     class="lucide lucide-check h-4 w-4"><path
+                        d="M20 6 9 17l-5-5"></path></svg></span>
+        }
+    </button>
+
+    <label class="form-check-label text-sm font-medium text-foreground/90 px-2"
+           for="@Label">@Label</label>
+    <input class="hidden" type="checkbox" id="@Label" @bind-value="@Value" @bind-value:after="CheckboxChanged"/>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public bool Value { get; set; }
+
+    [Parameter] public EventCallback<bool> ValueChanged { get; set; }
+
+    [Parameter, EditorRequired] public required string Label { get; set; }
+
+    private async Task ToggleAsync()
+    {
+        var oldValue = Value;
+        var newValue = !oldValue;
+        Value = newValue;
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    private async Task CheckboxChanged()
+    {
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+}

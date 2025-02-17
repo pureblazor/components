@@ -1,0 +1,64 @@
+@namespace Pure.Blazor.Components
+@using Microsoft.AspNetCore.Components.Forms
+    <InputSelect class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]"
+                 id="@Id"
+                 Value="Value"
+                 ValueExpression="() => Value"
+                 ValueChanged="@((string s) => Pick(s))"
+                 @attributes="AdditionalAttributes">
+        @ChildContent
+    </InputSelect>
+
+@code {
+    [Parameter] public RenderFragment? ChildContent { get; set; }
+    [Parameter, EditorRequired] public required string Value { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public EventCallback<string> OnSelected { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    /// <summary>
+    /// ID attribute for the input element. Defaults to a unique ID.
+    /// </summary>
+    [Parameter]
+    public string Id { get; set; } = $"select-{Guid.NewGuid()}";
+
+    /// <summary>
+    ///     Optional label (recommended)
+    /// </summary>
+    [Parameter]
+    public string? Label { get; set; }
+
+    /// <summary>
+    ///     Optional helper text
+    /// </summary>
+    [Parameter]
+    public string? HelperText { get; set; }
+
+    /// <summary>
+    /// The name attribute for the input element.
+    /// </summary>
+    [Parameter]
+    public string? Name { get; set; }
+
+    /// <summary>
+    ///     Optional label type
+    /// </summary>
+    [Parameter]
+    public PureLabelType LabelType { get; set; }
+
+    [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
+
+    /// <summary>
+    ///     Makes the input required.
+    /// </summary>
+    [Parameter]
+    public bool? Required { get; set; }
+
+    private void Pick(string s)
+    {
+        Value = s;
+        OnSelected.InvokeAsync(Value);
+        ValueChanged.InvokeAsync(Value);
+    }
+}

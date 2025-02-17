@@ -1,0 +1,22 @@
+@using System.Diagnostics.CodeAnalysis
+@using Microsoft.AspNetCore.Components.Forms
+@inherits Microsoft.AspNetCore.Components.Forms.InputBase<bool>
+
+<div
+    class="@ContainerClasses"
+    @attributes="AdditionalAttributes"
+    role="switch"
+    aria-checked="@Value"
+    @onclick="ToggleValue"
+>
+    <!-- Hidden checkbox to allow focus, a11y, and two-way binding -->
+    <InputCheckbox
+        class="peer sr-only"
+        @bind-Value="Value" />
+
+    <!-- The background track -->
+    <div class="@TrackClasses"></div>
+
+    <!-- The handle/thumb -->
+    <div class="@ThumbClasses"></div>
+</div>
