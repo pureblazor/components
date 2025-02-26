@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using TailwindMerge.Extensions;
 
 namespace Pure.Blazor.Components;
 
@@ -14,6 +15,8 @@ public static class ServiceCollectionExtensions
         // services
         services.AddScoped<AlertService>();
         services.AddScoped<DialogService>();
+
+        services.AddTailwindMerge();
 
         // theme
         services.AddCascadingValue(_ =>

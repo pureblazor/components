@@ -14,8 +14,8 @@ public class ButtonVariants
                 ["primary"] = "bg-primary/90 hover:bg-primary/80 text-primary-foreground cursor-pointer active:bg-primary",
                 ["secondary"] = "bg-secondary hover:bg-secondary/80 text-secondary-foreground cursor-pointer",
                 ["destructive"] = "bg-destructive hover:bg-destructive/80 text-destructive-foreground cursor-pointer",
-                ["outline"] = "bg-transparent border border-primary hover:bg-primary/20 text-primary-foreground cursor-pointer",
-                ["ghost"] = "bg-transparent hover:bg-secondary/20 text-secondary-foreground cursor-pointer",
+                ["outline"] = "bg-transparent border border-primary/20 hover:bg-primary/20 text-secondary-foreground cursor-pointer",
+                ["ghost"] = "bg-transparent hover:bg-primary/10 text-secondary-foreground cursor-pointer",
             },
 
             // 2) Category: "size"

@@ -1,19 +1,46 @@
 @namespace Pure.Blazor.Components
 @using Microsoft.AspNetCore.Components.Forms
-    <InputSelect class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]"
-                 id="@Id"
-                 Value="Value"
-                 ValueExpression="() => Value"
-                 ValueChanged="@((string s) => Pick(s))"
-                 @attributes="AdditionalAttributes">
-        @ChildContent
-    </InputSelect>
+
+@typeparam T
+
+<InputSelect TValue="T"
+             class="flex h-9 items-center justify-between whitespace-nowrap rounded-md border border-input bg-transparent px-3 py-2 text-sm shadow-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 w-[180px]"
+             id="@Id"
+             Value="Value"
+             ValueExpression="() => Value"
+             ValueChanged="@((T t) => Pick(t))"
+             @attributes="AdditionalAttributes">
+    @ChildContent
+</InputSelect>
 
 @code {
-    [Parameter] public RenderFragment? ChildContent { get; set; }
-    [Parameter, EditorRequired] public required string Value { get; set; }
-    [Parameter] public EventCallback<string> ValueChanged { get; set; }
-    [Parameter] public EventCallback<string> OnSelected { get; set; }
+    /// <summary>
+    /// The content to be rendered inside the select element, typically option elements.
+    /// </summary>
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    /// <summary>
+    /// The current value of the select component. Can be an enum, string, or int.
+    /// </summary>
+    [Parameter, EditorRequired]
+    public required T Value { get; set; }
+
+    /// <summary>
+    /// Callback invoked when the value changes. Supports two-way binding.
+    /// </summary>
+    [Parameter]
+    public EventCallback<T> ValueChanged { get; set; }
+
+    /// <summary>
+    /// Callback invoked when a selection is made.
+    /// </summary>
+    [Parameter]
+    public EventCallback<T> OnSelected { get; set; }
+
+    /// <summary>
+    /// Additional HTML attributes to apply to the select element.
+    /// </summary>
     [Parameter(CaptureUnmatchedValues = true)]
     public Dictionary<string, object>? AdditionalAttributes { get; set; }
 
@@ -24,13 +51,13 @@
     public string Id { get; set; } = $"select-{Guid.NewGuid()}";
 
     /// <summary>
-    ///     Optional label (recommended)
+    /// Optional label (recommended).
     /// </summary>
     [Parameter]
     public string? Label { get; set; }
 
     /// <summary>
-    ///     Optional helper text
+    /// Optional helper text.
     /// </summary>
     [Parameter]
     public string? HelperText { get; set; }
@@ -42,23 +69,26 @@
     public string? Name { get; set; }
 
     /// <summary>
-    ///     Optional label type
+    /// Optional label type.
     /// </summary>
     [Parameter]
     public PureLabelType LabelType { get; set; }
 
-    [Parameter] public PureSize Size { get; set; } = PureSize.Medium;
+    /// <summary>
+    /// Size of the select component.
+    /// </summary>
+    [Parameter]
+    public PureSize Size { get; set; } = PureSize.Medium;
 
     /// <summary>
-    ///     Makes the input required.
+    /// Makes the input required.
     /// </summary>
     [Parameter]
     public bool? Required { get; set; }
 
-    private void Pick(string s)
+    private void Pick(T t)
     {
-        Value = s;
-        OnSelected.InvokeAsync(Value);
-        ValueChanged.InvokeAsync(Value);
+        OnSelected.InvokeAsync(t);
+        ValueChanged.InvokeAsync(t);
     }
 }

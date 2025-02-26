@@ -1,6 +1,7 @@
+@using TailwindMerge
 @namespace Pure.Blazor.Components
-
-<button class="@CssClass" @onclick="OnClick" disabled="@Loading" @attributes="AdditionalAttributes">
+@inject TwMerge TwMerge
+<button @attributes="AdditionalAttributes" class="@(TwMerge.Merge(CssClass, AdditionalAttributes?.GetValueOrDefault("class")?.ToString()))" @onclick="OnClick" disabled="@Loading">
     @ChildContent
 </button>
 
@@ -59,7 +60,7 @@
     /// </summary>
     private string CssClass => ButtonVariants.Default.GenerateClass(
         ("variant", variant),
-        ("size", size)
+        ("size", size ?? "sm")
     );
 
 }
