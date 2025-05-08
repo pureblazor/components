@@ -1,0 +1,61 @@
+@namespace Pure.Blazor.Components
+@using TailwindMerge
+@inject TwMerge TwMerge
+
+<a @attributes="AdditionalAttributes" class="@(TwMerge.Merge(CssClass, AdditionalAttributes?.GetValueOrDefault("class")?.ToString()))">@ChildContent</a>
+
+@code {
+    /// <summary>
+    /// We store the variant as a string. This enables us to add more variants at runtime.
+    ///
+    /// The published API is an enum for built-in variants. We may later add a parameter for custom variants. Ideally,
+    /// we could coerce or accept a discriminated union here and maintain 1 parameter.
+    /// </summary>
+    private string? variant;
+
+    /// <summary>
+    /// We store the size as a string, for the same reasons as the variant.
+    /// </summary>
+    private string? size;
+
+    protected override void OnParametersSet()
+    {
+        variant = Variant switch
+        {
+            Variants.Primary => "primary",
+            Variants.Secondary => "secondary",
+            Variants.Destructive => "destructive",
+            Variants.Outline => "outline",
+            Variants.Ghost => "ghost",
+            _ => null
+        };
+
+        size = Size switch
+        {
+            Sm => "sm",
+            Lg => "lg",
+            _ => null
+        };
+    }
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+
+    /// <summary>
+    /// Use a built-in variant.
+    /// </summary>
+    [Parameter]
+    public Variants? Variant { get; set; }
+
+    [Parameter] public Sizes? Size { get; set; }
+
+    /// <summary>
+    /// Generate the CSS classes from multi-level variants: (variant) + (size).
+    /// </summary>
+    private string CssClass => LinkVariants.Default.GenerateClass(
+        ("variant", variant ?? "link"),
+        ("size", size ?? "sm")
+    );
+}
