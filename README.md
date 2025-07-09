@@ -16,8 +16,6 @@ These components are native Blazor UI components that are free to use for any Bl
 
 ## Installation
 
-### InteractiveWebAssembly / SSR
-
 Install the `PureBlazor.Components` NuGet package to your Client project.
 
 ```sh
