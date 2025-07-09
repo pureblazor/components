@@ -1,9 +1,0 @@
-<Project>
- <PropertyGroup>
-   <Nullable>enable</Nullable>
-   <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-   <WarningsAsErrors>Nullable</WarningsAsErrors>
-   <NuGetAuditMode>All</NuGetAuditMode>
-   <NuGetAuditLevel>low</NuGetAuditLevel>
- </PropertyGroup>
-</Project>

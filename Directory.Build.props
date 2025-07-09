@@ -1,6 +1,0 @@
-<Project>
-    <PropertyGroup>
-      <DefaultNetCoreTargetFramework>net9.0</DefaultNetCoreTargetFramework>
-      <AccelerateBuildsInVisualStudio>false</AccelerateBuildsInVisualStudio>
-    </PropertyGroup>
-  </Project>
