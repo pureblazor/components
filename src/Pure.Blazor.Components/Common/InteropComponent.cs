@@ -1,12 +1,14 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components;
+namespace PureBlazor.Components;
 
-public abstract class InteropComponent : PureComponent, IAsyncDisposable
+public abstract class InteropComponent : ComponentBase, IAsyncDisposable
 {
+    [Inject]
+    public ILogger<InteropComponent>? Logger { get; set; }
+
     protected virtual string Root => "./_content/PureBlazor.Components";
 
     // set the default value to NoOpJsObjectReference to avoid null reference exceptions
@@ -33,7 +35,7 @@ public abstract class InteropComponent : PureComponent, IAsyncDisposable
             }
             catch (Exception ex)
             {
-                Logger.LogError(ex, "Failed to load module {ScriptPath}, falling back to NoOpJsObjectReference",
+                Logger?.LogError(ex, "Failed to load module {ScriptPath}, falling back to NoOpJsObjectReference",
                     ScriptPath);
             }
         }

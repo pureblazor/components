@@ -1,23 +1,4 @@
-namespace Pure.Blazor.Components;
-
-public enum PureVariant
-{
-    Default,
-    Outline,
-    Subtle,
-    Solid,
-}
-
-/// <summary>
-/// Built-in sizes for Pb components. These sizes are not scoped to a specific component,
-/// but rather provided for a better dev experience. Some components may not support all sizes.
-/// </summary>
-public enum Sizes
-{
-    Sm,
-    Md,
-    Lg,
-}
+namespace PureBlazor.Components;
 
 /// <summary>
 /// Built-in variants for Pb components. These variants are not scoped to a specific component,

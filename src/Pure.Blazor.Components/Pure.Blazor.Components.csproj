@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFrameworks>net9.0;net10.0</TargetFrameworks>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>preview</LangVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <Title>PureBlazor Components</Title>
-    <Version>0.50</Version>
+    <Version>0.60</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -29,9 +29,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-    <None Update="Buttons\PureDropdown.razor.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 
@@ -39,11 +36,12 @@
     <SupportedPlatform Include="browser"/>
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web"/>
-    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly"/>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions"/>
-    <PackageReference Include="System.Text.Json"/>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.7"/>
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-preview.5.25277.114"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -52,5 +50,13 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Navigation\PureBreadcrumb.razor" />
+    <UpToDateCheckInput Remove="Navigation\PurePagination.razor" />
+    <UpToDateCheckInput Remove="Navigation\PurePaginationItem.razor" />
+    <UpToDateCheckInput Remove="Navigation\PureVertNav.razor" />
+    <UpToDateCheckInput Remove="Inputs\PureDarkModeToggle.razor" />
   </ItemGroup>
 </Project>

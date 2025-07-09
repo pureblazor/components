@@ -1,2 +1,2 @@
-global using static Pure.Blazor.Components.Variants;
-global using static Pure.Blazor.Components.Sizes;
+global using static PureBlazor.Components.Variants;
+global using static PureBlazor.Components.Sizes;

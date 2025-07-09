@@ -2,9 +2,9 @@ using System.Buffers;
 using System.Text;
 using Pure.Blazor.Components;
 
-namespace Pure.Blazor.Components;
+namespace PureBlazor.Components;
 
-public class StylePrioritizer : IStylePrioritizer
+public class StylePrioritizer
 {
     /// <summary>
     ///     Use the first segment as the key for Tailwind styles.

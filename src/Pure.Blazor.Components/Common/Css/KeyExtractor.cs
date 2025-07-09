@@ -1,4 +1,4 @@
-namespace Pure.Blazor.Components;
+namespace PureBlazor.Components;
 
 public static class KeyExtractor
 {

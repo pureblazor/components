@@ -1,4 +1,4 @@
-﻿namespace Pure.Blazor.Components;
+﻿namespace PureBlazor.Components;
 
 internal interface IFormComponent
 {
