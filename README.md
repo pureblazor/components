@@ -10,24 +10,7 @@
 > This component library is pre-release software.
 
 
-These components are native Blazor UI components that are free to use for any Blazor project. The components also work seamlessly with [PureBlazor CMS](https://pureblazor.com).
-
-# Features
-
-- **Native Blazor** - The components are built for Blazor. They are not a wrapper around a JavaScript library.
-- **Blazing Fast** - The components are fast on every platform.
-- **Headless Mode** - The components have a fully customizable UI. You may disable all styles with a single property.
-- **Tailwind Compatible** - The components have  built-in styles that automatically merge with your Tailwind classes.
-
-[Explore Components](https://pureblazor.com/components)
-
-[Benchmarks](/tests/Benchmarks/README.md)
-
-> [!NOTE]
-> This documentation is incomplete. We have not documented all components yet.
->
-> Please, feel free to ask questions in our [Discord server](https://discord.gg/PeBbYy6WKq), open an issue, or create a pull
-> request.
+These components are native Blazor UI components that are free to use for any Blazor project.
 
 # Getting started
 
@@ -41,85 +24,30 @@ Install the `PureBlazor.Components` NuGet package to your Client project.
 dotnet add package PureBlazor.Components
 ```
 
-Register the components and services to your `Program.cs` file.
+Add to your `GlobalUsings.cs` file in the Client project:
 
 ```csharp
-builder.AddPureBlazorComponents();
+global using static PureBlazor.Components.Variants;
+global using static PureBlazor.Components.Sizes;
+global using PureBlazor.Components;
 ```
 
-### InteractiveServer / InteractiveAuto
+## Example usage
 
-You'll need to add the ASP.NET Core integration package to your Server project and update your `Program.cs` file, in
-addition to the Client Project.
-
-```sh
-dotnet add package PureBlazor.Components.AspNetCore
+```razor
+    <Button Variant="Secondary" Size="Sm" @onclick="EnterEditMode">Edit Observer</Button>
+    <Button Variant="Primary" Size="Sm" @onclick="CheckHealthNowAsync">Check now</Button>
 ```
 
 ## Theming
-
-We have designed PureBlazor's components to be compatible with Tailwind CSS so you can customize with Tailwind or any custom CSS.
-
-In the future, we will offer additional extensibility points to customize the components with C#. We will publish documentation on this as we solidify it further.
-
-### Use the default styles
-
-Include `pureblazor.css` in your `App.Razor` file, in the `<head>` tag.
-
-```razor
-<link rel="stylesheet" href="_content/PureBlazor.Components/pureblazor.css" />
-```
-
-To customize further on top of these default styles with Tailwind CSS, see [tailwind.md](/tailwind.md).
-
-### Ad-hoc customization
-
-All components have a `Styles` parameter that accepts a `string` of CSS classes. If you use Tailwind, the classes
-will merge with the default styles. The `Styles` parameter is parsed and evaluated for conflicts; conflicting styles
-passed in here will supersede default classes.
-
-For example, to change the shade of red for the `Danger` accent, which is `bg-red-900` by default:
-
-```razor
-<PureButton Accent="Accent.Danger" Styles="bg-red-600">Default button</PureButton>
-```
-
-### C# customization
-
-You can override the default theme in C# by creating a `PureStyles` object and passing it to a `CascadingValue`.
-The `PureStyles` object has properties for each component style.
-
-```razor
-<CascadingValue Value="styles">
-    <PureButton Accent="Accent.Danger">Default button</PureButton>
-</CascadingValue>
-
-@code {
-    PureStyles styles = new();
-}
-```
-
-> [!IMPORTANT]
-> Not all components have C# customization available yet.
-
-## Headless Mode
-
-Headless mode turns the UI components into completely unstyled, fully customizable, and accessible components.
-
-You can enable headless mode by setting the `Theme` property to `Off` using a `CascadingValue`. You may do so for individual
-components or wrap your entire application in a `CascadingValue`.
-
-```razor
-<CascadingValue Value="Theme.Off">
-    <PureButton>Unstyled button</PureButton>
-</CascadingValue>
-```
+Docs TODO
 
 # FAQ
 
 ### Why not use another `xx` library?
 
-- We have built these components to work seamlessly with the PureBlazor CMS. In addition, please, review our Features section to understand our broader goals.
+- This library is built to be lightweight and follow a style convention similar to ShadCN.
+- For more complex components, we recommend using other libraries like [Blazorise](https://blazorise.com/) or [MudBlazor](https://mudblazor.com/).
 
 ### Is this library free to use?
 
