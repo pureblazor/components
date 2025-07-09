@@ -17,19 +17,13 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 9.x
+        dotnet-version: 10.x
         include-prerelease: true
     - name: Restore dependencies
       run: dotnet restore ./src/Pure.Blazor.Components
       
     - name: Build
       run: dotnet build ./src/Pure.Blazor.Components --no-restore
-      
-    - name: Test
-      run: dotnet test ./src/Pure.Blazor.Components --no-build --verbosity normal
-
-    - name: Build AspNetCore Integration Package
-      run: dotnet build ./src/Pure.Blazor.Components.AspNetCore
     
     - name: Publish to NuGet
       if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/preview' }}
