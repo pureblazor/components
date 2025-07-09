@@ -33,8 +33,8 @@ global using PureBlazor.Components;
 ## Example usage
 
 ```razor
-    <Button Variant="Secondary" Size="Sm" @onclick="EnterEditMode">Edit Observer</Button>
-    <Button Variant="Primary" Size="Sm" @onclick="CheckHealthNowAsync">Check now</Button>
+<Button Variant="Secondary" Size="Sm" @onclick="EnterEditMode">Edit Observer</Button>
+<Button Variant="Primary" Size="Sm" @onclick="CheckHealthNowAsync">Check now</Button>
 ```
 
 ## Theming

@@ -1,1 +1,0 @@
-<link rel="stylesheet" href="_content/PureBlazor.Components/pureblazor.css" />
