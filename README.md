@@ -12,6 +12,12 @@
 
 These components are native Blazor UI components that are free to use for any Blazor project.
 
+## Available components
+- Button
+- Sheet
+- Input
+- Skip to content
+
 # Getting started
 
 ## Installation
