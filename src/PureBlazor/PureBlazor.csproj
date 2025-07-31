@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <Title>PureBlazor Components</Title>
-    <Version>1.0</Version>
+    <Version>1.0.1-dev1</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Tailwind based Blazor UI components</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -37,6 +37,7 @@
           PackagePath="contentFiles\any\any\TailwindSources\"
           Visible="false"
           CopyToOutputDirectory="Never"
+          BuildAction="None"
           ExcludeAssets="runtime;build;compile" />
   </ItemGroup>
   <Target Name="CopyTailwindSources"
@@ -63,14 +64,6 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Navigation\PureBreadcrumb.razor" />
-    <UpToDateCheckInput Remove="Navigation\PurePagination.razor" />
-    <UpToDateCheckInput Remove="Navigation\PurePaginationItem.razor" />
-    <UpToDateCheckInput Remove="Navigation\PureVertNav.razor" />
-    <UpToDateCheckInput Remove="Inputs\PureDarkModeToggle.razor" />
   </ItemGroup>
 
   <ItemGroup>
