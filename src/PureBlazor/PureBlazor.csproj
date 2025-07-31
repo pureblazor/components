@@ -8,16 +8,16 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <Title>PureBlazor Components</Title>
-    <Version>0.61-preview5</Version>
+    <Version>1.0</Version>
     <PackageId>PureBlazor.Components</PackageId>
-    <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
+    <Description>Tailwind based Blazor UI components</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
     <RepositoryUrl>https://github.com/pureblazor/components</RepositoryUrl>
     <PackageTags>blazor, maui, ssr, wasm, headless, tailwind, tailwindcss, components, pureblazor</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <IncludeSymbols>True</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-    <PackageReleaseNotes>Component Library Updates</PackageReleaseNotes>
+    <PackageReleaseNotes>Simplified v1</PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Company>PureBlazor</Company>
     <Authors>codymullins</Authors>
