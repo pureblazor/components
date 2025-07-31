@@ -1,15 +1,13 @@
 {
     "dependencies": {
-        "@tailwindcss/cli": "^4.0.0-beta.9",
-        "@tailwindcss/vite": "^4.0.0-beta.9",
-        "esbuild": "0.24.2",
-        "tailwindcss": "^4.0.0-beta.9"
+        "@tailwindcss/cli": "^4.1.11",
+        "tailwindcss": "^4.1.11"
     },
     "name": "pb",
     "module": "index.tsx",
     "type": "module",
     "scripts": {
-        "build:tailwind": "npx @tailwindcss/cli@next -i ./src/styles.css -o ./src/Pure.Blazor.Components/wwwroot/pureblazor.css",
-        "tailwind": "npx @tailwindcss/cli@next -i ./src/styles.css -o ./src/Pure.Blazor.Components/wwwroot/pureblazor.css --watch"
+        "build": "npx @tailwindcss/cli -i ./src/styles.css -o ./src/Pure.Blazor.Components/wwwroot/pureblazor.css",
+        "watch": "npx @tailwindcss/cli -i ./src/styles.css -o ./src/Pure.Blazor.Components/wwwroot/pureblazor.css --watch"
     }
 }

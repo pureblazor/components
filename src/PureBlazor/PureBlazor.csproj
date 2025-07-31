@@ -8,7 +8,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <WarningsAsErrors>Nullable</WarningsAsErrors>
     <Title>PureBlazor Components</Title>
-    <Version>0.60</Version>
+    <Version>0.61-preview5</Version>
     <PackageId>PureBlazor.Components</PackageId>
     <Description>Blazor UI components for .NET Blazor with an optional headless mode.</Description>
     <PackageProjectUrl>https://pureblazor.com</PackageProjectUrl>
@@ -31,7 +31,20 @@
     </None>
   </ItemGroup>
 
-
+  <ItemGroup>
+    <None Include="**\*.razor;**\*.cs"
+          Pack="true"
+          PackagePath="contentFiles\any\any\TailwindSources\"
+          Visible="false"
+          CopyToOutputDirectory="Never"
+          ExcludeAssets="runtime;build;compile" />
+  </ItemGroup>
+  <Target Name="CopyTailwindSources"
+          AfterTargets="Restore">
+    <Copy SourceFiles="%(None.Identity)"
+          DestinationFolder="$(ProjectDir)TailwindSources\%(RecursiveDir)"
+          Condition="'%(None.PackagePath)' == 'contentFiles/any/any/TailwindSources/%(RecursiveDir)%(Filename)%(Extension)'" />
+  </Target>
   <ItemGroup>
     <SupportedPlatform Include="browser"/>
   </ItemGroup>
@@ -39,7 +52,7 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.7"/>
   </ItemGroup>
-  
+
   <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.0.0-preview.5.25277.114"/>
   </ItemGroup>
@@ -58,5 +71,9 @@
     <UpToDateCheckInput Remove="Navigation\PurePaginationItem.razor" />
     <UpToDateCheckInput Remove="Navigation\PureVertNav.razor" />
     <UpToDateCheckInput Remove="Inputs\PureDarkModeToggle.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="TailwindMerge.NET" Version="1.0.0" />
   </ItemGroup>
 </Project>

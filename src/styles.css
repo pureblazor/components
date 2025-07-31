@@ -3,84 +3,7 @@
 /* use dark selector manually */
 @variant dark (&:where(.dark, .dark *));
 
-@font-face {
-    font-family: 'InterVariable';
-    src: url('/_content/PureBlazor.Components/css/inter/Inter[wght].woff2') format('woff2-variations');
-    font-weight: 100 900;
-}
-
-@font-face {
-    font-family: 'MonaspaceNeon';
-    src: url('/fonts/MonaspaceNeonVarVF[wght,wdth,slnt].woff2') format('woff2-variations');
-    font-weight: 100 900;
-    /* Range of font weights */
-    font-stretch: 50% 200%;
-    /* Range of font widths */
-    font-style: oblique 0deg 30deg;
-    /* Range of font slants */
-}
-
-@font-face {
-    font-family: 'MonaspaceArgon';
-    src: url('/fonts/MonaspaceArgonVarVF[wght,wdth,slnt].woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-stretch: 50% 200%;
-    font-style: oblique 0deg 30deg;
-}
-
-@font-face {
-    font-family: 'MonaspaceKrypton';
-    src: url('/fonts/MonaspaceKryptonVarVF[wght,wdth,slnt].woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-stretch: 50% 200%;
-    font-style: oblique 0deg 30deg;
-}
-
-@font-face {
-    font-family: 'MonaspaceRadon';
-    src: url('/fonts/MonaspaceRadonVarVF[wght,wdth,slnt].woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-stretch: 50% 200%;
-    font-style: oblique 0deg 30deg;
-}
-
-@font-face {
-    font-family: 'MonaspaceXenon';
-    src: url('/fonts/MonaspaceXenonVarVF[wght,wdth,slnt].woff2') format('woff2-variations');
-    font-weight: 100 900;
-    font-stretch: 50% 200%;
-    font-style: oblique 0deg 30deg;
-}
-
-@font-face {
-    font-family: 'Redaction';
-    src: url('/fonts/RedactionRegular.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Redaction';
-    src: url('/fonts/Redaction-Bold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Redaction';
-    src: url('/fonts/Redaction-Italic.woff2') format('woff2');
-    font-weight: 400;
-    font-style: italic;
-}
-
 @theme {
-    --font-display: "InterVariable", sans-serif;
-    --font-sans: "InterVariable", sans-serif;
-    --font-serif: "Redaction", serif;
-    /*--color-brand: oklch(43.04% 0.107 244.67);*/
-
-    --font-mono: "MonaspaceNeon", monospace;
-
     --text-sm: 0.825rem;
     --color-brand-50: #eff9ff;
     --color-brand-100: #dff1ff;
@@ -132,4 +55,15 @@ h1:focus {
 
 .blazor-error-boundary::after {
     content: "An error has occurred."
+}
+
+.slider {
+    @apply
+    [&::-webkit-slider-runnable-track]:rounded-full
+    [&::-webkit-slider-runnable-track]:bg-black/25
+    [&::-webkit-slider-thumb]:appearance-none
+    [&::-webkit-slider-thumb]:h-5
+    [&::-webkit-slider-thumb]:w-5
+    [&::-webkit-slider-thumb]:rounded-full
+    [&::-webkit-slider-thumb]:bg-slate-50;
 }
