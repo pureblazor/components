@@ -20,10 +20,10 @@ jobs:
         dotnet-version: 10.x
         include-prerelease: true
     - name: Restore dependencies
-      run: dotnet restore ./src/Pure.Blazor.Components
+      run: dotnet restore ./src/PureBlazor
       
     - name: Build
-      run: dotnet build ./src/Pure.Blazor.Components --no-restore
+      run: dotnet build ./src/PureBlazor --no-restore
     
     - name: Publish to NuGet
       if: ${{ github.ref == 'refs/heads/main' || github.ref == 'refs/heads/preview' }}
